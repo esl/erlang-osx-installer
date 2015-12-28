@@ -21,10 +21,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         addStatusItem()
     }
     
-    func itemClicked(sender : AnyObject) {
+    func showMessage(sender : AnyObject) {
         let alert = NSAlert()
-        alert.messageText = "Hello"
+        alert.messageText = "Important Information: I'm closing myself, peace out!"
         alert.runModal()
+        NSApp.terminate(self)
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -35,10 +36,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
         self.statusItem?.image = NSImage(named: "menu-bar-icon.png")
         self.statusItem?.button!.target = self
-        self.statusItem?.button!.action = "itemClicked:"
+        self.statusItem?.button!.action = "showMessage:"
 
     }
-
-
 }
 
