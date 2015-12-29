@@ -12,18 +12,16 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var statusItem : NSStatusItem?
-
-    override init() {
-        self.statusItem = nil
-    }
+    
+    @IBOutlet weak var mainMenu: NSMenu!
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         addStatusItem()
     }
     
-    func showMessage(sender : AnyObject) {
+    @IBAction func quitApplication(sender: AnyObject) {
         let alert = NSAlert()
-        alert.messageText = "Important Information: I'm closing myself, peace out!"
+        alert.messageText = "I'm closing myself, peace out!"
         alert.runModal()
         NSApp.terminate(self)
     }
@@ -35,9 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func addStatusItem() {
         self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
         self.statusItem?.image = NSImage(named: "menu-bar-icon.png")
-        self.statusItem?.button!.target = self
-        self.statusItem?.button!.action = "showMessage:"
-
+        self.statusItem?.menu = self.mainMenu
     }
 }
 
