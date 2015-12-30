@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E519F921C32E34F0024DEAB /* erlang-solutions.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E519F911C32E34F0024DEAB /* erlang-solutions.png */; };
 		5EC3AF981C31888000E0BF43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3AF971C31888000E0BF43 /* AppDelegate.swift */; };
 		5EC3AF9A1C31888000E0BF43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3AF991C31888000E0BF43 /* ViewController.swift */; };
 		5EC3AF9C1C31888000E0BF43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3AF9B1C31888000E0BF43 /* Assets.xcassets */; };
@@ -14,6 +15,9 @@
 		5EC3AFAA1C31888000E0BF43 /* ErlangInstallerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3AFA91C31888000E0BF43 /* ErlangInstallerTests.swift */; };
 		5EC3AFB51C31888000E0BF43 /* ErlangInstallerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3AFB41C31888000E0BF43 /* ErlangInstallerUITests.swift */; };
 		5EC3AFC91C31CDA700E0BF43 /* menu-bar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3AFC81C31CDA700E0BF43 /* menu-bar-icon.png */; };
+		5EFD590E1C32BDEF004ECB9B /* ErlangInstallerPreferences.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EFD590D1C32BDEF004ECB9B /* ErlangInstallerPreferences.h */; };
+		5EFD59101C32BDEF004ECB9B /* ErlangInstallerPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD590F1C32BDEF004ECB9B /* ErlangInstallerPreferences.m */; };
+		5EFD59151C32BDEF004ECB9B /* ErlangInstallerPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E519F911C32E34F0024DEAB /* erlang-solutions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "erlang-solutions.png"; path = "Resources/erlang-solutions.png"; sourceTree = "<group>"; };
 		5EC3AF941C31888000E0BF43 /* ErlangInstaller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ErlangInstaller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC3AF971C31888000E0BF43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EC3AF991C31888000E0BF43 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -46,7 +51,12 @@
 		5EC3AFB01C31888000E0BF43 /* ErlangInstallerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErlangInstallerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC3AFB41C31888000E0BF43 /* ErlangInstallerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErlangInstallerUITests.swift; sourceTree = "<group>"; };
 		5EC3AFB61C31888000E0BF43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5EC3AFC81C31CDA700E0BF43 /* menu-bar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-bar-icon.png"; sourceTree = "<group>"; };
+		5EC3AFC81C31CDA700E0BF43 /* menu-bar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-bar-icon.png"; path = "Resources/menu-bar-icon.png"; sourceTree = "<group>"; };
+		5EFD590B1C32BDEF004ECB9B /* ErlangInstallerPreferences.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErlangInstallerPreferences.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EFD590D1C32BDEF004ECB9B /* ErlangInstallerPreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErlangInstallerPreferences.h; sourceTree = "<group>"; };
+		5EFD590F1C32BDEF004ECB9B /* ErlangInstallerPreferences.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ErlangInstallerPreferences.m; sourceTree = "<group>"; };
+		5EFD59141C32BDEF004ECB9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ErlangInstallerPreferences.xib; sourceTree = "<group>"; };
+		5EFD59161C32BDEF004ECB9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,15 +81,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5EFD59071C32BDEF004ECB9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E519F901C32E2D90024DEAB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				5EC3AFC81C31CDA700E0BF43 /* menu-bar-icon.png */,
+				5E519F911C32E34F0024DEAB /* erlang-solutions.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		5EC3AF8B1C31888000E0BF43 = {
 			isa = PBXGroup;
 			children = (
 				5EC3AF961C31888000E0BF43 /* ErlangInstaller */,
+				5E519F901C32E2D90024DEAB /* Resources */,
 				5EC3AFA81C31888000E0BF43 /* ErlangInstallerTests */,
 				5EC3AFB31C31888000E0BF43 /* ErlangInstallerUITests */,
+				5EFD590C1C32BDEF004ECB9B /* ErlangInstallerPreferences */,
 				5EC3AF951C31888000E0BF43 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +118,7 @@
 				5EC3AF941C31888000E0BF43 /* ErlangInstaller.app */,
 				5EC3AFA51C31888000E0BF43 /* ErlangInstallerTests.xctest */,
 				5EC3AFB01C31888000E0BF43 /* ErlangInstallerUITests.xctest */,
+				5EFD590B1C32BDEF004ECB9B /* ErlangInstallerPreferences.prefPane */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,7 +126,6 @@
 		5EC3AF961C31888000E0BF43 /* ErlangInstaller */ = {
 			isa = PBXGroup;
 			children = (
-				5EC3AFC81C31CDA700E0BF43 /* menu-bar-icon.png */,
 				5EC3AF971C31888000E0BF43 /* AppDelegate.swift */,
 				5EC3AF991C31888000E0BF43 /* ViewController.swift */,
 				5EC3AF9B1C31888000E0BF43 /* Assets.xcassets */,
@@ -125,7 +153,29 @@
 			path = ErlangInstallerUITests;
 			sourceTree = "<group>";
 		};
+		5EFD590C1C32BDEF004ECB9B /* ErlangInstallerPreferences */ = {
+			isa = PBXGroup;
+			children = (
+				5EFD590D1C32BDEF004ECB9B /* ErlangInstallerPreferences.h */,
+				5EFD590F1C32BDEF004ECB9B /* ErlangInstallerPreferences.m */,
+				5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */,
+				5EFD59161C32BDEF004ECB9B /* Info.plist */,
+			);
+			path = ErlangInstallerPreferences;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		5EFD59081C32BDEF004ECB9B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EFD590E1C32BDEF004ECB9B /* ErlangInstallerPreferences.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		5EC3AF931C31888000E0BF43 /* ErlangInstaller */ = {
@@ -181,6 +231,24 @@
 			productReference = 5EC3AFB01C31888000E0BF43 /* ErlangInstallerUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		5EFD590A1C32BDEF004ECB9B /* ErlangInstallerPreferences */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5EFD59191C32BDEF004ECB9B /* Build configuration list for PBXNativeTarget "ErlangInstallerPreferences" */;
+			buildPhases = (
+				5EFD59061C32BDEF004ECB9B /* Sources */,
+				5EFD59071C32BDEF004ECB9B /* Frameworks */,
+				5EFD59081C32BDEF004ECB9B /* Headers */,
+				5EFD59091C32BDEF004ECB9B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ErlangInstallerPreferences;
+			productName = ErlangInstallerPreferences;
+			productReference = 5EFD590B1C32BDEF004ECB9B /* ErlangInstallerPreferences.prefPane */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -202,6 +270,9 @@
 						CreatedOnToolsVersion = 7.2;
 						TestTargetID = 5EC3AF931C31888000E0BF43;
 					};
+					5EFD590A1C32BDEF004ECB9B = {
+						CreatedOnToolsVersion = 7.2;
+					};
 				};
 			};
 			buildConfigurationList = 5EC3AF8F1C31888000E0BF43 /* Build configuration list for PBXProject "ErlangInstaller" */;
@@ -220,6 +291,7 @@
 				5EC3AF931C31888000E0BF43 /* ErlangInstaller */,
 				5EC3AFA41C31888000E0BF43 /* ErlangInstallerTests */,
 				5EC3AFAF1C31888000E0BF43 /* ErlangInstallerUITests */,
+				5EFD590A1C32BDEF004ECB9B /* ErlangInstallerPreferences */,
 			);
 		};
 /* End PBXProject section */
@@ -246,6 +318,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5EFD59091C32BDEF004ECB9B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EFD59151C32BDEF004ECB9B /* ErlangInstallerPreferences.xib in Resources */,
+				5E519F921C32E34F0024DEAB /* erlang-solutions.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +358,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5EFD59061C32BDEF004ECB9B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5EFD59101C32BDEF004ECB9B /* ErlangInstallerPreferences.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -301,6 +390,14 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
+		5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5EFD59141C32BDEF004ECB9B /* Base */,
+			);
+			name = ErlangInstallerPreferences.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -308,6 +405,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_NAME = "Erlang Installer";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -352,6 +450,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				APP_NAME = "Erlang Installer";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -460,6 +559,32 @@
 			};
 			name = Release;
 		};
+		5EFD59171C32BDEF004ECB9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				INFOPLIST_FILE = ErlangInstallerPreferences/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstallerPreferences";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Debug;
+		};
+		5EFD59181C32BDEF004ECB9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				INFOPLIST_FILE = ErlangInstallerPreferences/Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstallerPreferences";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = prefPane;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -495,6 +620,15 @@
 			buildConfigurations = (
 				5EC3AFC01C31888000E0BF43 /* Debug */,
 				5EC3AFC11C31888000E0BF43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5EFD59191C32BDEF004ECB9B /* Build configuration list for PBXNativeTarget "ErlangInstallerPreferences" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5EFD59171C32BDEF004ECB9B /* Debug */,
+				5EFD59181C32BDEF004ECB9B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
