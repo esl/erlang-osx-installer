@@ -26,22 +26,28 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func showPreferencesPane(sender: AnyObject) {
         let systemPreferencesApp = SBApplication(bundleIdentifier: "com.apple.systempreferences") as!SystemPreferencesApplication
-        let pane = findPreferencePane(systemPreferencesApp)
-        if (pane != nil) {
-            systemPreferencesApp.setCurrentPane!(pane)
-        } else {
-            
+        var pane = findPreferencePane(systemPreferencesApp)
+        
+        if (pane == nil) {
+            installPreferenecesPane(systemPreferencesApp)
+            pane = findPreferencePane(systemPreferencesApp)
         }
+        
+        systemPreferencesApp.setCurrentPane!(pane)
         systemPreferencesApp.activate()
     }
     
     func findPreferencePane(systemPreferencesApp : SystemPreferencesApplication) -> SystemPreferencesPane? {
         let panes = systemPreferencesApp.panes!() as NSArray as! [SystemPreferencesPane]
         let pane = panes.filter { (pane) -> Bool in
-            pane.name!.containsString("Erlang Installer")
+            pane.id!().containsString("com.erlang-solutions.ErlangInstallerPreferences")
         }.first
-        
+
         return pane
+    }
+
+    func installPreferenecesPane(systemPreferencesApp : SystemPreferencesApplication) {
+        
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -54,4 +60,3 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.statusItem?.menu = self.mainMenu
     }
 }
-
