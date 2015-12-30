@@ -15,6 +15,7 @@
 		5EC3AFB51C31888000E0BF43 /* ErlangInstallerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3AFB41C31888000E0BF43 /* ErlangInstallerUITests.swift */; };
 		5EC3AFC91C31CDA700E0BF43 /* menu-bar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3AFC81C31CDA700E0BF43 /* menu-bar-icon.png */; };
 		5EDC5B011C342CDF0014343A /* SystemPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC5B001C342CDF0014343A /* SystemPreferences.swift */; };
+		5EDC5B041C345D480014343A /* ErlangInstallerPreferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD590B1C32BDEF004ECB9B /* ErlangInstallerPreferences.prefPane */; };
 		5EFD590E1C32BDEF004ECB9B /* ErlangInstallerPreferences.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EFD590D1C32BDEF004ECB9B /* ErlangInstallerPreferences.h */; };
 		5EFD59101C32BDEF004ECB9B /* ErlangInstallerPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD590F1C32BDEF004ECB9B /* ErlangInstallerPreferences.m */; };
 		5EFD59151C32BDEF004ECB9B /* ErlangInstallerPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */; };
@@ -34,6 +35,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 5EC3AF931C31888000E0BF43;
 			remoteInfo = ErlangInstaller;
+		};
+		5EDC5B021C345D3A0014343A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5EC3AF8C1C31888000E0BF43 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5EFD590A1C32BDEF004ECB9B;
+			remoteInfo = ErlangInstallerPreferences;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -199,6 +207,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5EDC5B031C345D3A0014343A /* PBXTargetDependency */,
 			);
 			name = ErlangInstaller;
 			productName = ErlangInstaller;
@@ -311,6 +320,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EDC5B041C345D480014343A /* ErlangInstallerPreferences.prefPane in Resources */,
 				5EC3AF9C1C31888000E0BF43 /* Assets.xcassets in Resources */,
 				5EC3AFC91C31CDA700E0BF43 /* menu-bar-icon.png in Resources */,
 				5EBDDD611C33215F0024C22C /* MainMenu.xib in Resources */,
@@ -388,6 +398,11 @@
 			isa = PBXTargetDependency;
 			target = 5EC3AF931C31888000E0BF43 /* ErlangInstaller */;
 			targetProxy = 5EC3AFB11C31888000E0BF43 /* PBXContainerItemProxy */;
+		};
+		5EDC5B031C345D3A0014343A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5EFD590A1C32BDEF004ECB9B /* ErlangInstallerPreferences */;
+			targetProxy = 5EDC5B021C345D3A0014343A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
