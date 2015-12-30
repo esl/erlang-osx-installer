@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import ScriptingBridge
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -20,10 +21,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func quitApplication(sender: AnyObject) {
-        let alert = NSAlert()
-        alert.messageText = "I'm closing myself, peace out!"
-        alert.runModal()
         NSApp.terminate(self)
+    }
+    
+    @IBAction func showPreferencesPane(sender: AnyObject) {
+        let systemPreferencesApp = SBApplication(bundleIdentifier: "com.apple.systempreferences") as!SystemPreferencesApplication
+        let pane = findPreferencePane(systemPreferencesApp)
+        if (pane != nil) {
+            systemPreferencesApp.setCurrentPane!(pane)
+        } else {
+            
+        }
+        systemPreferencesApp.activate()
+    }
+    
+    func findPreferencePane(systemPreferencesApp : SystemPreferencesApplication) -> SystemPreferencesPane? {
+        let panes = systemPreferencesApp.panes!() as NSArray as! [SystemPreferencesPane]
+        let pane = panes.filter { (pane) -> Bool in
+            pane.name!.containsString("Erlang Installer")
+        }.first
+        
+        return pane
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {

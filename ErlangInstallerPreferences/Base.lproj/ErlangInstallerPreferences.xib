@@ -13,25 +13,25 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Erlang Manager" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" deferred="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="F0z-JX-Cv5" userLabel="PrefPane">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
-            <rect key="contentRect" x="426" y="202" width="509" height="397"/>
+            <rect key="contentRect" x="426" y="202" width="668" height="397"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1366" height="745"/>
             <view key="contentView" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="509" height="397"/>
+                <rect key="frame" x="0.0" y="0.0" width="668" height="397"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <tabView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oBV-No-0bi">
-                        <rect key="frame" x="13" y="10" width="483" height="381"/>
+                        <rect key="frame" x="13" y="10" width="642" height="381"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="General" identifier="1" id="N9u-eq-jYh">
                                 <view key="view" ambiguous="YES" id="zGK-Zk-WXn">
-                                    <rect key="frame" x="10" y="33" width="463" height="335"/>
+                                    <rect key="frame" x="10" y="33" width="622" height="335"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Releases" identifier="2" id="VPY-Ul-aqr">
                                 <view key="view" id="peX-qb-6QT">
-                                    <rect key="frame" x="10" y="33" width="463" height="335"/>
+                                    <rect key="frame" x="10" y="33" width="622" height="335"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
@@ -39,7 +39,7 @@
                     </tabView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="326.5" y="326.5"/>
+            <point key="canvasLocation" x="247" y="326.5"/>
         </window>
     </objects>
 </document>

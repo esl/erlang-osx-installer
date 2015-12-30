@@ -38,6 +38,9 @@
                 <menuItem isSeparatorItem="YES" id="S5L-cX-Xxr"/>
                 <menuItem title="Preferences..." id="yne-sw-S4q">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showPreferencesPane:" target="O7D-yy-Kre" id="qGC-cI-h4T"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="Check for New Release" id="YO0-vk-aeI">
                     <modifierMask key="keyEquivalentModifierMask"/>
