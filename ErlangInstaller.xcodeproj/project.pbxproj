@@ -8,13 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		5E519F921C32E34F0024DEAB /* erlang-solutions.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E519F911C32E34F0024DEAB /* erlang-solutions.png */; };
+		5EBDDD611C33215F0024C22C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EBDDD601C33215F0024C22C /* MainMenu.xib */; };
 		5EC3AF981C31888000E0BF43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3AF971C31888000E0BF43 /* AppDelegate.swift */; };
-		5EC3AF9A1C31888000E0BF43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3AF991C31888000E0BF43 /* ViewController.swift */; };
 		5EC3AF9C1C31888000E0BF43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3AF9B1C31888000E0BF43 /* Assets.xcassets */; };
-		5EC3AF9F1C31888000E0BF43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3AF9D1C31888000E0BF43 /* Main.storyboard */; };
 		5EC3AFAA1C31888000E0BF43 /* ErlangInstallerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3AFA91C31888000E0BF43 /* ErlangInstallerTests.swift */; };
 		5EC3AFB51C31888000E0BF43 /* ErlangInstallerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3AFB41C31888000E0BF43 /* ErlangInstallerUITests.swift */; };
 		5EC3AFC91C31CDA700E0BF43 /* menu-bar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3AFC81C31CDA700E0BF43 /* menu-bar-icon.png */; };
+		5EDC5B011C342CDF0014343A /* SystemPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC5B001C342CDF0014343A /* SystemPreferences.swift */; };
 		5EFD590E1C32BDEF004ECB9B /* ErlangInstallerPreferences.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EFD590D1C32BDEF004ECB9B /* ErlangInstallerPreferences.h */; };
 		5EFD59101C32BDEF004ECB9B /* ErlangInstallerPreferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFD590F1C32BDEF004ECB9B /* ErlangInstallerPreferences.m */; };
 		5EFD59151C32BDEF004ECB9B /* ErlangInstallerPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */; };
@@ -39,11 +39,10 @@
 
 /* Begin PBXFileReference section */
 		5E519F911C32E34F0024DEAB /* erlang-solutions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "erlang-solutions.png"; path = "Resources/erlang-solutions.png"; sourceTree = "<group>"; };
+		5EBDDD601C33215F0024C22C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ../Resources/MainMenu.xib; sourceTree = "<group>"; };
 		5EC3AF941C31888000E0BF43 /* ErlangInstaller.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ErlangInstaller.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC3AF971C31888000E0BF43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5EC3AF991C31888000E0BF43 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5EC3AF9B1C31888000E0BF43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		5EC3AF9E1C31888000E0BF43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5EC3AFA01C31888000E0BF43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EC3AFA51C31888000E0BF43 /* ErlangInstallerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErlangInstallerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EC3AFA91C31888000E0BF43 /* ErlangInstallerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErlangInstallerTests.swift; sourceTree = "<group>"; };
@@ -52,6 +51,8 @@
 		5EC3AFB41C31888000E0BF43 /* ErlangInstallerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErlangInstallerUITests.swift; sourceTree = "<group>"; };
 		5EC3AFB61C31888000E0BF43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EC3AFC81C31CDA700E0BF43 /* menu-bar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-bar-icon.png"; path = "Resources/menu-bar-icon.png"; sourceTree = "<group>"; };
+		5EDC5AFF1C342C8D0014343A /* SBSystemPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSystemPreferences.h; sourceTree = "<group>"; };
+		5EDC5B001C342CDF0014343A /* SystemPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemPreferences.swift; sourceTree = "<group>"; };
 		5EFD590B1C32BDEF004ECB9B /* ErlangInstallerPreferences.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErlangInstallerPreferences.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFD590D1C32BDEF004ECB9B /* ErlangInstallerPreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ErlangInstallerPreferences.h; sourceTree = "<group>"; };
 		5EFD590F1C32BDEF004ECB9B /* ErlangInstallerPreferences.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ErlangInstallerPreferences.m; sourceTree = "<group>"; };
@@ -126,10 +127,10 @@
 		5EC3AF961C31888000E0BF43 /* ErlangInstaller */ = {
 			isa = PBXGroup;
 			children = (
+				5EDC5AFE1C342C7B0014343A /* External */,
 				5EC3AF971C31888000E0BF43 /* AppDelegate.swift */,
-				5EC3AF991C31888000E0BF43 /* ViewController.swift */,
 				5EC3AF9B1C31888000E0BF43 /* Assets.xcassets */,
-				5EC3AF9D1C31888000E0BF43 /* Main.storyboard */,
+				5EBDDD601C33215F0024C22C /* MainMenu.xib */,
 				5EC3AFA01C31888000E0BF43 /* Info.plist */,
 			);
 			path = ErlangInstaller;
@@ -151,6 +152,15 @@
 				5EC3AFB61C31888000E0BF43 /* Info.plist */,
 			);
 			path = ErlangInstallerUITests;
+			sourceTree = "<group>";
+		};
+		5EDC5AFE1C342C7B0014343A /* External */ = {
+			isa = PBXGroup;
+			children = (
+				5EDC5AFF1C342C8D0014343A /* SBSystemPreferences.h */,
+				5EDC5B001C342CDF0014343A /* SystemPreferences.swift */,
+			);
+			name = External;
 			sourceTree = "<group>";
 		};
 		5EFD590C1C32BDEF004ECB9B /* ErlangInstallerPreferences */ = {
@@ -303,7 +313,7 @@
 			files = (
 				5EC3AF9C1C31888000E0BF43 /* Assets.xcassets in Resources */,
 				5EC3AFC91C31CDA700E0BF43 /* menu-bar-icon.png in Resources */,
-				5EC3AF9F1C31888000E0BF43 /* Main.storyboard in Resources */,
+				5EBDDD611C33215F0024C22C /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,8 +347,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EC3AF9A1C31888000E0BF43 /* ViewController.swift in Sources */,
 				5EC3AF981C31888000E0BF43 /* AppDelegate.swift in Sources */,
+				5EDC5B011C342CDF0014343A /* SystemPreferences.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,14 +392,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5EC3AF9D1C31888000E0BF43 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5EC3AF9E1C31888000E0BF43 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

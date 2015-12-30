@@ -7,25 +7,47 @@
 //
 
 import Cocoa
+import ScriptingBridge
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     var statusItem : NSStatusItem?
-
-    override init() {
-        self.statusItem = nil
-    }
+    
+    @IBOutlet weak var mainMenu: NSMenu!
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         addStatusItem()
     }
     
-    func showMessage(sender : AnyObject) {
-        let alert = NSAlert()
-        alert.messageText = "Important Information: I'm closing myself, peace out!"
-        alert.runModal()
+    @IBAction func quitApplication(sender: AnyObject) {
         NSApp.terminate(self)
+    }
+    
+    @IBAction func showPreferencesPane(sender: AnyObject) {
+        let systemPreferencesApp = SBApplication(bundleIdentifier: "com.apple.systempreferences") as!SystemPreferencesApplication
+        var pane = findPreferencePane(systemPreferencesApp)
+        
+        if (pane == nil) {
+            installPreferenecesPane(systemPreferencesApp)
+            pane = findPreferencePane(systemPreferencesApp)
+        }
+        
+        systemPreferencesApp.setCurrentPane!(pane)
+        systemPreferencesApp.activate()
+    }
+    
+    func findPreferencePane(systemPreferencesApp : SystemPreferencesApplication) -> SystemPreferencesPane? {
+        let panes = systemPreferencesApp.panes!() as NSArray as! [SystemPreferencesPane]
+        let pane = panes.filter { (pane) -> Bool in
+            pane.id!().containsString("com.erlang-solutions.ErlangInstallerPreferences")
+        }.first
+
+        return pane
+    }
+
+    func installPreferenecesPane(systemPreferencesApp : SystemPreferencesApplication) {
+        
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -35,9 +57,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func addStatusItem() {
         self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
         self.statusItem?.image = NSImage(named: "menu-bar-icon.png")
-        self.statusItem?.button!.target = self
-        self.statusItem?.button!.action = "showMessage:"
-
+        self.statusItem?.menu = self.mainMenu
     }
 }
-
