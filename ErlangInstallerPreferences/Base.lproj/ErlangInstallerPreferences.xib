@@ -4,9 +4,11 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="NSPreferencePane">
+        <customObject id="-2" userLabel="File's Owner" customClass="ErlangInstallerPreferences" customModule="ErlangInstallerPreferences">
             <connections>
-                <outlet property="_window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
+                <outlet property="_window" destination="F0z-JX-Cv5" id="tdy-t6-CPj"/>
+                <outlet property="localMainView" destination="se5-gp-TjO" id="y77-e4-OFJ"/>
+                <outlet property="mainView" destination="se5-gp-TjO" id="e0B-T6-FJz"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -39,7 +41,7 @@
                     </tabView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="247" y="326.5"/>
+            <point key="canvasLocation" x="323" y="268.5"/>
         </window>
     </objects>
 </document>
