@@ -17,7 +17,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var mainMenu: NSMenu!
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        checkFirstLaunch()
         addStatusItem()
     }
     
@@ -50,35 +49,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return pane
     }
 
-    func checkFirstLaunch() {
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        let alreadyBeenLaunched = "AlreadyBeenLaunched"
-        if(!userDefaults.boolForKey(alreadyBeenLaunched)) {
-            installPreferenecesPane()
-            userDefaults.setValue(NSNumber(bool: true), forKey: alreadyBeenLaunched)
-        }
-    }
-    
     func installPreferenecesPane() {
-        let result = confirmPreferencesPaneInstallation()
-        switch(result) {
-        case NSAlertFirstButtonReturn:
-            let path = NSBundle.mainBundle().pathForResource("ErlangInstallerPreferences", ofType: "prefPane")
-            NSWorkspace.sharedWorkspace().openFile(path!)
-        case NSAlertSecondButtonReturn:
-            quitApplication(self)
-        default:
-            break
-        }
-    }
-    
-    func confirmPreferencesPaneInstallation() -> NSModalResponse {
-        let alert = NSAlert()
-        alert.messageText = "Erlang Installer needs to add a pane in your System Preferences so you can manage the application's preferences."
-        alert.informativeText = "Do you want to install it now? (If you choose not to the application will quit)"
-        alert.addButtonWithTitle("Yes")
-        alert.addButtonWithTitle("No")
-        return alert.runModal()
+        let path = NSBundle.mainBundle().pathForResource("ErlangInstallerPreferences", ofType: "prefPane")
+        NSWorkspace.sharedWorkspace().openFile(path!)
     }
     
     func addStatusItem() {
