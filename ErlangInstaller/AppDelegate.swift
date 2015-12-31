@@ -20,21 +20,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         addStatusItem()
     }
     
+    func applicationWillTerminate(aNotification: NSNotification) {
+        // Insert code here to tear down your application
+    }
+    
     @IBAction func quitApplication(sender: AnyObject) {
         NSApp.terminate(self)
     }
     
     @IBAction func showPreferencesPane(sender: AnyObject) {
         let systemPreferencesApp = SBApplication(bundleIdentifier: "com.apple.systempreferences") as!SystemPreferencesApplication
-        var pane = findPreferencePane(systemPreferencesApp)
+        let pane = findPreferencePane(systemPreferencesApp)
         
         if (pane == nil) {
-            installPreferenecesPane(systemPreferencesApp)
-            pane = findPreferencePane(systemPreferencesApp)
+            installPreferenecesPane()
+        } else {
+            systemPreferencesApp.setCurrentPane!(pane)
+            systemPreferencesApp.activate()
         }
-        
-        systemPreferencesApp.setCurrentPane!(pane)
-        systemPreferencesApp.activate()
     }
     
     func findPreferencePane(systemPreferencesApp : SystemPreferencesApplication) -> SystemPreferencesPane? {
@@ -46,12 +49,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return pane
     }
 
-    func installPreferenecesPane(systemPreferencesApp : SystemPreferencesApplication) {
-        
-    }
-
-    func applicationWillTerminate(aNotification: NSNotification) {
-        // Insert code here to tear down your application
+    func installPreferenecesPane() {
+        let path = NSBundle.mainBundle().pathForResource("ErlangInstallerPreferences", ofType: "prefPane")
+        NSWorkspace.sharedWorkspace().openFile(path!)
     }
     
     func addStatusItem() {
