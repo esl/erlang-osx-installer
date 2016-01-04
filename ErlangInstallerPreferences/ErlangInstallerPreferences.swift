@@ -17,4 +17,7 @@ class ErlangInstallerPreferences: NSPreferencePane {
     override func assignMainView() {
         self.mainView = self.localMainView
     }
+    
+    override func mainViewDidLoad() {
+    }
 }
