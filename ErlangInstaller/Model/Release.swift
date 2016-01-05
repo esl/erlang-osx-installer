@@ -8,17 +8,12 @@
 
 import Foundation
 
-class Release: AnyObject {
+class Release: AnyObject {    
     var name: String
+    var installed: Bool
     
-    init(name: String){
+    init(name: String, installed: Bool){
         self.name = name
-    }
-    
-    static private var releases: [Release] = []
-
-    static func loadAll() {
-        let paths = NSSearchPathForDirectoriesInDomains(NSSearchPathDirectory.ApplicationSupportDirectory, NSSearchPathDomainMask.UserDomainMask, true)
-        print(paths.first)
+        self.installed = installed
     }
 }
