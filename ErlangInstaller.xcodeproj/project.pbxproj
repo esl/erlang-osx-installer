@@ -596,8 +596,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "/tmp/$(PROJECT_NAME).dst";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ErlangInstallerPreferences/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
@@ -614,8 +617,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
+				DEPLOYMENT_LOCATION = YES;
+				DSTROOT = "/tmp/$(PROJECT_NAME).dst";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = ErlangInstallerPreferences/Info.plist;
 				INSTALL_PATH = "$(HOME)/Library/PreferencePanes";
