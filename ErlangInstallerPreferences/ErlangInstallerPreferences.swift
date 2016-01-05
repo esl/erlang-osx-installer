@@ -14,16 +14,11 @@ class ErlangInstallerPreferences: NSPreferencePane, NSTableViewDataSource, NSTab
     
     @IBOutlet weak var localMainView: NSView!
     
-    @IBOutlet weak var tableView: NSTableView!
-    
     override func assignMainView() {
         self.mainView = self.localMainView
     }
     
     override func mainViewDidLoad() {
-        self.tableView.reloadData()
-        self.tableView.setDelegate(self)
-        self.tableView.setDataSource(self)
     }
     
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
