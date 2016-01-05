@@ -17,7 +17,7 @@ class ErlangInstallerPreferences: NSPreferencePane, NSTableViewDataSource, NSTab
     override func assignMainView() {
         self.mainView = self.localMainView
     }
-    
+
     override func mainViewDidLoad() {
     }
     
@@ -31,11 +31,5 @@ class ErlangInstallerPreferences: NSPreferencePane, NSTableViewDataSource, NSTab
         } else {
             return nil
         }
-    }
-    
-    func alert(msg: String) {
-        let alert = NSAlert()
-        alert.messageText = msg
-        alert.runModal()
     }
 }

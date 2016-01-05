@@ -26,7 +26,7 @@
                         <tabViewItems>
                             <tabViewItem label="General" identifier="1" id="N9u-eq-jYh">
                                 <view key="view" id="zGK-Zk-WXn">
-                                    <rect key="frame" x="10" y="33" width="143" height="0.0"/>
+                                    <rect key="frame" x="10" y="33" width="622" height="335"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
@@ -63,8 +63,8 @@
                                                             </tableColumn>
                                                         </tableColumns>
                                                         <connections>
-                                                            <outlet property="dataSource" destination="-2" id="IV9-56-bhM"/>
-                                                            <outlet property="delegate" destination="-2" id="CPc-2a-8Wm"/>
+                                                            <outlet property="dataSource" destination="-2" id="KOo-21-kIP"/>
+                                                            <outlet property="delegate" destination="-2" id="4b3-Gj-9uJ"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
