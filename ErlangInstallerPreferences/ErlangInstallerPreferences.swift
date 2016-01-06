@@ -8,7 +8,7 @@
 
 import PreferencePanes
 
-class ErlangInstallerPreferences: NSPreferencePane, NSTableViewDataSource, NSTableViewDelegate {
+class ErlangInstallerPreferences: NSPreferencePane {
 
     @IBOutlet var _window: NSWindow!
     
@@ -19,17 +19,5 @@ class ErlangInstallerPreferences: NSPreferencePane, NSTableViewDataSource, NSTab
     }
 
     override func mainViewDidLoad() {
-    }
-    
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
-        return ReleaseManager.available.count
-    }
-    
-    func tableView(aTableView: NSTableView, objectValueForTableColumn aTableColumn: NSTableColumn?,row rowIndex: Int) -> AnyObject? {
-        if aTableColumn != nil {
-            return ReleaseManager.available[rowIndex].name
-        } else {
-            return nil
-        }
     }
 }

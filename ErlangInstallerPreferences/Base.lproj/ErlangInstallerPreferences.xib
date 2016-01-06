@@ -26,7 +26,7 @@
                         <tabViewItems>
                             <tabViewItem label="General" identifier="1" id="N9u-eq-jYh">
                                 <view key="view" id="zGK-Zk-WXn">
-                                    <rect key="frame" x="10" y="33" width="622" height="335"/>
+                                    <rect key="frame" x="10" y="33" width="143" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                             </tabViewItem>
@@ -63,8 +63,8 @@
                                                             </tableColumn>
                                                         </tableColumns>
                                                         <connections>
-                                                            <outlet property="dataSource" destination="-2" id="KOo-21-kIP"/>
-                                                            <outlet property="delegate" destination="-2" id="4b3-Gj-9uJ"/>
+                                                            <outlet property="dataSource" destination="rl2-TB-8Bg" id="RUt-ZP-Z5R"/>
+                                                            <outlet property="delegate" destination="rl2-TB-8Bg" id="MbF-ZQ-0yA"/>
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
@@ -88,5 +88,6 @@
             </view>
             <point key="canvasLocation" x="323" y="268.5"/>
         </window>
+        <customObject id="rl2-TB-8Bg" customClass="ReleasesTableViewDelegate" customModule="ErlangInstallerPreferences" customModuleProvider="target"/>
     </objects>
 </document>
