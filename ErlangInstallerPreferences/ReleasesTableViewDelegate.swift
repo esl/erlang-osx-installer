@@ -9,6 +9,9 @@
 import Cocoa
 
 class ReleasesTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSource {
+    
+    @IBOutlet weak var installationPanel: InstallationPanel!
+    
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return ReleaseManager.available.count
     }

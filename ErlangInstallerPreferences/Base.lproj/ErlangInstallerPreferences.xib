@@ -78,6 +78,7 @@
                                                                         </subviews>
                                                                         <connections>
                                                                             <outlet property="checkButton" destination="biV-ZA-WRj" id="zfP-on-waM"/>
+                                                                            <outlet property="delegate" destination="rl2-TB-8Bg" id="rV7-gW-v1M"/>
                                                                         </connections>
                                                                     </tableCellView>
                                                                 </prototypeCellViews>
@@ -109,6 +110,47 @@
             </view>
             <point key="canvasLocation" x="323" y="268.5"/>
         </window>
-        <customObject id="rl2-TB-8Bg" customClass="ReleasesTableViewDelegate" customModule="ErlangInstallerPreferences" customModuleProvider="target"/>
+        <customObject id="rl2-TB-8Bg" customClass="ReleasesTableViewDelegate" customModule="ErlangInstallerPreferences" customModuleProvider="target">
+            <connections>
+                <outlet property="installationPanel" destination="W5u-GO-57j" id="cLn-xx-Xwj"/>
+            </connections>
+        </customObject>
+        <window title="Installation" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="W5u-GO-57j" customClass="InstallationPanel" customModule="ErlangInstallerPreferences" customModuleProvider="target">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="-78" y="880" width="353" height="109"/>
+            <rect key="screenRect" x="-274" y="768" width="1920" height="1057"/>
+            <view key="contentView" id="cNV-FM-Tct">
+                <rect key="frame" x="0.0" y="0.0" width="353" height="109"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <progressIndicator fixedFrame="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="yZZ-6Y-7vN">
+                        <rect key="frame" x="20" y="44" width="313" height="20"/>
+                    </progressIndicator>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jXv-yE-k5A">
+                        <rect key="frame" x="18" y="20" width="317" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Information Messge" id="weu-7y-alz">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gus-MC-rMK">
+                        <rect key="frame" x="120" y="72" width="112" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Release Name" id="xFe-Yc-myN">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+            </view>
+            <connections>
+                <outlet property="informationMessage" destination="jXv-yE-k5A" id="7Be-BV-eaI"/>
+                <outlet property="progressBar" destination="yZZ-6Y-7vN" id="IQf-Ts-678"/>
+                <outlet property="releaseName" destination="gus-MC-rMK" id="Vyh-KS-NJL"/>
+            </connections>
+            <point key="canvasLocation" x="323.5" y="-67.5"/>
+        </window>
     </objects>
 </document>

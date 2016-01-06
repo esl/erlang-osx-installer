@@ -13,16 +13,16 @@ class ReleaseManager: NSObject {
     private static let manager = ReleaseManager()
 
     static var available : [Release] {
-        get { return ReleaseManager.manager.releases }
+        get { return ReleaseManager.manager.releases.values.filter { _ in true }.sort({x, y in x.name < y.name})}
     }
     static var installed : [Release] {
-        get { return ReleaseManager.manager.releases.filter { $0.installed } }
+        get { return ReleaseManager.manager.releases.values.filter { $0.installed } }
     }
     
-    static private let ReleasesUrl = NSURL(string: "http://www.erlang.org/download")
-    static private let ReleaseRegex = "/download/otp_src_(R?[0-9_.]+?.*?)\\.tar\\.gz"
+    private static let DownloadUrl = NSURL(string: "http://www.erlang.org/download")
+    private static let ReleaseRegex = "/download/otp_src_(R?[0-9_.]+?.*?)\\.tar\\.gz"
 
-    private var releases : [Release] = []
+    private var releases = [String: Release]()
     
     private override init() {
         super.init()
@@ -37,10 +37,16 @@ class ReleaseManager: NSObject {
         print(releaseName)
     }
     
-    static func install(releaseName: String) {
+    static func install(releaseName: String, installationProgress: InstallationProgress) {
         let result = Utils.confirm("Do you want to install Erlang release \(releaseName)?", additionalInfo: "This might take a while.")
         if(result) {
-            print("Installing \(releaseName)...")
+            let release = manager.releases[releaseName]!
+            let destination = Utils.supportResourceUrl("release.tar.gz")
+            let delegate = ReleaseDownloadDelegate(installationProgress: installationProgress)
+            let urlDownload = NSURLDownload(request: NSURLRequest(URL: tarballUrl(release)), delegate: delegate)
+            urlDownload.setDestination(destination!.path!, allowOverwrite: true)
+            
+            installationProgress.start(releaseName)
         }
     }
 
@@ -51,9 +57,14 @@ class ReleaseManager: NSObject {
         }
     }
     
-    private func load() -> [Release] {
+    private static func tarballUrl(release: Release) -> NSURL {
+        let filename = "download/otp_src_\(release.name).tar.gz"
+        return NSURL(string: filename, relativeToURL: DownloadUrl!)!
+    }
+    
+    private func load() -> [String: Release] {
         let availableReleasesUrl = Utils.supportResourceUrl("available-releases")
-        var releases : [Release] = []
+        var releases = [String: Release]()
         
         if(!Utils.fileExists(availableReleasesUrl)) {
             try! fetchSave(availableReleasesUrl!)
@@ -62,7 +73,7 @@ class ReleaseManager: NSObject {
         let content = try! String(contentsOfURL: availableReleasesUrl!)
         let releaseNames = content.characters.split{ $0 == "\n" }.map(String.init)
         for name in releaseNames {
-            releases.append(Release(name: name, installed: ReleaseManager.isInstalled(name)))
+            releases[name] =  Release(name: name, installed: ReleaseManager.isInstalled(name))
         }
         
         return releases
@@ -73,7 +84,7 @@ class ReleaseManager: NSObject {
         var fileContent = ""
         
         let regex = try NSRegularExpression(pattern: ReleaseManager.ReleaseRegex, options: .CaseInsensitive)
-        let content = try String(contentsOfURL: ReleaseManager.ReleasesUrl!)
+        let content = try String(contentsOfURL: ReleaseManager.DownloadUrl!)
         let matches = regex.matchesInString(content, options: .WithoutAnchoringBounds, range: NSMakeRange(0, content.characters.count))
         
         try! fileManager.createDirectoryAtPath(Utils.supportResourceUrl("")!.path!, withIntermediateDirectories: true, attributes: nil)

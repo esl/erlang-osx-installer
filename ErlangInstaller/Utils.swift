@@ -9,6 +9,12 @@
 import Cocoa
 
 class Utils {
+    static func alert(message: String) {
+        let alert = NSAlert()
+        alert.messageText = message
+        alert.runModal()
+    }
+    
     static func confirm(message: String) -> Bool {
         return confirm(message, additionalInfo: nil)
     }

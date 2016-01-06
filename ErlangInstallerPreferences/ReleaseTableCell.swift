@@ -12,9 +12,11 @@ class ReleaseTableCell: NSTableCellView {
 
     @IBOutlet weak var checkButton: NSButton!
     
+    @IBOutlet weak var delegate: ReleasesTableViewDelegate!
+    
     @IBAction func checkClickAction(checkButton: NSButton) {
         if(checkButton.state == 1) {
-            ReleaseManager.install(checkButton.title)
+            ReleaseManager.install(checkButton.title, installationProgress: self.delegate.installationPanel)
         } else {
             ReleaseManager.uninstall(checkButton.title)
         }
