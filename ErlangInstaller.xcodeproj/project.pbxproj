@@ -54,7 +54,7 @@
 
 /* Begin PBXFileReference section */
 		5E20ED901C3D7836007AFFE6 /* ReleaseTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReleaseTableCell.swift; sourceTree = "<group>"; };
-		5E20ED921C3D7F0B007AFFE6 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		5E20ED921C3D7F0B007AFFE6 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = ErlangInstaller/Utils.swift; sourceTree = "<group>"; };
 		5E2683471C357D5E0058BB1F /* ErlangInstallerPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErlangInstallerPreferences.swift; sourceTree = "<group>"; };
 		5E519F911C32E34F0024DEAB /* erlang-solutions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "erlang-solutions.png"; path = "Resources/erlang-solutions.png"; sourceTree = "<group>"; };
 		5E96369A1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReleasesTableViewDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +111,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E20ED981C3D8574007AFFE6 /* Shared Classes */ = {
+			isa = PBXGroup;
+			children = (
+				5E20ED921C3D7F0B007AFFE6 /* Utils.swift */,
+				5EBF05851C3C261700A1701A /* Model */,
+			);
+			name = "Shared Classes";
+			sourceTree = "<group>";
+		};
 		5E519F901C32E2D90024DEAB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,11 +136,13 @@
 				5EBF05861C3C281A00A1701A /* ReleaseManager.swift */,
 			);
 			name = Model;
+			path = ErlangInstaller;
 			sourceTree = "<group>";
 		};
 		5EC3AF8B1C31888000E0BF43 = {
 			isa = PBXGroup;
 			children = (
+				5E20ED981C3D8574007AFFE6 /* Shared Classes */,
 				5EC3AF961C31888000E0BF43 /* ErlangInstaller */,
 				5E519F901C32E2D90024DEAB /* Resources */,
 				5EC3AFA81C31888000E0BF43 /* ErlangInstallerTests */,
@@ -155,10 +166,8 @@
 		5EC3AF961C31888000E0BF43 /* ErlangInstaller */ = {
 			isa = PBXGroup;
 			children = (
-				5EBF05851C3C261700A1701A /* Model */,
 				5EDC5AFE1C342C7B0014343A /* External */,
 				5EC3AF971C31888000E0BF43 /* AppDelegate.swift */,
-				5E20ED921C3D7F0B007AFFE6 /* Utils.swift */,
 				5EC3AF9B1C31888000E0BF43 /* Assets.xcassets */,
 				5EBDDD601C33215F0024C22C /* MainMenu.xib */,
 				5EC3AFA01C31888000E0BF43 /* Info.plist */,

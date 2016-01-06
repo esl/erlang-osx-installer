@@ -21,4 +21,14 @@ class Utils {
         alert.addButtonWithTitle("No")
         return alert.runModal() == NSAlertFirstButtonReturn
     }
+    
+    static func supportResourceUrl(name : String) -> NSURL? {
+        let fileManager = NSFileManager.defaultManager()
+        let appSupportUrl = fileManager.URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask).first
+        return NSURL(string: "ErlangInstaller/" + name, relativeToURL:  appSupportUrl)
+    }
+    
+    static func fileExists(url : NSURL?) -> Bool {
+        return NSFileManager.defaultManager().fileExistsAtPath(url!.path!)
+    }
 }

@@ -66,11 +66,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             item.enabled = release.installed
             if(release.installed) {
                 item.action = "openTerminal:"
-                item.target = ReleaseManager.manager
+                item.target = self
             }
 
             self.erlangTerminals.submenu?.addItem(item)
         }
+    }
+
+    static func openTerminal(menuItem: NSMenuItem) {
+        ReleaseManager.openTerminal(menuItem.title)
     }
     
     func addStatusItem() {

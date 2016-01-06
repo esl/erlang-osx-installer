@@ -10,7 +10,7 @@ import Foundation
 import Cocoa
 
 class ReleaseManager: NSObject {
-    static let manager = ReleaseManager()
+    private static let manager = ReleaseManager()
 
     static var available : [Release] {
         get { return ReleaseManager.manager.releases }
@@ -29,12 +29,12 @@ class ReleaseManager: NSObject {
         self.releases = load()
     }
     
-    func isInstalled(name : String) -> Bool {
-        return fileExists(supportResourceUrl(name))
+    static func isInstalled(name : String) -> Bool {
+        return Utils.fileExists(Utils.supportResourceUrl(name))
     }
     
-    func openTerminal(menuItem : NSMenuItem) {        
-        print(menuItem.title)
+    static func openTerminal(releaseName: String) {
+        print(releaseName)
     }
     
     static func install(releaseName: String) {
@@ -52,17 +52,17 @@ class ReleaseManager: NSObject {
     }
     
     private func load() -> [Release] {
-        let availableReleasesUrl = supportResourceUrl("available-releases")
+        let availableReleasesUrl = Utils.supportResourceUrl("available-releases")
         var releases : [Release] = []
         
-        if(!fileExists(availableReleasesUrl)) {
+        if(!Utils.fileExists(availableReleasesUrl)) {
             try! fetchSave(availableReleasesUrl!)
         }
         
         let content = try! String(contentsOfURL: availableReleasesUrl!)
         let releaseNames = content.characters.split{ $0 == "\n" }.map(String.init)
         for name in releaseNames {
-            releases.append(Release(name: name, installed: isInstalled(name)))
+            releases.append(Release(name: name, installed: ReleaseManager.isInstalled(name)))
         }
         
         return releases
@@ -76,7 +76,7 @@ class ReleaseManager: NSObject {
         let content = try String(contentsOfURL: ReleaseManager.ReleasesUrl!)
         let matches = regex.matchesInString(content, options: .WithoutAnchoringBounds, range: NSMakeRange(0, content.characters.count))
         
-        try! fileManager.createDirectoryAtPath(supportResourceUrl("")!.path!, withIntermediateDirectories: true, attributes: nil)
+        try! fileManager.createDirectoryAtPath(Utils.supportResourceUrl("")!.path!, withIntermediateDirectories: true, attributes: nil)
         fileManager.createFileAtPath(path.path!, contents: nil, attributes: nil)
         
         for match : NSTextCheckingResult in matches {
@@ -86,16 +86,4 @@ class ReleaseManager: NSObject {
 
         try fileContent.writeToFile(path.path!, atomically: true, encoding: NSUTF8StringEncoding)
     }
-
-    
-    private func supportResourceUrl(name : String) -> NSURL? {
-        let fileManager = NSFileManager.defaultManager()
-        let appSupportUrl = fileManager.URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask).first
-        return NSURL(string: "ErlangInstaller/" + name, relativeToURL:  appSupportUrl)
-    }
-    
-    private func fileExists(url : NSURL?) -> Bool {
-        return NSFileManager.defaultManager().fileExistsAtPath(url!.path!)
-    }
-
 }

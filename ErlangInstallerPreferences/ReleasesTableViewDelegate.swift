@@ -20,5 +20,4 @@ class ReleasesTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataS
         cellView.checkButton.state = (release.installed ? 1 : 0)
         return cellView
     }
-
 }
