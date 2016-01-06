@@ -190,8 +190,8 @@
 		5EFD590C1C32BDEF004ECB9B /* ErlangInstallerPreferences */ = {
 			isa = PBXGroup;
 			children = (
-				5E96369A1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift */,
 				5E2683471C357D5E0058BB1F /* ErlangInstallerPreferences.swift */,
+				5E96369A1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift */,
 				5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */,
 				5EFD59161C32BDEF004ECB9B /* Info.plist */,
 			);

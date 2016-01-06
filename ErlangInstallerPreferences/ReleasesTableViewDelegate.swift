@@ -13,11 +13,9 @@ class ReleasesTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataS
         return ReleaseManager.available.count
     }
     
-    func tableView(aTableView: NSTableView, objectValueForTableColumn aTableColumn: NSTableColumn?,row rowIndex: Int) -> AnyObject? {
-        if aTableColumn != nil {
-            return ReleaseManager.available[rowIndex].name
-        } else {
-            return nil
-        }
+    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?,row rowIndex: Int) -> NSView? {
+        let cellView : NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
+        cellView.textField?.stringValue = ReleaseManager.available[rowIndex].name
+        return cellView
     }
 }
