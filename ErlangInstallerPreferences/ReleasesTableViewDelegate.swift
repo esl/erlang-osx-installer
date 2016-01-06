@@ -14,8 +14,11 @@ class ReleasesTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataS
     }
     
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?,row rowIndex: Int) -> NSView? {
-        let cellView : NSTableCellView = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! NSTableCellView
-        cellView.textField?.stringValue = ReleaseManager.available[rowIndex].name
+        let cellView : ReleaseTableCell = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! ReleaseTableCell
+        let release = ReleaseManager.available[rowIndex]
+        cellView.checkButton.title = release.name
+        cellView.checkButton.state = (release.installed ? 1 : 0)
         return cellView
     }
+
 }

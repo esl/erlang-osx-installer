@@ -37,6 +37,20 @@ class ReleaseManager: NSObject {
         print(menuItem.title)
     }
     
+    static func install(releaseName: String) {
+        let result = Utils.confirm("Do you want to install Erlang release \(releaseName)?", additionalInfo: "This might take a while.")
+        if(result) {
+            print("Installing \(releaseName)...")
+        }
+    }
+
+    static func uninstall(releaseName: String) {
+        let result = Utils.confirm("Do you want to uninstall Erlang release \(releaseName)?")
+        if(result) {
+            print("Uninstalling \(releaseName)...")
+        }
+    }
+    
     private func load() -> [Release] {
         let availableReleasesUrl = supportResourceUrl("available-releases")
         var releases : [Release] = []
