@@ -6,11 +6,11 @@
 //  Copyright © 2016 Erlang Solutions. All rights reserved.
 //
 
-import Foundation
+import PreferencePanes
 
 class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
-    let release : Release
-    let progress: InstallationProgress
+    let release : Release?
+    let progress: InstallationProgress?
     
     init(releaseName: String, progress: InstallationProgress) {
         self.release = ReleaseManager.releases[releaseName]!
@@ -18,12 +18,12 @@ class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
     }
 
     func start() {
-        let result = Utils.confirm("Do you want to install Erlang release \(self.release.name)?", additionalInfo: "This might take a while.")
+        let result = Utils.confirm("Do you want to install Erlang release \(self.release!.name)?", additionalInfo: "This might take a while.")
         if(result) {
             let destination = Utils.supportResourceUrl("release.tar.gz")
-            let urlDownload = NSURLDownload(request: NSURLRequest(URL: tarballUrl(release)), delegate: self)
+            let urlDownload = NSURLDownload(request: NSURLRequest(URL: tarballUrl(release!)), delegate: self)
             urlDownload.setDestination(destination!.path!, allowOverwrite: true)
-            self.progress.start()
+            self.progress!.start()
         }
     }
     
@@ -52,7 +52,7 @@ class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
     //------------------------------------------
     
     func download(download: NSURLDownload, didReceiveResponse response: NSURLResponse) {
-        self.progress.downloading(Double(response.expectedContentLength))
+        self.progress!.downloading(Double(response.expectedContentLength))
     }
     
     func download(download: NSURLDownload, shouldDecodeSourceDataOfMIMEType encodingType: String) -> Bool {
@@ -62,16 +62,16 @@ class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
     }
     
     func download(download: NSURLDownload, didReceiveDataOfLength length: Int) {
-        self.progress.download(progress: Double(length))
+        self.progress!.download(progress: Double(length))
     }
     
     func download(download: NSURLDownload, didFailWithError error: NSError) {
-        self.progress.error(error)
+        self.progress!.error(error)
     }
     
     func downloadDidFinish(download: NSURLDownload) {
         self.build()
-        self.progress.downloadFinished()
+        self.progress!.downloadFinished()
     }
 }
 

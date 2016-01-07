@@ -10,7 +10,7 @@ import Cocoa
 
 class ReleaseTableCell: NSTableCellView, InstallationProgress {
 
-    var installer : ReleaseInstaller?
+    private var installer : ReleaseInstaller? = nil
     
     @IBOutlet weak var releaseNameLabel: NSTextField!
     @IBOutlet weak var informationLabel: NSTextField!

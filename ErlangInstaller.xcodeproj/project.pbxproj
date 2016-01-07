@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E20ED911C3D7836007AFFE6 /* ReleaseTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20ED901C3D7836007AFFE6 /* ReleaseTableCell.swift */; };
 		5E20ED931C3D7F0B007AFFE6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20ED921C3D7F0B007AFFE6 /* Utils.swift */; };
 		5E20ED941C3D7F0B007AFFE6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20ED921C3D7F0B007AFFE6 /* Utils.swift */; };
 		5E2683481C357D5E0058BB1F /* ErlangInstallerPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2683471C357D5E0058BB1F /* ErlangInstallerPreferences.swift */; };
+		5E4F41FE1C3ECC8200597AFD /* ReleaseTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20ED901C3D7836007AFFE6 /* ReleaseTableCell.swift */; };
+		5E4F42001C3ED84900597AFD /* ReleaseInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE97D8F1C3EB1740050315C /* ReleaseInstaller.swift */; };
 		5E519F921C32E34F0024DEAB /* erlang-solutions.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E519F911C32E34F0024DEAB /* erlang-solutions.png */; };
 		5E96369B1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E96369A1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift */; };
 		5EBDDD611C33215F0024C22C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EBDDD601C33215F0024C22C /* MainMenu.xib */; };
@@ -25,7 +26,6 @@
 		5ECEF6321C3ADD08004ABE02 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECEF6311C3ADD08004ABE02 /* Release.swift */; };
 		5EDC5B011C342CDF0014343A /* SystemPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC5B001C342CDF0014343A /* SystemPreferences.swift */; };
 		5EDC5B041C345D480014343A /* ErlangInstallerPreferences.prefPane in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD590B1C32BDEF004ECB9B /* ErlangInstallerPreferences.prefPane */; };
-		5EE97D911C3EB1B60050315C /* ReleaseInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE97D8F1C3EB1740050315C /* ReleaseInstaller.swift */; };
 		5EFD59151C32BDEF004ECB9B /* ErlangInstallerPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */; };
 /* End PBXBuildFile section */
 
@@ -146,8 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				5E20ED981C3D8574007AFFE6 /* Shared */,
-				5EC3AF961C31888000E0BF43 /* ErlangInstaller */,
 				5E519F901C32E2D90024DEAB /* Resources */,
+				5EC3AF961C31888000E0BF43 /* ErlangInstaller */,
 				5EC3AFA81C31888000E0BF43 /* ErlangInstallerTests */,
 				5EC3AFB31C31888000E0BF43 /* ErlangInstallerUITests */,
 				5EFD590C1C32BDEF004ECB9B /* ErlangInstallerPreferences */,
@@ -419,12 +419,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EE97D911C3EB1B60050315C /* ReleaseInstaller.swift in Sources */,
 				5E2683481C357D5E0058BB1F /* ErlangInstallerPreferences.swift in Sources */,
+				5E4F42001C3ED84900597AFD /* ReleaseInstaller.swift in Sources */,
 				5E96369B1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift in Sources */,
 				5EBF05881C3C281A00A1701A /* ReleaseManager.swift in Sources */,
-				5E20ED911C3D7836007AFFE6 /* ReleaseTableCell.swift in Sources */,
 				5EBF05841C3C260A00A1701A /* Release.swift in Sources */,
+				5E4F41FE1C3ECC8200597AFD /* ReleaseTableCell.swift in Sources */,
 				5E20ED941C3D7F0B007AFFE6 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
