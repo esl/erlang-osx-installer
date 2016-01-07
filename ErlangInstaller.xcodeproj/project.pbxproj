@@ -14,6 +14,8 @@
 		5E4F42001C3ED84900597AFD /* ReleaseInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE97D8F1C3EB1740050315C /* ReleaseInstaller.swift */; };
 		5E4F42021C3EEFDF00597AFD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4F42011C3EEFDF00597AFD /* Constants.swift */; };
 		5E4F42031C3EEFDF00597AFD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4F42011C3EEFDF00597AFD /* Constants.swift */; };
+		5E4F42051C3F06F500597AFD /* ReleaseUninstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4F42041C3F06F500597AFD /* ReleaseUninstaller.swift */; };
+		5E4F42061C3F06F500597AFD /* ReleaseUninstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4F42041C3F06F500597AFD /* ReleaseUninstaller.swift */; };
 		5E519F921C32E34F0024DEAB /* erlang-solutions.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E519F911C32E34F0024DEAB /* erlang-solutions.png */; };
 		5E96369B1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E96369A1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift */; };
 		5EBDDD611C33215F0024C22C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EBDDD601C33215F0024C22C /* MainMenu.xib */; };
@@ -60,6 +62,7 @@
 		5E20ED921C3D7F0B007AFFE6 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = ErlangInstaller/Utils.swift; sourceTree = "<group>"; };
 		5E2683471C357D5E0058BB1F /* ErlangInstallerPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErlangInstallerPreferences.swift; sourceTree = "<group>"; };
 		5E4F42011C3EEFDF00597AFD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ErlangInstaller/Constants.swift; sourceTree = "<group>"; };
+		5E4F42041C3F06F500597AFD /* ReleaseUninstaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReleaseUninstaller.swift; path = ErlangInstaller/Model/ReleaseUninstaller.swift; sourceTree = "<group>"; };
 		5E519F911C32E34F0024DEAB /* erlang-solutions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "erlang-solutions.png"; path = "Resources/erlang-solutions.png"; sourceTree = "<group>"; };
 		5E96369A1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReleasesTableViewDelegate.swift; sourceTree = "<group>"; };
 		5EBDDD601C33215F0024C22C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ../Resources/MainMenu.xib; sourceTree = "<group>"; };
@@ -123,6 +126,7 @@
 				5E4F42011C3EEFDF00597AFD /* Constants.swift */,
 				5EBF05861C3C281A00A1701A /* ReleaseManager.swift */,
 				5EE97D8F1C3EB1740050315C /* ReleaseInstaller.swift */,
+				5E4F42041C3F06F500597AFD /* ReleaseUninstaller.swift */,
 				5EBF05851C3C261700A1701A /* Model */,
 			);
 			name = Shared;
@@ -399,6 +403,7 @@
 				5EC3AF981C31888000E0BF43 /* AppDelegate.swift in Sources */,
 				5ECEF6321C3ADD08004ABE02 /* Release.swift in Sources */,
 				5EDC5B011C342CDF0014343A /* SystemPreferences.swift in Sources */,
+				5E4F42051C3F06F500597AFD /* ReleaseUninstaller.swift in Sources */,
 				5EBF05871C3C281A00A1701A /* ReleaseManager.swift in Sources */,
 				5E4F42021C3EEFDF00597AFD /* Constants.swift in Sources */,
 			);
@@ -429,6 +434,7 @@
 				5E96369B1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift in Sources */,
 				5EBF05881C3C281A00A1701A /* ReleaseManager.swift in Sources */,
 				5EBF05841C3C260A00A1701A /* Release.swift in Sources */,
+				5E4F42061C3F06F500597AFD /* ReleaseUninstaller.swift in Sources */,
 				5E4F41FE1C3ECC8200597AFD /* ReleaseTableCell.swift in Sources */,
 				5E20ED941C3D7F0B007AFFE6 /* Utils.swift in Sources */,
 				5E4F42031C3EEFDF00597AFD /* Constants.swift in Sources */,

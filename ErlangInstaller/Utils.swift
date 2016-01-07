@@ -37,4 +37,9 @@ class Utils {
     static func fileExists(url : NSURL?) -> Bool {
         return NSFileManager.defaultManager().fileExistsAtPath(url!.path!)
     }
+    
+    static func delete(url: NSURL) {
+        let fileManager = NSFileManager.defaultManager()
+        try! fileManager.removeItemAtURL(url)
+    }
 }

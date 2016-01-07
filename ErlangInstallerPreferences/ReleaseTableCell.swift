@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ReleaseTableCell: NSTableCellView, InstallationProgress {
+class ReleaseTableCell: NSTableCellView, InstallationProgress, UninstallationProgress {
 
     private var installer : ReleaseInstaller? = nil
     
@@ -23,17 +23,16 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress {
 
     @IBAction func installClickAction(checkButton: NSButton) {
         self.installer = ReleaseInstaller(releaseName: releaseNameLabel.stringValue, progress: self)
-        self.installer!.start()
+        self.installer?.start()
    }
 
     @IBAction func uninstallClickAction(checkButton: NSButton) {
-        // Create instance of uninstaller
-        // let uninstaller = ReleaseUnInstaller(releaseName: releaseNameLabel.stringValue, progress: self)
-        // uninstaller.start()
+        let uninstaller = ReleaseUninstaller(releaseName: releaseNameLabel.stringValue, progress: self)
+        uninstaller.start()
     }
 
     @IBAction func cancelClickAction(checkButton: NSButton) {
-        // installer.cancel()
+        self.installer?.cancel()
     }
     
     func updateButtonsVisibility() {
@@ -43,6 +42,14 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress {
         informationLabel.hidden = true
         installButton.hidden = installed
         uninstallButton.hidden = !installed
+    }
+    
+    func deleting() {
+        self.informationLabel.stringValue = "Removing..."
+        informationLabel.hidden = false
+        progressIndicator.indeterminate = true
+        progressIndicator.startAnimation(self)
+        uninstallButton.hidden = true
     }
     
     func start() {
@@ -55,6 +62,7 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress {
     
     func downloading(maxValue: Double) {
         self.informationLabel.stringValue = "Downloading..."
+        progressIndicator.indeterminate = false
         self.progressIndicator.minValue = 0
         self.progressIndicator.maxValue = maxValue
     }
@@ -68,6 +76,7 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress {
     }
     
     func finished() {
+        progressIndicator.stopAnimation(self)
         self.updateButtonsVisibility()
     }
     

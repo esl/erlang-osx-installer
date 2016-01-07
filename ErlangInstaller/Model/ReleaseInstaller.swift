@@ -8,12 +8,25 @@
 
 import PreferencePanes
 
+public protocol InstallationProgress {
+    func start()
+    func downloading(maxValue: Double)
+    func download(progress delta: Double)
+    func extracting()
+    func finished()
+    func error(error: NSError)
+}
+
 class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
-    let release : Release?
-    let progress: InstallationProgress?
+    let release : Release
+    let progress: InstallationProgress
+    var urlDownload: NSURLDownload?
 
     var destinationTarGz : NSURL? {
-        get { return Utils.supportResourceUrl("release_\(self.release!.name).tar.gz") }
+        get { return Utils.supportResourceUrl("release_\(self.release.name).tar.gz") }
+    }
+    var releaseDir: NSURL? {
+        get { return Utils.supportResourceUrl(self.release.name) }
     }
 
     init(releaseName: String, progress: InstallationProgress) {
@@ -22,23 +35,26 @@ class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
     }
 
     func start() {
-        let result = Utils.confirm("Do you want to install Erlang release \(self.release!.name)?", additionalInfo: "This might take a while.")
+        let result = Utils.confirm("Do you want to install Erlang release \(self.release.name)?", additionalInfo: "This might take a while.")
         if(result) {
-            let urlDownload = NSURLDownload(request: NSURLRequest(URL: tarballUrl(release!)), delegate: self)
-            urlDownload.setDestination(self.destinationTarGz!.path!, allowOverwrite: true)
-            self.progress!.start()
+            self.urlDownload = NSURLDownload(request: NSURLRequest(URL: tarballUrl(release)), delegate: self)
+            self.urlDownload!.setDestination(self.destinationTarGz!.path!, allowOverwrite: true)
+
+            self.progress.start()
         }
     }
     
     func cancel() {
-        
+        self.urlDownload?.cancel()
+        Utils.delete(self.destinationTarGz!)
+        Utils.delete(self.releaseDir!)
+        self.done()
     }
     
     private func extract() {
-        self.progress!.extracting()
+        self.progress.extracting()
         
         let fileManager = NSFileManager.defaultManager()
-        let releaseDir = Utils.supportResourceUrl(self.release!.name)
         try! fileManager.createDirectoryAtPath(releaseDir!.path!, withIntermediateDirectories: true, attributes: nil)
         let task = NSTask()
         task.launchPath = "/usr/bin/tar"
@@ -52,14 +68,8 @@ class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
     }
     
     private func done() {
-        self.progress?.finished()
-    }
-    
-    func uninstall(releaseName: String) {
-        let result = Utils.confirm("Do you want to uninstall Erlang release \(releaseName)?")
-        if(result) {
-            print("Uninstalling \(releaseName)...")
-        }
+        self.progress.finished()
+        self.urlDownload = nil
     }
     
     private func tarballUrl(release: Release) -> NSURL {
@@ -72,7 +82,7 @@ class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
     //------------------------------------------
     
     func download(download: NSURLDownload, didReceiveResponse response: NSURLResponse) {
-        self.progress!.downloading(Double(response.expectedContentLength))
+        self.progress.downloading(Double(response.expectedContentLength))
     }
     
     func download(download: NSURLDownload, shouldDecodeSourceDataOfMIMEType encodingType: String) -> Bool {
@@ -82,24 +92,14 @@ class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
     }
     
     func download(download: NSURLDownload, didReceiveDataOfLength length: Int) {
-        self.progress!.download(progress: Double(length))
+        self.progress.download(progress: Double(length))
     }
     
     func download(download: NSURLDownload, didFailWithError error: NSError) {
-        self.progress!.error(error)
+        self.progress.error(error)
     }
     
     func downloadDidFinish(download: NSURLDownload) {
         self.extract()
     }
-}
-
-public protocol InstallationProgress {
-    func start()
-    func downloading(maxValue: Double)
-    func download(progress delta: Double)
-    func extracting()
-    func finished()
-    func error(error: NSError)
-    
 }
