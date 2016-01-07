@@ -12,8 +12,6 @@
 		5E20ED941C3D7F0B007AFFE6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20ED921C3D7F0B007AFFE6 /* Utils.swift */; };
 		5E20ED9A1C3D8BEF007AFFE6 /* ReleaseDownloadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20ED991C3D8BEF007AFFE6 /* ReleaseDownloadDelegate.swift */; };
 		5E20ED9B1C3D8BEF007AFFE6 /* ReleaseDownloadDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20ED991C3D8BEF007AFFE6 /* ReleaseDownloadDelegate.swift */; };
-		5E20ED9D1C3DA780007AFFE6 /* InstallationPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20ED9C1C3DA780007AFFE6 /* InstallationPanel.swift */; };
-		5E20ED9E1C3DA780007AFFE6 /* InstallationPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20ED9C1C3DA780007AFFE6 /* InstallationPanel.swift */; };
 		5E2683481C357D5E0058BB1F /* ErlangInstallerPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2683471C357D5E0058BB1F /* ErlangInstallerPreferences.swift */; };
 		5E519F921C32E34F0024DEAB /* erlang-solutions.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E519F911C32E34F0024DEAB /* erlang-solutions.png */; };
 		5E96369B1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E96369A1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift */; };
@@ -60,7 +58,6 @@
 		5E20ED901C3D7836007AFFE6 /* ReleaseTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReleaseTableCell.swift; sourceTree = "<group>"; };
 		5E20ED921C3D7F0B007AFFE6 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = ErlangInstaller/Utils.swift; sourceTree = "<group>"; };
 		5E20ED991C3D8BEF007AFFE6 /* ReleaseDownloadDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReleaseDownloadDelegate.swift; sourceTree = "<group>"; };
-		5E20ED9C1C3DA780007AFFE6 /* InstallationPanel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstallationPanel.swift; sourceTree = "<group>"; };
 		5E2683471C357D5E0058BB1F /* ErlangInstallerPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErlangInstallerPreferences.swift; sourceTree = "<group>"; };
 		5E519F911C32E34F0024DEAB /* erlang-solutions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "erlang-solutions.png"; path = "Resources/erlang-solutions.png"; sourceTree = "<group>"; };
 		5E96369A1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReleasesTableViewDelegate.swift; sourceTree = "<group>"; };
@@ -215,7 +212,6 @@
 				5E2683471C357D5E0058BB1F /* ErlangInstallerPreferences.swift */,
 				5E96369A1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift */,
 				5E20ED901C3D7836007AFFE6 /* ReleaseTableCell.swift */,
-				5E20ED9C1C3DA780007AFFE6 /* InstallationPanel.swift */,
 				5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */,
 				5EFD59161C32BDEF004ECB9B /* Info.plist */,
 			);
@@ -400,7 +396,6 @@
 				5EC3AF981C31888000E0BF43 /* AppDelegate.swift in Sources */,
 				5E20ED9A1C3D8BEF007AFFE6 /* ReleaseDownloadDelegate.swift in Sources */,
 				5ECEF6321C3ADD08004ABE02 /* Release.swift in Sources */,
-				5E20ED9D1C3DA780007AFFE6 /* InstallationPanel.swift in Sources */,
 				5EDC5B011C342CDF0014343A /* SystemPreferences.swift in Sources */,
 				5EBF05871C3C281A00A1701A /* ReleaseManager.swift in Sources */,
 			);
@@ -430,7 +425,6 @@
 				5E96369B1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift in Sources */,
 				5E20ED9B1C3D8BEF007AFFE6 /* ReleaseDownloadDelegate.swift in Sources */,
 				5EBF05881C3C281A00A1701A /* ReleaseManager.swift in Sources */,
-				5E20ED9E1C3DA780007AFFE6 /* InstallationPanel.swift in Sources */,
 				5E20ED911C3D7836007AFFE6 /* ReleaseTableCell.swift in Sources */,
 				5EBF05841C3C260A00A1701A /* Release.swift in Sources */,
 				5E20ED941C3D7F0B007AFFE6 /* Utils.swift in Sources */,
