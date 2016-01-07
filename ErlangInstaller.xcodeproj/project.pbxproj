@@ -75,7 +75,7 @@
 		5ECEF6311C3ADD08004ABE02 /* Release.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Release.swift; path = Model/Release.swift; sourceTree = "<group>"; };
 		5EDC5AFF1C342C8D0014343A /* SBSystemPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSystemPreferences.h; sourceTree = "<group>"; };
 		5EDC5B001C342CDF0014343A /* SystemPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemPreferences.swift; sourceTree = "<group>"; };
-		5EE97D8F1C3EB1740050315C /* ReleaseInstaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReleaseInstaller.swift; sourceTree = "<group>"; };
+		5EE97D8F1C3EB1740050315C /* ReleaseInstaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReleaseInstaller.swift; path = ErlangInstaller/Model/ReleaseInstaller.swift; sourceTree = "<group>"; };
 		5EFD590B1C32BDEF004ECB9B /* ErlangInstallerPreferences.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErlangInstallerPreferences.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFD59141C32BDEF004ECB9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ErlangInstallerPreferences.xib; sourceTree = "<group>"; };
 		5EFD59161C32BDEF004ECB9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
