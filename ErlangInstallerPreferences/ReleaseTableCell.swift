@@ -10,6 +10,8 @@ import Cocoa
 
 class ReleaseTableCell: NSTableCellView, InstallationProgress {
 
+    var installer : ReleaseInstaller?
+    
     @IBOutlet weak var releaseNameLabel: NSTextField!
     @IBOutlet weak var informationLabel: NSTextField!
     @IBOutlet weak var installButton: NSButton!
@@ -20,19 +22,18 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress {
     @IBOutlet weak var delegate: ReleasesTableViewDelegate!
 
     @IBAction func installClickAction(checkButton: NSButton) {
-        cancelButton.hidden = false
-        progressIndicator.hidden = false
-        informationLabel.hidden = false
-        installButton.hidden = true
-        ReleaseManager.install(releaseNameLabel.stringValue, installationProgress: self)
+        self.installer = ReleaseInstaller(releaseName: releaseNameLabel.stringValue, progress: self)
+        self.installer!.start()
    }
 
     @IBAction func uninstallClickAction(checkButton: NSButton) {
-        ReleaseManager.uninstall(releaseNameLabel.stringValue)
+        // Create instance of uninstaller
+        // let uninstaller = ReleaseUnInstaller(releaseName: releaseNameLabel.stringValue, progress: self)
+        // uninstaller.start()
     }
 
     @IBAction func cancelClickAction(checkButton: NSButton) {
-        //ReleaseManager.cancel()
+        // installer.cancel()
     }
     
     func updateButtonsVisibility() {
@@ -42,8 +43,12 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress {
         uninstallButton.hidden = !installed
     }
     
-    func start(releaseName: String) {
+    func start() {
         self.informationLabel.stringValue = "Installing..."
+        cancelButton.hidden = false
+        progressIndicator.hidden = false
+        informationLabel.hidden = false
+        installButton.hidden = true
     }
     
     func downloading(maxValue: Double) {
@@ -54,5 +59,12 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress {
     
     func download(progress delta: Double) {
         self.progressIndicator.incrementBy(delta)
+    }
+    
+    func downloadFinished() {
+    }
+    
+    func error(error: NSError) {
+        Utils.alert("\(error)")
     }
 }

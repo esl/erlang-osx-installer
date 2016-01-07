@@ -13,20 +13,24 @@ class ReleaseManager: NSObject {
     private static let manager = ReleaseManager()
 
     static var available : [Release] {
-        get { return ReleaseManager.manager.releases.values.filter { _ in true }.sort({x, y in x.name < y.name})}
+        get { return ReleaseManager.manager._releases.values.filter { _ in true }.sort({x, y in x.name < y.name})}
     }
     static var installed : [Release] {
-        get { return ReleaseManager.manager.releases.values.filter { $0.installed } }
+        get { return ReleaseManager.manager._releases.values.filter { $0.installed } }
+    }
+
+    static var releases : [String: Release] {
+        get { return ReleaseManager.manager._releases }
     }
     
-    private static let DownloadUrl = NSURL(string: "http://www.erlang.org/download")
+    static let DownloadUrl = NSURL(string: "http://www.erlang.org/download")
     private static let ReleaseRegex = "/download/otp_src_(R?[0-9_.]+?.*?)\\.tar\\.gz"
 
-    private var releases = [String: Release]()
+    private var _releases = [String: Release]()
     
     private override init() {
         super.init()
-        self.releases = load()
+        self._releases = load()
     }
     
     static func isInstalled(name : String) -> Bool {
@@ -35,31 +39,6 @@ class ReleaseManager: NSObject {
     
     static func openTerminal(releaseName: String) {
         print(releaseName)
-    }
-    
-    static func install(releaseName: String, installationProgress: InstallationProgress) {
-        let result = Utils.confirm("Do you want to install Erlang release \(releaseName)?", additionalInfo: "This might take a while.")
-        if(result) {
-            let release = manager.releases[releaseName]!
-            let destination = Utils.supportResourceUrl("release.tar.gz")
-            let delegate = ReleaseDownloadDelegate(installationProgress: installationProgress)
-            let urlDownload = NSURLDownload(request: NSURLRequest(URL: tarballUrl(release)), delegate: delegate)
-            urlDownload.setDestination(destination!.path!, allowOverwrite: true)
-            
-            installationProgress.start(releaseName)
-        }
-    }
-
-    static func uninstall(releaseName: String) {
-        let result = Utils.confirm("Do you want to uninstall Erlang release \(releaseName)?")
-        if(result) {
-            print("Uninstalling \(releaseName)...")
-        }
-    }
-    
-    private static func tarballUrl(release: Release) -> NSURL {
-        let filename = "download/otp_src_\(release.name).tar.gz"
-        return NSURL(string: filename, relativeToURL: DownloadUrl!)!
     }
     
     private func load() -> [String: Release] {
