@@ -39,6 +39,8 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress {
     func updateButtonsVisibility() {
         let installed = ReleaseManager.isInstalled(releaseNameLabel.stringValue)
         cancelButton.hidden = true
+        progressIndicator.hidden = true
+        informationLabel.hidden = true
         installButton.hidden = installed
         uninstallButton.hidden = !installed
     }
@@ -61,7 +63,12 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress {
         self.progressIndicator.incrementBy(delta)
     }
     
-    func downloadFinished() {
+    func extracting() {
+        self.informationLabel.stringValue = "Extracting..."
+    }
+    
+    func finished() {
+        self.updateButtonsVisibility()
     }
     
     func error(error: NSError) {

@@ -23,9 +23,6 @@ class ReleaseManager: NSObject {
         get { return ReleaseManager.manager._releases }
     }
     
-    static let DownloadUrl = NSURL(string: "http://www.erlang.org/download")
-    private static let ReleaseRegex = "/download/otp_src_(R?[0-9_.]+?.*?)\\.tar\\.gz"
-
     private var _releases = [String: Release]()
     
     private override init() {
@@ -42,15 +39,17 @@ class ReleaseManager: NSObject {
     }
     
     private func load() -> [String: Release] {
-        let availableReleasesUrl = Utils.supportResourceUrl("available-releases")
+        let availableReleasesUrl = Utils.supportResourceUrl(Constants.ReleasesJSONFilename)
         var releases = [String: Release]()
         
         if(!Utils.fileExists(availableReleasesUrl)) {
             try! fetchSave(availableReleasesUrl!)
         }
-        
+
         let content = try! String(contentsOfURL: availableReleasesUrl!)
-        let releaseNames = content.characters.split{ $0 == "\n" }.map(String.init)
+        let data = content.dataUsingEncoding(NSUTF8StringEncoding)
+        let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+        let releaseNames = json as! [String]
         for name in releaseNames {
             releases[name] =  Release(name: name, installed: ReleaseManager.isInstalled(name))
         }
@@ -60,20 +59,12 @@ class ReleaseManager: NSObject {
     
     private func fetchSave(path : NSURL) throws {
         let fileManager = NSFileManager.defaultManager()
-        var fileContent = ""
         
-        let regex = try NSRegularExpression(pattern: ReleaseManager.ReleaseRegex, options: .CaseInsensitive)
-        let content = try String(contentsOfURL: ReleaseManager.DownloadUrl!)
-        let matches = regex.matchesInString(content, options: .WithoutAnchoringBounds, range: NSMakeRange(0, content.characters.count))
+        let content = try String(contentsOfURL: Constants.ReleasesListUrl!)
         
         try! fileManager.createDirectoryAtPath(Utils.supportResourceUrl("")!.path!, withIntermediateDirectories: true, attributes: nil)
         fileManager.createFileAtPath(path.path!, contents: nil, attributes: nil)
         
-        for match : NSTextCheckingResult in matches {
-            let releaseName = (content as NSString).substringWithRange(match.rangeAtIndex(1))
-            fileContent += releaseName + "\n"
-        }
-
-        try fileContent.writeToFile(path.path!, atomically: true, encoding: NSUTF8StringEncoding)
+        try content.writeToFile(path.path!, atomically: true, encoding: NSUTF8StringEncoding)
     }
 }

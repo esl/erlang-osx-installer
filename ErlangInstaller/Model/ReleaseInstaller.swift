@@ -11,7 +11,11 @@ import PreferencePanes
 class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
     let release : Release?
     let progress: InstallationProgress?
-    
+
+    var destinationTarGz : NSURL? {
+        get { return Utils.supportResourceUrl("release_\(self.release!.name).tar.gz") }
+    }
+
     init(releaseName: String, progress: InstallationProgress) {
         self.release = ReleaseManager.releases[releaseName]!
         self.progress = progress
@@ -20,9 +24,8 @@ class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
     func start() {
         let result = Utils.confirm("Do you want to install Erlang release \(self.release!.name)?", additionalInfo: "This might take a while.")
         if(result) {
-            let destination = Utils.supportResourceUrl("release.tar.gz")
             let urlDownload = NSURLDownload(request: NSURLRequest(URL: tarballUrl(release!)), delegate: self)
-            urlDownload.setDestination(destination!.path!, allowOverwrite: true)
+            urlDownload.setDestination(self.destinationTarGz!.path!, allowOverwrite: true)
             self.progress!.start()
         }
     }
@@ -31,8 +34,25 @@ class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
         
     }
     
-    private func build() {
+    private func extract() {
+        self.progress!.extracting()
         
+        let fileManager = NSFileManager.defaultManager()
+        let releaseDir = Utils.supportResourceUrl(self.release!.name)
+        try! fileManager.createDirectoryAtPath(releaseDir!.path!, withIntermediateDirectories: true, attributes: nil)
+        let task = NSTask()
+        task.launchPath = "/usr/bin/tar"
+        task.arguments = ["zxf", self.destinationTarGz!.path!, "-C", releaseDir!.path!, "--strip", "1"]
+        task.launch()
+        task.waitUntilExit()
+
+        try! fileManager.removeItemAtURL(self.destinationTarGz!)
+        
+        self.done()
+    }
+    
+    private func done() {
+        self.progress?.finished()
     }
     
     func uninstall(releaseName: String) {
@@ -43,8 +63,8 @@ class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
     }
     
     private func tarballUrl(release: Release) -> NSURL {
-        let filename = "download/otp_src_\(release.name).tar.gz"
-        return NSURL(string: filename, relativeToURL: ReleaseManager.DownloadUrl!)!
+        let filename = "release_\(release.name).tar.gz"
+        return NSURL(string: filename, relativeToURL: Constants.TarballsUrl!)!
     }
 
     //------------------------------------------
@@ -56,7 +76,7 @@ class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
     }
     
     func download(download: NSURLDownload, shouldDecodeSourceDataOfMIMEType encodingType: String) -> Bool {
-        // Otherwise the .tar.gz files are decompressed on the fly and the completion
+        // Otherwise the .tar.gz files are decompressed on the fly and the 
         // precentage doesn't make sense
         return false
     }
@@ -70,8 +90,7 @@ class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
     }
     
     func downloadDidFinish(download: NSURLDownload) {
-        self.build()
-        self.progress!.downloadFinished()
+        self.extract()
     }
 }
 
@@ -79,7 +98,8 @@ public protocol InstallationProgress {
     func start()
     func downloading(maxValue: Double)
     func download(progress delta: Double)
-    func downloadFinished()
+    func extracting()
+    func finished()
     func error(error: NSError)
     
 }
