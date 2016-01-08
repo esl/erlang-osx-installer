@@ -13,6 +13,8 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="O7D-yy-Kre" userLabel="AppDelegate" customClass="AppDelegate" customModule="ErlangInstaller" customModuleProvider="target">
             <connections>
+                <outlet property="erlangTerminalDefault" destination="4ww-xd-NvR" id="C5j-LY-zKd"/>
+                <outlet property="erlangTerminals" destination="Ph2-iC-UH3" id="9Bh-ne-qTP"/>
                 <outlet property="mainMenu" destination="CAt-Nw-tkx" id="eZa-cQ-YMj"/>
             </connections>
         </customObject>
@@ -23,13 +25,7 @@
                 </menuItem>
                 <menuItem title="Erlang Terminal" id="Ph2-iC-UH3">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Erlang Terminal" id="Zwq-VM-lFg">
-                        <items>
-                            <menuItem title="Item" id="5Oe-RH-Sgz">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                        </items>
-                    </menu>
+                    <menu key="submenu" title="Erlang Terminal" id="Zwq-VM-lFg"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="f4c-T3-M9q"/>
                 <menuItem title="Download &amp; Install Release" id="kEV-c1-DpZ">
