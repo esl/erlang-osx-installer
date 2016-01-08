@@ -25,7 +25,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="General" identifier="1" id="N9u-eq-jYh">
-                                <view key="view" id="zGK-Zk-WXn">
+                                <view key="view" ambiguous="YES" id="zGK-Zk-WXn">
                                     <rect key="frame" x="10" y="33" width="143" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
