@@ -63,18 +63,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func loadReleases() {
         for release in ReleaseManager.available {
             let item = NSMenuItem(title: release.name, action: "", keyEquivalent: "")
+            self.erlangTerminals.submenu?.addItem(item)
+            
             item.enabled = release.installed
             if(release.installed) {
                 item.action = "openTerminal:"
                 item.target = self
             }
-
-            self.erlangTerminals.submenu?.addItem(item)
         }
     }
 
-    static func openTerminal(menuItem: NSMenuItem) {
-        ReleaseManager.openTerminal(menuItem.title)
+    func openTerminal(menuItem: NSMenuItem) {
+        let workspace = NSWorkspace.sharedWorkspace()
+        let appUrl = NSURL.fileURLWithPath(workspace.fullPathForApplication("iTerm")!)
+        let options = NSWorkspaceLaunchOptions.Default
+        var env = NSProcessInfo().environment
+        let erlangPath = Utils.supportResourceUrl("\(menuItem.title)/bin:")!.path!
+        env["PATH"] = erlangPath + env["PATH"]!
+        let config = [NSWorkspaceLaunchConfigurationEnvironment: env]
+        try! workspace.launchApplicationAtURL(appUrl, options: options, configuration: config)
     }
     
     func addStatusItem() {

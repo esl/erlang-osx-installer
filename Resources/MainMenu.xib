@@ -25,7 +25,7 @@
                 </menuItem>
                 <menuItem title="Erlang Terminal" id="Ph2-iC-UH3">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Erlang Terminal" id="Zwq-VM-lFg"/>
+                    <menu key="submenu" title="Erlang Terminal" autoenablesItems="NO" id="Zwq-VM-lFg"/>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="f4c-T3-M9q"/>
                 <menuItem title="Download &amp; Install Release" id="kEV-c1-DpZ">
