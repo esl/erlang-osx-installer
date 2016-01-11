@@ -12,4 +12,5 @@ class Constants {
     static let ReleasesListUrl = NSURL(string: "file:///Users/jfacorro/releases.json")
     static let TarballsUrl = NSURL(string: "file:///Users/jfacorro/.kerl/")
     static let ReleasesJSONFilename = "available-releases.json"
+    static let applicationId = "com.erlang-solutions.ErlangInstaller"
 }

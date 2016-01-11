@@ -75,7 +75,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func openTerminal(menuItem: NSMenuItem) {
         let workspace = NSWorkspace.sharedWorkspace()
-        let appUrl = NSURL.fileURLWithPath(workspace.fullPathForApplication("iTerm")!)
+        let appUrl = NSURL(fileURLWithPath: UserDefaults.terminalApp)
         let options = NSWorkspaceLaunchOptions.Default
         var env = NSProcessInfo().environment
         let erlangPath = Utils.supportResourceUrl("\(menuItem.title)/bin:")!.path!
