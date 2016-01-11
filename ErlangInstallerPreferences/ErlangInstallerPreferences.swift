@@ -14,16 +14,15 @@ class ErlangInstallerPreferences: NSPreferencePane {
     
     @IBOutlet weak var localMainView: NSView!
     
-    @IBOutlet weak var terminalApp: NSTextField!
+    @IBOutlet weak var appIcon: NSImageView!
     
     override func assignMainView() {
         self.mainView = self.localMainView
     }
 
     override func mainViewDidLoad() {
-        // load current preferences
-
-        terminalApp.stringValue = UserDefaults.getString("terminalApp") ?? "bla"
+        // load current preferences        
+        appIcon.image = Utils.iconForApp(UserDefaults.terminalApp)
     }
     
     @IBAction func selectTerminalAppClick(sender: AnyObject) {
@@ -34,23 +33,6 @@ class ErlangInstallerPreferences: NSPreferencePane {
         panel.allowedFileTypes = ["app"]
         panel.runModal()
         UserDefaults.terminalApp = panel.URLs.last!.path!
-        terminalApp.stringValue = panel.URLs.last!.lastPathComponent!
-    }
-}
-
-class UserDefaults {
-    static let userDefaults = NSUserDefaults.standardUserDefaults()
-
-    static func set(key: String, value: AnyObject?) {
-        userDefaults.setValue(value, forKey: key)
-    }
-
-    static func getString(key: String) -> String? {
-        return userDefaults.stringForKey(key)
-    }
-    
-    static var terminalApp: String? {
-        set { UserDefaults.set("terminalApp", value: newValue) }
-        get { return UserDefaults.getString("terminalApp") }
+        appIcon.image = Utils.iconForApp(UserDefaults.terminalApp)
     }
 }

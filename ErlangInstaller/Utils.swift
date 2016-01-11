@@ -42,4 +42,8 @@ class Utils {
         let fileManager = NSFileManager.defaultManager()
         try! fileManager.removeItemAtURL(url)
     }
+    
+    static func iconForApp(path: String) -> NSImage {
+        return NSWorkspace.sharedWorkspace().iconForFile(path)
+    }
 }
