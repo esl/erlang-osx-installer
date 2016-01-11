@@ -57,6 +57,9 @@
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="checkNewReleasesClick:" target="-2" id="CRT-19-ZHv"/>
+                                            </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ogJ-Ya-qKT">
                                             <rect key="frame" x="225" y="300" width="91" height="17"/>
@@ -72,6 +75,9 @@
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="openAtLoginClick:" target="-2" id="vgf-oG-tD2"/>
+                                            </connections>
                                         </button>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x0U-3j-HOY">
                                             <rect key="frame" x="319" y="27" width="81" height="83"/>
@@ -94,6 +100,9 @@
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </comboBoxCell>
+                                            <connections>
+                                                <action selector="defaultReleaseSelection:" target="-2" id="d7f-Vf-nbJ"/>
+                                            </connections>
                                         </comboBox>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jqS-Vq-qfv">
                                             <rect key="frame" x="203" y="60" width="113" height="17"/>
@@ -123,6 +132,9 @@
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="checkUpdatesClick:" target="-2" id="1jE-HZ-50h"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </view>

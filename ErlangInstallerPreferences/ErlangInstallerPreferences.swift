@@ -30,7 +30,26 @@ class ErlangInstallerPreferences: NSPreferencePane {
         self.checkForNewReleases.state = (UserDefaults.checkForNewReleases ? 1 : 0)
         self.checkForUpdates.state = (UserDefaults.checkForUpdates ? 1 : 0)
         self.defaultRelease.addItemsWithObjectValues(ReleaseManager.releases.keys.sort())
+        if(UserDefaults.defaultRelease != nil) {
+            self.defaultRelease.stringValue = UserDefaults.defaultRelease!
+        }
         self.appIcon.image = Utils.iconForApp(UserDefaults.terminalApp)
+    }
+
+    @IBAction func openAtLoginClick(sender: AnyObject) {
+        UserDefaults.openAtLogin = self.openAtLogin.state == 1
+    }
+
+    @IBAction func checkNewReleasesClick(sender: AnyObject) {
+        UserDefaults.checkForNewReleases = self.checkForNewReleases.state == 1
+    }
+    
+    @IBAction func checkUpdatesClick(sender: AnyObject) {
+        UserDefaults.checkForUpdates = self.checkForUpdates.state == 1
+    }
+
+    @IBAction func defaultReleaseSelection(sender: AnyObject) {
+        UserDefaults.defaultRelease = self.defaultRelease.selectedCell()!.title
     }
     
     @IBAction func selectTerminalAppClick(sender: AnyObject) {

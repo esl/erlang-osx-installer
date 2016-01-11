@@ -20,6 +20,9 @@ class UserDefaults {
     static private let openAtLoginDefault = false
     static private let checkForNewReleasesDefault = false
     static private let checkForUpdatesDefault = false
+    static private var defaultReleaseDefault: String? {
+        get { return ReleaseManager.releases.keys.sort().first }
+    }
     
     //-------------------
     // Accessors
@@ -59,5 +62,10 @@ class UserDefaults {
     static var checkForUpdates: Bool {
         set { set("checkForUpdates", value: newValue) }
         get { return getBool("checkForUpdates") ?? checkForUpdatesDefault}
+    }
+
+    static var defaultRelease: String? {
+        set { set("defaultRelease", value: newValue) }
+        get { return getString("defaultRelease") ?? defaultReleaseDefault}
     }
 }
