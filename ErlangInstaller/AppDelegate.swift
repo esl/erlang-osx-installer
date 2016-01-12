@@ -75,9 +75,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func openTerminal(menuItem: NSMenuItem) {
         let release = ReleaseManager.releases[menuItem.title]!
-        let appUrl = NSURL(fileURLWithPath: UserDefaults.terminalApp).URLByDeletingPathExtension!
-        let appName = appUrl.lastPathComponent!
-        let erlangTerminal = TerminalApplications.terminals[appName]
+        let erlangTerminal = TerminalApplications.terminals[UserDefaults.terminalApp]
         erlangTerminal?.open(release)
         
         // Utils.execute("tell application \"\(appName)\" activate\n")

@@ -18,8 +18,8 @@ class ErlangInstallerPreferences: NSPreferencePane {
     @IBOutlet weak var checkForNewReleases: NSButton!
     @IBOutlet weak var checkForUpdates: NSButton!
     @IBOutlet weak var defaultRelease: NSComboBox!
-    @IBOutlet weak var appIcon: NSImageView!
-    
+    @IBOutlet weak var terminalApplication: NSComboBox!
+
     override func assignMainView() {
         self.mainView = self.localMainView
     }
@@ -33,7 +33,8 @@ class ErlangInstallerPreferences: NSPreferencePane {
         if(UserDefaults.defaultRelease != nil) {
             self.defaultRelease.stringValue = UserDefaults.defaultRelease!
         }
-        self.appIcon.image = Utils.iconForApp(UserDefaults.terminalApp)
+        self.terminalApplication.addItemsWithObjectValues(TerminalApplications.terminals.keys.sort())
+        self.terminalApplication.stringValue = UserDefaults.terminalApp
     }
 
     @IBAction func openAtLoginClick(sender: AnyObject) {
@@ -52,14 +53,7 @@ class ErlangInstallerPreferences: NSPreferencePane {
         UserDefaults.defaultRelease = self.defaultRelease.selectedCell()!.title
     }
     
-    @IBAction func selectTerminalAppClick(sender: AnyObject) {
-        let panel = NSOpenPanel()
-        panel.canChooseFiles = true
-        panel.canChooseDirectories = false
-        panel.allowsMultipleSelection = false
-        panel.allowedFileTypes = ["app"]
-        panel.runModal()
-        UserDefaults.terminalApp = panel.URLs.last!.path!
-        appIcon.image = Utils.iconForApp(UserDefaults.terminalApp)
+    @IBAction func terminalAppSelection(sender: AnyObject) {
+        UserDefaults.terminalApp = self.terminalApplication.selectedCell()!.title
     }
 }
