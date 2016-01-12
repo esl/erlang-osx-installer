@@ -45,7 +45,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             systemPreferencesApp.activate()
         }
     }
-    
+
+    @IBAction func openTerminalDefault(sender: AnyObject) {
+        let release = ReleaseManager.releases[UserDefaults.defaultRelease!]!
+        let erlangTerminal = TerminalApplications.terminals[UserDefaults.terminalApp]
+        erlangTerminal?.open(release)
+    }
+
     func findPreferencePane(systemPreferencesApp : SystemPreferencesApplication) -> SystemPreferencesPane? {
         let panes = systemPreferencesApp.panes!() as NSArray as! [SystemPreferencesPane]
         let pane = panes.filter { (pane) -> Bool in
@@ -59,7 +65,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let path = NSBundle.mainBundle().pathForResource("ErlangInstallerPreferences", ofType: "prefPane")
         NSWorkspace.sharedWorkspace().openFile(path!)
     }
-    
+
     func loadReleases() {
         for release in ReleaseManager.available {
             let item = NSMenuItem(title: release.name, action: "", keyEquivalent: "")
@@ -71,15 +77,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 item.target = self
             }
         }
+
+        self.erlangTerminalDefault.enabled = UserDefaults.defaultRelease != nil
     }
 
     func openTerminal(menuItem: NSMenuItem) {
         let release = ReleaseManager.releases[menuItem.title]!
         let erlangTerminal = TerminalApplications.terminals[UserDefaults.terminalApp]
         erlangTerminal?.open(release)
-        
-        // Utils.execute("tell application \"\(appName)\" activate\n")
-        // Utils.execute("tell application \"\(appName)\" to open session")
 
         /*******************
         let workspace = NSWorkspace.sharedWorkspace()
@@ -90,7 +95,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         env["PATH"] = erlangPath + env["PATH"]!
         let config = [NSWorkspaceLaunchConfigurationEnvironment: env]
         try! workspace.launchApplicationAtURL(appUrl, options: options, configuration: config)
-        */
+        ********************/
     }
     
     func addStatusItem() {
