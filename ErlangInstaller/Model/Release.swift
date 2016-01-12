@@ -8,9 +8,12 @@
 
 import Foundation
 
-class Release: AnyObject {    
+class Release: AnyObject {
     var name: String
     var installed: Bool
+    var binPath : String {
+        get { return Utils.supportResourceUrl("\(self.name)/bin")!.path! }
+    }
     
     init(name: String, installed: Bool){
         self.name = name

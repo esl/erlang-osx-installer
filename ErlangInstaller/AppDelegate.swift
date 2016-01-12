@@ -74,14 +74,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func openTerminal(menuItem: NSMenuItem) {
+        let release = ReleaseManager.releases[menuItem.title]!
+        let appUrl = NSURL(fileURLWithPath: UserDefaults.terminalApp).URLByDeletingPathExtension!
+        let appName = appUrl.lastPathComponent!
+        let erlangTerminal = TerminalApplications.terminals[appName]
+        erlangTerminal?.open(release)
+        
+        // Utils.execute("tell application \"\(appName)\" activate\n")
+        // Utils.execute("tell application \"\(appName)\" to open session")
+
+        /*******************
         let workspace = NSWorkspace.sharedWorkspace()
         let appUrl = NSURL(fileURLWithPath: UserDefaults.terminalApp)
         let options = NSWorkspaceLaunchOptions.Default
         var env = NSProcessInfo().environment
-        let erlangPath = Utils.supportResourceUrl("\(menuItem.title)/bin:")!.path!
+
         env["PATH"] = erlangPath + env["PATH"]!
         let config = [NSWorkspaceLaunchConfigurationEnvironment: env]
         try! workspace.launchApplicationAtURL(appUrl, options: options, configuration: config)
+        */
     }
     
     func addStatusItem() {

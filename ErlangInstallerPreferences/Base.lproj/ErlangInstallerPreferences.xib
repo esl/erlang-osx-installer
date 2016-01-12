@@ -36,7 +36,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hIe-RP-RaA">
-                                            <rect key="frame" x="203" y="165" width="113" height="17"/>
+                                            <rect key="frame" x="219" y="165" width="113" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Default Release:" id="4zY-d6-pA3">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -44,7 +44,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mLA-qf-BzP">
-                                            <rect key="frame" x="157" y="255" width="159" height="17"/>
+                                            <rect key="frame" x="173" y="255" width="159" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Check for New Releases:" id="v0l-oF-kYc">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -52,7 +52,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rXW-MG-Mq9">
-                                            <rect key="frame" x="320" y="254" width="31" height="18"/>
+                                            <rect key="frame" x="336" y="254" width="31" height="18"/>
                                             <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Zxb-zX-gdS">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -62,7 +62,7 @@
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ogJ-Ya-qKT">
-                                            <rect key="frame" x="225" y="300" width="91" height="17"/>
+                                            <rect key="frame" x="241" y="300" width="91" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Open at login:" id="eZH-ag-kVt">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -70,7 +70,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ETy-cF-thk">
-                                            <rect key="frame" x="320" y="299" width="31" height="18"/>
+                                            <rect key="frame" x="336" y="299" width="31" height="18"/>
                                             <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="9eg-xW-joI">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -80,11 +80,11 @@
                                             </connections>
                                         </button>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x0U-3j-HOY">
-                                            <rect key="frame" x="319" y="27" width="81" height="83"/>
+                                            <rect key="frame" x="336" y="27" width="81" height="83"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="KNP-UF-IrQ"/>
                                         </imageView>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="85b-ZH-Ftd">
-                                            <rect key="frame" x="399" y="23" width="91" height="32"/>
+                                            <rect key="frame" x="416" y="23" width="91" height="32"/>
                                             <buttonCell key="cell" type="push" title="Select..." bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SjT-a6-bQm">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -94,7 +94,7 @@
                                             </connections>
                                         </button>
                                         <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0vL-oT-mPd">
-                                            <rect key="frame" x="322" y="159" width="99" height="26"/>
+                                            <rect key="frame" x="338" y="159" width="99" height="26"/>
                                             <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" completes="NO" numberOfVisibleItems="5" id="mkK-8i-mrh">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -105,21 +105,21 @@
                                             </connections>
                                         </comboBox>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jqS-Vq-qfv">
-                                            <rect key="frame" x="203" y="60" width="113" height="17"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Terminal app:" id="BBd-6l-QZz">
+                                            <rect key="frame" x="200" y="60" width="133" height="17"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Terminal Application:" id="BBd-6l-QZz">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="fBS-7e-8Sb">
-                                            <rect key="frame" x="9" y="131" width="604" height="5"/>
+                                            <rect key="frame" x="171" y="131" width="454" height="5"/>
                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" metaFont="system"/>
                                         </box>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MQb-Gv-ccx">
-                                            <rect key="frame" x="192" y="210" width="124" height="17"/>
+                                            <rect key="frame" x="208" y="210" width="124" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Check for Updates:" id="yRs-8V-Lgq">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -127,7 +127,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AYI-G3-V2O">
-                                            <rect key="frame" x="320" y="209" width="31" height="18"/>
+                                            <rect key="frame" x="336" y="209" width="31" height="18"/>
                                             <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rKx-hF-3Zh">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -136,6 +136,10 @@
                                                 <action selector="checkUpdatesClick:" target="-2" id="1jE-HZ-50h"/>
                                             </connections>
                                         </button>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zD3-s0-7W2">
+                                            <rect key="frame" x="7" y="199" width="142" height="133"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="erlang-solutions" id="aYh-eB-Zbp"/>
+                                        </imageView>
                                     </subviews>
                                 </view>
                             </tabViewItem>
@@ -302,4 +306,7 @@ Gw
         </window>
         <customObject id="rl2-TB-8Bg" customClass="ReleasesTableViewDelegate" customModule="ErlangInstallerPreferences" customModuleProvider="target"/>
     </objects>
+    <resources>
+        <image name="erlang-solutions" width="128" height="128"/>
+    </resources>
 </document>
