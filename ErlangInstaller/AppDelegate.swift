@@ -87,17 +87,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let release = ReleaseManager.releases[menuItem.title]!
         let erlangTerminal = TerminalApplications.terminals[UserDefaults.terminalApp]
         erlangTerminal?.open(release)
-
-        /*******************
-        let workspace = NSWorkspace.sharedWorkspace()
-        let appUrl = NSURL(fileURLWithPath: UserDefaults.terminalApp)
-        let options = NSWorkspaceLaunchOptions.Default
-        var env = NSProcessInfo().environment
-
-        env["PATH"] = erlangPath + env["PATH"]!
-        let config = [NSWorkspaceLaunchConfigurationEnvironment: env]
-        try! workspace.launchApplicationAtURL(appUrl, options: options, configuration: config)
-        ********************/
     }
     
     func addStatusItem() {
