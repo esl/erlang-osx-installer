@@ -47,9 +47,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @IBAction func openTerminalDefault(sender: AnyObject) {
-        let release = ReleaseManager.releases[UserDefaults.defaultRelease!]!
-        let erlangTerminal = TerminalApplications.terminals[UserDefaults.terminalApp]
-        erlangTerminal?.open(release)
+        if(UserDefaults.defaultRelease != nil) {
+            let release = ReleaseManager.releases[UserDefaults.defaultRelease!]!
+            let erlangTerminal = TerminalApplications.terminals[UserDefaults.terminalApp]
+            erlangTerminal?.open(release)
+        }
     }
 
     func findPreferencePane(systemPreferencesApp : SystemPreferencesApplication) -> SystemPreferencesPane? {
