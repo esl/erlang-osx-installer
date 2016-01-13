@@ -45,7 +45,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             systemPreferencesApp.activate()
         }
     }
-    
+
+    @IBAction func openTerminalDefault(sender: AnyObject) {
+        if(UserDefaults.defaultRelease != nil) {
+            let release = ReleaseManager.releases[UserDefaults.defaultRelease!]!
+            let erlangTerminal = TerminalApplications.terminals[UserDefaults.terminalApp]
+            erlangTerminal?.open(release)
+        }
+    }
+
     func findPreferencePane(systemPreferencesApp : SystemPreferencesApplication) -> SystemPreferencesPane? {
         let panes = systemPreferencesApp.panes!() as NSArray as! [SystemPreferencesPane]
         let pane = panes.filter { (pane) -> Bool in
@@ -59,22 +67,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let path = NSBundle.mainBundle().pathForResource("ErlangInstallerPreferences", ofType: "prefPane")
         NSWorkspace.sharedWorkspace().openFile(path!)
     }
-    
+
     func loadReleases() {
         for release in ReleaseManager.available {
             let item = NSMenuItem(title: release.name, action: "", keyEquivalent: "")
+            self.erlangTerminals.submenu?.addItem(item)
+            
             item.enabled = release.installed
             if(release.installed) {
                 item.action = "openTerminal:"
                 item.target = self
             }
-
-            self.erlangTerminals.submenu?.addItem(item)
         }
+
+        self.erlangTerminalDefault.enabled = UserDefaults.defaultRelease != nil
     }
 
-    static func openTerminal(menuItem: NSMenuItem) {
-        ReleaseManager.openTerminal(menuItem.title)
+    func openTerminal(menuItem: NSMenuItem) {
+        let release = ReleaseManager.releases[menuItem.title]!
+        let erlangTerminal = TerminalApplications.terminals[UserDefaults.terminalApp]
+        erlangTerminal?.open(release)
     }
     
     func addStatusItem() {

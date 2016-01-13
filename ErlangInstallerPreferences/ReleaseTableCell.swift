@@ -78,6 +78,7 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress, UninstallationPro
     func finished() {
         progressIndicator.stopAnimation(self)
         self.updateButtonsVisibility()
+        self.delegate.preferencesPane.loadPreferencesValues()
     }
     
     func error(error: NSError) {
