@@ -32,15 +32,15 @@
                         <tabViewItems>
                             <tabViewItem label="General" identifier="1" id="N9u-eq-jYh">
                                 <view key="view" ambiguous="YES" id="zGK-Zk-WXn">
-                                    <rect key="frame" x="10" y="33" width="622" height="335"/>
+                                    <rect key="frame" x="10" y="33" width="143" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zD3-s0-7W2">
-                                            <rect key="frame" x="7" y="225" width="142" height="107"/>
+                                            <rect key="frame" x="7" y="-110" width="142" height="107"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="erlang-solutions" id="aYh-eB-Zbp"/>
                                         </imageView>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hIe-RP-RaA">
-                                            <rect key="frame" x="226" y="64" width="113" height="17"/>
+                                            <rect key="frame" x="226" y="-271" width="113" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Default Release:" id="4zY-d6-pA3">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -48,7 +48,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mLA-qf-BzP">
-                                            <rect key="frame" x="180" y="151" width="159" height="17"/>
+                                            <rect key="frame" x="180" y="-184" width="159" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Check for New Releases:" id="v0l-oF-kYc">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -56,7 +56,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rXW-MG-Mq9">
-                                            <rect key="frame" x="343" y="150" width="31" height="18"/>
+                                            <rect key="frame" x="343" y="-185" width="31" height="18"/>
                                             <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Zxb-zX-gdS">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -66,7 +66,7 @@
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ogJ-Ya-qKT">
-                                            <rect key="frame" x="248" y="196" width="91" height="17"/>
+                                            <rect key="frame" x="248" y="-139" width="91" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Open at login:" id="eZH-ag-kVt">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -74,7 +74,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ETy-cF-thk">
-                                            <rect key="frame" x="343" y="195" width="31" height="18"/>
+                                            <rect key="frame" x="343" y="-140" width="31" height="18"/>
                                             <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="9eg-xW-joI">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -84,7 +84,7 @@
                                             </connections>
                                         </button>
                                         <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0vL-oT-mPd">
-                                            <rect key="frame" x="345" y="58" width="99" height="26"/>
+                                            <rect key="frame" x="345" y="-277" width="99" height="26"/>
                                             <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" completes="NO" numberOfVisibleItems="5" id="mkK-8i-mrh">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -95,7 +95,7 @@
                                             </connections>
                                         </comboBox>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MQb-Gv-ccx">
-                                            <rect key="frame" x="215" y="106" width="124" height="17"/>
+                                            <rect key="frame" x="215" y="-229" width="124" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Check for Updates:" id="yRs-8V-Lgq">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -103,7 +103,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AYI-G3-V2O">
-                                            <rect key="frame" x="343" y="105" width="31" height="18"/>
+                                            <rect key="frame" x="343" y="-230" width="31" height="18"/>
                                             <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="rKx-hF-3Zh">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -113,7 +113,7 @@
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jqS-Vq-qfv">
-                                            <rect key="frame" x="207" y="19" width="133" height="17"/>
+                                            <rect key="frame" x="207" y="-316" width="133" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Terminal Application:" id="BBd-6l-QZz">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -121,7 +121,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wnn-Sc-k8q">
-                                            <rect key="frame" x="345" y="13" width="99" height="26"/>
+                                            <rect key="frame" x="345" y="-322" width="99" height="26"/>
                                             <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" completes="NO" numberOfVisibleItems="5" id="gb7-nb-aLe">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -132,13 +132,13 @@
                                             </comboBoxCell>
                                         </comboBox>
                                         <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="B6F-GH-Um4">
-                                            <rect key="frame" x="9" y="223" width="604" height="5"/>
+                                            <rect key="frame" x="9" y="-112" width="604" height="5"/>
                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" metaFont="system"/>
                                         </box>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5xW-Qy-LmF">
-                                            <rect key="frame" x="155" y="242" width="460" height="71"/>
+                                            <rect key="frame" x="155" y="-93" width="460" height="71"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="Utm-57-V6S">
                                                 <font key="font" metaFont="system"/>
                                                 <string key="title">Lorem ipsum dolor sit amet, te usu solum noster accusata. Nam et omnis numquam temporibus. Ex homero quaerendum has, cu populo noluisse mediocrem usu. Ad diam iisque meliore duo, pro id doctus timeam, has possim invenire concludaturque ei.</string>

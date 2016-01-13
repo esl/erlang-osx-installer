@@ -7,6 +7,7 @@
 //
 
 import PreferencePanes
+import CoreFoundation
 
 class ErlangInstallerPreferences: NSPreferencePane {
 
@@ -47,6 +48,8 @@ class ErlangInstallerPreferences: NSPreferencePane {
     
     @IBAction func openAtLoginClick(sender: AnyObject) {
         UserDefaults.openAtLogin = self.openAtLogin.state == 1
+        let url = NSWorkspace.sharedWorkspace().URLForApplicationWithBundleIdentifier(Constants.applicationId)
+        Utils.setLaunchAtLogin(url!, enabled: UserDefaults.openAtLogin)
     }
 
     @IBAction func checkNewReleasesClick(sender: AnyObject) {
