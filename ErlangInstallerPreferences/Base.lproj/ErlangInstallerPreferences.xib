@@ -310,7 +310,11 @@ Gw
             </view>
             <point key="canvasLocation" x="323" y="268.5"/>
         </window>
-        <customObject id="rl2-TB-8Bg" customClass="ReleasesTableViewDelegate" customModule="ErlangInstallerPreferences" customModuleProvider="target"/>
+        <customObject id="rl2-TB-8Bg" customClass="ReleasesTableViewDelegate" customModule="ErlangInstallerPreferences" customModuleProvider="target">
+            <connections>
+                <outlet property="preferencesPane" destination="-2" id="BXJ-By-IfV"/>
+            </connections>
+        </customObject>
     </objects>
     <resources>
         <image name="erlang-solutions" width="128" height="128"/>

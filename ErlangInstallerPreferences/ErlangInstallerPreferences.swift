@@ -25,20 +25,26 @@ class ErlangInstallerPreferences: NSPreferencePane {
     }
 
     override func mainViewDidLoad() {
+        self.loadPreferencesValues()
+    }
+    
+    func loadPreferencesValues() {
         // Load current preferences
         self.openAtLogin.state = (UserDefaults.openAtLogin ? 1 : 0)
         self.checkForNewReleases.state = (UserDefaults.checkForNewReleases ? 1 : 0)
         self.checkForUpdates.state = (UserDefaults.checkForUpdates ? 1 : 0)
 
-        self.defaultRelease.addItemsWithObjectValues(ReleaseManager.releases.keys.sort())
+        self.defaultRelease.removeAllItems()
+        self.defaultRelease.addItemsWithObjectValues(ReleaseManager.installed.map({release in return release.name}))
         if(UserDefaults.defaultRelease != nil) {
             self.defaultRelease.stringValue = UserDefaults.defaultRelease!
         }
 
+        self.terminalApplication.removeAllItems()
         self.terminalApplication.addItemsWithObjectValues(TerminalApplications.terminals.keys.sort())
         self.terminalApplication.stringValue = UserDefaults.terminalApp
     }
-
+    
     @IBAction func openAtLoginClick(sender: AnyObject) {
         UserDefaults.openAtLogin = self.openAtLogin.state == 1
     }

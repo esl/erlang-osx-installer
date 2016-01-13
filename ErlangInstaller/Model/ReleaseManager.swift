@@ -47,7 +47,7 @@ class ReleaseManager: NSObject {
         let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
         let releaseNames = json as! [String]
         for name in releaseNames {
-            releases[name] =  Release(name: name, installed: ReleaseManager.isInstalled(name))
+            releases[name] =  Release(name: name)
         }
         
         return releases

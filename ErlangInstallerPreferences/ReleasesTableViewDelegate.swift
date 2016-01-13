@@ -10,6 +10,8 @@ import Cocoa
 
 class ReleasesTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSource {
     
+    @IBOutlet weak var preferencesPane: ErlangInstallerPreferences!
+    
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return ReleaseManager.available.count
     }
