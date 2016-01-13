@@ -42,8 +42,13 @@ class Terminal: AnyObject, ErlangTerminal {
         let erl = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\\\ ") + "/erl"
         let source =
             "tell application \"\(self.applicationName)\"\n" +
-                "  activate\n" +
-                "  set currentTab to do script (\"bash -c '\(erl)'\")\n" +
+            "  activate\n" +
+            "  set n to count windows\n" +
+            "  if n = 0 then\n" +
+            "    do script (\"bash -c '\(erl)'\")\n" +
+            "  else\n" +
+            "    do script (\"bash -c '\(erl)'\") in window 0\n" +
+            "  end if\n" +
             "end tell\n"
         Utils.execute(source)
     }

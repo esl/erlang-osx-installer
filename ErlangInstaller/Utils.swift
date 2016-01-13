@@ -51,6 +51,12 @@ class Utils {
         let script = NSAppleScript(source: source)
         let errorInfo = AutoreleasingUnsafeMutablePointer<NSDictionary?>()
         let error = script?.executeAndReturnError(errorInfo)
-        print(error)
+        if(error != nil) {
+            log("Error : " + error!.description)
+        }
+    }
+
+    static func log(message: String) {
+        NSLog("%@", message)
     }
 }
