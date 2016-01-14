@@ -33,6 +33,9 @@
                 <menuItem isSeparatorItem="YES" id="f4c-T3-M9q"/>
                 <menuItem title="Download &amp; Install Release" id="kEV-c1-DpZ">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="downloadInstallRelease:" target="O7D-yy-Kre" id="jk1-WY-ZXn"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="S5L-cX-Xxr"/>
                 <menuItem title="Preferences..." id="yne-sw-S4q">

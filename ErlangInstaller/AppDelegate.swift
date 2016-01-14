@@ -11,10 +11,6 @@ import ScriptingBridge
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
-    static let SystemPreferencesId = "com.apple.systempreferences"
-    static let ErlangInstallerPreferencesId = "com.erlang-solutions.ErlangInstallerPreferences"
-
     var statusItem : NSStatusItem?
 
     @IBOutlet weak var mainMenu: NSMenu!
@@ -35,7 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func showPreferencesPane(sender: AnyObject) {
-        let systemPreferencesApp = SBApplication(bundleIdentifier: AppDelegate.SystemPreferencesId) as!SystemPreferencesApplication
+        let systemPreferencesApp = SBApplication(bundleIdentifier: Constants.SystemPreferencesId) as! SystemPreferencesApplication
         let pane = findPreferencePane(systemPreferencesApp)
         
         if (pane == nil) {
@@ -54,18 +50,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    func findPreferencePane(systemPreferencesApp : SystemPreferencesApplication) -> SystemPreferencesPane? {
+    @IBAction func downloadInstallRelease(sender: AnyObject) {
+        showPreferencesPane(sender)
+        let systemPreferencesApp = SBApplication(bundleIdentifier: Constants.SystemPreferencesId) as! SystemPreferencesApplication
+        let pane = findPreferencePane(systemPreferencesApp)
+        let anchors = pane!.anchors!()
+        let releasesAnchor = anchors.filter({ $0.name == "releases" }).first
+        releasesAnchor?.reveal!()
+    }
+
+    func findPreferencePane(systemPreferencesApp: SystemPreferencesApplication) -> SystemPreferencesPane? {
         let panes = systemPreferencesApp.panes!() as NSArray as! [SystemPreferencesPane]
         let pane = panes.filter { (pane) -> Bool in
-            pane.id!().containsString(AppDelegate.ErlangInstallerPreferencesId)
+            pane.id!().containsString(Constants.ErlangInstallerPreferencesId)
         }.first
 
         return pane
     }
 
     func installPreferenecesPane() {
+        let fileManager = NSFileManager.defaultManager()
         let path = NSBundle.mainBundle().pathForResource("ErlangInstallerPreferences", ofType: "prefPane")
-        NSWorkspace.sharedWorkspace().openFile(path!)
+        let destinationUrl = Utils.preferencePanesUrl("ErlangInstallerPreferences.prefPane")
+        if(!Utils.fileExists(destinationUrl)) {
+            try! fileManager.copyItemAtPath(path!, toPath: destinationUrl!.path!)
+        }
+        NSWorkspace.sharedWorkspace().openFile(destinationUrl!.path!)
     }
 
     func loadReleases() {

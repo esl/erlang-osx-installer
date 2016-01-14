@@ -17,6 +17,7 @@
 		5E4F42051C3F06F500597AFD /* ReleaseUninstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4F42041C3F06F500597AFD /* ReleaseUninstaller.swift */; };
 		5E4F42061C3F06F500597AFD /* ReleaseUninstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4F42041C3F06F500597AFD /* ReleaseUninstaller.swift */; };
 		5E519F921C32E34F0024DEAB /* erlang-solutions.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E519F911C32E34F0024DEAB /* erlang-solutions.png */; };
+		5E94CD611C48426800E7AB56 /* ErlangInstallerPreferences.searchTerms in Resources */ = {isa = PBXBuildFile; fileRef = 5E94CD601C48426800E7AB56 /* ErlangInstallerPreferences.searchTerms */; };
 		5E96369B1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E96369A1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift */; };
 		5EBDDD611C33215F0024C22C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EBDDD601C33215F0024C22C /* MainMenu.xib */; };
 		5EBF05841C3C260A00A1701A /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECEF6311C3ADD08004ABE02 /* Release.swift */; };
@@ -68,6 +69,7 @@
 		5E4F42011C3EEFDF00597AFD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = ErlangInstaller/Constants.swift; sourceTree = "<group>"; };
 		5E4F42041C3F06F500597AFD /* ReleaseUninstaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReleaseUninstaller.swift; path = ErlangInstaller/Model/ReleaseUninstaller.swift; sourceTree = "<group>"; };
 		5E519F911C32E34F0024DEAB /* erlang-solutions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "erlang-solutions.png"; path = "Resources/erlang-solutions.png"; sourceTree = "<group>"; };
+		5E94CD601C48426800E7AB56 /* ErlangInstallerPreferences.searchTerms */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ErlangInstallerPreferences.searchTerms; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.xml; };
 		5E96369A1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReleasesTableViewDelegate.swift; sourceTree = "<group>"; };
 		5EBDDD601C33215F0024C22C /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = ../Resources/MainMenu.xib; sourceTree = "<group>"; };
 		5EBF05861C3C281A00A1701A /* ReleaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReleaseManager.swift; path = ErlangInstaller/Model/ReleaseManager.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				5E20ED901C3D7836007AFFE6 /* ReleaseTableCell.swift */,
 				5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */,
 				5EFD59161C32BDEF004ECB9B /* Info.plist */,
+				5E94CD601C48426800E7AB56 /* ErlangInstallerPreferences.searchTerms */,
 			);
 			path = ErlangInstallerPreferences;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EFD59151C32BDEF004ECB9B /* ErlangInstallerPreferences.xib in Resources */,
+				5E94CD611C48426800E7AB56 /* ErlangInstallerPreferences.searchTerms in Resources */,
 				5E519F921C32E34F0024DEAB /* erlang-solutions.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

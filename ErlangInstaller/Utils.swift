@@ -33,6 +33,12 @@ class Utils {
         let appSupportUrl = fileManager.URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask).first
         return NSURL(string: "ErlangInstaller/" + name, relativeToURL:  appSupportUrl)
     }
+    
+    static func preferencePanesUrl(name : String) -> NSURL? {
+        let fileManager = NSFileManager.defaultManager()
+        let appSupportUrl = fileManager.URLsForDirectory(.PreferencePanesDirectory, inDomains: .UserDomainMask).first
+        return NSURL(string: name, relativeToURL:  appSupportUrl)
+    }
 
     static func fileExists(url : NSURL?) -> Bool {
         return NSFileManager.defaultManager().fileExistsAtPath(url!.path!)

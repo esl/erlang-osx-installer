@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>erlang</key>
+        <dict>
+            <key>localizableStrings</key>
+            <array>
+                <dict>
+                    <key>comments</key>
+                    <string>Localizable index words</string>
+                    <key>index</key>
+                    <string>erlang, installer, updates, check, terminal, application</string>
+                    <key>title</key>
+                    <string>General Erlang Installer Options</string>
+                </dict>
+                <dict>
+                    <key>comments</key>
+                    <string>Localizable index words</string>
+                    <key>index</key>
+                    <string>audio, hear, level, volume, louder, softer, quieter, increase, decrease, raise, lower, quiet, silent, silence, turn off, hearing, muting</string>
+                    <key>title</key>
+                    <string>Mute the sound</string>
+                </dict>
+                <dict>
+                    <key>comments</key>
+                    <string>Localizable index words</string>
+                    <key>index</key>
+                    <string>menubar</string>
+                    <key>title</key>
+                    <string>Show volume in menu bar</string>
+                </dict>
+            </array>
+        </dict>
+        <key>releases</key>
+        <dict>
+            <key>localizableStrings</key>
+            <array>
+                <dict>
+                    <key>comments</key>
+                    <string>Localizable index words</string>
+                    <key>index</key>
+                    <string>erlang, releases, install, uninstall, download</string>
+                    <key>title</key>
+                    <string>Install and Uninstal Erlang Releases</string>
+                </dict>
+            </array>
+        </dict>
+    </dict>
+</plist>

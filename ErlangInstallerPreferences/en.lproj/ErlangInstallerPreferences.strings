@@ -1,0 +1,48 @@
+
+/* Class = "NSTextFieldCell"; title = "Default Release:"; ObjectID = "4zY-d6-pA3"; */
+"4zY-d6-pA3.title" = "Default Release:";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "B6F-GH-Um4"; */
+"B6F-GH-Um4.title" = "Box";
+
+/* Class = "NSTextFieldCell"; title = "Terminal Application:"; ObjectID = "BBd-6l-QZz"; */
+"BBd-6l-QZz.title" = "Terminal Application:";
+
+/* Class = "NSWindow"; title = "Erlang Manager"; ObjectID = "F0z-JX-Cv5"; */
+"F0z-JX-Cv5.title" = "Erlang Manager";
+
+/* Class = "NSTabViewItem"; label = "General"; ObjectID = "N9u-eq-jYh"; */
+"N9u-eq-jYh.label" = "General";
+
+/* Class = "NSButtonCell"; title = "Install"; ObjectID = "Nnb-S7-UP7"; */
+"Nnb-S7-UP7.title" = "Install";
+
+/* Class = "NSTextFieldCell"; title = "Lorem ipsum dolor sit amet, te usu solum noster accusata. Nam et omnis numquam temporibus. Ex homero quaerendum has, cu populo noluisse mediocrem usu. Ad diam iisque meliore duo, pro id doctus timeam, has possim invenire concludaturque ei."; ObjectID = "Utm-57-V6S"; */
+"Utm-57-V6S.title" = "Lorem ipsum dolor sit amet, te usu solum noster accusata. Nam et omnis numquam temporibus. Ex homero quaerendum has, cu populo noluisse mediocrem usu. Ad diam iisque meliore duo, pro id doctus timeam, has possim invenire concludaturque ei.";
+
+/* Class = "NSButtonCell"; title = "Uninstall"; ObjectID = "V5h-Ad-poB"; */
+"V5h-Ad-poB.title" = "Uninstall";
+
+/* Class = "NSTabViewItem"; label = "Releases"; ObjectID = "VPY-Ul-aqr"; */
+"VPY-Ul-aqr.label" = "Releases";
+
+/* Class = "NSTextFieldCell"; title = "Progress Information"; ObjectID = "Vnn-fp-XVq"; */
+"Vnn-fp-XVq.title" = "Progress Information";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "aku-8D-l0i"; */
+"aku-8D-l0i.title" = "Cancel";
+
+/* Class = "NSTextFieldCell"; title = "Open at login:"; ObjectID = "eZH-ag-kVt"; */
+"eZH-ag-kVt.title" = "Open at login:";
+
+/* Class = "NSTextFieldCell"; title = "Release Name"; ObjectID = "lcc-Zx-kEn"; */
+"lcc-Zx-kEn.title" = "Release Name";
+
+/* Class = "NSTextFieldCell"; title = "Check for New Releases:"; ObjectID = "v0l-oF-kYc"; */
+"v0l-oF-kYc.title" = "Check for New Releases:";
+
+/* Class = "NSTextFieldCell"; title = "Text Cell"; ObjectID = "wtO-K7-KQD"; */
+"wtO-K7-KQD.title" = "Text Cell";
+
+/* Class = "NSTextFieldCell"; title = "Check for Updates:"; ObjectID = "yRs-8V-Lgq"; */
+"yRs-8V-Lgq.title" = "Check for Updates:";
