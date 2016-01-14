@@ -13,6 +13,7 @@
                 <outlet property="localMainView" destination="se5-gp-TjO" id="y77-e4-OFJ"/>
                 <outlet property="openAtLogin" destination="ETy-cF-thk" id="CBb-qV-gQA"/>
                 <outlet property="selectTerminalAppClick" destination="zGK-Zk-WXn" id="l0I-Ze-hLe"/>
+                <outlet property="tabView" destination="oBV-No-0bi" id="3yq-i8-2Tl"/>
                 <outlet property="terminalApplication" destination="wnn-Sc-k8q" id="t8z-Vm-c96"/>
             </connections>
         </customObject>
@@ -30,8 +31,8 @@
                         <rect key="frame" x="13" y="10" width="642" height="381"/>
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
-                            <tabViewItem label="General" identifier="1" id="N9u-eq-jYh">
-                                <view key="view" id="zGK-Zk-WXn">
+                            <tabViewItem label="General" identifier="erlang" id="N9u-eq-jYh">
+                                <view key="view" ambiguous="YES" id="zGK-Zk-WXn">
                                     <rect key="frame" x="10" y="33" width="622" height="335"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -149,8 +150,8 @@
                                     </subviews>
                                 </view>
                             </tabViewItem>
-                            <tabViewItem label="Releases" identifier="2" id="VPY-Ul-aqr">
-                                <view key="view" ambiguous="YES" id="peX-qb-6QT">
+                            <tabViewItem label="Releases" identifier="releases" id="VPY-Ul-aqr">
+                                <view key="view" id="peX-qb-6QT">
                                     <rect key="frame" x="10" y="33" width="622" height="335"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>

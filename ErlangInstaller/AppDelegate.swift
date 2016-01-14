@@ -55,9 +55,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let systemPreferencesApp = SBApplication(bundleIdentifier: Constants.SystemPreferencesId) as! SystemPreferencesApplication
         let pane = findPreferencePane(systemPreferencesApp)
         let anchors = pane!.anchors!()
-        for anchor in anchors {
-            Utils.log("\(anchor.name)")
-        }
+        let releasesAnchor = anchors.filter({ $0.name == "releases" }).first
+        releasesAnchor?.reveal!()
     }
 
     func findPreferencePane(systemPreferencesApp: SystemPreferencesApplication) -> SystemPreferencesPane? {

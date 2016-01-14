@@ -15,6 +15,7 @@ class ErlangInstallerPreferences: NSPreferencePane {
     
     @IBOutlet weak var localMainView: NSView!
     
+    @IBOutlet weak var tabView: NSTabView!
     @IBOutlet weak var openAtLogin: NSButton!
     @IBOutlet weak var checkForNewReleases: NSButton!
     @IBOutlet weak var checkForUpdates: NSButton!
@@ -66,5 +67,9 @@ class ErlangInstallerPreferences: NSPreferencePane {
     
     @IBAction func terminalAppSelection(sender: AnyObject) {
         UserDefaults.terminalApp = self.terminalApplication.selectedCell()!.title
+    }
+
+    func revealElementForKey(key: String) {
+        self.tabView.selectTabViewItemWithIdentifier(key)
     }
 }
