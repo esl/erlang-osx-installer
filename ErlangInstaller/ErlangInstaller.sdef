@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+
+<dictionary title="ErlangInstaller">
+    <suite name="ErlangInstaller Suite" code="erlinst" description="ErlangInstaller Scripts">
+        <command name="updateReleases" code="updtrels" description="Update the list of releases in the menu">
+            <cocoa class="UpdateReleasesCommand"/>
+        </command>
+    </suite>
+</dictionary>

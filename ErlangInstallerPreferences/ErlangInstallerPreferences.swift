@@ -8,6 +8,7 @@
 
 import PreferencePanes
 import CoreFoundation
+import ScriptingBridge
 
 class ErlangInstallerPreferences: NSPreferencePane {
 
@@ -45,6 +46,11 @@ class ErlangInstallerPreferences: NSPreferencePane {
         self.terminalApplication.removeAllItems()
         self.terminalApplication.addItemsWithObjectValues(TerminalApplications.terminals.keys.sort())
         self.terminalApplication.stringValue = UserDefaults.terminalApp
+    }
+    
+    func updateReleasesForAgent() {
+        let erlangInstallerApp = SBApplication(bundleIdentifier: Constants.SystemPreferencesId) as! ErlangInstallerApplication
+        erlangInstallerApp.updateReleases!()
     }
     
     @IBAction func openAtLoginClick(sender: AnyObject) {

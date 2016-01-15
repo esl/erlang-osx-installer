@@ -79,6 +79,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func loadReleases() {
+        self.erlangTerminals.submenu?.removeAllItems()
         for release in ReleaseManager.available {
             let item = NSMenuItem(title: release.name, action: "", keyEquivalent: "")
             self.erlangTerminals.submenu?.addItem(item)
