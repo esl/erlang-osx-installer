@@ -16,7 +16,7 @@
 
 @interface ErlangInstallerApplication : SBApplication
 
-- (void) updateReleases;  // Update the list of releases in the menu
+- (void) update;  // Update the list of releases in the menu
 
 @end
 

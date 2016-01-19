@@ -10,6 +10,7 @@ import Foundation
 
 class UpdateReleasesCommand: NSScriptCommand {
     override func performDefaultImplementation() -> AnyObject? {
+        
         return nil
     }
 }

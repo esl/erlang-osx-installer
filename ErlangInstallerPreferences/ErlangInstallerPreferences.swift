@@ -49,8 +49,8 @@ class ErlangInstallerPreferences: NSPreferencePane {
     }
     
     func updateReleasesForAgent() {
-        let erlangInstallerApp = SBApplication(bundleIdentifier: Constants.SystemPreferencesId) as! ErlangInstallerApplication
-        erlangInstallerApp.updateReleases!()
+        let erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId) as! ErlangInstallerApplication
+        erlangInstallerApp.update!()
     }
     
     @IBAction func openAtLoginClick(sender: AnyObject) {
