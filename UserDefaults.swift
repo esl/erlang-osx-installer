@@ -20,10 +20,8 @@ class UserDefaults {
     static private let openAtLoginDefault = false
     static private let checkForNewReleasesDefault = false
     static private let checkForUpdatesDefault = false
-    static private var defaultReleaseDefault: String? {
-        get { return ReleaseManager.releases.keys.sort().first }
-    }
-    
+    static private var defaultReleaseDefault: String? = nil
+
     //-------------------
     // Accessors
     //-------------------

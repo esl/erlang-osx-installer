@@ -100,7 +100,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             }
         }
 
-        self.erlangTerminalDefault.enabled = UserDefaults.defaultRelease != nil
+        let enableTerminalDefault = (UserDefaults.defaultRelease != nil) && (ReleaseManager.releases[UserDefaults.defaultRelease!]!.installed)
+        self.erlangTerminalDefault.enabled = enableTerminalDefault
     }
 
     func openTerminal(menuItem: NSMenuItem) {
