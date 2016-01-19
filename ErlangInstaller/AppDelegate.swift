@@ -11,6 +11,14 @@ import ScriptingBridge
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    static var delegate: AppDelegate? {
+        get {
+            return _delegate
+        }
+    }
+    
+    private static var _delegate: AppDelegate?
+    
     var statusItem : NSStatusItem?
 
     @IBOutlet weak var mainMenu: NSMenu!
@@ -18,6 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var erlangTerminals: NSMenuItem!
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        AppDelegate._delegate = self
         loadReleases()
         addStatusItem()
     }

@@ -10,7 +10,7 @@ import Foundation
 
 class UpdateReleasesCommand: NSScriptCommand {
     override func performDefaultImplementation() -> AnyObject? {
-        
+        AppDelegate.delegate?.loadReleases()
         return nil
     }
 }
