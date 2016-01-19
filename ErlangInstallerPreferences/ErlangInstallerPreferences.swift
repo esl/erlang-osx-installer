@@ -8,6 +8,7 @@
 
 import PreferencePanes
 import CoreFoundation
+import ScriptingBridge
 
 class ErlangInstallerPreferences: NSPreferencePane {
 
@@ -36,15 +37,19 @@ class ErlangInstallerPreferences: NSPreferencePane {
         self.checkForNewReleases.state = (UserDefaults.checkForNewReleases ? 1 : 0)
         self.checkForUpdates.state = (UserDefaults.checkForUpdates ? 1 : 0)
 
+        // Check if the default release is currently installed
         self.defaultRelease.removeAllItems()
         self.defaultRelease.addItemsWithObjectValues(ReleaseManager.installed.map({release in return release.name}))
-        if(UserDefaults.defaultRelease != nil) {
-            self.defaultRelease.stringValue = UserDefaults.defaultRelease!
-        }
+        self.defaultRelease.stringValue = UserDefaults.defaultRelease ?? ""
 
         self.terminalApplication.removeAllItems()
         self.terminalApplication.addItemsWithObjectValues(TerminalApplications.terminals.keys.sort())
         self.terminalApplication.stringValue = UserDefaults.terminalApp
+    }
+    
+    func updateReleasesForAgent() {
+        let erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId) as! ErlangInstallerApplication
+        erlangInstallerApp.update!()
     }
     
     @IBAction func openAtLoginClick(sender: AnyObject) {
@@ -63,6 +68,7 @@ class ErlangInstallerPreferences: NSPreferencePane {
 
     @IBAction func defaultReleaseSelection(sender: AnyObject) {
         UserDefaults.defaultRelease = self.defaultRelease.selectedCell()!.title
+        self.updateReleasesForAgent()
     }
     
     @IBAction func terminalAppSelection(sender: AnyObject) {

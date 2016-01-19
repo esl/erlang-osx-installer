@@ -18,7 +18,7 @@
                 <outlet property="mainMenu" destination="CAt-Nw-tkx" id="eZa-cQ-YMj"/>
             </connections>
         </customObject>
-        <menu id="CAt-Nw-tkx">
+        <menu autoenablesItems="NO" id="CAt-Nw-tkx">
             <items>
                 <menuItem title="Erlang Terminal (Default)" id="4ww-xd-NvR">
                     <modifierMask key="keyEquivalentModifierMask"/>
