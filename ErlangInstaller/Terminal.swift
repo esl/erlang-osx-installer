@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ScriptingBridge
 
 protocol ErlangTerminal {
     var applicationName: String { get }
@@ -34,23 +35,20 @@ class TerminalApplications {
 }
 
 class Terminal: AnyObject, ErlangTerminal {
-
     var applicationName: String { get { return "Terminal" } }
     var applicationId: String { get { return "com.apple.Terminal" } }
 
     func open(release: Release) {
+        let app = SBApplication(bundleIdentifier: self.applicationId) as! SBTerminalApplication
         let erl = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\\\ ") + "/erl"
-        let source =
-            "tell application \"\(self.applicationName)\"\n" +
-            "  activate\n" +
-            "  set n to count windows\n" +
-            "  if n = 0 then\n" +
-            "    do script (\"bash -c '\(erl)'\")\n" +
-            "  else\n" +
-            "    do script (\"bash -c '\(erl)'\") in window 0\n" +
-            "  end if\n" +
-            "end tell\n"
-        Utils.execute(source)
+        if app.windows!().count == 0 {
+            app.doScript!("bash -c '\(erl)'", `in`: nil)
+        } else {
+            let window = app.windows!().firstObject
+            app.doScript!("bash -c '\(erl)'", `in`: window)
+        }
+
+        app.activate()
     }
 }
 
