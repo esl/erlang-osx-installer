@@ -47,13 +47,15 @@ class Terminal: AnyObject, ErlangTerminal {
     }
 
     func open(release: Release) {
-        let erl = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\\\ ") + "/erl"
-        if app.windows!().count == 0 {
-            app.doScript!("bash -c '\(erl)'", `in`: nil)
-        } else {
-            let window = app.windows!().firstObject
-            app.doScript!("bash -c '\(erl)'", `in`: window)
-        }
+        let erl = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\ ")
+        let command = "bash"
+
+        app.doScript!(command, `in`: nil)
+        let window = app.windows!().firstObject
+
+        app.doScript!("export PATH=\(erl):$PATH", `in`: window!)
+        // app.doScript!(TerminalApplications.shell, `in`: window!)
+        app.doScript!("clear; erl", `in`: window!)
 
         if !app.frontmost! {
             app.activate()
