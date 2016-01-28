@@ -46,6 +46,9 @@
                 </menuItem>
                 <menuItem title="Check for New Release" id="YO0-vk-aeI">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="scriptTest:" target="O7D-yy-Kre" id="isb-nq-pNL"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="Check for Update" id="7di-qc-ocV">
                     <modifierMask key="keyEquivalentModifierMask"/>

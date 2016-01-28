@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ScriptingBridge
 
 protocol ErlangTerminal {
     var applicationName: String { get }
@@ -16,6 +17,11 @@ protocol ErlangTerminal {
 
 class TerminalApplications {
     private static let terminalsInstance = TerminalApplications()
+    static var shell: String {
+        get {
+            return NSProcessInfo.processInfo().environment["SHELL"] ?? "bash"
+        }
+    }
     
     static var terminals: [String: ErlangTerminal] {
         get {
@@ -34,44 +40,57 @@ class TerminalApplications {
 }
 
 class Terminal: AnyObject, ErlangTerminal {
-
     var applicationName: String { get { return "Terminal" } }
     var applicationId: String { get { return "com.apple.Terminal" } }
+    var app: SBTerminalApplication {
+        get {
+            return SBApplication(bundleIdentifier: self.applicationId) as! SBTerminalApplication
+        }
+    }
 
     func open(release: Release) {
-        let erl = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\\\ ") + "/erl"
-        let source =
-            "tell application \"\(self.applicationName)\"\n" +
-            "  activate\n" +
-            "  set n to count windows\n" +
-            "  if n = 0 then\n" +
-            "    do script (\"bash -c '\(erl)'\")\n" +
-            "  else\n" +
-            "    do script (\"bash -c '\(erl)'\") in window 0\n" +
-            "  end if\n" +
-            "end tell\n"
-        Utils.execute(source)
+        let erl = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\ ")
+        let changePathCommand = Utils.setPathCommandForShell(TerminalApplications.shell, path: erl)
+        let command = "\(changePathCommand); clear; erl"
+        app.doScript!(command, `in`: nil)
+
+        if !app.frontmost! {
+            app.activate()
+        }
     }
 }
 
 class iTerm: AnyObject, ErlangTerminal {
-
-    var applicationName: String { get { return "iTerm" } }
+    var applicationName: String { get { return "iTerm2" } }
     var applicationId: String { get { return "com.googlecode.iterm2" } }
+    var app: SBiTermITermApplication {
+        get {
+            return SBApplication(bundleIdentifier: self.applicationId) as! SBiTermITermApplication
+        }
+    }
 
     func open(release: Release) {
-        let erl = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\\\ ") + "/erl"
-        let source =
-        "tell application \"\(self.applicationName)\"\n" +
-        "  activate\n" +
-        "  set t to (make new terminal)\n" +
-        "  tell t\n" +
-        "    set s to (make new session at the end of sessions)\n" +
-        "    tell s\n" +
-        "      exec command \"bash -c '\(erl)'\"\n" +
-        "    end tell\n" +
-        "  end tell\n" +
-        "end tell\n"
-        Utils.execute(source)
+        let erlPath = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\ ")
+        let changePathCommand = Utils.setPathCommandForShell(TerminalApplications.shell, path: erlPath)
+        let command = "\(changePathCommand); clear; erl"
+        
+        let sessionClass = app.classForScriptingClass!("session") as! SBiTermSession.Type
+        let session = sessionClass.init()
+
+        if app.terminals!().count == 0 {
+            let terminalClass = app.classForScriptingClass!("terminal") as! SBiTermTerminal.Type
+            let terminal = terminalClass.init()
+            app.terminals!().addObject(terminal)
+            terminal.sessions!().addObject(session)
+        } else {
+            app.currentTerminal!.sessions!().addObject(session)
+        }
+        
+        app.currentTerminal!.currentSession!.execCommand!(TerminalApplications.shell)
+        app.currentTerminal!.currentSession!.writeContentsOfFile!(nil, text: command)
+        
+        if !app.frontmost! {
+            app.activate()
+        }
     }
 }

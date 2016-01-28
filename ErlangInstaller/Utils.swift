@@ -86,6 +86,20 @@ class Utils {
         return true
     }
     
+    static func setPathCommandForShell(shell: String, path: String) -> String {
+        let shellName = NSURL(fileURLWithPath: shell).lastPathComponent!
+        var command: String?
+        
+        switch shellName {
+        case "fish":
+            command = "setenv PATH \(path) $PATH"
+        default:
+            command = "export PATH=\(path):$PATH"
+        }
+    
+        return command!
+    }
+    
     private static func getLoginItems() -> LSSharedFileList? {
         let allocator : CFAllocator! = CFAllocatorGetDefault().takeUnretainedValue()
         let kLoginItems : CFString! = kLSSharedFileListSessionLoginItems.takeUnretainedValue()
@@ -114,5 +128,4 @@ class Utils {
         
         return nil
     }
-
 }
