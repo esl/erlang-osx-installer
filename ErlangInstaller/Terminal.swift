@@ -73,39 +73,26 @@ class iTerm: AnyObject, ErlangTerminal {
     func open(release: Release) {
         let erlPath = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\ ")
         let command = "bash "
-        var terminal: SBiTermTerminal?
-        
-        if app.terminals!().count == 0 {
-            let terminalClass = app.classForScriptingClass!("terminal") as! SBiTermTerminal.Type
-            terminal = terminalClass.init()
-            app.terminals!().addObject(terminal!)
-            
-            Utils.log("\(terminal!.get())")
-        } else {
-            terminal = app.currentTerminal!
-        }
-
-        if app.currentTerminal!.sessions!().count == 0 {
-            terminal!.launchSession!("Default")
-        }
         
         let sessionClass = app.classForScriptingClass!("session") as! SBiTermSession.Type
         let session = sessionClass.init()
-        terminal!.sessions!().addObject(session)
-        Utils.log("\(session.get())")
+
+        if app.terminals!().count == 0 {
+            let terminalClass = app.classForScriptingClass!("terminal") as! SBiTermTerminal.Type
+            let terminal = terminalClass.init()
+            app.terminals!().addObject(terminal)
+            terminal.sessions!().addObject(session)
+        } else {
+            app.currentTerminal!.sessions!().addObject(session)
+        }
         
         app.currentTerminal!.currentSession!.execCommand!(command)
-        
         app.currentTerminal!.currentSession!.writeContentsOfFile!(nil, text: "export PATH=\(erlPath):$PATH")
         app.currentTerminal!.currentSession!.writeContentsOfFile!(nil, text: TerminalApplications.shell)
         app.currentTerminal!.currentSession!.writeContentsOfFile!(nil, text: "clear; erl")
         
         if !app.frontmost! {
             app.activate()
-        }
-        
-        if app.currentTerminal!.sessions!().count == 0 {
-            app.terminals!().removeAllObjects()
         }
     }
 }
