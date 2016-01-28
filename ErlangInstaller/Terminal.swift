@@ -18,7 +18,9 @@ protocol ErlangTerminal {
 class TerminalApplications {
     private static let terminalsInstance = TerminalApplications()
     static var shell: String {
-        get { return NSProcessInfo.processInfo().environment["SHELL"] ?? "bash" }
+        get {
+            return NSProcessInfo.processInfo().environment["SHELL"] ?? "bash"
+        }
     }
     
     static var terminals: [String: ErlangTerminal] {
@@ -69,7 +71,8 @@ class iTerm: AnyObject, ErlangTerminal {
 
     func open(release: Release) {
         let erlPath = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\ ")
-        let command = "bash "
+        let changePathCommand = Utils.setPathCommandForShell(TerminalApplications.shell, path: erlPath)
+        let command = "\(changePathCommand); clear; erl"
         
         let sessionClass = app.classForScriptingClass!("session") as! SBiTermSession.Type
         let session = sessionClass.init()
@@ -83,10 +86,8 @@ class iTerm: AnyObject, ErlangTerminal {
             app.currentTerminal!.sessions!().addObject(session)
         }
         
-        app.currentTerminal!.currentSession!.execCommand!(command)
-        app.currentTerminal!.currentSession!.writeContentsOfFile!(nil, text: "export PATH=\(erlPath):$PATH")
-        app.currentTerminal!.currentSession!.writeContentsOfFile!(nil, text: TerminalApplications.shell)
-        app.currentTerminal!.currentSession!.writeContentsOfFile!(nil, text: "clear; erl")
+        app.currentTerminal!.currentSession!.execCommand!(TerminalApplications.shell)
+        app.currentTerminal!.currentSession!.writeContentsOfFile!(nil, text: command)
         
         if !app.frontmost! {
             app.activate()
