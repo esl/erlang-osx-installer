@@ -48,14 +48,9 @@ class Terminal: AnyObject, ErlangTerminal {
 
     func open(release: Release) {
         let erl = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\ ")
-        let command = "bash"
-
+        let changePathCommand = Utils.setPathCommandForShell(TerminalApplications.shell, path: erl)
+        let command = "\(changePathCommand); clear; erl"
         app.doScript!(command, `in`: nil)
-        let window = app.windows!().firstObject
-
-        app.doScript!("export PATH=\(erl):$PATH", `in`: window!)
-        // app.doScript!(TerminalApplications.shell, `in`: window!)
-        app.doScript!("clear; erl", `in`: window!)
 
         if !app.frontmost! {
             app.activate()
