@@ -82,6 +82,7 @@ extension SBApplication: SBiTermITermApplication {}
 extension SBObject: SBiTermTerminal {}
 
 @objc public protocol SBiTermSession: SBiTermItem {
+    optional var contents: String { get }
 }
 extension SBObject: SBiTermSession {}
 

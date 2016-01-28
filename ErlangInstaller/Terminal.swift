@@ -73,16 +73,27 @@ class iTerm: AnyObject, ErlangTerminal {
     func open(release: Release) {
         let erlPath = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\ ")
         let command = "bash "
-
+        var terminal: SBiTermTerminal?
+        
         if app.terminals!().count == 0 {
             let terminalClass = app.classForScriptingClass!("terminal") as! SBiTermTerminal.Type
-            app.terminals!().addObject(terminalClass.init())
-            app.currentTerminal!.launchSession!("Default")
+            terminal = terminalClass.init()
+            app.terminals!().addObject(terminal!)
+            
+            Utils.log("\(terminal!.get())")
+        } else {
+            terminal = app.currentTerminal!
+        }
+
+        if app.currentTerminal!.sessions!().count == 0 {
+            terminal!.launchSession!("Default")
         }
         
         let sessionClass = app.classForScriptingClass!("session") as! SBiTermSession.Type
         let session = sessionClass.init()
-        app.currentTerminal!.sessions!().addObject(session)
+        terminal!.sessions!().addObject(session)
+        Utils.log("\(session.get())")
+        
         app.currentTerminal!.currentSession!.execCommand!(command)
         
         app.currentTerminal!.currentSession!.writeContentsOfFile!(nil, text: "export PATH=\(erlPath):$PATH")
@@ -91,6 +102,10 @@ class iTerm: AnyObject, ErlangTerminal {
         
         if !app.frontmost! {
             app.activate()
+        }
+        
+        if app.currentTerminal!.sessions!().count == 0 {
+            app.terminals!().removeAllObjects()
         }
     }
 }
