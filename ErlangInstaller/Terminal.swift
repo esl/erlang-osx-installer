@@ -8,6 +8,7 @@
 
 import Foundation
 import ScriptingBridge
+import CoreServices
 
 protocol ErlangTerminal {
     var applicationName: String { get }
@@ -15,14 +16,31 @@ protocol ErlangTerminal {
     func open(release: Release)
 }
 
-class TerminalApplications {
-    private static let terminalsInstance = TerminalApplications()
-    static var shell: String {
+extension ErlangTerminal {
+    var installed: Bool {
+        get {
+            let appURL = UnsafeMutablePointer<Unmanaged<CFError>?>()
+            let result = LSCopyApplicationURLsForBundleIdentifier(self.applicationId, appURL)
+            return result != nil
+        }
+    }
+
+    private var shell: String {
         get {
             return NSProcessInfo.processInfo().environment["SHELL"] ?? "bash"
         }
     }
     
+    private func shellCommands(release: Release) -> String {
+        let erl = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\ ")
+        let changePathCommand = Utils.setPathCommandForShell(self.shell, path: erl)
+        return "\(changePathCommand); clear; erl"
+    }
+}
+
+class TerminalApplications {
+    private static let terminalsInstance = TerminalApplications()
+
     static var terminals: [String: ErlangTerminal] {
         get {
             return terminalsInstance.terminalsDictionary
@@ -34,12 +52,14 @@ class TerminalApplications {
     init() {
         let allTerminals: [ErlangTerminal] = [iTerm(), Terminal()]
         for terminal in allTerminals {
-            terminalsDictionary[terminal.applicationName] = terminal
+            if terminal.installed {
+                terminalsDictionary[terminal.applicationName] = terminal
+            }
         }
     }
 }
 
-class Terminal: AnyObject, ErlangTerminal {
+class Terminal: ErlangTerminal {
     var applicationName: String { get { return "Terminal" } }
     var applicationId: String { get { return "com.apple.Terminal" } }
     var app: SBTerminalApplication {
@@ -49,10 +69,7 @@ class Terminal: AnyObject, ErlangTerminal {
     }
 
     func open(release: Release) {
-        let erl = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\ ")
-        let changePathCommand = Utils.setPathCommandForShell(TerminalApplications.shell, path: erl)
-        let command = "\(changePathCommand); clear; erl"
-        app.doScript!(command, `in`: nil)
+        app.doScript!(self.shellCommands(release), `in`: nil)
 
         if !app.frontmost! {
             app.activate()
@@ -70,10 +87,6 @@ class iTerm: AnyObject, ErlangTerminal {
     }
 
     func open(release: Release) {
-        let erlPath = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\ ")
-        let changePathCommand = Utils.setPathCommandForShell(TerminalApplications.shell, path: erlPath)
-        let command = "\(changePathCommand); clear; erl"
-        
         let sessionClass = app.classForScriptingClass!("session") as! SBiTermSession.Type
         let session = sessionClass.init()
 
@@ -86,8 +99,8 @@ class iTerm: AnyObject, ErlangTerminal {
             app.currentTerminal!.sessions!().addObject(session)
         }
         
-        app.currentTerminal!.currentSession!.execCommand!(TerminalApplications.shell)
-        app.currentTerminal!.currentSession!.writeContentsOfFile!(nil, text: command)
+        app.currentTerminal!.currentSession!.execCommand!(self.shell)
+        app.currentTerminal!.currentSession!.writeContentsOfFile!(nil, text: self.shellCommands(release))
         
         if !app.frontmost! {
             app.activate()
