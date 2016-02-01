@@ -10,7 +10,7 @@ import Cocoa
 import ScriptingBridge
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     static var delegate: AppDelegate? {
         get {
             return _delegate
@@ -51,6 +51,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    @IBAction func checkNewReleases(sender: AnyObject) {
+        let notification = NSUserNotification()
+        notification.title = "There's a new Erlang release!"
+        notification.informativeText = "Erlang/OTP 22.1 is just right out of the oven!"
+        notification.soundName = NSUserNotificationDefaultSoundName
+        notification.deliveryDate = NSDate(timeIntervalSinceNow: NSTimeInterval.init())
+
+        notification.actionButtonTitle = "Download Now"
+        notification.otherButtonTitle = "Dismiss"
+        notification.hasActionButton = true
+        
+        let center = NSUserNotificationCenter.defaultUserNotificationCenter()
+        center.delegate = self
+        center.scheduleNotification(notification)
+    }
+
+    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
+        return true
+    }
+
+    func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
+        if(notification.activationType == NSUserNotificationActivationType.ActionButtonClicked) {
+            self.downloadInstallRelease(self)
+        }
+    }
+    
     @IBAction func openTerminalDefault(sender: AnyObject) {
         if(UserDefaults.defaultRelease != nil) {
             let release = ReleaseManager.releases[UserDefaults.defaultRelease!]!
