@@ -52,31 +52,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
 
     @IBAction func checkNewReleases(sender: AnyObject) {
-        let notification = NSUserNotification()
-        notification.title = "There's a new Erlang release!"
-        notification.informativeText = "Erlang/OTP 22.1 is just right out of the oven!"
-        notification.soundName = NSUserNotificationDefaultSoundName
-        notification.deliveryDate = NSDate(timeIntervalSinceNow: NSTimeInterval.init())
-
-        notification.actionButtonTitle = "Download Now"
-        notification.otherButtonTitle = "Dismiss"
-        notification.hasActionButton = true
-        
-        let center = NSUserNotificationCenter.defaultUserNotificationCenter()
-        center.delegate = self
-        center.scheduleNotification(notification)
-    }
-
-    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
-        return true
-    }
-
-    func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
-        if(notification.activationType == NSUserNotificationActivationType.ActionButtonClicked) {
-            self.downloadInstallRelease(self)
+        let newReleases = try! ReleaseManager.checkNewReleases()
+        for release in newReleases {
+            Utils.notifyNewReleases(self, release: release)
         }
     }
-    
+
     @IBAction func openTerminalDefault(sender: AnyObject) {
         if(UserDefaults.defaultRelease != nil) {
             let release = ReleaseManager.releases[UserDefaults.defaultRelease!]!
@@ -136,9 +117,23 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         erlangTerminal?.open(release)
     }
     
-    func addStatusItem() {
+    private func addStatusItem() {
         self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
         self.statusItem?.image = NSImage(named: "menu-bar-icon.png")
         self.statusItem?.menu = self.mainMenu
+    }
+    
+    /*******************************************************************
+     ** User Notification Delegate Callbacks
+     *******************************************************************/
+    
+    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
+        return true
+    }
+    
+    func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
+        if(notification.activationType == NSUserNotificationActivationType.ActionButtonClicked) {
+            self.downloadInstallRelease(self)
+        }
     }
 }

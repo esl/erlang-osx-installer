@@ -9,7 +9,7 @@
 import Cocoa
 
 class Constants {
-    static let ReleasesListUrl = NSURL(string: "file:///Users/jfacorro/releases.json")
+    static let ReleasesListUrl = NSURL(string: "http://localhost:9090/")
     static let TarballsUrl = NSURL(string: "file:///Users/jfacorro/.kerl/")
     static let ReleasesJSONFilename = "available-releases.json"
     static let applicationId = "com.erlang-solutions.ErlangInstaller"
