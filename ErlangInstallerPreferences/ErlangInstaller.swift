@@ -21,5 +21,6 @@ import ScriptingBridge
 // MARK: SystemPreferencesApplication
 @objc public protocol ErlangInstallerApplication: SBApplicationProtocol {
     optional func update()
+    optional func checkNewReleases()
 }
 extension SBApplication: ErlangInstallerApplication {}

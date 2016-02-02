@@ -14,3 +14,10 @@ class UpdateReleasesCommand: NSScriptCommand {
         return nil
     }
 }
+
+class CheckNewReleasesCommand: NSScriptCommand {
+    override func performDefaultImplementation() -> AnyObject? {
+        AppDelegate.delegate?.scheduleCheckNewReleases()
+        return nil
+    }
+}

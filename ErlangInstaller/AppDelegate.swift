@@ -19,7 +19,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     private static var _delegate: AppDelegate?
     
-    var statusItem : NSStatusItem?
+    private var statusItem : NSStatusItem?
+    private var timer : NSTimer?
 
     @IBOutlet weak var mainMenu: NSMenu!
     @IBOutlet weak var erlangTerminalDefault: NSMenuItem!
@@ -27,8 +28,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         AppDelegate._delegate = self
+
         loadReleases()
         addStatusItem()
+        scheduleCheckNewReleases()
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -123,6 +126,29 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         self.statusItem?.menu = self.mainMenu
     }
     
+    func scheduleCheckNewReleases() {
+        if(UserDefaults.checkForNewReleases) {
+            let now = NSDate()
+            let userCalendar = NSCalendar.currentCalendar()
+
+            let dateUnits = NSCalendarUnit.Year.union(NSCalendarUnit.Month.union(NSCalendarUnit.Day))
+            let timeUnits = NSCalendarUnit.Hour.union(NSCalendarUnit.Minute.union(NSCalendarUnit.Second))
+            let components = userCalendar.components(dateUnits.union(timeUnits), fromDate: now)
+            components.hour = 13
+            components.minute = 0
+            components.second = 0
+
+            let interval: Double = 24 * 60 * 60 // 24 hours in seconds
+            let fireDate = userCalendar.dateFromComponents(components)!
+
+            self.timer = NSTimer(fireDate: fireDate, interval: interval, target: self, selector: "checkNewReleases:", userInfo: nil, repeats: true)
+
+            NSRunLoop.currentRunLoop().addTimer(self.timer!, forMode: NSDefaultRunLoopMode)
+        } else {
+            self.timer?.invalidate()
+        }
+    }
+
     /*******************************************************************
      ** User Notification Delegate Callbacks
      *******************************************************************/

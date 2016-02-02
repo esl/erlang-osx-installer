@@ -18,5 +18,7 @@
 
 - (void) update;  // Update the list of releases in the menu
 
+- (void) checkNewReleases;  // Check new releases value changed
+
 @end
 
