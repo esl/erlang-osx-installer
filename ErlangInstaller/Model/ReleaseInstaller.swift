@@ -17,10 +17,12 @@ public protocol InstallationProgress {
     func error(error: NSError)
 }
 
-class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
+class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate {
     let release : Release
     let progress: InstallationProgress
-    var urlDownload: NSURLDownload?
+    var urlConnection: NSURLConnection?
+    var extractTask: NSTask?
+    var data: NSMutableData?
 
     var destinationTarGz : NSURL? {
         get { return Utils.supportResourceUrl("release_\(self.release.name).tar.gz") }
@@ -37,69 +39,85 @@ class ReleaseInstaller: NSObject, NSURLDownloadDelegate {
     func start() {
         let result = Utils.confirm("Do you want to install Erlang release \(self.release.name)?", additionalInfo: "This might take a while.")
         if(result) {
-            self.urlDownload = NSURLDownload(request: NSURLRequest(URL: tarballUrl(release)), delegate: self)
-            self.urlDownload!.setDestination(self.destinationTarGz!.path!, allowOverwrite: true)
+            self.urlConnection = NSURLConnection(request: NSURLRequest(URL: tarballUrl(release)), delegate: self, startImmediately: false)
+            self.urlConnection?.setDelegateQueue(NSOperationQueue())
+            self.urlConnection?.start()
 
-            self.progress.start()
+            runInMain() { self.progress.start() }
         }
     }
     
     func cancel() {
-        self.urlDownload?.cancel()
+        self.urlConnection?.cancel()
+        self.extractTask?.interrupt()
         Utils.delete(self.destinationTarGz!)
         Utils.delete(self.releaseDir!)
         self.done()
     }
     
     private func extract() {
-        self.progress.extracting()
-        
-        let fileManager = NSFileManager.defaultManager()
-        try! fileManager.createDirectoryAtPath(releaseDir!.path!, withIntermediateDirectories: true, attributes: nil)
-        let task = NSTask()
-        task.launchPath = "/usr/bin/tar"
-        task.arguments = ["zxf", self.destinationTarGz!.path!, "-C", releaseDir!.path!, "--strip", "1"]
-        task.launch()
-        task.waitUntilExit()
+        runInMain() { self.progress.extracting() }
 
-        try! fileManager.removeItemAtURL(self.destinationTarGz!)
-        
-        self.done()
+        runInMain() {
+            let fileManager = NSFileManager.defaultManager()
+            try! fileManager.createDirectoryAtURL(self.releaseDir!, withIntermediateDirectories: true, attributes: nil)
+            self.extractTask = NSTask()
+            self.extractTask?.launchPath = "/usr/bin/tar"
+            self.extractTask?.arguments = ["zxf", self.destinationTarGz!.path!, "-C", self.releaseDir!.path!, "--strip", "1"]
+            self.extractTask?.launch()
+            self.extractTask?.waitUntilExit()
+
+            try! fileManager.removeItemAtURL(self.destinationTarGz!)
+
+            self.done()
+        }
     }
     
     private func done() {
-        self.progress.finished()
-        self.urlDownload = nil
+        runInMain() { self.progress.finished() }
+        
+        self.urlConnection = nil
+        self.extractTask = nil
+        self.data = nil
     }
     
     private func tarballUrl(release: Release) -> NSURL {
         let filename = "release_\(release.name).tar.gz"
         return NSURL(string: filename, relativeToURL: Constants.TarballsUrl!)!
     }
+    
+    private func runInMain(block: () -> Void) {
+        NSOperationQueue.mainQueue().addOperationWithBlock(block)
+    }
 
     //------------------------------------------
     // NSURLDownloadDelegate protocol
     //------------------------------------------
     
-    func download(download: NSURLDownload, didReceiveResponse response: NSURLResponse) {
-        self.progress.downloading(Double(response.expectedContentLength))
+    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
+        self.runInMain() {
+            self.progress.downloading(Double(response.expectedContentLength))
+            self.data = NSMutableData()
+        }
+    }
+
+    func connection(connection: NSURLConnection, didReceiveData data: NSData) {
+        self.runInMain() {
+            self.progress.download(progress: Double(data.length))
+            self.data?.appendData(data)
+        }
     }
     
-    func download(download: NSURLDownload, shouldDecodeSourceDataOfMIMEType encodingType: String) -> Bool {
-        // Otherwise the .tar.gz files are decompressed on the fly and the 
-        // precentage doesn't make sense
-        return false
+    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
+        self.runInMain() {
+            self.progress.error(error)
+        }
     }
-    
-    func download(download: NSURLDownload, didReceiveDataOfLength length: Int) {
-        self.progress.download(progress: Double(length))
-    }
-    
-    func download(download: NSURLDownload, didFailWithError error: NSError) {
-        self.progress.error(error)
-    }
-    
-    func downloadDidFinish(download: NSURLDownload) {
-        self.extract()
+
+    func connectionDidFinishLoading(connection: NSURLConnection) {
+        self.runInMain() {
+            self.data?.writeToURL(self.destinationTarGz!, atomically: true)
+            self.extract()
+        }
     }
 }
