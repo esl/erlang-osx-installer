@@ -22,8 +22,7 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress, UninstallationPro
     @IBOutlet weak var delegate: ReleasesTableViewDelegate!
 
     @IBAction func installClickAction(checkButton: NSButton) {
-        self.installer = ReleaseInstaller(releaseName: releaseNameLabel.stringValue, progress: self)
-        self.installer?.start()
+        self.installer = ReleaseInstaller.install(releaseNameLabel.stringValue, progress: self)
    }
 
     @IBAction func uninstallClickAction(checkButton: NSButton) {
