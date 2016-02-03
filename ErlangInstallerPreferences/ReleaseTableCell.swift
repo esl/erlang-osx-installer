@@ -55,7 +55,10 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress, UninstallationPro
     func start() {
         self.informationLabel.stringValue = "Installing..."
         cancelButton.hidden = false
+
+        progressIndicator.doubleValue = 0
         progressIndicator.hidden = false
+
         informationLabel.hidden = false
         installButton.hidden = true
     }
