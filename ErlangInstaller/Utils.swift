@@ -67,29 +67,27 @@ class Utils {
         NSLog("%@", message)
     }
     
-    static func resourceAvailable(url: NSURL?) -> Bool {
-        var status:Bool = false
-
+    static func resourceAvailable(url: NSURL?, successHandler: () -> Void, errorHandler: (error: NSError?) -> Void) {
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "HEAD"
         request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalAndRemoteCacheData
         request.timeoutInterval = 10.0
         
-        var response:NSURLResponse?
-        
-        do {
-            let _ = try NSURLConnection.sendSynchronousRequest(request, returningResponse: &response) as NSData?
-        }
-        catch let error as NSError {
-            log(error.localizedDescription)
-        }
-        
-        if let httpResponse = response as? NSHTTPURLResponse {
-            if httpResponse.statusCode == 200 {
-                status = true
+        let completionHandler = { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+            var status = false
+            if let httpResponse = response as? NSHTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    status = true
+                }
+            }
+            if(status) {
+                successHandler()
+            } else {
+                errorHandler(error: error)
             }
         }
-        return status
+
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: completionHandler)
     }
     
     static func notifyNewReleases(delegate: NSUserNotificationCenterDelegate, release: Release) {
