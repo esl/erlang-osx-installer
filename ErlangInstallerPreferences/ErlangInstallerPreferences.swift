@@ -11,7 +11,8 @@ import CoreFoundation
 import ScriptingBridge
 
 class ErlangInstallerPreferences: NSPreferencePane {
-
+    private var erlangInstallerApp: ErlangInstallerApplication?
+    
     @IBOutlet var _window: NSWindow!
     
     @IBOutlet weak var localMainView: NSView!
@@ -28,6 +29,7 @@ class ErlangInstallerPreferences: NSPreferencePane {
     }
 
     override func mainViewDidLoad() {
+        self.erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId)
         self.loadPreferencesValues()
     }
     
@@ -48,8 +50,11 @@ class ErlangInstallerPreferences: NSPreferencePane {
     }
     
     func updateReleasesForAgent() {
-        let erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId) as! ErlangInstallerApplication
-        erlangInstallerApp.update!()
+        self.erlangInstallerApp?.update!()
+    }
+    
+    func scheduleCheckNewReleasesForAgent() {
+        self.erlangInstallerApp?.checkNewReleases!()
     }
     
     @IBAction func openAtLoginClick(sender: AnyObject) {
@@ -60,6 +65,7 @@ class ErlangInstallerPreferences: NSPreferencePane {
 
     @IBAction func checkNewReleasesClick(sender: AnyObject) {
         UserDefaults.checkForNewReleases = self.checkForNewReleases.state == 1
+        self.scheduleCheckNewReleasesForAgent()
     }
     
     @IBAction func checkUpdatesClick(sender: AnyObject) {

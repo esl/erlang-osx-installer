@@ -10,7 +10,7 @@ import Cocoa
 import ScriptingBridge
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
     static var delegate: AppDelegate? {
         get {
             return _delegate
@@ -19,7 +19,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private static var _delegate: AppDelegate?
     
-    var statusItem : NSStatusItem?
+    private var statusItem : NSStatusItem?
+    private var timer : NSTimer?
 
     @IBOutlet weak var mainMenu: NSMenu!
     @IBOutlet weak var erlangTerminalDefault: NSMenuItem!
@@ -27,8 +28,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         AppDelegate._delegate = self
-        loadReleases()
-        addStatusItem()
+
+        ReleaseManager.load() {
+            self.loadReleases()
+            self.addStatusItem()
+            self.scheduleCheckNewReleases()
+        }
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -48,6 +53,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         } else {
             systemPreferencesApp.setCurrentPane!(pane)
             systemPreferencesApp.activate()
+        }
+    }
+
+    @IBAction func checkNewReleases(sender: AnyObject) {
+        try! ReleaseManager.checkNewReleases() { (newReleases: [Release]) -> Void in
+            for release in newReleases {
+                Utils.notifyNewReleases(self, release: release)
+            }
+            self.loadReleases()
         }
     }
 
@@ -110,9 +124,46 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         erlangTerminal?.open(release)
     }
     
-    func addStatusItem() {
+    private func addStatusItem() {
         self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
         self.statusItem?.image = NSImage(named: "menu-bar-icon.png")
         self.statusItem?.menu = self.mainMenu
+    }
+    
+    func scheduleCheckNewReleases() {
+        if(UserDefaults.checkForNewReleases) {
+            let now = NSDate()
+            let userCalendar = NSCalendar.currentCalendar()
+
+            let dateUnits = NSCalendarUnit.Year.union(NSCalendarUnit.Month.union(NSCalendarUnit.Day))
+            let timeUnits = NSCalendarUnit.Hour.union(NSCalendarUnit.Minute.union(NSCalendarUnit.Second))
+            let components = userCalendar.components(dateUnits.union(timeUnits), fromDate: now)
+            components.hour = 13
+            components.minute = 0
+            components.second = 0
+
+            let interval: Double = 24 * 60 * 60 // 24 hours in seconds
+            let fireDate = userCalendar.dateFromComponents(components)!
+
+            self.timer = NSTimer(fireDate: fireDate, interval: interval, target: self, selector: "checkNewReleases:", userInfo: nil, repeats: true)
+
+            NSRunLoop.currentRunLoop().addTimer(self.timer!, forMode: NSDefaultRunLoopMode)
+        } else {
+            self.timer?.invalidate()
+        }
+    }
+
+    /*******************************************************************
+     ** User Notification Delegate Callbacks
+     *******************************************************************/
+    
+    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
+        return true
+    }
+    
+    func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
+        if(notification.activationType == NSUserNotificationActivationType.ActionButtonClicked) {
+            self.downloadInstallRelease(self)
+        }
     }
 }

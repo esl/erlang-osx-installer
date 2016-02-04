@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SystemConfiguration
 
 class Utils {
     static func alert(message: String) {
@@ -66,7 +67,48 @@ class Utils {
         NSLog("%@", message)
     }
     
-    /** Login items **/
+    static func resourceAvailable(url: NSURL?, successHandler: () -> Void, errorHandler: (error: NSError?) -> Void) {
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "HEAD"
+        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalAndRemoteCacheData
+        request.timeoutInterval = 10.0
+        
+        let completionHandler = { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+            var status = false
+            if let httpResponse = response as? NSHTTPURLResponse {
+                if httpResponse.statusCode == 200 {
+                    status = true
+                }
+            }
+            if(status) {
+                successHandler()
+            } else {
+                errorHandler(error: error)
+            }
+        }
+
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: completionHandler)
+    }
+    
+    static func notifyNewReleases(delegate: NSUserNotificationCenterDelegate, release: Release) {
+        let notification = NSUserNotification()
+        notification.title = "There's a new Erlang release!"
+        notification.informativeText = "Erlang/OTP \(release.name) is just right out of the oven!"
+        notification.soundName = NSUserNotificationDefaultSoundName
+        notification.deliveryDate = NSDate(timeIntervalSinceNow: NSTimeInterval.init())
+        
+        notification.actionButtonTitle = "Download Now"
+        notification.otherButtonTitle = "Dismiss"
+        notification.hasActionButton = true
+        
+        let center = NSUserNotificationCenter.defaultUserNotificationCenter()
+        center.delegate = delegate
+        center.scheduleNotification(notification)
+    }
+    
+    /*******************************************************************
+     ** Login items 
+     *******************************************************************/
     
     static func willLaunchAtLogin(itemURL : NSURL) -> Bool {
         return existingItem(itemURL) != nil
