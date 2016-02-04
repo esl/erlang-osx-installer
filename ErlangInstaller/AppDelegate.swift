@@ -29,9 +29,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         AppDelegate._delegate = self
 
-        loadReleases()
-        addStatusItem()
-        scheduleCheckNewReleases()
+        ReleaseManager.load() {
+            self.loadReleases()
+            self.addStatusItem()
+            self.scheduleCheckNewReleases()
+        }
     }
     
     func applicationWillTerminate(aNotification: NSNotification) {
@@ -55,9 +57,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
 
     @IBAction func checkNewReleases(sender: AnyObject) {
-        let newReleases = try! ReleaseManager.checkNewReleases()
-        for release in newReleases {
-            Utils.notifyNewReleases(self, release: release)
+        try! ReleaseManager.checkNewReleases() { (newReleases: [Release]) -> Void in
+            for release in newReleases {
+                Utils.notifyNewReleases(self, release: release)
+            }
+            self.loadReleases()
         }
     }
 
