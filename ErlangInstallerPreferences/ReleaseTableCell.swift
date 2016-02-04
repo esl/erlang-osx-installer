@@ -31,7 +31,7 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress, UninstallationPro
     }
 
     @IBAction func cancelClickAction(checkButton: NSButton) {
-        self.installer?.cancel()
+        self.installer!.cancel()
     }
     
     func updateButtonsVisibility() {

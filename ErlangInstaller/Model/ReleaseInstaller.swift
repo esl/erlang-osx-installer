@@ -66,20 +66,18 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
     private func extract() {
         self.runInMain() { self.progress.extracting() }
 
-        self.run() {
-            let fileManager = NSFileManager.defaultManager()
-            try! fileManager.createDirectoryAtURL(self.releaseDir!, withIntermediateDirectories: true, attributes: nil)
-            self.extractTask = NSTask()
-            self.extractTask?.launchPath = "/usr/bin/tar"
-            self.extractTask?.arguments = ["zxf", self.destinationTarGz!.path!, "-C", self.releaseDir!.path!, "--strip", "1"]
-            self.extractTask?.terminationHandler =  { (_: NSTask) -> Void in
-                self.run() {
-                    try! fileManager.removeItemAtURL(self.destinationTarGz!)
-                    self.done()
-                }
+        let fileManager = NSFileManager.defaultManager()
+        try! fileManager.createDirectoryAtURL(self.releaseDir!, withIntermediateDirectories: true, attributes: nil)
+        self.extractTask = NSTask()
+        self.extractTask?.launchPath = "/usr/bin/tar"
+        self.extractTask?.arguments = ["zxf", self.destinationTarGz!.path!, "-C", self.releaseDir!.path!, "--strip", "1"]
+        self.extractTask?.terminationHandler =  { (_: NSTask) -> Void in
+            self.run() {
+                Utils.delete(self.destinationTarGz!)
+                self.done()
             }
-            self.extractTask?.launch()
         }
+        self.extractTask?.launch()
     }
     
     private func done() {
@@ -111,14 +109,14 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         self.runInMain() {
             self.progress.downloading(Double(response.expectedContentLength))
         }
-        self.run() { self.data = NSMutableData() }
+        self.data = NSMutableData()
     }
 
     func connection(connection: NSURLConnection, didReceiveData data: NSData) {
         self.runInMain() {
             self.progress.download(progress: Double(data.length))
         }
-        self.run() { self.data?.appendData(data) }
+        self.data?.appendData(data)
     }
     
     func connection(connection: NSURLConnection, didFailWithError error: NSError) {
