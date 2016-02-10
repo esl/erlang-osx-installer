@@ -48,7 +48,12 @@ class Utils {
     static func delete(url: NSURL) {
         if(fileExists(url)) {
             let fileManager = NSFileManager.defaultManager()
-            try! fileManager.removeItemAtURL(url)
+            do {
+                try fileManager.removeItemAtURL(url)
+            } catch {
+                Utils.log("\(error)")
+            }
+
         }
     }
 
@@ -95,7 +100,7 @@ class Utils {
     static func notifyNewReleases(delegate: NSUserNotificationCenterDelegate, release: Release) {
         let notification = NSUserNotification()
         notification.title = "There's a new Erlang release!"
-        notification.informativeText = "Erlang/OTP \(release.name) is just right out of the oven!"
+        notification.informativeText = "Erlang/OTP \(release.name)"
         notification.soundName = NSUserNotificationDefaultSoundName
         notification.deliveryDate = NSDate(timeIntervalSinceNow: NSTimeInterval.init())
         
@@ -106,6 +111,59 @@ class Utils {
         let center = NSUserNotificationCenter.defaultUserNotificationCenter()
         center.delegate = delegate
         center.scheduleNotification(notification)
+    }
+    
+    static func maybeRemovePackageInstallation() {
+        let eslOtpVersionUrl = NSURL(string: "esl_otp_version", relativeToURL: Constants.ErlangEslInstallationDir)
+
+        if !self.fileExists(eslOtpVersionUrl) {
+            return
+        }
+        
+        if !confirm("A deprecated ESL Erlang installation has been found. Do you want to uninstall it?") {
+            return
+        }
+
+        // Remove MacUpdaterSwift from the login items
+        let macUpdaterSwift = Constants.ErlangEslInstallationDir?.URLByAppendingPathComponent("MacUpdaterSwift.app")
+        setLaunchAtLogin(macUpdaterSwift!, enabled: false)
+
+        // Remove EslErlangUpdater.app from the login items
+        let eslErlangUpdater = Constants.ErlangEslInstallationDir?.URLByAppendingPathComponent("EslErlangUpdater.app")
+        setLaunchAtLogin(eslErlangUpdater!, enabled: false)
+        
+        // Delete all symlinks to Erlang executables in /usr/local/bin
+        let fileManager = NSFileManager.defaultManager()
+        let localBinDir = "/usr/local/bin/"
+        let files = try! fileManager.contentsOfDirectoryAtPath(localBinDir)
+        for file in files {
+            let filePath = localBinDir + file
+            let attrs = try! fileManager.attributesOfItemAtPath(filePath)
+            if attrs[NSFileType] as? String == NSFileTypeSymbolicLink {
+                let dest = try! fileManager.destinationOfSymbolicLinkAtPath(filePath)
+                if(dest.hasPrefix("../lib/erlang/")) {
+                    delete(NSURL(fileURLWithPath: filePath))
+                }
+            }
+        }
+
+        // Delete ESL Erlang installation dir
+        // TODO: do this with admin privileges
+        delete(Constants.ErlangEslInstallationDir!)
+    }
+    
+    static func setPathCommandForShell(shell: String, path: String) -> String {
+        let shellName = NSURL(fileURLWithPath: shell).lastPathComponent!
+        var command: String?
+        
+        switch shellName {
+        case "fish":
+            command = "setenv PATH \(path) $PATH"
+        default:
+            command = "export PATH=\(path):$PATH"
+        }
+        
+        return command!
     }
     
     /*******************************************************************
@@ -128,20 +186,6 @@ class Utils {
             LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst.takeUnretainedValue(), nil, nil, itemURL as CFURL, nil, nil)
         }
         return true
-    }
-    
-    static func setPathCommandForShell(shell: String, path: String) -> String {
-        let shellName = NSURL(fileURLWithPath: shell).lastPathComponent!
-        var command: String?
-        
-        switch shellName {
-        case "fish":
-            command = "setenv PATH \(path) $PATH"
-        default:
-            command = "export PATH=\(path):$PATH"
-        }
-    
-        return command!
     }
     
     private static func getLoginItems() -> LSSharedFileList? {

@@ -41,6 +41,11 @@ class UserDefaults {
     //-------------------
     // Values
     //-------------------
+
+    static var firstLaunch: Bool {
+        set { set("firstLaunch", value: newValue) }
+        get { return getBool("firstLaunch") ?? true}
+    }
     
     static var terminalApp: String {
         set { set("terminalApp", value: newValue) }
