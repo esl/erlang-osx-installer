@@ -22,8 +22,7 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress, UninstallationPro
     @IBOutlet weak var delegate: ReleasesTableViewDelegate!
 
     @IBAction func installClickAction(checkButton: NSButton) {
-        self.installer = ReleaseInstaller(releaseName: releaseNameLabel.stringValue, progress: self)
-        self.installer?.start()
+        self.installer = ReleaseInstaller.install(releaseNameLabel.stringValue, progress: self)
    }
 
     @IBAction func uninstallClickAction(checkButton: NSButton) {
@@ -32,7 +31,7 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress, UninstallationPro
     }
 
     @IBAction func cancelClickAction(checkButton: NSButton) {
-        self.installer?.cancel()
+        self.installer!.cancel()
     }
     
     func updateButtonsVisibility() {
@@ -55,7 +54,10 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress, UninstallationPro
     func start() {
         self.informationLabel.stringValue = "Installing..."
         cancelButton.hidden = false
+
+        progressIndicator.doubleValue = 0
         progressIndicator.hidden = false
+
         informationLabel.hidden = false
         installButton.hidden = true
     }

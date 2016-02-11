@@ -30,9 +30,11 @@ class ErlangInstallerPreferences: NSPreferencePane {
 
     override func mainViewDidLoad() {
         self.erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId)
-        self.loadPreferencesValues()
+        ReleaseManager.load() {
+            self.loadPreferencesValues()
+        }
     }
-    
+
     func loadPreferencesValues() {
         // Load current preferences
         self.openAtLogin.state = (UserDefaults.openAtLogin ? 1 : 0)
@@ -48,15 +50,15 @@ class ErlangInstallerPreferences: NSPreferencePane {
         self.terminalApplication.addItemsWithObjectValues(TerminalApplications.terminals.keys.sort())
         self.terminalApplication.stringValue = UserDefaults.terminalApp
     }
-    
+
     func updateReleasesForAgent() {
         self.erlangInstallerApp?.update!()
     }
-    
+
     func scheduleCheckNewReleasesForAgent() {
         self.erlangInstallerApp?.checkNewReleases!()
     }
-    
+
     @IBAction func openAtLoginClick(sender: AnyObject) {
         UserDefaults.openAtLogin = self.openAtLogin.state == 1
         let url = NSWorkspace.sharedWorkspace().URLForApplicationWithBundleIdentifier(Constants.applicationId)

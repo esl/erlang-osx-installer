@@ -46,8 +46,10 @@ class Utils {
     }
 
     static func delete(url: NSURL) {
-        let fileManager = NSFileManager.defaultManager()
-        try! fileManager.removeItemAtURL(url)
+        if(fileExists(url)) {
+            let fileManager = NSFileManager.defaultManager()
+            try! fileManager.removeItemAtURL(url)
+        }
     }
 
     static func iconForApp(path: String) -> NSImage {
