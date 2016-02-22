@@ -32,5 +32,9 @@
 	<string>Erlang Installer</string>
 	<key>NSPrincipalClass</key>
 	<string>ErlangInstallerPreferences</string>
+	<key>ReleasesUrl</key>
+	<string>$(RELEASES_URL)</string>
+	<key>BaseTarballUrl</key>
+	<string>$(BASE_TARBALL_URL)</string>
 </dict>
 </plist>
