@@ -89,8 +89,7 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
     }
     
     private func tarballUrl(release: Release) -> NSURL {
-        let filename = "release_\(release.name).tar.gz"
-        return NSURL(string: filename, relativeToURL: Constants.TarballsUrl!)!
+        return NSURL(string: release.path, relativeToURL: Constants.BaseTarballsUrl!)!
     }
     
     private func runInMain(block: () -> Void) {

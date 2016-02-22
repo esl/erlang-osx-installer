@@ -571,6 +571,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				RELEASES_URL = "http://localhost:9090/";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -609,6 +610,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -617,11 +619,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BASE_TARBALL_URL = "file:///Users/jfacorro/.kerl/";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = ErlangInstaller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstaller";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RELEASES_URL = "http://localhost:9090/";
 			};
 			name = Debug;
 		};
@@ -629,11 +633,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = ErlangInstaller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstaller";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
 			};
 			name = Release;
 		};
@@ -692,6 +698,7 @@
 		5EFD59171C32BDEF004ECB9B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BASE_TARBALL_URL = "file:///Users/jfacorro/.kerl/";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -713,6 +720,7 @@
 		5EFD59181C32BDEF004ECB9B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				COMBINE_HIDPI_IMAGES = YES;
