@@ -125,12 +125,12 @@ class Utils {
         }
 
         // Remove MacUpdaterSwift from the login items
-        let macUpdaterSwift = Constants.ErlangEslInstallationDir?.URLByAppendingPathComponent("MacUpdaterSwift.app")
-        setLaunchAtLogin(macUpdaterSwift!, enabled: false)
+        let macUpdaterSwift = Constants.ErlangEslInstallationDir.URLByAppendingPathComponent("MacUpdaterSwift.app")
+        setLaunchAtLogin(macUpdaterSwift, enabled: false)
 
         // Remove EslErlangUpdater.app from the login items
-        let eslErlangUpdater = Constants.ErlangEslInstallationDir?.URLByAppendingPathComponent("EslErlangUpdater.app")
-        setLaunchAtLogin(eslErlangUpdater!, enabled: false)
+        let eslErlangUpdater = Constants.ErlangEslInstallationDir.URLByAppendingPathComponent("EslErlangUpdater.app")
+        setLaunchAtLogin(eslErlangUpdater, enabled: false)
         
         // Delete all symlinks to Erlang executables in /usr/local/bin
         let fileManager = NSFileManager.defaultManager()
@@ -149,7 +149,7 @@ class Utils {
 
         // Delete ESL Erlang installation dir
         // TODO: do this with admin privileges
-        delete(Constants.ErlangEslInstallationDir!)
+        delete(Constants.ErlangEslInstallationDir)
     }
     
     static func setPathCommandForShell(shell: String, path: String) -> String {

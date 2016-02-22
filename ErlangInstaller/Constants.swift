@@ -9,13 +9,14 @@
 import Cocoa
 
 class Constants {
+    // static let ReleasesListUrl = NSURL(string: "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json")
     static let ReleasesListUrl = NSURL(string: "http://localhost:9090/")
-    static let TarballsUrl = NSURL(string: "file:///Users/jfacorro/.kerl/")
+    static let BaseTarballsUrl = NSURL(string: "file:///Users/jfacorro/.kerl/")
     static let ReleasesJSONFilename = "available-releases.json"
     static let applicationId = "com.erlang-solutions.ErlangInstaller"
     static let SystemPreferencesId = "com.apple.systempreferences"
     static let ErlangInstallerPreferencesId = "com.erlang-solutions.ErlangInstallerPreferences"
     
     // Package installation
-    static let ErlangEslInstallationDir = NSURL(string: "file:///usr/local/lib/erlang/")
+    static let ErlangEslInstallationDir = NSURL(fileURLWithPath: "/usr/local/lib/erlang/")
 }

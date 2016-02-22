@@ -10,6 +10,8 @@ import Foundation
 
 class Release: AnyObject {
     var name: String
+    var path: String
+
     var installed: Bool {
         get { return ReleaseManager.isInstalled(self.name) }
     }
@@ -17,7 +19,8 @@ class Release: AnyObject {
         get { return Utils.supportResourceUrl("\(self.name)/bin")!.path! }
     }
     
-    init(name: String){
+    init(name: String, path: String){
         self.name = name
+        self.path = path
     }
 }

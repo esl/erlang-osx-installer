@@ -76,9 +76,11 @@ class ReleaseManager: NSObject {
         var releases = [String: Release]()
         let data = content.dataUsingEncoding(NSUTF8StringEncoding)
         let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
-        let releaseNames = json as! [String]
-        for name in releaseNames {
-            releases[name] =  Release(name: name)
+        let releasesJson = json as! [[String: AnyObject]]
+        for releaseJson in releasesJson {
+            let name = releaseJson["version"] as? String ?? "Missing version"
+            let path = releaseJson["path"] as? String ?? "Missing path"
+            releases[name] =  Release(name: name, path: path)
         }
 
         return releases
