@@ -29,6 +29,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         AppDelegate._delegate = self
 
+        if(UserDefaults.firstLaunch) {
+            Utils.maybeRemovePackageInstallation()
+            UserDefaults.firstLaunch = false
+        }
+
         ReleaseManager.load() {
             self.loadReleases()
             self.addStatusItem()

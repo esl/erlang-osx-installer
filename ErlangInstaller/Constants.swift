@@ -15,4 +15,7 @@ class Constants {
     static let applicationId = "com.erlang-solutions.ErlangInstaller"
     static let SystemPreferencesId = "com.apple.systempreferences"
     static let ErlangInstallerPreferencesId = "com.erlang-solutions.ErlangInstallerPreferences"
+    
+    // Package installation
+    static let ErlangEslInstallationDir = NSURL(string: "file:///usr/local/lib/erlang/")
 }
