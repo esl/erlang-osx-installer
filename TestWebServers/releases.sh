@@ -1,2 +1,3 @@
 #!/bin/sh
-node releases.js &
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+node $DIR/releases.js &
