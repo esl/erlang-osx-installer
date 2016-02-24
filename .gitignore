@@ -34,3 +34,7 @@ Carthage/Build
 
 # Custom
 .DS_Store
+
+# Template and all generated dmgs
+BuildImage/template.dmg
+TestWebServers/files/*.dmg

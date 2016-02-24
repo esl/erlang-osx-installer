@@ -86,6 +86,8 @@
 		5E7D318F1C7E029100B90D43 /* server.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = server.js; sourceTree = "<group>"; };
 		5E7D31911C7E02E900B90D43 /* updates.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = updates.xml; sourceTree = "<group>"; };
 		5E7D31941C7E094300B90D43 /* start-server.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "start-server.sh"; sourceTree = "<group>"; };
+		5E7D31991C7E34F700B90D43 /* fancy-dmg.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "fancy-dmg.mk"; path = "BuildImage/fancy-dmg.mk"; sourceTree = "<group>"; };
+		5E7D319C1C7E351C00B90D43 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = BuildImage/Makefile; sourceTree = "<group>"; };
 		5E8B2BAD1C7DFC04001E9C61 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		5E93D1841C49318D008DCC81 /* ErlangInstaller.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ErlangInstaller.sdef; sourceTree = "<group>"; };
 		5E93D1861C493DCC008DCC81 /* UpdateReleasesCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateReleasesCommand.swift; sourceTree = "<group>"; };
@@ -175,6 +177,15 @@
 			path = TestWebServers;
 			sourceTree = "<group>";
 		};
+		5E7D319B1C7E34FC00B90D43 /* BuildImage */ = {
+			isa = PBXGroup;
+			children = (
+				5E7D31991C7E34F700B90D43 /* fancy-dmg.mk */,
+				5E7D319C1C7E351C00B90D43 /* Makefile */,
+			);
+			name = BuildImage;
+			sourceTree = "<group>";
+		};
 		5E8B2BAC1C7DFBCD001E9C61 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +216,7 @@
 		5EC3AF8B1C31888000E0BF43 = {
 			isa = PBXGroup;
 			children = (
+				5E7D319B1C7E34FC00B90D43 /* BuildImage */,
 				5E7D318A1C7E026400B90D43 /* TestWebServers */,
 				5E8B2BAC1C7DFBCD001E9C61 /* Frameworks */,
 				5E20ED981C3D8574007AFFE6 /* Shared */,

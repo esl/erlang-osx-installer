@@ -5,6 +5,24 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "version=$(/usr/libexec/PlistBuddy -c &quot;Print CFBundleShortVersionString&quot; &quot;${PROJECT_DIR}/${INFOPLIST_FILE}&quot;)&#10;&#10;if [ &quot;${CONFIGURATION}&quot; == &quot;Debug&quot; ]&#10;then&#10;    # Generate the dmg for this version with the debug version&#10;    VERSION=$version SOURCE_DIR=${CONFIGURATION_BUILD_DIR} SOURCE_FILES=${PROJECT_NAME}.app NAME=${PROJECT_NAME} make -f ${PROJECT_DIR}/BuildImage/Makefile&#10;    # Move the generated .dmg to the files subdir&#10;    mkdir ${PROJECT_NAME}-$version.dmg ${PROJECT_DIR}/TestWebServers/files&#10;    mv ${PROJECT_NAME}-$version.dmg ${PROJECT_DIR}/TestWebServers/files&#10;fi">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "5EC3AF931C31888000E0BF43"
+                     BuildableName = "ErlangInstaller.app"
+                     BlueprintName = "ErlangInstaller"
+                     ReferencedContainer = "container:ErlangInstaller.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -20,6 +38,34 @@
                ReferencedContainer = "container:ErlangInstaller.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5EC3AFA41C31888000E0BF43"
+               BuildableName = "ErlangInstallerTests.xctest"
+               BlueprintName = "ErlangInstallerTests"
+               ReferencedContainer = "container:ErlangInstaller.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5EC3AFAF1C31888000E0BF43"
+               BuildableName = "ErlangInstallerUITests.xctest"
+               BlueprintName = "ErlangInstallerUITests"
+               ReferencedContainer = "container:ErlangInstaller.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -28,26 +74,6 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5EC3AFA41C31888000E0BF43"
-               BuildableName = "ErlangInstallerTests.xctest"
-               BlueprintName = "ErlangInstallerTests"
-               ReferencedContainer = "container:ErlangInstaller.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5EC3AFAF1C31888000E0BF43"
-               BuildableName = "ErlangInstallerUITests.xctest"
-               BlueprintName = "ErlangInstallerUITests"
-               ReferencedContainer = "container:ErlangInstaller.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
