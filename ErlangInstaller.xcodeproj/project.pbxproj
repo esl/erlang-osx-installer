@@ -18,12 +18,10 @@
 		5E4F42051C3F06F500597AFD /* ReleaseUninstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4F42041C3F06F500597AFD /* ReleaseUninstaller.swift */; };
 		5E4F42061C3F06F500597AFD /* ReleaseUninstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4F42041C3F06F500597AFD /* ReleaseUninstaller.swift */; };
 		5E519F921C32E34F0024DEAB /* erlang-solutions.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E519F911C32E34F0024DEAB /* erlang-solutions.png */; };
-		5E7D318D1C7E026400B90D43 /* releases.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D318B1C7E026400B90D43 /* releases.js */; };
 		5E7D318E1C7E026400B90D43 /* releases.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D318C1C7E026400B90D43 /* releases.json */; };
-		5E7D31901C7E029100B90D43 /* updates.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D318F1C7E029100B90D43 /* updates.js */; };
+		5E7D31901C7E029100B90D43 /* server.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D318F1C7E029100B90D43 /* server.js */; };
 		5E7D31921C7E02E900B90D43 /* updates.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D31911C7E02E900B90D43 /* updates.xml */; };
-		5E7D31951C7E094300B90D43 /* releases.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D31941C7E094300B90D43 /* releases.sh */; };
-		5E7D31971C7E096400B90D43 /* updates.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D31961C7E096400B90D43 /* updates.sh */; };
+		5E7D31951C7E094300B90D43 /* start-server.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D31941C7E094300B90D43 /* start-server.sh */; };
 		5E8B2BAE1C7DFC04001E9C61 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8B2BAD1C7DFC04001E9C61 /* Sparkle.framework */; };
 		5E8B2BB01C7DFD56001E9C61 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5E8B2BAD1C7DFC04001E9C61 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E8B2BB11C7E0196001E9C61 /* ReleaseInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE97D8F1C3EB1740050315C /* ReleaseInstaller.swift */; };
@@ -100,12 +98,10 @@
 		5E4F42011C3EEFDF00597AFD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Shared/Constants.swift; sourceTree = "<group>"; };
 		5E4F42041C3F06F500597AFD /* ReleaseUninstaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReleaseUninstaller.swift; path = Shared/ReleaseUninstaller.swift; sourceTree = "<group>"; };
 		5E519F911C32E34F0024DEAB /* erlang-solutions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "erlang-solutions.png"; path = "Resources/erlang-solutions.png"; sourceTree = "<group>"; };
-		5E7D318B1C7E026400B90D43 /* releases.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = releases.js; sourceTree = "<group>"; };
 		5E7D318C1C7E026400B90D43 /* releases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = releases.json; sourceTree = "<group>"; };
-		5E7D318F1C7E029100B90D43 /* updates.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = updates.js; sourceTree = "<group>"; };
+		5E7D318F1C7E029100B90D43 /* server.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = server.js; sourceTree = "<group>"; };
 		5E7D31911C7E02E900B90D43 /* updates.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = updates.xml; sourceTree = "<group>"; };
-		5E7D31941C7E094300B90D43 /* releases.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = releases.sh; sourceTree = "<group>"; };
-		5E7D31961C7E096400B90D43 /* updates.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = updates.sh; sourceTree = "<group>"; };
+		5E7D31941C7E094300B90D43 /* start-server.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "start-server.sh"; sourceTree = "<group>"; };
 		5E8B2BAD1C7DFC04001E9C61 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		5E93D1841C49318D008DCC81 /* ErlangInstaller.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ErlangInstaller.sdef; sourceTree = "<group>"; };
 		5E93D1861C493DCC008DCC81 /* UpdateReleasesCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateReleasesCommand.swift; sourceTree = "<group>"; };
@@ -207,12 +203,10 @@
 		5E7D318A1C7E026400B90D43 /* TestWebServers */ = {
 			isa = PBXGroup;
 			children = (
-				5E7D318B1C7E026400B90D43 /* releases.js */,
 				5E7D318C1C7E026400B90D43 /* releases.json */,
-				5E7D318F1C7E029100B90D43 /* updates.js */,
+				5E7D318F1C7E029100B90D43 /* server.js */,
 				5E7D31911C7E02E900B90D43 /* updates.xml */,
-				5E7D31941C7E094300B90D43 /* releases.sh */,
-				5E7D31961C7E096400B90D43 /* updates.sh */,
+				5E7D31941C7E094300B90D43 /* start-server.sh */,
 			);
 			path = TestWebServers;
 			sourceTree = "<group>";
@@ -464,15 +458,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E7D31971C7E096400B90D43 /* updates.sh in Resources */,
 				5EDC5B041C345D480014343A /* ErlangInstallerPreferences.prefPane in Resources */,
 				5EC3AF9C1C31888000E0BF43 /* Assets.xcassets in Resources */,
 				5E93D1851C49318D008DCC81 /* ErlangInstaller.sdef in Resources */,
-				5E7D31901C7E029100B90D43 /* updates.js in Resources */,
-				5E7D31951C7E094300B90D43 /* releases.sh in Resources */,
+				5E7D31901C7E029100B90D43 /* server.js in Resources */,
+				5E7D31951C7E094300B90D43 /* start-server.sh in Resources */,
 				5EC3AFC91C31CDA700E0BF43 /* menu-bar-icon.png in Resources */,
 				5E7D318E1C7E026400B90D43 /* releases.json in Resources */,
-				5E7D318D1C7E026400B90D43 /* releases.js in Resources */,
 				5E7D31921C7E02E900B90D43 /* updates.xml in Resources */,
 				5EBDDD611C33215F0024C22C /* MainMenu.xib in Resources */,
 			);
@@ -632,7 +624,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				RELEASES_URL = "http://localhost:9090/";
+				RELEASES_URL = "http://localhost:9090/releases";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				UPDATES_URL = "";
@@ -692,8 +684,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstaller";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				RELEASES_URL = "http://localhost:9090/";
-				UPDATES_URL = "http://localhost:9091/";
+				RELEASES_URL = "http://localhost:9090/releases";
+				UPDATES_URL = "http://localhost:9090/updates";
 			};
 			name = Debug;
 		};
