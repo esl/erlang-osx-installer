@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>
-        <title>Sparkle Test App Changelog</title>
-        <link>http://sparkle-project.org/files/sparkletestcast.xml</link>
+        <title>Erlang Solutions Installer Changelog</title>
+        <link>https://www.erlang-solutions.com/resources/download.html</link>
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
-            <title>Version 2.0</title>
+            <title>Version 1.1</title>
             <description>
                 <![CDATA[
                     <ul>
@@ -17,8 +17,8 @@
                     </ul>
                 ]]>
             </description>
-            <pubDate>Sat, 26 Jul 2014 15:20:11 +0000</pubDate>
-            <enclosure url="https://sparkle-project.org/files/Sparkle%20Test%20App.zip" sparkle:version="2.0" length="107758" type="application/octet-stream" sparkle:dsaSignature="MCwCFCdoW13VBGJWIfIklKxQVyetgxE7AhQTVuY9uQT0KOV1UEk21epBsGZMPg==" />
+            <pubDate>Sat, 01 Apr 2017 15:20:11 +0000</pubDate>
+            <enclosure url="http://localhost:9090/files/ErlangSolutionsInstaller.1.1.dmg" sparkle:version="1.1" type="application/octet-stream"/>
         </item>
     </channel>
 </rss>
