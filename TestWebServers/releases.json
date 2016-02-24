@@ -1,0 +1,29 @@
+[
+  {
+    "path":"release_17.1.tar.gz",
+    "version":"17.1",
+    "os":"Mac OS X 10.10",
+    "arch":"compiled",
+    "tests":"",
+    "checksum":"",
+    "canonical_version":"17.1.0-1"
+  },
+  {
+    "path":"release_17.5.tar.gz",
+    "version":"17.5",
+    "os":"Mac OS X 10.10",
+    "arch":"compiled",
+    "tests":"",
+    "checksum":"",
+    "canonical_version":"17.5.0-1"
+  },
+  {
+    "path":"release_18.1.tar.gz",
+    "version":"18.1",
+    "os":"Mac OS X 10.10",
+    "arch":"compiled",
+    "tests":"",
+    "checksum":"",
+    "canonical_version":"18.1.0-1"
+  }
+]

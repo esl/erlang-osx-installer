@@ -51,6 +51,9 @@
                 </menuItem>
                 <menuItem title="Check for Updates..." id="7di-qc-ocV">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="checkForUpdates:" target="V9E-A7-amA" id="qxr-Uc-he5"/>
+                    </connections>
                 </menuItem>
                 <menuItem title="Quit" keyEquivalent="q" id="NFM-C1-rdf">
                     <connections>
