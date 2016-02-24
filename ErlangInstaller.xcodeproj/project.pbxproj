@@ -38,8 +38,6 @@
 		5EBF05881C3C281A00A1701A /* ReleaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBF05861C3C281A00A1701A /* ReleaseManager.swift */; };
 		5EC3AF981C31888000E0BF43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3AF971C31888000E0BF43 /* AppDelegate.swift */; };
 		5EC3AF9C1C31888000E0BF43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3AF9B1C31888000E0BF43 /* Assets.xcassets */; };
-		5EC3AFAA1C31888000E0BF43 /* ErlangInstallerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3AFA91C31888000E0BF43 /* ErlangInstallerTests.swift */; };
-		5EC3AFB51C31888000E0BF43 /* ErlangInstallerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3AFB41C31888000E0BF43 /* ErlangInstallerUITests.swift */; };
 		5EC3AFC91C31CDA700E0BF43 /* menu-bar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3AFC81C31CDA700E0BF43 /* menu-bar-icon.png */; };
 		5EC529911C45565B0000A72D /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC529901C45565B0000A72D /* Terminal.swift */; };
 		5EC529921C45856C0000A72D /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC529901C45565B0000A72D /* Terminal.swift */; };
@@ -52,20 +50,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		5EC3AFA61C31888000E0BF43 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5EC3AF8C1C31888000E0BF43 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5EC3AF931C31888000E0BF43;
-			remoteInfo = ErlangInstaller;
-		};
-		5EC3AFB11C31888000E0BF43 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5EC3AF8C1C31888000E0BF43 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5EC3AF931C31888000E0BF43;
-			remoteInfo = ErlangInstaller;
-		};
 		5EDC5B021C345D3A0014343A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 5EC3AF8C1C31888000E0BF43 /* Project object */;
@@ -115,12 +99,6 @@
 		5EC3AF971C31888000E0BF43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EC3AF9B1C31888000E0BF43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EC3AFA01C31888000E0BF43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5EC3AFA51C31888000E0BF43 /* ErlangInstallerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErlangInstallerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5EC3AFA91C31888000E0BF43 /* ErlangInstallerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErlangInstallerTests.swift; sourceTree = "<group>"; };
-		5EC3AFAB1C31888000E0BF43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5EC3AFB01C31888000E0BF43 /* ErlangInstallerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErlangInstallerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5EC3AFB41C31888000E0BF43 /* ErlangInstallerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErlangInstallerUITests.swift; sourceTree = "<group>"; };
-		5EC3AFB61C31888000E0BF43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EC3AFC81C31CDA700E0BF43 /* menu-bar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-bar-icon.png"; path = "Resources/menu-bar-icon.png"; sourceTree = "<group>"; };
 		5EC529901C45565B0000A72D /* Terminal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Terminal.swift; path = ../Shared/Terminal.swift; sourceTree = "<group>"; };
 		5ECEF6311C3ADD08004ABE02 /* Release.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Release.swift; path = ../Shared/Release.swift; sourceTree = "<group>"; };
@@ -139,20 +117,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E8B2BAE1C7DFC04001E9C61 /* Sparkle.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5EC3AFA21C31888000E0BF43 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5EC3AFAD1C31888000E0BF43 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,8 +210,6 @@
 				5E20ED981C3D8574007AFFE6 /* Shared */,
 				5E519F901C32E2D90024DEAB /* Resources */,
 				5EC3AF961C31888000E0BF43 /* ErlangInstaller */,
-				5EC3AFA81C31888000E0BF43 /* ErlangInstallerTests */,
-				5EC3AFB31C31888000E0BF43 /* ErlangInstallerUITests */,
 				5EFD590C1C32BDEF004ECB9B /* ErlangInstallerPreferences */,
 				5EC3AF951C31888000E0BF43 /* Products */,
 			);
@@ -257,8 +219,6 @@
 			isa = PBXGroup;
 			children = (
 				5EC3AF941C31888000E0BF43 /* ErlangInstaller.app */,
-				5EC3AFA51C31888000E0BF43 /* ErlangInstallerTests.xctest */,
-				5EC3AFB01C31888000E0BF43 /* ErlangInstallerUITests.xctest */,
 				5EFD590B1C32BDEF004ECB9B /* ErlangInstallerPreferences.prefPane */,
 			);
 			name = Products;
@@ -276,24 +236,6 @@
 				5E93D1841C49318D008DCC81 /* ErlangInstaller.sdef */,
 			);
 			path = ErlangInstaller;
-			sourceTree = "<group>";
-		};
-		5EC3AFA81C31888000E0BF43 /* ErlangInstallerTests */ = {
-			isa = PBXGroup;
-			children = (
-				5EC3AFA91C31888000E0BF43 /* ErlangInstallerTests.swift */,
-				5EC3AFAB1C31888000E0BF43 /* Info.plist */,
-			);
-			path = ErlangInstallerTests;
-			sourceTree = "<group>";
-		};
-		5EC3AFB31C31888000E0BF43 /* ErlangInstallerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				5EC3AFB41C31888000E0BF43 /* ErlangInstallerUITests.swift */,
-				5EC3AFB61C31888000E0BF43 /* Info.plist */,
-			);
-			path = ErlangInstallerUITests;
 			sourceTree = "<group>";
 		};
 		5EDC5AFE1C342C7B0014343A /* External */ = {
@@ -352,42 +294,6 @@
 			productReference = 5EC3AF941C31888000E0BF43 /* ErlangInstaller.app */;
 			productType = "com.apple.product-type.application";
 		};
-		5EC3AFA41C31888000E0BF43 /* ErlangInstallerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5EC3AFBC1C31888000E0BF43 /* Build configuration list for PBXNativeTarget "ErlangInstallerTests" */;
-			buildPhases = (
-				5EC3AFA11C31888000E0BF43 /* Sources */,
-				5EC3AFA21C31888000E0BF43 /* Frameworks */,
-				5EC3AFA31C31888000E0BF43 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5EC3AFA71C31888000E0BF43 /* PBXTargetDependency */,
-			);
-			name = ErlangInstallerTests;
-			productName = ErlangInstallerTests;
-			productReference = 5EC3AFA51C31888000E0BF43 /* ErlangInstallerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		5EC3AFAF1C31888000E0BF43 /* ErlangInstallerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 5EC3AFBF1C31888000E0BF43 /* Build configuration list for PBXNativeTarget "ErlangInstallerUITests" */;
-			buildPhases = (
-				5EC3AFAC1C31888000E0BF43 /* Sources */,
-				5EC3AFAD1C31888000E0BF43 /* Frameworks */,
-				5EC3AFAE1C31888000E0BF43 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				5EC3AFB21C31888000E0BF43 /* PBXTargetDependency */,
-			);
-			name = ErlangInstallerUITests;
-			productName = ErlangInstallerUITests;
-			productReference = 5EC3AFB01C31888000E0BF43 /* ErlangInstallerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 		5EFD590A1C32BDEF004ECB9B /* ErlangInstallerPreferences */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5EFD59191C32BDEF004ECB9B /* Build configuration list for PBXNativeTarget "ErlangInstallerPreferences" */;
@@ -419,14 +325,6 @@
 					5EC3AF931C31888000E0BF43 = {
 						CreatedOnToolsVersion = 7.2;
 					};
-					5EC3AFA41C31888000E0BF43 = {
-						CreatedOnToolsVersion = 7.2;
-						TestTargetID = 5EC3AF931C31888000E0BF43;
-					};
-					5EC3AFAF1C31888000E0BF43 = {
-						CreatedOnToolsVersion = 7.2;
-						TestTargetID = 5EC3AF931C31888000E0BF43;
-					};
 					5EFD590A1C32BDEF004ECB9B = {
 						CreatedOnToolsVersion = 7.2;
 					};
@@ -446,8 +344,6 @@
 			projectRoot = "";
 			targets = (
 				5EC3AF931C31888000E0BF43 /* ErlangInstaller */,
-				5EC3AFA41C31888000E0BF43 /* ErlangInstallerTests */,
-				5EC3AFAF1C31888000E0BF43 /* ErlangInstallerUITests */,
 				5EFD590A1C32BDEF004ECB9B /* ErlangInstallerPreferences */,
 			);
 		};
@@ -467,20 +363,6 @@
 				5E7D318E1C7E026400B90D43 /* releases.json in Resources */,
 				5E7D31921C7E02E900B90D43 /* updates.xml in Resources */,
 				5EBDDD611C33215F0024C22C /* MainMenu.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5EC3AFA31C31888000E0BF43 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5EC3AFAE1C31888000E0BF43 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,22 +398,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		5EC3AFA11C31888000E0BF43 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5EC3AFAA1C31888000E0BF43 /* ErlangInstallerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		5EC3AFAC1C31888000E0BF43 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				5EC3AFB51C31888000E0BF43 /* ErlangInstallerUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		5EFD59061C32BDEF004ECB9B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -555,16 +421,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		5EC3AFA71C31888000E0BF43 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5EC3AF931C31888000E0BF43 /* ErlangInstaller */;
-			targetProxy = 5EC3AFA61C31888000E0BF43 /* PBXContainerItemProxy */;
-		};
-		5EC3AFB21C31888000E0BF43 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5EC3AF931C31888000E0BF43 /* ErlangInstaller */;
-			targetProxy = 5EC3AFB11C31888000E0BF43 /* PBXContainerItemProxy */;
-		};
 		5EDC5B031C345D3A0014343A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5EFD590A1C32BDEF004ECB9B /* ErlangInstallerPreferences */;
@@ -708,58 +564,6 @@
 			};
 			name = Release;
 		};
-		5EC3AFBD1C31888000E0BF43 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = ErlangInstallerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstallerTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ErlangInstaller.app/Contents/MacOS/ErlangInstaller";
-			};
-			name = Debug;
-		};
-		5EC3AFBE1C31888000E0BF43 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = ErlangInstallerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstallerTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ErlangInstaller.app/Contents/MacOS/ErlangInstaller";
-			};
-			name = Release;
-		};
-		5EC3AFC01C31888000E0BF43 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = ErlangInstallerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstallerUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = ErlangInstaller;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		5EC3AFC11C31888000E0BF43 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = ErlangInstallerUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstallerUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = ErlangInstaller;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 		5EFD59171C32BDEF004ECB9B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -820,24 +624,6 @@
 			buildConfigurations = (
 				5EC3AFBA1C31888000E0BF43 /* Debug */,
 				5EC3AFBB1C31888000E0BF43 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5EC3AFBC1C31888000E0BF43 /* Build configuration list for PBXNativeTarget "ErlangInstallerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5EC3AFBD1C31888000E0BF43 /* Debug */,
-				5EC3AFBE1C31888000E0BF43 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		5EC3AFBF1C31888000E0BF43 /* Build configuration list for PBXNativeTarget "ErlangInstallerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5EC3AFC01C31888000E0BF43 /* Debug */,
-				5EC3AFC11C31888000E0BF43 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
