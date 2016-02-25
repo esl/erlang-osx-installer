@@ -32,7 +32,7 @@
                         <font key="font" metaFont="system"/>
                         <tabViewItems>
                             <tabViewItem label="General" identifier="erlang" id="N9u-eq-jYh">
-                                <view key="view" id="zGK-Zk-WXn">
+                                <view key="view" ambiguous="YES" id="zGK-Zk-WXn">
                                     <rect key="frame" x="10" y="33" width="143" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -151,7 +151,7 @@
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Releases" identifier="releases" id="VPY-Ul-aqr">
-                                <view key="view" ambiguous="YES" id="peX-qb-6QT">
+                                <view key="view" id="peX-qb-6QT">
                                     <rect key="frame" x="10" y="33" width="622" height="335"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <channel>
+        <title>Erlang Solutions Installer Changelog</title>
+        <link>https://www.erlang-solutions.com/resources/download.html</link>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+        <item>
+            <title>Version 1.1</title>
+            <description>
+                <![CDATA[
+                    <ul>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                    <li>Suspendisse sed felis ac ante ultrices rhoncus. Etiam quis elit vel nibh placerat facilisis in id leo.</li>
+                    <li>Vestibulum nec tortor odio, nec malesuada libero. Cras vel convallis nunc.</li>
+                    <li>Suspendisse tristique massa eget velit consequat tincidunt. Praesent sodales hendrerit pretium.</li>
+                    </ul>
+                ]]>
+            </description>
+            <pubDate>Sat, 01 Apr 2017 15:20:11 +0000</pubDate>
+            <enclosure url="http://localhost:9090/files/ErlangInstaller-1.0.dmg" sparkle:version="1.1" type="application/octet-stream"/>
+        </item>
+    </channel>
+</rss>
