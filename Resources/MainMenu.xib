@@ -13,17 +13,15 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="O7D-yy-Kre" userLabel="AppDelegate" customClass="AppDelegate" customModule="ErlangInstaller" customModuleProvider="target">
             <connections>
-                <outlet property="erlangTerminalDefault" destination="4ww-xd-NvR" id="5Um-QR-Gvu"/>
-                <outlet property="erlangTerminals" destination="Ph2-iC-UH3" id="9Bh-ne-qTP"/>
-                <outlet property="mainMenu" destination="CAt-Nw-tkx" id="eZa-cQ-YMj"/>
+                <outlet property="mainMenu" destination="CAt-Nw-tkx" id="5M2-7Q-CLM"/>
             </connections>
         </customObject>
         <customObject id="V9E-A7-amA" customClass="SUUpdater"/>
-        <menu autoenablesItems="NO" id="CAt-Nw-tkx">
+        <menu autoenablesItems="NO" id="CAt-Nw-tkx" customClass="MainMenu" customModule="ErlangInstaller" customModuleProvider="target">
             <items>
                 <menuItem title="Erlang Terminal (Default)" keyEquivalent="e" id="4ww-xd-NvR">
                     <connections>
-                        <action selector="openTerminalDefault:" target="O7D-yy-Kre" id="BUg-5J-JCN"/>
+                        <action selector="openTerminalDefault:" target="CAt-Nw-tkx" id="W18-PH-S26"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Erlang Terminal" id="Ph2-iC-UH3">
@@ -34,19 +32,19 @@
                 <menuItem title="Download &amp; Install Release" id="kEV-c1-DpZ">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="downloadInstallRelease:" target="O7D-yy-Kre" id="jk1-WY-ZXn"/>
+                        <action selector="downloadInstallRelease:" target="CAt-Nw-tkx" id="o77-v0-t5P"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="S5L-cX-Xxr"/>
                 <menuItem title="Preferences..." keyEquivalent="," id="yne-sw-S4q">
                     <connections>
-                        <action selector="showPreferencesPane:" target="O7D-yy-Kre" id="qGC-cI-h4T"/>
+                        <action selector="showPreferencesPane:" target="CAt-Nw-tkx" id="sbe-Hw-EhQ"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Check for New Releases..." id="YO0-vk-aeI">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="checkNewReleases:" target="O7D-yy-Kre" id="p0t-j6-JoL"/>
+                        <action selector="checkNewReleases:" target="CAt-Nw-tkx" id="50a-tm-ffa"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Check for Updates..." id="7di-qc-ocV">
@@ -57,11 +55,15 @@
                 </menuItem>
                 <menuItem title="Quit" keyEquivalent="q" id="NFM-C1-rdf">
                     <connections>
-                        <action selector="quitApplication:" target="O7D-yy-Kre" id="U9h-F2-wKa"/>
+                        <action selector="quitApplication:" target="CAt-Nw-tkx" id="oR6-Ig-iWE"/>
                     </connections>
                 </menuItem>
             </items>
-            <point key="canvasLocation" x="320" y="297.5"/>
+            <connections>
+                <outlet property="erlangTerminalDefault" destination="4ww-xd-NvR" id="Gvc-YJ-2kd"/>
+                <outlet property="erlangTerminals" destination="Ph2-iC-UH3" id="siQ-NI-KVq"/>
+            </connections>
+            <point key="canvasLocation" x="319.5" y="297.5"/>
         </menu>
     </objects>
 </document>
