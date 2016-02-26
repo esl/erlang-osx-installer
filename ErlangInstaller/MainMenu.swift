@@ -16,7 +16,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
     
     @IBOutlet weak var erlangTerminalDefault: NSMenuItem!
     @IBOutlet weak var erlangTerminals: NSMenuItem!
-
+    
     @IBAction func quitApplication(sender: AnyObject) {
         NSApp.terminate(self)
     }
@@ -76,6 +76,19 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
             try! fileManager.copyItemAtPath(path!, toPath: destinationUrl!.path!)
         }
         NSWorkspace.sharedWorkspace().openFile(destinationUrl!.path!)
+    }
+    
+    func listenNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleLoadReleases:", name: "loadReleases", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleScheduleCheckNewReleases:", name: "loadReleases", object: nil)
+    }
+
+    func handleLoadReleases(notification: NSNotification) {
+        self.loadReleases()
+    }
+    
+    func handleScheduleCheckNewReleases(notification: NSNotification) {
+        self.scheduleCheckNewReleases()
     }
     
     func loadReleases() {
