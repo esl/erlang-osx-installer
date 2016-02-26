@@ -10,25 +10,17 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    static var delegate: AppDelegate? {
-        get {
-            return _delegate
-        }
-    }
     
-    private static var _delegate: AppDelegate?    
-
     @IBOutlet weak var mainMenu: MainMenu!
     
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        AppDelegate._delegate = self
-
         if(UserDefaults.firstLaunch) {
             Utils.maybeRemovePackageInstallation()
             UserDefaults.firstLaunch = false
         }
 
         ReleaseManager.load() {
+            self.mainMenu.listenNotifications()
             self.mainMenu.loadReleases()
             self.mainMenu.addStatusItem()
             self.mainMenu.scheduleCheckNewReleases()

@@ -10,14 +10,14 @@ import Foundation
 
 class UpdateReleasesCommand: NSScriptCommand {
     override func performDefaultImplementation() -> AnyObject? {
-        AppDelegate.delegate?.mainMenu.loadReleases()
+        NSNotificationCenter.defaultCenter().postNotificationName("loadReleases", object: nil)
         return nil
     }
 }
 
 class CheckNewReleasesCommand: NSScriptCommand {
     override func performDefaultImplementation() -> AnyObject? {
-        AppDelegate.delegate?.mainMenu.scheduleCheckNewReleases()
+        NSNotificationCenter.defaultCenter().postNotificationName("scheduleCheckNewReleases", object: nil)
         return nil
     }
 }

@@ -565,7 +565,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/";
+				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/erlang/";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
