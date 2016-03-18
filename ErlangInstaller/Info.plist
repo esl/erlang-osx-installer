@@ -44,5 +44,10 @@
 	<string>$(UPDATES_URL)</string>
 	<key>BaseTarballUrl</key>
 	<string>$(BASE_TARBALL_URL)</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 </dict>
 </plist>
