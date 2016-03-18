@@ -1,3 +1,4 @@
+
 //
 //  ReleaseManager.swift
 //  ErlangInstaller
@@ -60,7 +61,7 @@ class ReleaseManager: NSObject {
 
     private func load(onLoaded: () -> Void) {
         if(!Utils.fileExists(availableReleasesUrl)) {
-            fetchSave() { self.loadFromFile(onLoaded) }
+            self.fetchSave() { self.loadFromFile(onLoaded) }
         } else {
             self.loadFromFile(onLoaded)
         }

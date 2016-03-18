@@ -44,9 +44,11 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
     
     @IBAction func openTerminalDefault(sender: AnyObject) {
         if(UserDefaults.defaultRelease != nil) {
-            let release = ReleaseManager.releases[UserDefaults.defaultRelease!]!
-            let erlangTerminal = TerminalApplications.terminals[UserDefaults.terminalApp]
-            erlangTerminal?.open(release)
+            if let release = ReleaseManager.releases[UserDefaults.defaultRelease!]
+            {
+                let erlangTerminal = TerminalApplications.terminals[UserDefaults.terminalApp]
+                erlangTerminal?.open(release)
+            }
         }
     }
     
@@ -104,8 +106,11 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
             }
         }
         
-        let enableTerminalDefault = (UserDefaults.defaultRelease != nil) && (ReleaseManager.releases[UserDefaults.defaultRelease!]!.installed)
-        self.erlangTerminalDefault.enabled = enableTerminalDefault
+        if let release = ReleaseManager.releases[UserDefaults.defaultRelease!]
+        {
+            let enableTerminalDefault = (release.installed)
+            self.erlangTerminalDefault.enabled = enableTerminalDefault
+        }
     }
     
     func openTerminal(menuItem: NSMenuItem) {
