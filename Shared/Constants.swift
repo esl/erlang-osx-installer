@@ -9,9 +9,43 @@
 import Cocoa
 
 class ConstantsLoader {
+    static func getBundle() -> NSBundle?
+    {
+        let bundle = NSBundle.mainBundle()
+        
+        if(bundle.bundleIdentifier == Constants.ErlangInstallerPreferencesId || bundle.bundleIdentifier == Constants.applicationId)
+        {
+            return bundle
+        }
+        else
+        {
+            let bundles = NSBundle.allBundles()
+            
+            let filteredBundles = bundles.filter({ (bundle: NSBundle) -> Bool in
+                return bundle.bundleIdentifier == Constants.ErlangInstallerPreferencesId
+            })
+            
+            if(filteredBundles.count > 0)
+            {
+                return filteredBundles.first
+            }
+        }
+        
+        return nil
+    }
+    
     static func getUrl(key: String) -> NSURL? {
-        let url = NSBundle.mainBundle().objectForInfoDictionaryKey(key) as! String
-        return NSURL(string: url)
+        
+        if let bundle = ConstantsLoader.getBundle()
+        {
+            if let url = bundle.objectForInfoDictionaryKey(key) as? String
+            {
+                Utils.log("Loading url for \(key): \(url)")
+                return NSURL(string: url)
+            }
+        }
+        
+        return nil
     }
 
 }
