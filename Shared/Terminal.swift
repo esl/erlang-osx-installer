@@ -69,7 +69,7 @@ class Terminal: ErlangTerminal {
     }
 
     func open(release: Release) {
-        app.doScript!(self.shellCommands(release), `in`: nil)
+        app.doScript!(self.shellCommands(release), in:nil)
 
         if !app.frontmost! {
             app.activate()

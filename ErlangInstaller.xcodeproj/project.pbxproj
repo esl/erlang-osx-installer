@@ -48,6 +48,8 @@
 		5EE1B8771C43EE3100A84164 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE1B8761C43EE3100A84164 /* UserDefaults.swift */; };
 		5EE1B8781C43EE4B00A84164 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE1B8761C43EE3100A84164 /* UserDefaults.swift */; };
 		5EFD59151C32BDEF004ECB9B /* ErlangInstallerPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */; };
+		7D204DA61CC1602C0063F871 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3AFA01C31888000E0BF43 /* Info.plist */; };
+		7D204DA71CC160310063F871 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD59161C32BDEF004ECB9B /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -268,9 +270,9 @@
 				5E93D1881C49402B008DCC81 /* External */,
 				5E2683471C357D5E0058BB1F /* ErlangInstallerPreferences.swift */,
 				5E96369A1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift */,
+				5EFD59161C32BDEF004ECB9B /* Info.plist */,
 				5E20ED901C3D7836007AFFE6 /* ReleaseTableCell.swift */,
 				5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */,
-				5EFD59161C32BDEF004ECB9B /* Info.plist */,
 				5E94CD601C48426800E7AB56 /* ErlangInstallerPreferences.searchTerms */,
 			);
 			path = ErlangInstallerPreferences;
@@ -377,6 +379,7 @@
 				5EC3AFC91C31CDA700E0BF43 /* menu-bar-icon.png in Resources */,
 				5E7D318E1C7E026400B90D43 /* releases.json in Resources */,
 				5E7D31921C7E02E900B90D43 /* updates.xml in Resources */,
+				7D204DA61CC1602C0063F871 /* Info.plist in Resources */,
 				5EBDDD611C33215F0024C22C /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,6 +388,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D204DA71CC160310063F871 /* Info.plist in Resources */,
 				5EFD59151C32BDEF004ECB9B /* ErlangInstallerPreferences.xib in Resources */,
 				5E94CD611C48426800E7AB56 /* ErlangInstallerPreferences.searchTerms in Resources */,
 				5E519F921C32E34F0024DEAB /* erlang-solutions.png in Resources */,
@@ -461,6 +465,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_NAME = "Erlang Installer";
+				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/erlang/";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -496,7 +501,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				RELEASES_URL = "http://localhost:9090/releases";
+				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
 				SDKROOT = macosx;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				UPDATES_URL = "";
@@ -508,6 +513,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_NAME = "Erlang Installer";
+				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/erlang/";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -546,7 +552,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BASE_TARBALL_URL = "file:///Users/jfacorro/.kerl/";
+				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/erlang/";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -556,7 +562,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstaller";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				RELEASES_URL = "http://localhost:9090/releases";
+				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
 				UPDATES_URL = "http://localhost:9090/updates";
 			};
 			name = Debug;
@@ -583,9 +589,9 @@
 		5EFD59171C32BDEF004ECB9B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BASE_TARBALL_URL = "file:///Users/jfacorro/.kerl/";
+				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/erlang/";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
 				DEPLOYMENT_LOCATION = YES;
@@ -605,9 +611,9 @@
 		5EFD59181C32BDEF004ECB9B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/";
+				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/erlang/";
 				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)";
 				DEPLOYMENT_LOCATION = YES;
