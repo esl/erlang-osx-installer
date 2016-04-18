@@ -37,4 +37,7 @@ Carthage/Build
 
 # Template and all generated dmgs
 BuildImage/template.dmg
+BuildImage/src/ErlangInstaller.app
+BuildImage/src/ErlangInstallerPreferences.prefPane
+
 TestWebServers/files/*.dmg
