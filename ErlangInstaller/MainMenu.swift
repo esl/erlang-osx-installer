@@ -55,10 +55,12 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
     @IBAction func downloadInstallRelease(sender: AnyObject) {
         showPreferencesPane(sender)
         let systemPreferencesApp = SBApplication(bundleIdentifier: Constants.SystemPreferencesId) as! SystemPreferencesApplication
-        let pane = findPreferencePane(systemPreferencesApp)
-        let anchors = pane!.anchors!()
-        let releasesAnchor = anchors.filter({ $0.name == "releases" }).first
-        releasesAnchor?.reveal!()
+        if let pane = findPreferencePane(systemPreferencesApp)
+        {
+            let anchors = pane.anchors!()
+            let releasesAnchor = anchors.filter({ $0.name == "releases" }).first
+            releasesAnchor?.reveal!()
+        }
     }
     
     func findPreferencePane(systemPreferencesApp: SystemPreferencesApplication) -> SystemPreferencesPane? {
@@ -106,10 +108,13 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
             }
         }
         
-        if let release = ReleaseManager.releases[UserDefaults.defaultRelease!]
+        if let defaultRelease = UserDefaults.defaultRelease
         {
-            let enableTerminalDefault = (release.installed)
-            self.erlangTerminalDefault.enabled = enableTerminalDefault
+            if let release = ReleaseManager.releases[defaultRelease]
+            {
+                let enableTerminalDefault = (release.installed)
+                self.erlangTerminalDefault.enabled = enableTerminalDefault
+            }
         }
     }
     

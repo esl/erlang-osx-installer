@@ -18,8 +18,8 @@ class UserDefaults {
     
     static private let terminalAppDefault = "Terminal" //NSWorkspace.sharedWorkspace().URLForApplicationWithBundleIdentifier("com.apple.Terminal")!.path!
     static private let openAtLoginDefault = false
-    static private let checkForNewReleasesDefault = false
-    static private let checkForUpdatesDefault = false
+    static private let checkForNewReleasesDefault = true
+    static private let checkForUpdatesDefault = true
     static private var defaultReleaseDefault: String? = nil
 
     //-------------------
