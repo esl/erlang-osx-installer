@@ -55,7 +55,18 @@ class ErlangInstallerPreferences: NSPreferencePane {
                 }
                 
                 close(file)
+                let reload = dispatch_time(DISPATCH_TIME_NOW, 1);
+                dispatch_after(reload, self.queue!, {
+                    dispatch_source_cancel(self.source!)
+                    self.checkForFileUpdate()
+                })
+            }
             
+            dispatch_resume(self.source!)
+        }
+        else
+        {
+            Utils.log("Couldn't open \(ReleaseManager.availableReleasesUrl!.path!)")
         }
         
     }
