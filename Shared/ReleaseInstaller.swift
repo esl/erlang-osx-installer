@@ -13,6 +13,7 @@ public protocol InstallationProgress {
     func downloading(maxValue: Double)
     func download(progress delta: Double)
     func extracting()
+    func installing()
     func finished()
     func error(error: NSError)
 }
@@ -22,6 +23,7 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
     let progress: InstallationProgress
     var urlConnection: NSURLConnection?
     var extractTask: NSTask?
+    var installTask: NSTask?
     var data: NSMutableData?
     var backgroundQueue = NSOperationQueue()
 
@@ -74,10 +76,24 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         self.extractTask?.terminationHandler =  { (_: NSTask) -> Void in
             self.run() {
                 Utils.delete(self.destinationTarGz!)
-                self.done()
+                self.install()
             }
         }
         self.extractTask?.launch()
+    }
+    
+    private func install() {
+        self.runInMain() { self.progress.installing() }
+        
+        self.installTask = NSTask()
+        self.installTask?.launchPath = self.releaseDir?.URLByAppendingPathComponent("Install").path
+        self.installTask?.arguments = ["-minimal", (self.releaseDir?.path)!]
+        self.installTask?.terminationHandler =  { (_: NSTask) -> Void in
+            self.run() {
+                self.done()
+            }
+        }
+        self.installTask?.launch()
     }
     
     private func done() {

@@ -75,6 +75,16 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress, UninstallationPro
     
     func extracting() {
         self.informationLabel.stringValue = "Extracting..."
+        progressIndicator.indeterminate = true
+        progressIndicator.startAnimation(self)
+        progressIndicator.hidden = false
+    }
+    
+    func installing() {
+        self.informationLabel.stringValue = "Installing..."
+        progressIndicator.indeterminate = true
+        progressIndicator.startAnimation(self)
+        progressIndicator.hidden = false
     }
     
     func finished() {
