@@ -12,6 +12,7 @@
                 <outlet property="defaultRelease" destination="0vL-oT-mPd" id="j8H-It-Kyd"/>
                 <outlet property="localMainView" destination="se5-gp-TjO" id="y77-e4-OFJ"/>
                 <outlet property="openAtLogin" destination="ETy-cF-thk" id="CBb-qV-gQA"/>
+                <outlet property="releasesTableView" destination="qaO-UW-18W" id="WnM-fP-Gfi"/>
                 <outlet property="selectTerminalAppClick" destination="zGK-Zk-WXn" id="l0I-Ze-hLe"/>
                 <outlet property="tabView" destination="oBV-No-0bi" id="3yq-i8-2Tl"/>
                 <outlet property="terminalApplication" destination="wnn-Sc-k8q" id="t8z-Vm-c96"/>

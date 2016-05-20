@@ -23,13 +23,56 @@ class ErlangInstallerPreferences: NSPreferencePane {
     @IBOutlet weak var checkForUpdates: NSButton!
     @IBOutlet weak var defaultRelease: NSComboBox!
     @IBOutlet weak var terminalApplication: NSComboBox!
+    @IBOutlet weak var releasesTableView: NSTableView!
 
+    
+    private var queue: dispatch_queue_t?
+    private var source: dispatch_source_t?
+    
     override func assignMainView() {
         self.mainView = self.localMainView
     }
 
     override func mainViewDidLoad() {
         self.erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId)
+        reloadReleases()
+        
+        self.checkForFileUpdate()
+    }
+    
+    func checkForFileUpdate()
+    {
+        let file = open((ReleaseManager.availableReleasesUrl?.path)!, O_EVTONLY)
+        if(file > 0)
+        {
+            self.queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)
+            self.source = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, UInt(file),
+                                                DISPATCH_VNODE_WRITE | DISPATCH_VNODE_EXTEND | DISPATCH_VNODE_DELETE,queue)
+            
+            dispatch_source_set_event_handler(self.source!) {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.reloadReleases()
+                }
+                
+                close(file)
+                let reload = dispatch_time(DISPATCH_TIME_NOW, 1);
+                dispatch_after(reload, self.queue!, {
+                    dispatch_source_cancel(self.source!)
+                    self.checkForFileUpdate()
+                })
+            }
+            
+            dispatch_resume(self.source!)
+        }
+        else
+        {
+            Utils.log("Couldn't open \(ReleaseManager.availableReleasesUrl!.path!)")
+        }
+        
+    }
+    
+    func reloadReleases()
+    {
         ReleaseManager.load() {
             self.loadPreferencesValues()
         }
@@ -49,6 +92,8 @@ class ErlangInstallerPreferences: NSPreferencePane {
         self.terminalApplication.removeAllItems()
         self.terminalApplication.addItemsWithObjectValues(TerminalApplications.terminals.keys.sort())
         self.terminalApplication.stringValue = UserDefaults.terminalApp
+        
+        self.releasesTableView.reloadData()
     }
 
     func updateReleasesForAgent() {
