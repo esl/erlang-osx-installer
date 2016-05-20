@@ -143,7 +143,6 @@
 				5EBF05851C3C261700A1701A /* Model */,
 				5E20ED921C3D7F0B007AFFE6 /* Utils.swift */,
 				5E4F42011C3EEFDF00597AFD /* Constants.swift */,
-				5EBF05861C3C281A00A1701A /* ReleaseManager.swift */,
 				5EE97D8F1C3EB1740050315C /* ReleaseInstaller.swift */,
 				5E4F42041C3F06F500597AFD /* ReleaseUninstaller.swift */,
 				5EE1B8761C43EE3100A84164 /* UserDefaults.swift */,
@@ -154,6 +153,7 @@
 		5E32070B1C4EB82A006C2C87 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				5EBF05861C3C281A00A1701A /* ReleaseManager.swift */,
 				5E32070D1C4EB88D006C2C87 /* SBTerminal.h */,
 				5E32070C1C4EB841006C2C87 /* SBiTerm.h */,
 				5E32070E1C4EB8E2006C2C87 /* SBTerminals.swift */,
@@ -465,7 +465,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_NAME = "Erlang Installer";
-				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/erlang/";
+				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/site/esl";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -513,7 +513,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				APP_NAME = "Erlang Installer";
-				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/erlang/";
+				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/site/esl";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
