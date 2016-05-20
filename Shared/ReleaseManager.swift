@@ -26,7 +26,7 @@ class ReleaseManager: NSObject {
     
     private var _releases = [String: Release]()
     
-    private var availableReleasesUrl: NSURL? {
+    static var availableReleasesUrl: NSURL? {
         get { return Utils.supportResourceUrl(Constants.ReleasesJSONFilename) }
     }
     
@@ -60,7 +60,7 @@ class ReleaseManager: NSObject {
     }
 
     private func load(onLoaded: () -> Void) {
-        if(!Utils.fileExists(availableReleasesUrl)) {
+        if(!Utils.fileExists(ReleaseManager.availableReleasesUrl)) {
             self.fetchSave() { self.loadFromFile(onLoaded) }
         } else {
             self.loadFromFile(onLoaded)
@@ -68,7 +68,7 @@ class ReleaseManager: NSObject {
     }
 
     private func loadFromFile(onLoaded: () -> Void) {
-        let content = try! String(contentsOfURL: self.availableReleasesUrl!)
+        let content = try! String(contentsOfURL: ReleaseManager.availableReleasesUrl!)
         self._releases = releasesFromString(content)
         onLoaded()
     }
@@ -99,9 +99,9 @@ class ReleaseManager: NSObject {
     private func save(content: String) throws {
         let fileManager = NSFileManager.defaultManager()
         try! fileManager.createDirectoryAtPath(Utils.supportResourceUrl("")!.path!, withIntermediateDirectories: true, attributes: nil)
-        fileManager.createFileAtPath(self.availableReleasesUrl!.path!, contents: nil, attributes: nil)
+        fileManager.createFileAtPath(ReleaseManager.availableReleasesUrl!.path!, contents: nil, attributes: nil)
         
-        try content.writeToFile(self.availableReleasesUrl!.path!, atomically: true, encoding: NSUTF8StringEncoding)
+        try content.writeToFile(ReleaseManager.availableReleasesUrl!.path!, atomically: true, encoding: NSUTF8StringEncoding)
     }
     
     private func fetch(successHandler: (String) -> Void) {
