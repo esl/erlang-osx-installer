@@ -2,14 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSUserNotificationAlertStyle</key>
-	<string>alert</string>
-	<key>OSAScriptingDefinition</key>
-	<string>ErlangInstaller.sdef</string>
-	<key>NSAppleScriptEnabled</key>
-	<true/>
-	<key>LSUIElement</key>
-	<true/>
+	<key>BaseTarballUrl</key>
+	<string>$(BASE_TARBALL_URL)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -25,29 +19,35 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>0.3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
-	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2016 Erlang Solutions. All rights reserved.</string>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
-	<key>ReleasesUrl</key>
-	<string>$(RELEASES_URL)</string>
-	<key>SUFeedURL</key>
-	<string>$(UPDATES_URL)</string>
-	<key>BaseTarballUrl</key>
-	<string>$(BASE_TARBALL_URL)</string>
+	<key>LSUIElement</key>
+	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSAppleScriptEnabled</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2016 Erlang Solutions. All rights reserved.</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>NSUserNotificationAlertStyle</key>
+	<string>alert</string>
+	<key>OSAScriptingDefinition</key>
+	<string>ErlangInstaller.sdef</string>
+	<key>ReleasesUrl</key>
+	<string>$(RELEASES_URL)</string>
+	<key>SUFeedURL</key>
+	<string>$(UPDATES_URL)</string>
 </dict>
 </plist>
