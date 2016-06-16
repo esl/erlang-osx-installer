@@ -108,11 +108,11 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
             }
         }
         
-        guard let defaultRelease = UserDefaults.defaultRelease else { return}
+		let defaultRelease = UserDefaults.defaultRelease ?? "None"
         
-        guard let release = ReleaseManager.releases[defaultRelease] else {return}
+        let release = ReleaseManager.releases[defaultRelease]
     
-        let enableTerminalMenuEntries = (release.installed)
+        let enableTerminalMenuEntries = release?.installed ?? false
         self.erlangTerminalDefault.enabled = enableTerminalMenuEntries
 		self.erlangTerminals.enabled = enableTerminalMenuEntries
     }
