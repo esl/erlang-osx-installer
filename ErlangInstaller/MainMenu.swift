@@ -112,8 +112,9 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
         
         guard let release = ReleaseManager.releases[defaultRelease] else {return}
     
-        let enableTerminalDefault = (release.installed)
-        self.erlangTerminalDefault.enabled = enableTerminalDefault
+        let enableTerminalMenuEntries = (release.installed)
+        self.erlangTerminalDefault.enabled = enableTerminalMenuEntries
+		self.erlangTerminals.enabled = enableTerminalMenuEntries
     }
     
     func openTerminal(menuItem: NSMenuItem) {
