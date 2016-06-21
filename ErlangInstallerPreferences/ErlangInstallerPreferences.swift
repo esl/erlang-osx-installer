@@ -122,6 +122,7 @@ class ErlangInstallerPreferences: NSPreferencePane {
     @IBAction func defaultReleaseSelection(sender: AnyObject) {
         UserDefaults.defaultRelease = self.defaultRelease.selectedCell()!.title
         self.updateReleasesForAgent()
+		self.releasesTableView.reloadData()
     }
     
     @IBAction func terminalAppSelection(sender: AnyObject) {
