@@ -97,7 +97,10 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
     }
     
     private func done() {
-        runInMain() { self.progress.finished() }
+        runInMain() {
+			UserDefaults.defaultRelease = self.release.name
+			self.progress.finished()
+		}
         
         self.urlConnection = nil
         self.extractTask = nil
