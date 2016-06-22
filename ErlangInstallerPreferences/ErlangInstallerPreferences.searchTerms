@@ -10,27 +10,11 @@
                     <key>comments</key>
                     <string>Localizable index words</string>
                     <key>index</key>
-                    <string>erlang, installer, updates, check, terminal, application</string>
+                    <string>erlang, installer, updates, check, terminal, application, programming</string>
                     <key>title</key>
                     <string>General Erlang Installer Options</string>
                 </dict>
-                <dict>
-                    <key>comments</key>
-                    <string>Localizable index words</string>
-                    <key>index</key>
-                    <string>audio, hear, level, volume, louder, softer, quieter, increase, decrease, raise, lower, quiet, silent, silence, turn off, hearing, muting</string>
-                    <key>title</key>
-                    <string>Mute the sound</string>
-                </dict>
-                <dict>
-                    <key>comments</key>
-                    <string>Localizable index words</string>
-                    <key>index</key>
-                    <string>menubar</string>
-                    <key>title</key>
-                    <string>Show volume in menu bar</string>
-                </dict>
-            </array>
+			</array>
         </dict>
         <key>releases</key>
         <dict>
