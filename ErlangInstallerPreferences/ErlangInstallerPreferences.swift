@@ -10,9 +10,9 @@ import PreferencePanes
 import CoreFoundation
 import ScriptingBridge
 
-class ErlangInstallerPreferences: NSPreferencePane {
+class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
     private var erlangInstallerApp: ErlangInstallerApplication?
-    
+	
     @IBOutlet var _window: NSWindow!
     
     @IBOutlet weak var localMainView: NSView!
@@ -122,6 +122,7 @@ class ErlangInstallerPreferences: NSPreferencePane {
     @IBAction func defaultReleaseSelection(sender: AnyObject) {
         UserDefaults.defaultRelease = self.defaultRelease.selectedCell()!.title
         self.updateReleasesForAgent()
+		self.releasesTableView.reloadData()
     }
     
     @IBAction func terminalAppSelection(sender: AnyObject) {
@@ -131,4 +132,8 @@ class ErlangInstallerPreferences: NSPreferencePane {
     func revealElementForKey(key: String) {
         self.tabView.selectTabViewItemWithIdentifier(key)
     }
+	
+	func refresh() {
+		self.loadPreferencesValues()
+	}
 }

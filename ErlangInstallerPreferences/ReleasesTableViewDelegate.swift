@@ -20,6 +20,12 @@ class ReleasesTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataS
         let cellView : ReleaseTableCell = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! ReleaseTableCell
         let release = ReleaseManager.available[rowIndex]
         cellView.releaseNameLabel.stringValue = release.name
+		if UserDefaults.defaultRelease == release.name {
+			cellView.releaseNameLabel.font =  NSFont.boldSystemFontOfSize(NSFont.systemFontSize())
+		}
+		else {
+			cellView.releaseNameLabel.font = NSFont.systemFontOfSize(NSFont.systemFontSize())
+		}
         cellView.updateButtonsVisibility()
         return cellView
     }

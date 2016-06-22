@@ -27,6 +27,7 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress, UninstallationPro
 
     @IBAction func uninstallClickAction(checkButton: NSButton) {
         let uninstaller = ReleaseUninstaller(releaseName: releaseNameLabel.stringValue, progress: self)
+		uninstaller.delegate = self.delegate.preferencesPane
         uninstaller.start()
     }
 
