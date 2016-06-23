@@ -14,10 +14,10 @@ class ReleaseManager: NSObject {
     private static let manager = ReleaseManager()
 
     static var available : [Release] {
-        get { return ReleaseManager.manager._releases.values.filter { _ in true }.sort({x, y in x.name < y.name})}
+        get { return ReleaseManager.manager._releases.values.sort({x, y in x.name < y.name})}
     }
     static var installed : [Release] {
-        get { return ReleaseManager.manager._releases.values.filter { $0.installed } }
+        get { return ReleaseManager.manager._releases.values.filter { $0.installed }.sort({x, y in x.name < y.name})}
     }
 
     static var releases : [String: Release] {
