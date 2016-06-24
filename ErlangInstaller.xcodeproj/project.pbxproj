@@ -300,7 +300,7 @@
 				5EC3AF911C31888000E0BF43 /* Frameworks */,
 				5EC3AF921C31888000E0BF43 /* Resources */,
 				5E8B2BAF1C7DFD41001E9C61 /* CopyFiles */,
-				AC24792C1D1C6F3800B3AEB8 /* ShellScript */,
+				AC24792C1D1C6F3800B3AEB8 /* Run Script Tell User about DMG Package */,
 			);
 			buildRules = (
 			);
@@ -399,18 +399,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		AC24792C1D1C6F3800B3AEB8 /* ShellScript */ = {
+		AC24792C1D1C6F3800B3AEB8 /* Run Script Tell User about DMG Package */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script Tell User about DMG Package";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "echo \"Building ${TARGET_NAME}\"\necho \"Copying bundle...\"\ncd \"${TARGET_BUILD_DIR}\"\ncp -a \"${PRODUCT_NAME}.app/\" \"${PROJECT_DIR}/BuildImage/src/\"\necho \"Build start...\"\ncd \"${PROJECT_DIR}/BuildImage\"\nmake\ncd \"${PROJECT_DIR}\"\n\nmv \"ErlangInstaller-0.1.dmg\" \"ErlangInstaller${MAC_OS_X_VERSION_ACTUAL}.dmg\" # Piggy solution :( FIXME\necho \"Done.\"\n# myperlscript.pl\" \"${PRODUCT_NAME}\" \"${PROJECT_DIR}\"\n";
+			shellScript = "echo \"########################\"\necho \"# DMG Package creation #\"\necho \"########################\"\necho \"Will pack ${TARGET_NAME} into folder ${PROJECT_DIR}/BuildImage/\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
