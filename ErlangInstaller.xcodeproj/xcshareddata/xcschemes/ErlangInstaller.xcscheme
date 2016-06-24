@@ -150,6 +150,25 @@
    </AnalyzeAction>
    <ArchiveAction
       buildConfiguration = "Release"
-      revealArchiveInOrganizer = "YES">
+      revealArchiveInOrganizer = "NO">
+      <PostActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script Create Install Package"
+               scriptText = "# Common path and partial filename&#10;ARCHIVE_BASEPATH=&quot;${HOME}/Library/Developer/Xcode/Archives/$(date +%Y-%m-%d)/&quot;&#10;# Find the latest .xcarchive for the given scheme&#10;NEW_ARCHIVE=$(ls -td &quot;${ARCHIVE_BASEPATH}&quot;* | head -n 1)&#10;echo &quot;Packing ${TARGET_NAME}&quot;&#10;echo &quot;Copying bundle...&quot;&#10;cd &quot;${TARGET_BUILD_DIR}&quot;&#10;cp -R &quot;${NEW_ARCHIVE}/Products/Applications/&quot; &quot;${PROJECT_DIR}/BuildImage/src/&quot;&#10;echo &quot;Build start...&quot;&#10;cd &quot;${PROJECT_DIR}/BuildImage&quot;&#10;make&#10;&#10;cd &quot;${PROJECT_DIR}/BuildImage/&quot;&#10;# This splits a two-decimal version string, such as &quot;0.45.123&quot;, and increment the third position.&#10;VERSIONNUM=$(/usr/libexec/PlistBuddy -c &quot;Print CFBundleShortVersionString&quot; &quot;${PROJECT_DIR}/${INFOPLIST_FILE}&quot;)&#10;NEWVERSIONSTRING=`echo $VERSIONNUM | awk -F &quot;.&quot; &apos;{print $1 &quot;.&quot; $2 }&apos;`&#10;&#10;mv &quot;ErlangInstaller-0.1.dmg&quot; &quot;ErlangInstaller${NEWVERSIONSTRING}.dmg&quot; # Piggy solution :( FIXME using configure&#10;echo &quot;Delete temp file&quot;&#10;rm -R &quot;${PROJECT_DIR}/BuildImage/src/ErlangInstaller.app/&quot;&#10;&#10;echo &quot;Done.&quot;"
+               shellToInvoke = "/bin/sh">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "5EC3AF931C31888000E0BF43"
+                     BuildableName = "ErlangInstaller.app"
+                     BlueprintName = "ErlangInstaller"
+                     ReferencedContainer = "container:ErlangInstaller.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PostActions>
    </ArchiveAction>
 </Scheme>
