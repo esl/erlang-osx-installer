@@ -24,8 +24,8 @@ class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
     @IBOutlet weak var defaultRelease: NSComboBox!
     @IBOutlet weak var terminalApplication: NSComboBox!
     @IBOutlet weak var releasesTableView: NSTableView!
+	@IBOutlet weak var versionAndBuildNumber: NSTextField! // TODO Check align when adding the new description text.
 
-    
     private var queue: dispatch_queue_t?
     private var source: dispatch_source_t?
     
@@ -39,7 +39,14 @@ class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
         
         self.checkForFileUpdate()
     }
-    
+	
+	func loadVersionAndBuildNumber() {
+		let version = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as? String
+		let build = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as? String
+		
+		self.versionAndBuildNumber.stringValue = "Version " + version! + "Build " + build!
+	}
+	
     func checkForFileUpdate()
     {
         let file = open((ReleaseManager.availableReleasesUrl?.path)!, O_EVTONLY)
