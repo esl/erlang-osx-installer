@@ -43,7 +43,7 @@
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="erlang-solutions" id="aYh-eB-Zbp"/>
                                         </imageView>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hIe-RP-RaA">
-                                            <rect key="frame" x="226" y="64" width="113" height="17"/>
+                                            <rect key="frame" x="226" y="51" width="113" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Default Release:" id="4zY-d6-pA3">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -51,8 +51,8 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mLA-qf-BzP">
-                                            <rect key="frame" x="180" y="151" width="159" height="17"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Check for New Releases:" id="v0l-oF-kYc">
+                                            <rect key="frame" x="77" y="151" width="262" height="17"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Automatically check For New Releases:" id="v0l-oF-kYc">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -69,9 +69,27 @@
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ogJ-Ya-qKT">
-                                            <rect key="frame" x="248" y="196" width="91" height="17"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Open at login:" id="eZH-ag-kVt">
+                                            <rect key="frame" x="43" y="196" width="296" height="17"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Automatically start Erlang Installer on Startup:" id="eZH-ag-kVt">
                                                 <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y3g-78-VDf">
+                                            <rect key="frame" x="378" y="116" width="249" height="50"/>
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="justified" id="hhz-Yj-8k0">
+                                                <font key="font" metaFont="system" size="11"/>
+                                                <string key="title">Get the latest version of Erlang/OTP as soon as it's out. Erlang Solutions provides up to date Erlang/OTP packages the day after release.</string>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2hz-kO-eIZ">
+                                            <rect key="frame" x="-3" y="66" width="630" height="28"/>
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="zaZ-C9-Ryg">
+                                                <font key="font" metaFont="system" size="11"/>
+                                                <string key="title">For easy switching between releases, choose an Erlang version and a Terminal application. The Installer will use these settings as your defaults.</string>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -87,7 +105,7 @@
                                             </connections>
                                         </button>
                                         <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0vL-oT-mPd">
-                                            <rect key="frame" x="345" y="58" width="99" height="26"/>
+                                            <rect key="frame" x="345" y="45" width="99" height="26"/>
                                             <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" completes="NO" numberOfVisibleItems="5" id="mkK-8i-mrh">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -98,8 +116,8 @@
                                             </connections>
                                         </comboBox>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MQb-Gv-ccx">
-                                            <rect key="frame" x="215" y="106" width="124" height="17"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Check for Updates:" id="yRs-8V-Lgq">
+                                            <rect key="frame" x="168" y="106" width="171" height="17"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Check for installer updates:" id="yRs-8V-Lgq">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -116,7 +134,7 @@
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jqS-Vq-qfv">
-                                            <rect key="frame" x="207" y="19" width="133" height="17"/>
+                                            <rect key="frame" x="207" y="6" width="133" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Terminal Application:" id="BBd-6l-QZz">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -124,7 +142,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wnn-Sc-k8q">
-                                            <rect key="frame" x="345" y="13" width="99" height="26"/>
+                                            <rect key="frame" x="345" y="0.0" width="99" height="26"/>
                                             <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" completes="NO" numberOfVisibleItems="5" id="gb7-nb-aLe">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -144,7 +162,7 @@
                                             <rect key="frame" x="155" y="242" width="460" height="71"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="justified" id="Utm-57-V6S">
                                                 <font key="font" metaFont="system"/>
-                                                <string key="title">To allow easily switching between releases, the chosen Erlang shell will start in your preferred Terminal application. Choose your default preferences here.</string>
+                                                <string key="title">Get the latest version of Erlang/OTP as soon as it's out.  Erlang Solutions provides up to date Erlang/OTP packages the day after release.</string>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
