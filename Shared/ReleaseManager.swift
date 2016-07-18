@@ -50,10 +50,8 @@ class ReleaseManager: NSObject {
                 newReleases.append(latestReleases[name]!)
             }
 
-            if newReleases.count > 0 {
                 manager._releases = latestReleases
                 try! manager.save(content)
-            }
 
             successHandler(newReleases)
         }
