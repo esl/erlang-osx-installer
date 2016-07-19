@@ -50,7 +50,7 @@ class TerminalApplications {
     private var terminalsDictionary = [String: ErlangTerminal]()
 
     init() {
-        let allTerminals: [ErlangTerminal] = [iTerm(), Terminal()]
+        let allTerminals: [ErlangTerminal] = [Terminal()]
         for terminal in allTerminals {
             if terminal.installed {
                 terminalsDictionary[terminal.applicationName] = terminal
