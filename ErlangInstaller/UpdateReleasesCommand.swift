@@ -16,7 +16,7 @@ class UpdateReleasesCommand: NSScriptCommand {
 }
 
 class CheckNewReleasesCommand: NSScriptCommand {
-    override func performDefaultImplementation() -> AnyObject? {
+    override func performDefaultImplementation() -> AnyObject? { 
         NSNotificationCenter.defaultCenter().postNotificationName("scheduleCheckNewReleases", object: nil)
         return nil
     }
