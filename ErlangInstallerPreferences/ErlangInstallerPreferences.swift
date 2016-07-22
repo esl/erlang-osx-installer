@@ -36,15 +36,15 @@ class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
     override func mainViewDidLoad() {
         self.erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId)
         reloadReleases()
-        
+       	self.loadVersionAndBuildNumber()
         self.checkForFileUpdate()
     }
 	
 	func loadVersionAndBuildNumber() {
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as? String
-		let build = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as? String
+		let build = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String
 		
-		self.versionAndBuildNumber.stringValue = "Version " + version! + "Build " + build!
+		self.versionAndBuildNumber.stringValue = "Version " + version! + " Build " + build!
 	}
 	
     func checkForFileUpdate()

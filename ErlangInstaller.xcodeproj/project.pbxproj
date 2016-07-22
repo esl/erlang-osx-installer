@@ -50,6 +50,8 @@
 		5EFD59151C32BDEF004ECB9B /* ErlangInstallerPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */; };
 		7D204DA61CC1602C0063F871 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3AFA01C31888000E0BF43 /* Info.plist */; };
 		7D204DA71CC160310063F871 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD59161C32BDEF004ECB9B /* Info.plist */; };
+		AC58CC3C1D429E3900B3AEB8 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */; };
+		AC58CC3D1D429E3900B3AEB8 /* PopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +117,8 @@
 		5EFD590B1C32BDEF004ECB9B /* ErlangInstallerPreferences.prefPane */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErlangInstallerPreferences.prefPane; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EFD59141C32BDEF004ECB9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ErlangInstallerPreferences.xib; sourceTree = "<group>"; };
 		5EFD59161C32BDEF004ECB9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
+		AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +249,8 @@
 			children = (
 				5EDC5AFE1C342C7B0014343A /* External */,
 				5EC3AF971C31888000E0BF43 /* AppDelegate.swift */,
+				AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */,
+				AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */,
 				5E93D1861C493DCC008DCC81 /* UpdateReleasesCommand.swift */,
 				5E41CAC61C80D44F00C41A7D /* MainMenu.swift */,
 				5EC3AF9B1C31888000E0BF43 /* Assets.xcassets */,
@@ -379,6 +385,7 @@
 				5E7D31901C7E029100B90D43 /* server.js in Resources */,
 				5E7D31951C7E094300B90D43 /* start-server.sh in Resources */,
 				5EC3AFC91C31CDA700E0BF43 /* menu-bar-icon.png in Resources */,
+				AC58CC3D1D429E3900B3AEB8 /* PopoverViewController.xib in Resources */,
 				5E7D318E1C7E026400B90D43 /* releases.json in Resources */,
 				5E7D31921C7E02E900B90D43 /* updates.xml in Resources */,
 				7D204DA61CC1602C0063F871 /* Info.plist in Resources */,
@@ -423,6 +430,7 @@
 			files = (
 				5E41CAC71C80D44F00C41A7D /* MainMenu.swift in Sources */,
 				5E8B2BB11C7E0196001E9C61 /* ReleaseInstaller.swift in Sources */,
+				AC58CC3C1D429E3900B3AEB8 /* PopoverViewController.swift in Sources */,
 				5E20ED931C3D7F0B007AFFE6 /* Utils.swift in Sources */,
 				5E32070F1C4EB8E2006C2C87 /* SBTerminals.swift in Sources */,
 				5EC3AF981C31888000E0BF43 /* AppDelegate.swift in Sources */,

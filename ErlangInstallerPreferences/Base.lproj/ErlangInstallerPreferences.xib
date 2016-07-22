@@ -165,7 +165,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pwn-pa-tjD">
-                                            <rect key="frame" x="458" y="225" width="131" height="17"/>
+                                            <rect key="frame" x="343" y="225" width="246" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Version 0.4 Build 3" id="WJa-Ub-8qP">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
