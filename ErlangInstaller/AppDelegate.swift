@@ -22,38 +22,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if(UserDefaults.firstLaunch) {
             Utils.maybeRemovePackageInstallation()
             UserDefaults.firstLaunch = false
-			 popover.contentViewController = PopoverViewController(nibName: "PopoverViewController", bundle: nil)
-			self.showPopover(nil)
         }
+		UserDefaults.firstLaunch = true // FIXME:
+
 
         ReleaseManager.load() {
             self.mainMenu.listenNotifications()
             self.mainMenu.loadReleases()
             self.mainMenu.addStatusItem()
-			self.showPopover(nil)
             self.mainMenu.scheduleCheckNewReleases()
         }
     }
-    
+	
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
-    }
-	
-	func showPopover(sender: AnyObject?) {
-		if let button = statusItem.button {
-			popover.showRelativeToRect(button.bounds, ofView: button, preferredEdge: NSRectEdge.MinY)
-  }
-	}
- 
-	func closePopover(sender: AnyObject?) {
-		popover.performClose(sender)
-	}
- 
-	func togglePopover(sender: AnyObject?) {
-		if popover.shown {
-			closePopover(sender)
-		} else {
-			showPopover(sender)
-  		}
-	}
+    }	
 }

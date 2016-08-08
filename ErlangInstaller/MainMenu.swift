@@ -9,6 +9,10 @@
 import Cocoa
 import ScriptingBridge
 
+protocol PopoverDelegate: class {
+	func closePopover(sender: AnyObject?)
+}
+
 class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
 
 	let popover = NSPopover()
@@ -37,10 +41,11 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
 	
 	func showPopover(sender: AnyObject?) {
 		if let button = statusItem!.button {
+			popover.contentViewController = PopoverViewController(nibName: "PopoverViewController", bundle: nil)
 			popover.showRelativeToRect(button.bounds, ofView: button, preferredEdge: NSRectEdge.MinY)
   		}
 	}
- 
+	
 	func closePopover(sender: AnyObject?) {
 		popover.performClose(sender)
 	}
@@ -147,6 +152,10 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
         self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
         self.statusItem?.image = NSImage(named: "menu-bar-icon.png")
         self.statusItem?.menu = self
+		if (UserDefaults.firstLaunch) {
+			_ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(self.showPopover(_:)), userInfo: nil, repeats: false)
+			//UserDefaults.firstLaunch = false
+		}
     }
     
     func scheduleCheckNewReleases() {

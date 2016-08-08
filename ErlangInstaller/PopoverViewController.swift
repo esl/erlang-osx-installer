@@ -9,13 +9,13 @@
 import Cocoa
 
 class PopoverViewController: NSViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do view setup here.
-    }
-    
+	
+	override func viewWillAppear() {
+		super.viewWillAppear()
+	}
 	@IBAction func closePopover(sender: AnyObject) {
-		
+		// FIXME self.closePopover(sender)
+		//		let mainMenuViewController = NSApplication.sharedApplication().delegate as! MainMenu
+		//		mainMenuViewController.closePopover(nil)
 	}
 }
