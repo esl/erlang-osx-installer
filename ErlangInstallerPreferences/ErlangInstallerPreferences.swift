@@ -43,8 +43,9 @@ class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
 	func loadVersionAndBuildNumber() {
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as? String
 		let build = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String
-		
 		self.versionAndBuildNumber.stringValue = "Version " + version! + " Build " + build!
+		// FIXME 
+		self.versionAndBuildNumber.hidden = true
 	}
 	
     func checkForFileUpdate()
