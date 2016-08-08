@@ -11,7 +11,9 @@ import ScriptingBridge
 
 class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
 
-    private var statusItem : NSStatusItem?
+	let popover = NSPopover()
+	
+	private var statusItem : NSStatusItem?
     private var timer : NSTimer?
     
     @IBOutlet weak var erlangTerminalDefault: NSMenuItem!
@@ -32,7 +34,25 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
             systemPreferencesApp.activate()
         }
     }
-    
+	
+	func showPopover(sender: AnyObject?) {
+		if let button = statusItem!.button {
+			popover.showRelativeToRect(button.bounds, ofView: button, preferredEdge: NSRectEdge.MinY)
+  		}
+	}
+ 
+	func closePopover(sender: AnyObject?) {
+		popover.performClose(sender)
+	}
+ 
+	func togglePopover(sender: AnyObject?) {
+		if popover.shown {
+			closePopover(sender)
+		} else {
+			showPopover(sender)
+		}
+	}
+	
     @IBAction func checkNewReleases(sender: AnyObject) {
         try! ReleaseManager.checkNewReleases() { (newReleases: [Release]) -> Void in
             for release in newReleases {
