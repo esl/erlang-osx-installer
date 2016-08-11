@@ -14,9 +14,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var mainMenu: MainMenu!
 	
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+		
+		// Uncomment to delete userdefaults in OSX El Capitan
+		// let domainName: String = NSBundle.mainBundle().bundleIdentifier!
+		// NSUserDefaults.standardUserDefaults().removePersistentDomainForName(domainName)
+		// exit(0)
+		
         if(UserDefaults.firstLaunch) {
             Utils.maybeRemovePackageInstallation()
-            UserDefaults.firstLaunch = false
+            //UserDefaults.firstLaunch = false // FIXME there are 2 firstLaunch operations
         }
 
         ReleaseManager.load() {
