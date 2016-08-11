@@ -13,18 +13,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var mainMenu: MainMenu!
 	
-	let popover = NSPopover()
-	
-	let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
-
-	
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         if(UserDefaults.firstLaunch) {
             Utils.maybeRemovePackageInstallation()
             UserDefaults.firstLaunch = false
         }
-		UserDefaults.firstLaunch = true // FIXME:
-
 
         ReleaseManager.load() {
             self.mainMenu.listenNotifications()

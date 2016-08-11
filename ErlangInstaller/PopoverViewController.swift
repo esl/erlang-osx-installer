@@ -10,12 +10,12 @@ import Cocoa
 
 class PopoverViewController: NSViewController {
 	
+	weak var delegate : PopoverDelegate?
+	
 	override func viewWillAppear() {
 		super.viewWillAppear()
 	}
 	@IBAction func closePopover(sender: AnyObject) {
-		// FIXME self.closePopover(sender)
-		//		let mainMenuViewController = NSApplication.sharedApplication().delegate as! MainMenu
-		//		mainMenuViewController.closePopover(nil)
-	}
+			self.delegate?.closePopoverFromMainMenu(sender)
+		}
 }

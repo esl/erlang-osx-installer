@@ -10,27 +10,27 @@ import Cocoa
 import ScriptingBridge
 
 protocol PopoverDelegate: class {
-	func closePopover(sender: AnyObject?)
+	func closePopoverFromMainMenu(sender: AnyObject?)
 }
 
-class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
+class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
 
 	let popover = NSPopover()
 	
 	private var statusItem : NSStatusItem?
     private var timer : NSTimer?
-    
+	
     @IBOutlet weak var erlangTerminalDefault: NSMenuItem!
     @IBOutlet weak var erlangTerminals: NSMenuItem!
-    
+	
     @IBAction func quitApplication(sender: AnyObject) {
         NSApp.terminate(self)
     }
-    
+	
     @IBAction func showPreferencesPane(sender: AnyObject) {
         let systemPreferencesApp = SBApplication(bundleIdentifier: Constants.SystemPreferencesId) as! SystemPreferencesApplication
         let pane = findPreferencePane(systemPreferencesApp)
-        
+		
         if (pane == nil) {
             installPreferenecesPane()
         } else {
@@ -41,22 +41,22 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
 	
 	func showPopover(sender: AnyObject?) {
 		if let button = statusItem!.button {
-			popover.contentViewController = PopoverViewController(nibName: "PopoverViewController", bundle: nil)
 			popover.showRelativeToRect(button.bounds, ofView: button, preferredEdge: NSRectEdge.MinY)
+			if let controller  = popover.contentViewController as? PopoverViewController {
+			controller.delegate = self
+				_ = NSTimer.scheduledTimerWithTimeInterval(8.0, target: self, selector: #selector(self.closePopover(_:)), userInfo: nil, repeats: false)
+			}
   		}
+	}
+	
+	func closePopoverFromMainMenu(sender: AnyObject?) {
+		self.closePopover(sender)
 	}
 	
 	func closePopover(sender: AnyObject?) {
 		popover.performClose(sender)
 	}
  
-	func togglePopover(sender: AnyObject?) {
-		if popover.shown {
-			closePopover(sender)
-		} else {
-			showPopover(sender)
-		}
-	}
 	
     @IBAction func checkNewReleases(sender: AnyObject) {
         try! ReleaseManager.checkNewReleases() { (newReleases: [Release]) -> Void in
@@ -66,7 +66,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
             self.loadReleases()
         }
     }
-    
+	
     @IBAction func openTerminalDefault(sender: AnyObject) {
         if(UserDefaults.defaultRelease != nil) {
             if let release = ReleaseManager.releases[UserDefaults.defaultRelease!]
@@ -153,8 +153,8 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate {
         self.statusItem?.image = NSImage(named: "menu-bar-icon.png")
         self.statusItem?.menu = self
 		if (UserDefaults.firstLaunch) {
+			popover.contentViewController = PopoverViewController(nibName: "PopoverViewController", bundle: nil)
 			_ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(self.showPopover(_:)), userInfo: nil, repeats: false)
-			//UserDefaults.firstLaunch = false
 		}
     }
     
