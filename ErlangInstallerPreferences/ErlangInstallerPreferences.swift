@@ -44,7 +44,7 @@ class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as? String
 		let build = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String
 		self.versionAndBuildNumber.stringValue = "Version " + version! + " Build " + build!
-		// FIXME 
+		// FIXME: Currently the panel pref file is not updating the string. This can be fixed when issue #88 is implemented. 
 		self.versionAndBuildNumber.hidden = true
 	}
 	
