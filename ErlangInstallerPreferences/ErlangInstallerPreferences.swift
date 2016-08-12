@@ -36,15 +36,16 @@ class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
     override func mainViewDidLoad() {
         self.erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId)
         reloadReleases()
-        
+       	self.loadVersionAndBuildNumber()
         self.checkForFileUpdate()
     }
 	
 	func loadVersionAndBuildNumber() {
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as? String
-		let build = NSBundle.mainBundle().infoDictionary!["CFBundleVersion"] as? String
-		
-		self.versionAndBuildNumber.stringValue = "Version " + version! + "Build " + build!
+		let build = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String
+		self.versionAndBuildNumber.stringValue = "Version " + version! + " Build " + build!
+		// FIXME: Currently the panel pref file is not updating the string. This can be fixed when issue #88 is implemented. 
+		self.versionAndBuildNumber.hidden = true
 	}
 	
     func checkForFileUpdate()
