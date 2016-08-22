@@ -348,7 +348,7 @@
 				TargetAttributes = {
 					5EC3AF931C31888000E0BF43 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = RN98T2SU3Z;
+						DevelopmentTeam = ZRK75NDG7H;
 					};
 					5EFD590A1C32BDEF004ECB9B = {
 						CreatedOnToolsVersion = 7.2;
@@ -589,7 +589,7 @@
 				);
 				INFOPLIST_FILE = ErlangInstaller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstaller";
+				PRODUCT_BUNDLE_IDENTIFIER = com.erlangsolutions.ErlangInstaller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
@@ -611,7 +611,7 @@
 				);
 				INFOPLIST_FILE = ErlangInstaller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstaller";
+				PRODUCT_BUNDLE_IDENTIFIER = com.erlangsolutions.ErlangInstaller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
@@ -635,6 +635,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstallerPreferences";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = prefPane;
@@ -657,6 +658,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstallerPreferences";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				WRAPPER_EXTENSION = prefPane;
 			};
