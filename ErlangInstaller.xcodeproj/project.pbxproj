@@ -115,6 +115,7 @@
 		5EFD59161C32BDEF004ECB9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverViewController.xib; sourceTree = "<group>"; };
+		ACEBBD8E1D6CB6ED00B3AEB8 /* ErlangInstaller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ErlangInstaller.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +234,7 @@
 		5EC3AF961C31888000E0BF43 /* ErlangInstaller */ = {
 			isa = PBXGroup;
 			children = (
+				ACEBBD8E1D6CB6ED00B3AEB8 /* ErlangInstaller.entitlements */,
 				5EDC5AFE1C342C7B0014343A /* External */,
 				5EC3AF971C31888000E0BF43 /* AppDelegate.swift */,
 				AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */,
@@ -335,6 +337,11 @@
 					5EC3AF931C31888000E0BF43 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = ZRK75NDG7H;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					5EFD590A1C32BDEF004ECB9B = {
 						CreatedOnToolsVersion = 7.2;
@@ -566,6 +573,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/erlang/";
+				CODE_SIGN_ENTITLEMENTS = ErlangInstaller/ErlangInstaller.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -588,6 +596,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/erlang/";
+				CODE_SIGN_ENTITLEMENTS = ErlangInstaller/ErlangInstaller.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
