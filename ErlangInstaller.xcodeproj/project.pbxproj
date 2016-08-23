@@ -47,7 +47,6 @@
 		5EE1B8781C43EE4B00A84164 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE1B8761C43EE3100A84164 /* UserDefaults.swift */; };
 		5EFD59151C32BDEF004ECB9B /* ErlangInstallerPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */; };
 		7D204DA61CC1602C0063F871 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3AFA01C31888000E0BF43 /* Info.plist */; };
-		7D204DA71CC160310063F871 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD59161C32BDEF004ECB9B /* Info.plist */; };
 		AC58CC3C1D429E3900B3AEB8 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */; };
 		AC58CC3D1D429E3900B3AEB8 /* PopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */; };
 /* End PBXBuildFile section */
@@ -390,7 +389,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D204DA71CC160310063F871 /* Info.plist in Resources */,
 				5EFD59151C32BDEF004ECB9B /* ErlangInstallerPreferences.xib in Resources */,
 				5E94CD611C48426800E7AB56 /* ErlangInstallerPreferences.searchTerms in Resources */,
 				5E519F921C32E34F0024DEAB /* erlang-solutions.png in Resources */,
