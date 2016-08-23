@@ -103,13 +103,12 @@ class ReleaseManager: NSObject {
     }
     
     private func fetch(successHandler: (String) -> Void) {
-        let stringHandler = {
+        _ = {
             let content = try! String(contentsOfURL: Constants.ReleasesListUrl!)
             successHandler(content)
         }
-        let errorHandler = { (error: NSError?) -> Void in
+        _ = { (error: NSError?) -> Void in
             Utils.alert(error!.localizedDescription)
         }
-        Utils.resourceAvailable(Constants.ReleasesListUrl, successHandler: stringHandler, errorHandler: errorHandler)
     }
 }
