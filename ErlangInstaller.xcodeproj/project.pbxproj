@@ -567,7 +567,7 @@
 		5EC3AFBA1C31888000E0BF43 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconRed;
 				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/erlang/";
 				CODE_SIGN_ENTITLEMENTS = ErlangInstaller/ErlangInstaller.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
@@ -590,7 +590,7 @@
 		5EC3AFBB1C31888000E0BF43 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconRed;
 				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/erlang/";
 				CODE_SIGN_ENTITLEMENTS = ErlangInstaller/ErlangInstaller.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
