@@ -155,7 +155,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
 		if (UserDefaults.firstLaunch) {
 			popover.contentViewController = PopoverViewController(nibName: "PopoverViewController", bundle: nil)
 			_ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(self.showPopover(_:)), userInfo: nil, repeats: false)
-			UserDefaults.firstLaunch = true
+			UserDefaults.firstLaunch = false
 		}
     }
     
