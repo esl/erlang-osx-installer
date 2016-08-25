@@ -108,8 +108,8 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
     }
     
     func listenNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleLoadReleases:", name: "loadReleases", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleScheduleCheckNewReleases:", name: "loadReleases", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainMenu.handleLoadReleases(_:)), name: "loadReleases", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainMenu.handleScheduleCheckNewReleases(_:)), name: "loadReleases", object: nil)
     }
 
     func handleLoadReleases(notification: NSNotification) {
@@ -128,7 +128,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
             
             item.enabled = release.installed
             if(release.installed) {
-                item.action = "openTerminal:"
+                item.action = #selector(MainMenu.openTerminal(_:))
                 item.target = self
             }
         }
@@ -174,7 +174,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
             let interval: Double = 24 * 60 * 60 // 24 hours in seconds
             let fireDate = userCalendar.dateFromComponents(components)!
             
-            self.timer = NSTimer(fireDate: fireDate, interval: interval, target: self, selector: "checkNewReleases:", userInfo: nil, repeats: true)
+            self.timer = NSTimer(fireDate: fireDate, interval: interval, target: self, selector: #selector(MainMenu.checkNewReleases(_:)), userInfo: nil, repeats: true)
             
             NSRunLoop.currentRunLoop().addTimer(self.timer!, forMode: NSDefaultRunLoopMode)
         } else {
