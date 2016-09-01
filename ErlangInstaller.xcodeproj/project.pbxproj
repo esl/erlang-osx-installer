@@ -19,7 +19,6 @@
 		5E4F42051C3F06F500597AFD /* ReleaseUninstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4F42041C3F06F500597AFD /* ReleaseUninstaller.swift */; };
 		5E4F42061C3F06F500597AFD /* ReleaseUninstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4F42041C3F06F500597AFD /* ReleaseUninstaller.swift */; };
 		5E519F921C32E34F0024DEAB /* erlang-solutions.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E519F911C32E34F0024DEAB /* erlang-solutions.png */; };
-		5E7D318E1C7E026400B90D43 /* releases.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D318C1C7E026400B90D43 /* releases.json */; };
 		5E7D31901C7E029100B90D43 /* server.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D318F1C7E029100B90D43 /* server.js */; };
 		5E7D31921C7E02E900B90D43 /* updates.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D31911C7E02E900B90D43 /* updates.xml */; };
 		5E7D31951C7E094300B90D43 /* start-server.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D31941C7E094300B90D43 /* start-server.sh */; };
@@ -46,6 +45,9 @@
 		5EE1B8771C43EE3100A84164 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE1B8761C43EE3100A84164 /* UserDefaults.swift */; };
 		5EE1B8781C43EE4B00A84164 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE1B8761C43EE3100A84164 /* UserDefaults.swift */; };
 		5EFD59151C32BDEF004ECB9B /* ErlangInstallerPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */; };
+		7D204DA61CC1602C0063F871 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3AFA01C31888000E0BF43 /* Info.plist */; };
+		7D204DA71CC160310063F871 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD59161C32BDEF004ECB9B /* Info.plist */; };
+		AC19CFAE1D6F2F8100B3AEB8 /* releases.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D318C1C7E026400B90D43 /* releases.json */; };
 		AC58CC3C1D429E3900B3AEB8 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */; };
 		AC58CC3D1D429E3900B3AEB8 /* PopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */; };
 /* End PBXBuildFile section */
@@ -372,12 +374,12 @@
 			files = (
 				5EDC5B041C345D480014343A /* ErlangInstallerPreferences.prefPane in Resources */,
 				5EC3AF9C1C31888000E0BF43 /* Assets.xcassets in Resources */,
+				AC19CFAE1D6F2F8100B3AEB8 /* releases.json in Resources */,
 				5E93D1851C49318D008DCC81 /* ErlangInstaller.sdef in Resources */,
 				5E7D31901C7E029100B90D43 /* server.js in Resources */,
 				5E7D31951C7E094300B90D43 /* start-server.sh in Resources */,
 				5EC3AFC91C31CDA700E0BF43 /* menu-bar-icon.png in Resources */,
 				AC58CC3D1D429E3900B3AEB8 /* PopoverViewController.xib in Resources */,
-				5E7D318E1C7E026400B90D43 /* releases.json in Resources */,
 				5E7D31921C7E02E900B90D43 /* updates.xml in Resources */,
 				5EBDDD611C33215F0024C22C /* MainMenu.xib in Resources */,
 			);
