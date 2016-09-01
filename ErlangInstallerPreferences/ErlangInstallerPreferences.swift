@@ -20,7 +20,6 @@ class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
     @IBOutlet weak var tabView: NSTabView!
     @IBOutlet weak var openAtLogin: NSButton!
     @IBOutlet weak var checkForNewReleases: NSButton!
-    @IBOutlet weak var checkForUpdates: NSButton!
     @IBOutlet weak var defaultRelease: NSComboBox!
     @IBOutlet weak var terminalApplication: NSComboBox!
     @IBOutlet weak var releasesTableView: NSTableView!
@@ -90,7 +89,6 @@ class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
         // Load current preferences
         self.openAtLogin.state = (UserDefaults.openAtLogin ? 1 : 0)
         self.checkForNewReleases.state = (UserDefaults.checkForNewReleases ? 1 : 0)
-        self.checkForUpdates.state = (UserDefaults.checkForUpdates ? 1 : 0)
 
         // Check if the default release is currently installed
         self.defaultRelease.removeAllItems()
@@ -122,11 +120,7 @@ class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
         UserDefaults.checkForNewReleases = self.checkForNewReleases.state == 1
         self.scheduleCheckNewReleasesForAgent()
     }
-    
-    @IBAction func checkUpdatesClick(sender: AnyObject) {
-        UserDefaults.checkForUpdates = self.checkForUpdates.state == 1
-    }
-
+	
     @IBAction func defaultReleaseSelection(sender: AnyObject) {
         UserDefaults.defaultRelease = self.defaultRelease.selectedCell()!.title
         self.updateReleasesForAgent()

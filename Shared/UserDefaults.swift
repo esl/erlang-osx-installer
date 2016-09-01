@@ -19,7 +19,6 @@ class UserDefaults {
     static private let terminalAppDefault = "Terminal" //NSWorkspace.sharedWorkspace().URLForApplicationWithBundleIdentifier("com.apple.Terminal")!.path!
     static private let openAtLoginDefault = false
     static private let checkForNewReleasesDefault = true
-    static private let checkForUpdatesDefault = true
     static private var defaultReleaseDefault: String? = nil
 
     //-------------------
@@ -60,11 +59,6 @@ class UserDefaults {
     static var checkForNewReleases: Bool {
         set { set("checkForNewReleases", value: newValue) }
         get { return getBool("checkForNewReleases") ?? checkForNewReleasesDefault}
-    }
-    
-    static var checkForUpdates: Bool {
-        set { set("checkForUpdates", value: newValue) }
-        get { return getBool("checkForUpdates") ?? checkForUpdatesDefault}
     }
 
     static var defaultRelease: String? {

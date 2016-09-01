@@ -23,8 +23,6 @@
 		5E7D31901C7E029100B90D43 /* server.js in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D318F1C7E029100B90D43 /* server.js */; };
 		5E7D31921C7E02E900B90D43 /* updates.xml in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D31911C7E02E900B90D43 /* updates.xml */; };
 		5E7D31951C7E094300B90D43 /* start-server.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5E7D31941C7E094300B90D43 /* start-server.sh */; };
-		5E8B2BAE1C7DFC04001E9C61 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8B2BAD1C7DFC04001E9C61 /* Sparkle.framework */; };
-		5E8B2BB01C7DFD56001E9C61 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5E8B2BAD1C7DFC04001E9C61 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5E8B2BB11C7E0196001E9C61 /* ReleaseInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE97D8F1C3EB1740050315C /* ReleaseInstaller.swift */; };
 		5E93D1851C49318D008DCC81 /* ErlangInstaller.sdef in Resources */ = {isa = PBXBuildFile; fileRef = 5E93D1841C49318D008DCC81 /* ErlangInstaller.sdef */; };
 		5E93D1871C493DCC008DCC81 /* UpdateReleasesCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E93D1861C493DCC008DCC81 /* UpdateReleasesCommand.swift */; };
@@ -48,8 +46,6 @@
 		5EE1B8771C43EE3100A84164 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE1B8761C43EE3100A84164 /* UserDefaults.swift */; };
 		5EE1B8781C43EE4B00A84164 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE1B8761C43EE3100A84164 /* UserDefaults.swift */; };
 		5EFD59151C32BDEF004ECB9B /* ErlangInstallerPreferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD59131C32BDEF004ECB9B /* ErlangInstallerPreferences.xib */; };
-		7D204DA61CC1602C0063F871 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3AFA01C31888000E0BF43 /* Info.plist */; };
-		7D204DA71CC160310063F871 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5EFD59161C32BDEF004ECB9B /* Info.plist */; };
 		AC58CC3C1D429E3900B3AEB8 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */; };
 		AC58CC3D1D429E3900B3AEB8 /* PopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */; };
 /* End PBXBuildFile section */
@@ -71,7 +67,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				5E8B2BB01C7DFD56001E9C61 /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +89,6 @@
 		5E7D31941C7E094300B90D43 /* start-server.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "start-server.sh"; sourceTree = "<group>"; };
 		5E7D31991C7E34F700B90D43 /* fancy-dmg.mk */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "fancy-dmg.mk"; path = "BuildImage/fancy-dmg.mk"; sourceTree = "<group>"; };
 		5E7D319C1C7E351C00B90D43 /* Makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; name = Makefile; path = BuildImage/Makefile; sourceTree = "<group>"; };
-		5E8B2BAD1C7DFC04001E9C61 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		5E93D1841C49318D008DCC81 /* ErlangInstaller.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ErlangInstaller.sdef; sourceTree = "<group>"; };
 		5E93D1861C493DCC008DCC81 /* UpdateReleasesCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateReleasesCommand.swift; sourceTree = "<group>"; };
 		5E93D1891C49404C008DCC81 /* ErlangInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ErlangInstaller.h; sourceTree = "<group>"; };
@@ -119,6 +113,7 @@
 		5EFD59161C32BDEF004ECB9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverViewController.xib; sourceTree = "<group>"; };
+		ACEBBD8E1D6CB6ED00B3AEB8 /* ErlangInstaller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ErlangInstaller.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +121,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5E8B2BAE1C7DFC04001E9C61 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,14 +188,6 @@
 			name = BuildImage;
 			sourceTree = "<group>";
 		};
-		5E8B2BAC1C7DFBCD001E9C61 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5E8B2BAD1C7DFC04001E9C61 /* Sparkle.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		5E93D1881C49402B008DCC81 /* External */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,7 +212,6 @@
 			children = (
 				5E7D319B1C7E34FC00B90D43 /* BuildImage */,
 				5E7D318A1C7E026400B90D43 /* TestWebServers */,
-				5E8B2BAC1C7DFBCD001E9C61 /* Frameworks */,
 				5E20ED981C3D8574007AFFE6 /* Shared */,
 				5E519F901C32E2D90024DEAB /* Resources */,
 				5EC3AF961C31888000E0BF43 /* ErlangInstaller */,
@@ -247,6 +232,7 @@
 		5EC3AF961C31888000E0BF43 /* ErlangInstaller */ = {
 			isa = PBXGroup;
 			children = (
+				ACEBBD8E1D6CB6ED00B3AEB8 /* ErlangInstaller.entitlements */,
 				5EDC5AFE1C342C7B0014343A /* External */,
 				5EC3AF971C31888000E0BF43 /* AppDelegate.swift */,
 				AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */,
@@ -348,7 +334,12 @@
 				TargetAttributes = {
 					5EC3AF931C31888000E0BF43 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = RN98T2SU3Z;
+						DevelopmentTeam = ZRK75NDG7H;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					5EFD590A1C32BDEF004ECB9B = {
 						CreatedOnToolsVersion = 7.2;
@@ -388,7 +379,6 @@
 				AC58CC3D1D429E3900B3AEB8 /* PopoverViewController.xib in Resources */,
 				5E7D318E1C7E026400B90D43 /* releases.json in Resources */,
 				5E7D31921C7E02E900B90D43 /* updates.xml in Resources */,
-				7D204DA61CC1602C0063F871 /* Info.plist in Resources */,
 				5EBDDD611C33215F0024C22C /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -397,7 +387,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D204DA71CC160310063F871 /* Info.plist in Resources */,
 				5EFD59151C32BDEF004ECB9B /* ErlangInstallerPreferences.xib in Resources */,
 				5E94CD611C48426800E7AB56 /* ErlangInstallerPreferences.searchTerms in Resources */,
 				5E519F921C32E34F0024DEAB /* erlang-solutions.png in Resources */,
@@ -580,6 +569,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/erlang/";
+				CODE_SIGN_ENTITLEMENTS = ErlangInstaller/ErlangInstaller.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -589,7 +579,7 @@
 				);
 				INFOPLIST_FILE = ErlangInstaller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstaller";
+				PRODUCT_BUNDLE_IDENTIFIER = com.erlangsolutions.ErlangInstaller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
@@ -602,6 +592,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				BASE_TARBALL_URL = "http://packages.erlang-solutions.com/erlang/";
+				CODE_SIGN_ENTITLEMENTS = ErlangInstaller/ErlangInstaller.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -611,7 +602,7 @@
 				);
 				INFOPLIST_FILE = ErlangInstaller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstaller";
+				PRODUCT_BUNDLE_IDENTIFIER = com.erlangsolutions.ErlangInstaller;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
@@ -635,6 +626,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstallerPreferences";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = prefPane;
@@ -657,6 +649,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstallerPreferences";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				WRAPPER_EXTENSION = prefPane;
 			};
