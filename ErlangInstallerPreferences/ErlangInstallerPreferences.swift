@@ -10,7 +10,7 @@ import PreferencePanes
 import CoreFoundation
 import ScriptingBridge
 
-class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
+class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
     private var erlangInstallerApp: ErlangInstallerApplication?
 	
     @IBOutlet var _window: NSWindow!
@@ -19,20 +19,42 @@ class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
     
     @IBOutlet weak var tabView: NSTabView!
     @IBOutlet weak var openAtLogin: NSButton!
-    @IBOutlet weak var checkForNewReleases: NSButton!
+	@IBOutlet weak var checkForNewReleases: NSButton!
     @IBOutlet weak var defaultRelease: NSComboBox!
     @IBOutlet weak var terminalApplication: NSComboBox!
     @IBOutlet weak var releasesTableView: NSTableView!
 	@IBOutlet weak var versionAndBuildNumber: NSTextField! // TODO Check align when adding the new description text.
-
+	
     private var queue: dispatch_queue_t?
     private var source: dispatch_source_t?
     
-    override func assignMainView() {
-        self.mainView = self.localMainView
-    }
+	override var windowNibName : String! {
+		return "ErlangInstallerPreferences"
+	}
 
-    override func mainViewDidLoad() {
+	init() {
+		self.init(windowNibName: "ErlangInstallerPreferences")
+	}
+	override init(window: NSWindow!)
+	{
+		super.init(window: window)
+	}
+
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
+    override func windowDidLoad() {
+		super.windowDidLoad()
+		if let window = window, screen = window.screen {
+			let offsetFromLeftOfScreen: CGFloat = 20
+			let offsetFromTopOfScreen: CGFloat = 20
+			let screenRect = screen.visibleFrame
+			let newOriginY = screenRect.origin.y + screenRect.height - window.frame.height
+				- offsetFromTopOfScreen
+			window.setFrameOrigin(NSPoint(x: offsetFromLeftOfScreen, y: newOriginY))
+		}
+
         self.erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId)
         reloadReleases()
        	self.loadVersionAndBuildNumber()
@@ -60,8 +82,7 @@ class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
                 dispatch_async(dispatch_get_main_queue()) {
                     self.reloadReleases()
                 }
-                
-                close(file)
+					self.close() // FIXME revise close to a specific file
                 let reload = dispatch_time(DISPATCH_TIME_NOW, 1);
                 dispatch_after(reload, self.queue!, {
                     dispatch_source_cancel(self.source!)

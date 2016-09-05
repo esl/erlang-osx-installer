@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10117"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="ErlangInstallerPreferences" customModule="ErlangInstallerPreferences">
+        <customObject id="-2" userLabel="File's Owner" customClass="ErlangInstallerPreferences" customModule="ErlangInstaller" customModuleProvider="target">
             <connections>
                 <outlet property="_window" destination="F0z-JX-Cv5" id="tdy-t6-CPj"/>
                 <outlet property="checkForNewReleases" destination="rXW-MG-Mq9" id="t7t-FT-6Yl"/>
@@ -12,7 +12,6 @@
                 <outlet property="localMainView" destination="se5-gp-TjO" id="y77-e4-OFJ"/>
                 <outlet property="openAtLogin" destination="ETy-cF-thk" id="CBb-qV-gQA"/>
                 <outlet property="releasesTableView" destination="qaO-UW-18W" id="WnM-fP-Gfi"/>
-                <outlet property="selectTerminalAppClick" destination="zGK-Zk-WXn" id="l0I-Ze-hLe"/>
                 <outlet property="tabView" destination="oBV-No-0bi" id="3yq-i8-2Tl"/>
                 <outlet property="terminalApplication" destination="wnn-Sc-k8q" id="t8z-Vm-c96"/>
                 <outlet property="versionAndBuildNumber" destination="pwn-pa-tjD" id="gdL-P0-qTp"/>
@@ -34,15 +33,15 @@
                         <tabViewItems>
                             <tabViewItem label="General" identifier="erlang" id="N9u-eq-jYh">
                                 <view key="view" ambiguous="YES" id="zGK-Zk-WXn">
-                                    <rect key="frame" x="10" y="33" width="622" height="335"/>
+                                    <rect key="frame" x="10" y="33" width="140" height="0.0"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zD3-s0-7W2">
-                                            <rect key="frame" x="7" y="225" width="142" height="107"/>
+                                            <rect key="frame" x="7" y="-110" width="142" height="107"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="erlang-solutions" id="aYh-eB-Zbp"/>
                                         </imageView>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hIe-RP-RaA">
-                                            <rect key="frame" x="226" y="44" width="113" height="17"/>
+                                            <rect key="frame" x="226" y="-291" width="113" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Default Release:" id="4zY-d6-pA3">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -50,7 +49,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mLA-qf-BzP">
-                                            <rect key="frame" x="77" y="151" width="262" height="17"/>
+                                            <rect key="frame" x="77" y="-184" width="262" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Automatically check For New Releases:" id="v0l-oF-kYc">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -58,7 +57,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rXW-MG-Mq9">
-                                            <rect key="frame" x="343" y="150" width="31" height="18"/>
+                                            <rect key="frame" x="343" y="-185" width="31" height="18"/>
                                             <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Zxb-zX-gdS">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -68,7 +67,7 @@
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ogJ-Ya-qKT">
-                                            <rect key="frame" x="43" y="196" width="296" height="17"/>
+                                            <rect key="frame" x="43" y="-139" width="296" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Automatically start Erlang Installer on Startup:" id="eZH-ag-kVt">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -76,7 +75,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2hz-kO-eIZ">
-                                            <rect key="frame" x="5" y="77" width="610" height="28"/>
+                                            <rect key="frame" x="5" y="-258" width="610" height="28"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="zaZ-C9-Ryg">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <string key="title">For easy switching between releases, choose an Erlang version and a Terminal application. The Installer will use these settings as your defaults.</string>
@@ -85,7 +84,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ETy-cF-thk">
-                                            <rect key="frame" x="343" y="195" width="31" height="18"/>
+                                            <rect key="frame" x="343" y="-140" width="31" height="18"/>
                                             <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="9eg-xW-joI">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -95,7 +94,7 @@
                                             </connections>
                                         </button>
                                         <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0vL-oT-mPd">
-                                            <rect key="frame" x="345" y="38" width="99" height="26"/>
+                                            <rect key="frame" x="345" y="-297" width="99" height="26"/>
                                             <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" completes="NO" numberOfVisibleItems="5" id="mkK-8i-mrh">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -106,7 +105,7 @@
                                             </connections>
                                         </comboBox>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jqS-Vq-qfv">
-                                            <rect key="frame" x="207" y="6" width="133" height="17"/>
+                                            <rect key="frame" x="207" y="-329" width="133" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Terminal Application:" id="BBd-6l-QZz">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -114,7 +113,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wnn-Sc-k8q">
-                                            <rect key="frame" x="345" y="0.0" width="99" height="26"/>
+                                            <rect key="frame" x="345" y="-335" width="99" height="26"/>
                                             <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" completes="NO" numberOfVisibleItems="5" id="gb7-nb-aLe">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -125,19 +124,19 @@
                                             </comboBoxCell>
                                         </comboBox>
                                         <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="B6F-GH-Um4">
-                                            <rect key="frame" x="9" y="223" width="604" height="5"/>
+                                            <rect key="frame" x="9" y="-112" width="604" height="5"/>
                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" metaFont="system"/>
                                         </box>
                                         <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="42b-vO-41s">
-                                            <rect key="frame" x="9" y="107" width="604" height="5"/>
+                                            <rect key="frame" x="9" y="-228" width="604" height="5"/>
                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" metaFont="system"/>
                                         </box>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5xW-Qy-LmF">
-                                            <rect key="frame" x="155" y="242" width="460" height="71"/>
+                                            <rect key="frame" x="155" y="-93" width="460" height="71"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="justified" id="Utm-57-V6S">
                                                 <font key="font" metaFont="system"/>
                                                 <string key="title">Get the latest version of Erlang/OTP as soon as it's out.  Erlang Solutions provides up to date Erlang/OTP packages the day after release.</string>
@@ -146,7 +145,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pwn-pa-tjD">
-                                            <rect key="frame" x="343" y="225" width="246" height="17"/>
+                                            <rect key="frame" x="343" y="-110" width="246" height="17"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Version 0.4 Build 3" id="WJa-Ub-8qP">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -187,7 +186,7 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                 <prototypeCellViews>
-                                                                    <tableCellView id="7WG-kl-7ZN" customClass="ReleaseTableCell" customModule="ErlangInstallerPreferences" customModuleProvider="target">
+                                                                    <tableCellView id="7WG-kl-7ZN" customClass="ReleaseTableCell" customModule="ErlangInstaller" customModuleProvider="target">
                                                                         <rect key="frame" x="1" y="10" width="583" height="22"/>
                                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                         <subviews>
@@ -311,7 +310,7 @@ Gw
             </view>
             <point key="canvasLocation" x="323" y="268.5"/>
         </window>
-        <customObject id="rl2-TB-8Bg" customClass="ReleasesTableViewDelegate" customModule="ErlangInstallerPreferences" customModuleProvider="target">
+        <customObject id="rl2-TB-8Bg" customClass="ReleasesTableViewDelegate" customModule="ErlangInstaller" customModuleProvider="target">
             <connections>
                 <outlet property="preferencesPane" destination="-2" id="BXJ-By-IfV"/>
             </connections>

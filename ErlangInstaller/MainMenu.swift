@@ -28,16 +28,10 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
     }
 	
     @IBAction func showPreferencesPane(sender: AnyObject) {
-        let systemPreferencesApp = SBApplication(bundleIdentifier: Constants.SystemPreferencesId) as! SystemPreferencesApplication
-        let pane = findPreferencePane(systemPreferencesApp)
+			let preferencesWindow =  ErlangInstallerPreferences.init()
+				preferencesWindow.showWindow(nil)
 		
-        if (pane == nil) {
-            installPreferenecesPane()
-        } else {
-            systemPreferencesApp.setCurrentPane!(pane)
-            systemPreferencesApp.activate()
-        }
-    }
+	}
 	
 	func showPopover(sender: AnyObject?) {
 		if let button = statusItem!.button {
@@ -87,26 +81,16 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
             releasesAnchor?.reveal!()
         }
     }
-    
-    func findPreferencePane(systemPreferencesApp: SystemPreferencesApplication) -> SystemPreferencesPane? {
-        let panes = systemPreferencesApp.panes!() as NSArray as! [SystemPreferencesPane]
-        let pane = panes.filter { (pane) -> Bool in
-            pane.id!().containsString(Constants.ErlangInstallerPreferencesId)
-            }.first
-        
-        return pane
-    }
-    
-    func installPreferenecesPane() {
-        let fileManager = NSFileManager.defaultManager()
-        let path = NSBundle.mainBundle().pathForResource("ErlangInstallerPreferences", ofType: "prefPane")
-        let destinationUrl = Utils.preferencePanesUrl("ErlangInstallerPreferences.prefPane")
-        if(!Utils.fileExists(destinationUrl)) {
-            try! fileManager.copyItemAtPath(path!, toPath: destinationUrl!.path!)
-        }
-        NSWorkspace.sharedWorkspace().openFile(destinationUrl!.path!)
-    }
-    
+	
+	func findPreferencePane(systemPreferencesApp: SystemPreferencesApplication) -> SystemPreferencesPane? {
+		let panes = systemPreferencesApp.panes!() as NSArray as! [SystemPreferencesPane]
+		let pane = panes.filter { (pane) -> Bool in
+			pane.id!().containsString(Constants.ErlangInstallerPreferencesId)
+			}.first
+		
+		return pane
+	}
+	
     func listenNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainMenu.handleLoadReleases(_:)), name: "loadReleases", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainMenu.handleScheduleCheckNewReleases(_:)), name: "loadReleases", object: nil)
