@@ -31,7 +31,6 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 	override var windowNibName : String! {
 		return "ErlangInstallerPreferences"
 	}
-
 	init() {
 		self.init(windowNibName: "ErlangInstallerPreferences")
 	}
@@ -41,24 +40,29 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 	}
 
 	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+		super.init(coder: coder)
 	}
 	
     override func windowDidLoad() {
 		super.windowDidLoad()
-		if let window = window, screen = window.screen {
-			let offsetFromLeftOfScreen: CGFloat = 20
-			let offsetFromTopOfScreen: CGFloat = 20
+		
+		if let window = self.window, screen = window.screen {
+			
+			let offsetFromLeftOfScreen: CGFloat = 200
+			let offsetFromTopOfScreen: CGFloat = 200
 			let screenRect = screen.visibleFrame
 			let newOriginY = screenRect.origin.y + screenRect.height - window.frame.height
 				- offsetFromTopOfScreen
 			window.setFrameOrigin(NSPoint(x: offsetFromLeftOfScreen, y: newOriginY))
+			window.makeKeyAndOrderFront(window)
+			
 		}
 
         self.erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId)
         reloadReleases()
        	self.loadVersionAndBuildNumber()
         self.checkForFileUpdate()
+		
     }
 	
 	func loadVersionAndBuildNumber() {

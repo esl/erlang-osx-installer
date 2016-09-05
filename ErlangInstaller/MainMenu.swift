@@ -29,7 +29,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
 	
     @IBAction func showPreferencesPane(sender: AnyObject) {
 			let preferencesWindow =  ErlangInstallerPreferences.init()
-				preferencesWindow.showWindow(nil)
+				preferencesWindow.showWindow(self)
 		
 	}
 	

@@ -9,10 +9,8 @@
                 <outlet property="_window" destination="F0z-JX-Cv5" id="tdy-t6-CPj"/>
                 <outlet property="checkForNewReleases" destination="rXW-MG-Mq9" id="t7t-FT-6Yl"/>
                 <outlet property="defaultRelease" destination="0vL-oT-mPd" id="j8H-It-Kyd"/>
-                <outlet property="localMainView" destination="se5-gp-TjO" id="y77-e4-OFJ"/>
                 <outlet property="openAtLogin" destination="ETy-cF-thk" id="CBb-qV-gQA"/>
                 <outlet property="releasesTableView" destination="qaO-UW-18W" id="WnM-fP-Gfi"/>
-                <outlet property="tabView" destination="oBV-No-0bi" id="3yq-i8-2Tl"/>
                 <outlet property="terminalApplication" destination="wnn-Sc-k8q" id="t8z-Vm-c96"/>
                 <outlet property="versionAndBuildNumber" destination="pwn-pa-tjD" id="gdL-P0-qTp"/>
             </connections>
@@ -315,6 +313,7 @@ Gw
                 <outlet property="preferencesPane" destination="-2" id="BXJ-By-IfV"/>
             </connections>
         </customObject>
+        <viewController id="cY3-un-JOe"/>
     </objects>
     <resources>
         <image name="erlang-solutions" width="128" height="128"/>
