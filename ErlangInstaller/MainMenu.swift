@@ -73,23 +73,25 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
     
     @IBAction func downloadInstallRelease(sender: AnyObject) {
         showPreferencesPane(sender)
-        let systemPreferencesApp = SBApplication(bundleIdentifier: Constants.SystemPreferencesId) as! SystemPreferencesApplication
-        if let pane = findPreferencePane(systemPreferencesApp)
-        {
-            let anchors = pane.anchors!()
-            let releasesAnchor = anchors.filter({ $0.name == "releases" }).first
-            releasesAnchor?.reveal!()
-        }
+		// FIXME: get releases from the pane
+//        let systemPreferencesApp = SBApplication(bundleIdentifier: Constants.SystemPreferencesId) as! SystemPreferencesApplication
+//        if let pane = findPreferencePane(systemPreferencesApp)
+//        {
+//            let anchors = pane.anchors!()
+//            let releasesAnchor = anchors.filter({ $0.name == "releases" }).first
+//            releasesAnchor?.reveal!()
+//        }
     }
 	
-	func findPreferencePane(systemPreferencesApp: SystemPreferencesApplication) -> SystemPreferencesPane? {
-		let panes = systemPreferencesApp.panes!() as NSArray as! [SystemPreferencesPane]
-		let pane = panes.filter { (pane) -> Bool in
-			pane.id!().containsString(Constants.ErlangInstallerPreferencesId)
-			}.first
-		
-		return pane
-	}
+	// FIXME: get releases from the pane
+//	func findPreferencePane(systemPreferencesApp: SystemPreferencesApplication) -> SystemPreferencesPane? {
+//		let panes = systemPreferencesApp.panes!() as NSArray as! [SystemPreferencesPane]
+//		let pane = panes.filter { (pane) -> Bool in
+//			pane.id!().containsString(Constants.ErlangInstallerPreferencesId)
+//			}.first
+//		
+//		return pane
+//	}
 	
     func listenNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainMenu.handleLoadReleases(_:)), name: "loadReleases", object: nil)

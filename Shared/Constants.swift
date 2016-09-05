@@ -13,7 +13,7 @@ class ConstantsLoader {
     {
         let bundle = NSBundle.mainBundle()
         
-        if(bundle.bundleIdentifier == Constants.ErlangInstallerPreferencesId || bundle.bundleIdentifier == Constants.applicationId)
+        if(bundle.bundleIdentifier == Constants.applicationId)
         {
             return bundle
         }
@@ -21,14 +21,14 @@ class ConstantsLoader {
         {
             let bundles = NSBundle.allBundles()
             
-            let filteredBundles = bundles.filter({ (bundle: NSBundle) -> Bool in
-                return bundle.bundleIdentifier == Constants.ErlangInstallerPreferencesId
-            })
-            
-            if(filteredBundles.count > 0)
-            {
-                return filteredBundles.first
-            }
+//            let filteredBundles = bundles.filter({ (bundle: NSBundle) -> Bool in
+//                return bundle.bundleIdentifier == Constants.ErlangInstallerPreferencesId
+//            })
+			
+//            if(filteredBundles.count > 0)
+//            {
+//                return filteredBundles.first
+//            }
         }
         
         return nil
@@ -47,7 +47,6 @@ class ConstantsLoader {
         
         return nil
     }
-
 }
 
 class Constants {
@@ -55,8 +54,6 @@ class Constants {
     static let BaseTarballsUrl = ConstantsLoader.getUrl("BaseTarballUrl")
     static let ReleasesJSONFilename = "available-releases.json"
     static let applicationId = "com.erlang-solutions.ErlangInstaller"
-    static let SystemPreferencesId = "com.apple.systempreferences"
-    static let ErlangInstallerPreferencesId = "com.erlang-solutions.ErlangInstallerPreferences"
     
     // Package installation
     static let ErlangEslInstallationDir = NSURL(fileURLWithPath: "/usr/local/lib/erlang/")
