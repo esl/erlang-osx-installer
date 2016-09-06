@@ -32,8 +32,8 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 		return "ErlangInstallerPreferences"
 	}
 	init() {
-		 super.init(window: nil)
-		 NSBundle.mainBundle().loadNibNamed("ErlangInstallerPreferences", owner: self, topLevelObjects: nil)
+		super.init(window: nil)
+		NSBundle.mainBundle().loadNibNamed("ErlangInstallerPreferences", owner: self, topLevelObjects: nil)
 		if let window = self.window, screen = window.screen {
 			
 			let offsetFromLeftOfScreen: CGFloat = 200
@@ -82,8 +82,6 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as? String
 		let build = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String
 		self.versionAndBuildNumber.stringValue = "Version " + version! + " Build " + build!
-		// FIXME: Currently the panel pref file is not updating the string. This can be fixed when issue #88 is implemented. 
-		self.versionAndBuildNumber.hidden = true
 	}
 	
     func checkForFileUpdate()
