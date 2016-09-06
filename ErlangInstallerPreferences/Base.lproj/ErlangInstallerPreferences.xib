@@ -12,6 +12,7 @@
                 <outlet property="localMainView" destination="se5-gp-TjO" id="Fh7-FD-jyb"/>
                 <outlet property="openAtLogin" destination="ETy-cF-thk" id="CBb-qV-gQA"/>
                 <outlet property="releasesTableView" destination="qaO-UW-18W" id="WnM-fP-Gfi"/>
+                <outlet property="tabView" destination="oBV-No-0bi" id="RK5-om-Rgp"/>
                 <outlet property="terminalApplication" destination="wnn-Sc-k8q" id="t8z-Vm-c96"/>
                 <outlet property="versionAndBuildNumber" destination="pwn-pa-tjD" id="gdL-P0-qTp"/>
             </connections>

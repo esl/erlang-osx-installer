@@ -33,6 +33,15 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
 		
 	}
 	
+	func showPreferencesPaneAndOpenReleasesTab(sender: AnyObject) {
+		let preferencesWindow =  ErlangInstallerPreferences.init()
+		preferencesWindow.showWindow(self)
+		
+		if let tabView = preferencesWindow.tabView {
+			tabView.selectNextTabViewItem(sender)
+		}
+	}
+	
 	func showPopover(sender: AnyObject?) {
 		if let button = statusItem!.button {
 			popover.showRelativeToRect(button.bounds, ofView: button, preferredEdge: NSRectEdge.MinY)
@@ -72,8 +81,9 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
     }
     
     @IBAction func downloadInstallRelease(sender: AnyObject) {
-        showPreferencesPane(sender)
-		// FIXME: get releases from the pane
+        self.showPreferencesPaneAndOpenReleasesTab(sender)
+		
+		// FIXME: get releases from the list of available 
 //        let systemPreferencesApp = SBApplication(bundleIdentifier: Constants.SystemPreferencesId) as! SystemPreferencesApplication
 //        if let pane = findPreferencePane(systemPreferencesApp)
 //        {
