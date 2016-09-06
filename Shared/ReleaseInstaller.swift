@@ -87,7 +87,7 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         
         self.installTask = NSTask()
         self.installTask?.launchPath = self.releaseDir?.URLByAppendingPathComponent("Install").path
-        self.installTask?.arguments = ["-minimal", (self.releaseDir?.path)!]
+        self.installTask?.arguments = ["-sasl", (self.releaseDir?.path)!]
         self.installTask?.terminationHandler =  { (_: NSTask) -> Void in
             self.run() {
                 self.done()
