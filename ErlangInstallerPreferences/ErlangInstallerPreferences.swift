@@ -32,20 +32,8 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 		return "ErlangInstallerPreferences"
 	}
 	init() {
-		self.init(windowNibName: "ErlangInstallerPreferences")
-	}
-	override init(window: NSWindow!)
-	{
-		super.init(window: window)
-	}
-
-	required init?(coder: NSCoder) {
-		super.init(coder: coder)
-	}
-	
-    override func windowDidLoad() {
-		super.windowDidLoad()
-		
+		 super.init(window: nil)
+		 NSBundle.mainBundle().loadNibNamed("ErlangInstallerPreferences", owner: self, topLevelObjects: nil)
 		if let window = self.window, screen = window.screen {
 			
 			let offsetFromLeftOfScreen: CGFloat = 200
@@ -57,6 +45,31 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 			window.makeKeyAndOrderFront(window)
 			
 		}
+	}
+	
+	override init(window: NSWindow!)
+	{
+		super.init(window: window)
+		if let window = self.window, screen = window.screen {
+			
+			let offsetFromLeftOfScreen: CGFloat = 200
+			let offsetFromTopOfScreen: CGFloat = 200
+			let screenRect = screen.visibleFrame
+			let newOriginY = screenRect.origin.y + screenRect.height - window.frame.height
+				- offsetFromTopOfScreen
+			window.setFrameOrigin(NSPoint(x: offsetFromLeftOfScreen, y: newOriginY))
+			window.makeKeyAndOrderFront(window)
+			
+		}
+	}
+
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+	}
+	
+    override func windowDidLoad() {
+		super.windowDidLoad()
+		
 
         self.erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId)
         reloadReleases()
