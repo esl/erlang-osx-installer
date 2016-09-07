@@ -151,10 +151,11 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
         self.erlangInstallerApp?.checkNewReleases!()
     }
 
-    @IBAction func openAtLoginClick(sender: AnyObject) {
-//			if !SMLoginItemSetEnabled(("com.erlang-solutions.ErlangInstaller-Helper" as CFString), Bool(sender.state)) {
-//				print("Setting as login item was not successful")
-//			}
+	@IBAction func openAtLoginClick(sender: AnyObject) {
+		// FIXME: sub project not necessary when this is fixed.
+		//			if !SMLoginItemSetEnabled(("com.erlang-solutions.ErlangInstaller-Helper" as CFString), Bool(sender.state)) {
+		//				print("Setting as login item was not successful")
+		//			}
         UserDefaults.openAtLogin = self.openAtLogin.state == 1
         let url = NSWorkspace.sharedWorkspace().URLForApplicationWithBundleIdentifier(Constants.applicationId)
         Utils.setLaunchAtLogin(url!, enabled: UserDefaults.openAtLogin)
