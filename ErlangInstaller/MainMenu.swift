@@ -32,7 +32,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
 				 preferencesWindow.showWindow(self)
 		
 		if let tabView = preferencesWindow.tabView {
-			tabView.selectFirstTabViewItem(sender)
+			tabView.selectTabViewItemWithIdentifier("erlang")
 		}
 		
 	}
@@ -42,7 +42,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
 		preferencesWindow.showWindow(self)
 		
 		if let tabView = preferencesWindow.tabView {
-			tabView.selectNextTabViewItem(sender)
+			tabView.selectTabViewItemWithIdentifier("releases")
 		}
 	}
 	
