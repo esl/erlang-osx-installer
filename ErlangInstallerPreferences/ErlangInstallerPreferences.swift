@@ -38,7 +38,7 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 	init() {
 		super.init(window: nil)
 		NSBundle.mainBundle().loadNibNamed("ErlangInstallerPreferences", owner: self, topLevelObjects: nil)
-		if let window = self.window, screen = window.screen {
+		if let window = self._window, screen = window.screen {
 			
 			let offsetFromLeftOfScreen: CGFloat = 200
 			let offsetFromTopOfScreen: CGFloat = 200
@@ -47,7 +47,7 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 				- offsetFromTopOfScreen
 			window.setFrameOrigin(NSPoint(x: offsetFromLeftOfScreen, y: newOriginY))
 			window.makeKeyAndOrderFront(window)
-			
+			window.releasedWhenClosed = false
 		}
 	}
 	
@@ -62,8 +62,7 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 			let newOriginY = screenRect.origin.y + screenRect.height - window.frame.height
 				- offsetFromTopOfScreen
 			window.setFrameOrigin(NSPoint(x: offsetFromLeftOfScreen, y: newOriginY))
-			window.makeKeyAndOrderFront(window)
-			
+			window.releasedWhenClosed = false
 		}
 	}
 
@@ -71,6 +70,12 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 		super.init(coder: coder)
 	}
 	
+	override func showWindow(sender: AnyObject?) {
+	super.showWindow(sender)
+		if let window = self._window {
+		window.makeKeyAndOrderFront(window)
+		}
+	}
     override func windowDidLoad() {
 		super.windowDidLoad()
 		
@@ -82,6 +87,7 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
         self.checkForFileUpdate()
 		
     }
+
 	
 	func loadVersionAndBuildNumber() {
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as? String
