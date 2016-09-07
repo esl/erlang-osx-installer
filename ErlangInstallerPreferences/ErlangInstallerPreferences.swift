@@ -11,12 +11,14 @@ import CoreFoundation
 import ScriptingBridge
 
 class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
-    private var erlangInstallerApp: ErlangInstallerApplication?
+	static internal let sharedInstance = ErlangInstallerPreferences()
+
+	private var erlangInstallerApp: ErlangInstallerApplication?
 	
     @IBOutlet var _window: NSWindow!
-    
+	
     @IBOutlet weak var localMainView: NSView!
-    
+	
     @IBOutlet weak var tabView: NSTabView!
     @IBOutlet weak var openAtLogin: NSButton!
 	@IBOutlet weak var checkForNewReleases: NSButton!
@@ -27,10 +29,11 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 	
     private var queue: dispatch_queue_t?
     private var source: dispatch_source_t?
-    
+	
 	override var windowNibName : String! {
 		return "ErlangInstallerPreferences"
 	}
+	
 	init() {
 		super.init(window: nil)
 		NSBundle.mainBundle().loadNibNamed("ErlangInstallerPreferences", owner: self, topLevelObjects: nil)
@@ -70,6 +73,7 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
     override func windowDidLoad() {
 		super.windowDidLoad()
 		
+		// FIXME: store & recall the last position self.windowFrameAutosaveName = "ErlangInstallerPreferencesPosition"
 
         self.erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId)
         reloadReleases()

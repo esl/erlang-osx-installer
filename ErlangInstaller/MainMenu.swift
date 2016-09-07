@@ -28,13 +28,17 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
     }
 	
     @IBAction func showPreferencesPane(sender: AnyObject) {
-			let preferencesWindow =  ErlangInstallerPreferences.init()
-				preferencesWindow.showWindow(self)
+			let preferencesWindow =  ErlangInstallerPreferences.sharedInstance
+				 preferencesWindow.showWindow(self)
+		
+		if let tabView = preferencesWindow.tabView {
+			tabView.selectFirstTabViewItem(sender)
+		}
 		
 	}
 	
 	func showPreferencesPaneAndOpenReleasesTab(sender: AnyObject) {
-		let preferencesWindow =  ErlangInstallerPreferences.init()
+		let preferencesWindow =  ErlangInstallerPreferences.sharedInstance
 		preferencesWindow.showWindow(self)
 		
 		if let tabView = preferencesWindow.tabView {
