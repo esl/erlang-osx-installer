@@ -9,6 +9,7 @@
 import PreferencePanes
 import CoreFoundation
 import ScriptingBridge
+import ServiceManagement
 
 class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 	static internal let sharedInstance = ErlangInstallerPreferences()
@@ -151,6 +152,9 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
     }
 
     @IBAction func openAtLoginClick(sender: AnyObject) {
+//			if !SMLoginItemSetEnabled(("com.erlang-solutions.ErlangInstaller-Helper" as CFString), Bool(sender.state)) {
+//				print("Setting as login item was not successful")
+//			}
         UserDefaults.openAtLogin = self.openAtLogin.state == 1
         let url = NSWorkspace.sharedWorkspace().URLForApplicationWithBundleIdentifier(Constants.applicationId)
         Utils.setLaunchAtLogin(url!, enabled: UserDefaults.openAtLogin)
