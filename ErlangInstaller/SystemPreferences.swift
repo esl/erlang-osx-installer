@@ -5,11 +5,6 @@ import ScriptingBridge
     func get() -> AnyObject!
 }
 
-@objc public protocol SBApplicationProtocol: SBObjectProtocol {
-    func activate()
-    var delegate: SBApplicationDelegate! { get set }
-}
-
 // MARK: SystemPreferencesSaveOptions
 @objc public enum SystemPreferencesSaveOptions : AEKeyword {
     case Yes = 0x79657320 /* 'yes ' */
@@ -80,7 +75,7 @@ extension SBObject: SystemPreferencesDocument {}
 extension SBObject: SystemPreferencesWindow {}
 
 // MARK: SystemPreferencesPane
-@objc public protocol SystemPreferencesPane: SBObjectProtocol, SystemPreferencesGenericMethods {
+@objc public protocol SystemPreferencesPane: SBObjectProtocol { // FIXME: SystemPreferencesGenericMethods 
     optional func anchors() -> SBElementArray
     optional func id() -> String // locale independent name of the preference pane; can refer to a pane using the expression: pane id "<name>"
     optional var localizedName: String { get } // localized name of the preference pane

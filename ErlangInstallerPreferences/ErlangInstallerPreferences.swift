@@ -9,42 +9,90 @@
 import PreferencePanes
 import CoreFoundation
 import ScriptingBridge
+import ServiceManagement
 
-class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
-    private var erlangInstallerApp: ErlangInstallerApplication?
+class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
+	static internal let sharedInstance = ErlangInstallerPreferences()
+
+	private var erlangInstallerApp: ErlangInstallerApplication?
 	
     @IBOutlet var _window: NSWindow!
-    
+	
     @IBOutlet weak var localMainView: NSView!
-    
+	
     @IBOutlet weak var tabView: NSTabView!
     @IBOutlet weak var openAtLogin: NSButton!
-    @IBOutlet weak var checkForNewReleases: NSButton!
+	@IBOutlet weak var checkForNewReleases: NSButton!
     @IBOutlet weak var defaultRelease: NSComboBox!
     @IBOutlet weak var terminalApplication: NSComboBox!
     @IBOutlet weak var releasesTableView: NSTableView!
 	@IBOutlet weak var versionAndBuildNumber: NSTextField! // TODO Check align when adding the new description text.
-
+	
     private var queue: dispatch_queue_t?
     private var source: dispatch_source_t?
-    
-    override func assignMainView() {
-        self.mainView = self.localMainView
-    }
+	
+	override var windowNibName : String! {
+		return "ErlangInstallerPreferences"
+	}
+	
+	init() {
+		super.init(window: nil)
+		NSBundle.mainBundle().loadNibNamed("ErlangInstallerPreferences", owner: self, topLevelObjects: nil)
+		if let window = self._window, screen = window.screen {
+			
+			let offsetFromLeftOfScreen: CGFloat = 200
+			let offsetFromTopOfScreen: CGFloat = 200
+			let screenRect = screen.visibleFrame
+			let newOriginY = screenRect.origin.y + screenRect.height - window.frame.height
+				- offsetFromTopOfScreen
+			window.setFrameOrigin(NSPoint(x: offsetFromLeftOfScreen, y: newOriginY))
+			window.makeKeyAndOrderFront(window)
+			window.releasedWhenClosed = false
+		}
+	}
+	
+	override init(window: NSWindow!)
+	{
+		super.init(window: window)
+		if let window = self.window, screen = window.screen {
+			
+			let offsetFromLeftOfScreen: CGFloat = 200
+			let offsetFromTopOfScreen: CGFloat = 200
+			let screenRect = screen.visibleFrame
+			let newOriginY = screenRect.origin.y + screenRect.height - window.frame.height
+				- offsetFromTopOfScreen
+			window.setFrameOrigin(NSPoint(x: offsetFromLeftOfScreen, y: newOriginY))
+			window.releasedWhenClosed = false
+		}
+	}
 
-    override func mainViewDidLoad() {
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+	}
+	
+	override func showWindow(sender: AnyObject?) {
+	super.showWindow(sender)
+		if let window = self._window {
+		window.makeKeyAndOrderFront(window)
+		}
+	}
+    override func windowDidLoad() {
+		super.windowDidLoad()
+		
+		// FIXME: store & recall the last position self.windowFrameAutosaveName = "ErlangInstallerPreferencesPosition"
+
         self.erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId)
         reloadReleases()
        	self.loadVersionAndBuildNumber()
         self.checkForFileUpdate()
+		
     }
+
 	
 	func loadVersionAndBuildNumber() {
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as? String
 		let build = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String
 		self.versionAndBuildNumber.stringValue = "Version " + version! + " Build " + build!
-		// FIXME: Currently the panel pref file is not updating the string. This can be fixed when issue #88 is implemented. 
-		self.versionAndBuildNumber.hidden = true
 	}
 	
     func checkForFileUpdate()
@@ -60,8 +108,7 @@ class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
                 dispatch_async(dispatch_get_main_queue()) {
                     self.reloadReleases()
                 }
-                
-                close(file)
+					self.close() // FIXME revise close to a specific file
                 let reload = dispatch_time(DISPATCH_TIME_NOW, 1);
                 dispatch_after(reload, self.queue!, {
                     dispatch_source_cancel(self.source!)
@@ -110,7 +157,11 @@ class ErlangInstallerPreferences: NSPreferencePane, refreshPreferences{
         self.erlangInstallerApp?.checkNewReleases!()
     }
 
-    @IBAction func openAtLoginClick(sender: AnyObject) {
+	@IBAction func openAtLoginClick(sender: AnyObject) {
+		// FIXME: sub project not necessary when this is fixed.
+		//			if !SMLoginItemSetEnabled(("com.erlang-solutions.ErlangInstaller-Helper" as CFString), Bool(sender.state)) {
+		//				print("Setting as login item was not successful")
+		//			}
         UserDefaults.openAtLogin = self.openAtLogin.state == 1
         let url = NSWorkspace.sharedWorkspace().URLForApplicationWithBundleIdentifier(Constants.applicationId)
         Utils.setLaunchAtLogin(url!, enabled: UserDefaults.openAtLogin)

@@ -73,30 +73,32 @@ class Utils {
     static func log(message: String) {
         NSLog("%@", message)
     }
-    
-    static func resourceAvailable(url: NSURL?, successHandler: () -> Void, errorHandler: (error: NSError?) -> Void) {
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "HEAD"
-        request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalAndRemoteCacheData
-        request.timeoutInterval = 10.0
-        
-        let completionHandler = { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
-            var status = false
-            if let httpResponse = response as? NSHTTPURLResponse {
-                if httpResponse.statusCode == 200 {
-                    status = true
-                }
-            }
-            if(status) {
-                successHandler()
-            } else {
-                errorHandler(error: error)
-            }
-        }
-
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: completionHandler)
-    }
-    
+	
+	static func resourceAvailable(url: NSURL?, successHandler: () -> Void, errorHandler: (error: NSError?) -> Void) {
+		if let url = url {
+			let request = NSMutableURLRequest(URL: url)
+			request.HTTPMethod = "HEAD"
+			request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalAndRemoteCacheData
+			request.timeoutInterval = 10.0
+			
+			let completionHandler = { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+				var status = false
+				if let httpResponse = response as? NSHTTPURLResponse {
+					if httpResponse.statusCode == 200 {
+						status = true
+					}
+				}
+				if(status) {
+					successHandler()
+				} else {
+					errorHandler(error: error)
+				}
+			}
+			
+			NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: completionHandler)
+		}
+	}
+	
     static func notifyNewReleases(delegate: NSUserNotificationCenterDelegate, release: Release) {
         let notification = NSUserNotification()
         notification.title = "There's a new Erlang release!"
