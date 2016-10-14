@@ -89,7 +89,11 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         self.installTask?.launchPath = self.releaseDir?.URLByAppendingPathComponent("Install").path
         self.installTask?.arguments = ["-sasl", (self.releaseDir?.path)!]
         self.installTask?.terminationHandler =  { (_: NSTask) -> Void in
+            
             self.run() {
+                UserDefaults.defaultRelease = self.release.name
+                try! ReleaseManager.makeSymbolicLinks(self.release)
+
                 self.done()
             }
         }
@@ -97,11 +101,11 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
     }
     
     private func done() {
-        runInMain() {
-			UserDefaults.defaultRelease = self.release.name
-			self.progress.finished()
-		}
-        
+        self.runInMain() {
+            
+            self.progress.finished()
+        }
+
         self.urlConnection = nil
         self.extractTask = nil
         self.data = nil

@@ -50,8 +50,8 @@ class ReleaseManager: NSObject {
                 newReleases.append(latestReleases[name]!)
             }
 
-                manager._releases = latestReleases
-                try! manager.save(content)
+            manager._releases = latestReleases
+            try! manager.save(content)
 
             successHandler(newReleases)
         }
@@ -91,6 +91,23 @@ class ReleaseManager: NSObject {
         self.fetch() { (content: String) -> Void in
             try! self.save(content)
             successHandler()
+        }
+    }
+    
+    static func makeSymbolicLinks(release: Release) throws
+    {
+        let fileManager = NSFileManager.defaultManager()
+        let filesToLink = ["erl","erlc","escript"]
+        
+        filesToLink.forEach
+        {
+            let destination = "/usr/local/bin/" + $0
+            if(fileManager.fileExistsAtPath(destination))
+            {
+               try! fileManager.removeItemAtPath(destination);
+            }
+            
+            try! fileManager.createSymbolicLinkAtPath(destination, withDestinationPath: release.binPath + "/" + $0)
         }
     }
 
