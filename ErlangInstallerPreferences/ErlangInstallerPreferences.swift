@@ -85,10 +85,8 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
         reloadReleases()
        	self.loadVersionAndBuildNumber()
         self.checkForFileUpdate()
-		
     }
 
-	
 	func loadVersionAndBuildNumber() {
 		let version = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as? String
 		let build = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String
@@ -174,6 +172,10 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 	
     @IBAction func defaultReleaseSelection(sender: AnyObject) {
         UserDefaults.defaultRelease = self.defaultRelease.selectedCell()!.title
+        
+        let selectedRelease = ReleaseManager.releases[UserDefaults.defaultRelease!]
+        try! ReleaseManager.makeSymbolicLinks(selectedRelease!)
+        
         self.updateReleasesForAgent()
 		self.releasesTableView.reloadData()
     }
