@@ -31,14 +31,17 @@ class Utils {
 
     static func supportResourceUrl(name : String) -> NSURL? {
         let fileManager = NSFileManager.defaultManager()
-        let appSupportUrl = fileManager.URLsForDirectory(.ApplicationSupportDirectory, inDomains: .UserDomainMask).first
-        return NSURL(string: "ErlangInstaller/" + name, relativeToURL:  appSupportUrl)
+        let appSupportUrl = fileManager.URLsForDirectory(.ApplicationDirectory, inDomains: .UserDomainMask).first
+        let urlname = "Erlang/" + name;
+        let url = NSURL(string: urlname.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())! , relativeToURL:  appSupportUrl);
+        
+        return url;
     }
     
     static func preferencePanesUrl(name : String) -> NSURL? {
         let fileManager = NSFileManager.defaultManager()
         let appSupportUrl = fileManager.URLsForDirectory(.PreferencePanesDirectory, inDomains: .UserDomainMask).first
-        return NSURL(string: name, relativeToURL:  appSupportUrl)
+        return NSURL(string: name.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())!, relativeToURL:  appSupportUrl)
     }
 
     static func fileExists(url : NSURL?) -> Bool {
