@@ -19,6 +19,8 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
 	
 	private var statusItem : NSStatusItem?
     private var timer : NSTimer?
+    
+    var preferencesWindow: ErlangInstallerPreferences?
 	
     @IBOutlet weak var erlangTerminalDefault: NSMenuItem!
     @IBOutlet weak var erlangTerminals: NSMenuItem!
@@ -28,24 +30,21 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
     }
 	
     @IBAction func showPreferencesPane(sender: AnyObject) {
-        let preferencesWindow =  ErlangInstallerPreferences.sharedInstance
-             preferencesWindow.showWindow(self)
-		
-		if let tabView = preferencesWindow.tabView {
-			tabView.selectTabViewItemWithIdentifier("erlang")
-		}
-		
+        self.showNewPreferencesPane(selectingTabWithIdentifier: "erlang")
 	}
 	
 	func showPreferencesPaneAndOpenReleasesTab(sender: AnyObject) {
-		let preferencesWindow =  ErlangInstallerPreferences.sharedInstance
-		preferencesWindow.showWindow(self)
-		
-		if let tabView = preferencesWindow.tabView {
-			tabView.selectTabViewItemWithIdentifier("releases")
-		}
+		self.showNewPreferencesPane(selectingTabWithIdentifier: "releases")
 	}
 	
+    func showNewPreferencesPane(selectingTabWithIdentifier identifier: String? = nil) {
+        self.preferencesWindow = ErlangInstallerPreferences()
+        self.preferencesWindow!.showWindow(self)
+        if let tabView = self.preferencesWindow!.tabView, let itemIdentifier = identifier {
+            tabView.selectTabViewItemWithIdentifier(itemIdentifier)
+        }
+    }
+    
 	func showPopover(sender: AnyObject?) {
 		if let button = statusItem!.button {
 			popover.showRelativeToRect(button.bounds, ofView: button, preferredEdge: NSRectEdge.MinY)
