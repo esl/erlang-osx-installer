@@ -12,7 +12,6 @@ import ScriptingBridge
 import ServiceManagement
 
 class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
-	static internal let sharedInstance = ErlangInstallerPreferences()
 
 	private var erlangInstallerApp: ErlangInstallerApplication?
 	
