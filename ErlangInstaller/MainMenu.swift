@@ -19,6 +19,8 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
 	
 	private var statusItem : NSStatusItem?
     private var timer : NSTimer?
+    
+    let preferencesWindow = ErlangInstallerPreferences.sharedInstance
 	
     @IBOutlet weak var erlangTerminalDefault: NSMenuItem!
     @IBOutlet weak var erlangTerminals: NSMenuItem!
@@ -28,10 +30,9 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
     }
 	
     @IBAction func showPreferencesPane(sender: AnyObject) {
-        let preferencesWindow =  ErlangInstallerPreferences.sharedInstance
-             preferencesWindow.showWindow(self)
-		
-		if let tabView = preferencesWindow.tabView {
+        self.preferencesWindow.showWindow(self)
+        
+        if let tabView = self.preferencesWindow.tabView {
 			tabView.selectTabViewItemWithIdentifier("erlang")
 		}
 		
