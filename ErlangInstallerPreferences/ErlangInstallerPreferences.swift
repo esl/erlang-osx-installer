@@ -74,6 +74,7 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 	super.showWindow(sender)
 		if let window = self._window {
 		window.makeKeyAndOrderFront(window)
+        window.orderFrontRegardless()
 		}
 	}
     override func windowDidLoad() {
@@ -171,13 +172,20 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
     }
 	
     @IBAction func defaultReleaseSelection(sender: AnyObject) {
-        UserDefaults.defaultRelease = self.defaultRelease.selectedCell()!.title
-        
-        let selectedRelease = ReleaseManager.releases[UserDefaults.defaultRelease!]
-        try! ReleaseManager.makeSymbolicLinks(selectedRelease!)
-        
-        self.updateReleasesForAgent()
-		self.releasesTableView.reloadData()
+        do {
+            UserDefaults.defaultRelease = self.defaultRelease.selectedCell()!.title
+            
+            let selectedRelease = ReleaseManager.releases[UserDefaults.defaultRelease!]
+            try ReleaseManager.makeSymbolicLinks(selectedRelease!)
+            
+            self.updateReleasesForAgent()
+            self.releasesTableView.reloadData()
+        }
+        catch let error as NSError
+        {
+            Utils.alert(error.localizedDescription)
+            NSLog("Creating Symbolic links failed: \(error.debugDescription)")
+        }
     }
     
     @IBAction func terminalAppSelection(sender: AnyObject) {
