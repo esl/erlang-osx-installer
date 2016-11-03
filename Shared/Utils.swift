@@ -53,10 +53,10 @@ class Utils {
             let fileManager = NSFileManager.defaultManager()
             do {
                 try fileManager.removeItemAtURL(url)
-            } catch {
+            } catch let error as NSError {
                 Utils.log("\(error)")
+                Utils.alert(error.localizedDescription)
             }
-
         }
     }
 
@@ -84,7 +84,7 @@ class Utils {
 			request.cachePolicy = NSURLRequestCachePolicy.ReloadIgnoringLocalAndRemoteCacheData
 			request.timeoutInterval = 10.0
 			
-			let completionHandler = { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+			let completionHandler = { (response: NSURLResponse?, data: NSData?, err: NSError?) -> Void in
 				var status = false
 				if let httpResponse = response as? NSHTTPURLResponse {
 					if httpResponse.statusCode == 200 {
@@ -94,7 +94,7 @@ class Utils {
 				if(status) {
 					successHandler()
 				} else {
-					errorHandler(error: error)
+					errorHandler(error: err)
 				}
 			}
 			
@@ -119,44 +119,57 @@ class Utils {
     }
     
     static func maybeRemovePackageInstallation() {
-        let eslOtpVersionUrl = NSURL(string: "esl_otp_version", relativeToURL: Constants.ErlangEslInstallationDir)
+        do {
+            let eslOtpVersionUrl = NSURL(string: "esl_otp_version", relativeToURL: Constants.ErlangEslInstallationDir)
 
-        if !self.fileExists(eslOtpVersionUrl) {
-            return
-        }
-        
-        if !confirm("A deprecated ESL Erlang installation has been found. Do you want to uninstall it?") {
-            return
-        }
+            if !self.fileExists(eslOtpVersionUrl) {
+                return
+            }
+            
+            if !confirm("A deprecated ESL Erlang installation has been found. Do you want to uninstall it?") {
+                return
+            }
+            
+            var authRef: AuthorizationRef = nil
+            let authFlags = AuthorizationFlags.ExtendRights
+            let osStatus = AuthorizationCreate(nil, nil, authFlags, &authRef)
+            
+            if(osStatus == errAuthorizationSuccess) {
+                // Remove MacUpdaterSwift from the login items
+                let macUpdaterSwift = Constants.ErlangEslInstallationDir.URLByAppendingPathComponent("MacUpdaterSwift.app")
+                setLaunchAtLogin(macUpdaterSwift!, enabled: false)
 
-        // Remove MacUpdaterSwift from the login items
-        let macUpdaterSwift = Constants.ErlangEslInstallationDir.URLByAppendingPathComponent("MacUpdaterSwift.app")
-        setLaunchAtLogin(macUpdaterSwift, enabled: false)
-
-        // Remove EslErlangUpdater.app from the login items
-        let eslErlangUpdater = Constants.ErlangEslInstallationDir.URLByAppendingPathComponent("EslErlangUpdater.app")
-        setLaunchAtLogin(eslErlangUpdater, enabled: false)
-        
-        // Delete all symlinks to Erlang executables in /usr/local/bin
-        let fileManager = NSFileManager.defaultManager()
-        let localBinDir = "/usr/local/bin/"
-        let files = try! fileManager.contentsOfDirectoryAtPath(localBinDir)
-        for file in files {
-            let filePath = localBinDir + file
-            let attrs = try! fileManager.attributesOfItemAtPath(filePath)
-            if attrs[NSFileType] as? String == NSFileTypeSymbolicLink {
-                let dest = try! fileManager.destinationOfSymbolicLinkAtPath(filePath)
-                if(dest.hasPrefix("../lib/erlang/")) {
-                    delete(NSURL(fileURLWithPath: filePath))
+                // Remove EslErlangUpdater.app from the login items
+                let eslErlangUpdater = Constants.ErlangEslInstallationDir.URLByAppendingPathComponent("EslErlangUpdater.app")
+                setLaunchAtLogin(eslErlangUpdater!, enabled: false)
+                
+                // Delete all symlinks to Erlang executables in /usr/local/bin
+                let fileManager = NSFileManager.defaultManager()
+                let localBinDir = "/usr/local/bin/"
+                let files = try fileManager.contentsOfDirectoryAtPath(localBinDir)
+                for file in files {
+                    let filePath = localBinDir + file
+                    let attrs = try fileManager.attributesOfItemAtPath(filePath)
+                    if attrs[NSFileType] as? String == NSFileTypeSymbolicLink {
+                        let dest = try fileManager.destinationOfSymbolicLinkAtPath(filePath)
+                        if(dest.hasPrefix("../lib/erlang/")) {
+                            delete(NSURL(fileURLWithPath: filePath))
+                        }
+                    }
                 }
+
+                // Delete ESL Erlang installation dir
+                // TODO: do this with admin privileges
+                delete(Constants.ErlangEslInstallationDir)
             }
         }
-
-        // Delete ESL Erlang installation dir
-        // TODO: do this with admin privileges
-        delete(Constants.ErlangEslInstallationDir)
+        catch let error as NSError
+        {
+            Utils.alert(error.localizedDescription)
+            NSLog("Error deleting files: \(error.debugDescription)")
+        }
     }
-    
+
     static func setPathCommandForShell(shell: String, path: String) -> String {
         let shellName = NSURL(fileURLWithPath: shell).lastPathComponent!
         var command: String?

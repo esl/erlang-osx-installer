@@ -28,8 +28,8 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
     }
 	
     @IBAction func showPreferencesPane(sender: AnyObject) {
-			let preferencesWindow =  ErlangInstallerPreferences.sharedInstance
-				 preferencesWindow.showWindow(self)
+        let preferencesWindow =  ErlangInstallerPreferences.sharedInstance
+             preferencesWindow.showWindow(self)
 		
 		if let tabView = preferencesWindow.tabView {
 			tabView.selectTabViewItemWithIdentifier("erlang")
@@ -66,7 +66,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
  
 	
     @IBAction func checkNewReleases(sender: AnyObject) {
-        try! ReleaseManager.checkNewReleases() { (newReleases: [Release]) -> Void in
+        ReleaseManager.checkNewReleases() { (newReleases: [Release]) -> Void in
             for release in newReleases {
                 Utils.notifyNewReleases(self, release: release)
             }
@@ -123,7 +123,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
     func loadReleases() {
         self.erlangTerminals.submenu?.removeAllItems()
         for release in ReleaseManager.available {
-            let item = NSMenuItem(title: release.name, action: "", keyEquivalent: "")
+            let item = NSMenuItem(title: release.name, action: Selector(""), keyEquivalent: "")
             self.erlangTerminals.submenu?.addItem(item)
             
             item.enabled = release.installed
