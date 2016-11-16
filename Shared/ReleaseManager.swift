@@ -112,11 +112,12 @@ class ReleaseManager: NSObject {
     {
         let fileManager = NSFileManager.defaultManager()
         let filesToLink = ["erl","erlc","escript"]
-        
+        var directory: ObjCBool = ObjCBool(false)
+
         try filesToLink.forEach
         {
             let destination = "/usr/local/bin/" + $0
-            if(fileManager.fileExistsAtPath(destination))
+            if(fileManager.fileExistsAtPath(destination, isDirectory: &directory ))
             {
                try fileManager.removeItemAtPath(destination);
             }

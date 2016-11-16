@@ -8,7 +8,7 @@
         <scene sceneID="Uqg-NB-JUU">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="wZh-Qd-5DB" customClass="ErlangInstallerPreferences" customModule="ErlangInstaller" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Ii9-sf-ywy">
+                    <window key="window" identifier="MainWindowController" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Ii9-sf-ywy">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="1574" y="313" width="668" height="397"/>
@@ -19,21 +19,18 @@
                     </connections>
                 </windowController>
                 <customObject id="rWS-HI-BQV" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <customObject id="ijU-9S-1iz" customClass="AppDelegate" customModule="ErlangInstaller" customModuleProvider="target">
-                    <connections>
-                        <outlet property="window" destination="Ii9-sf-ywy" id="kB8-kp-Xy1"/>
-                    </connections>
-                </customObject>
+                <customObject id="ijU-9S-1iz" customClass="AppDelegate" customModule="ErlangInstaller" customModuleProvider="target"/>
             </objects>
             <point key="canvasLocation" x="-87" y="-42"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="jcF-GU-bXv">
             <objects>
+                <customObject id="L9T-yE-Tyv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <tabViewController selectedTabViewItemIndex="0" id="0jU-3e-Orz" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="General" identifier="erlang" id="lri-EH-1GL"/>
-                        <tabViewItem label="Releases" identifier="" id="fQR-Bg-AIW"/>
+                        <tabViewItem label="Releases" identifier="releases" id="fQR-Bg-AIW"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="LGw-se-gvj">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -46,9 +43,8 @@
                         <segue destination="z7O-77-tfZ" kind="relationship" relationship="tabItems" id="1Wz-Qx-ixC"/>
                     </connections>
                 </tabViewController>
-                <customObject id="L9T-yE-Tyv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="527" y="-48"/>
+            <point key="canvasLocation" x="581" y="23"/>
         </scene>
         <!--Main Tab View Controller-->
         <scene sceneID="AhD-qj-P96">
@@ -59,7 +55,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="997-Qe-4aL">
-                                <rect key="frame" x="179" y="273" width="460" height="71"/>
+                                <rect key="frame" x="179" y="302" width="460" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="justified" id="ZgI-8E-M5c">
                                     <font key="font" metaFont="system"/>
@@ -69,16 +65,16 @@
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="0VZ-4e-pSO">
-                                <rect key="frame" x="33" y="138" width="604" height="5"/>
+                                <rect key="frame" x="33" y="167" width="604" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZoZ-vw-CJd">
-                                <rect key="frame" x="31" y="256" width="142" height="107"/>
+                                <rect key="frame" x="31" y="285" width="142" height="107"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="erlang-solutions" id="Eqh-V3-CpD"/>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YMZ-wF-dyY">
-                                <rect key="frame" x="367" y="256" width="246" height="17"/>
+                                <rect key="frame" x="367" y="285" width="246" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Version 0.4 Build 3" id="pIQ-Kt-UZg">
                                     <font key="font" metaFont="system"/>
@@ -87,11 +83,11 @@
                                 </textFieldCell>
                             </textField>
                             <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="N9U-e0-xYx">
-                                <rect key="frame" x="33" y="254" width="604" height="5"/>
+                                <rect key="frame" x="33" y="283" width="604" height="5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </box>
                             <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BKe-gd-Qgy">
-                                <rect key="frame" x="369" y="69" width="99" height="26"/>
+                                <rect key="frame" x="369" y="98" width="99" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" completes="NO" numberOfVisibleItems="5" id="BQY-7q-jf6">
                                     <font key="font" metaFont="system"/>
@@ -99,11 +95,11 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </comboBoxCell>
                                 <connections>
-                                    <action selector="defaultReleaseSelectionWithSender:" target="WeR-od-gYs" id="JEj-E4-C6e"/>
+                                    <action selector="defaultReleaseSelection:" target="WeR-od-gYs" id="HwR-eP-PRu"/>
                                 </connections>
                             </comboBox>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T3g-sQ-Y2i">
-                                <rect key="frame" x="101" y="190" width="262" height="17"/>
+                                <rect key="frame" x="101" y="219" width="262" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Automatically check For New Releases:" id="qfP-WB-LaY">
                                     <font key="font" metaFont="system"/>
@@ -112,18 +108,18 @@
                                 </textFieldCell>
                             </textField>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B6z-mW-c18">
-                                <rect key="frame" x="367" y="226" width="31" height="18"/>
+                                <rect key="frame" x="367" y="255" width="31" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ge4-nG-850">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="openAtLoginClickWithSender:" target="WeR-od-gYs" id="qy2-zQ-P8C"/>
+                                    <action selector="openAtLogin:" target="WeR-od-gYs" id="dLP-Au-dz5"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aSh-c9-wCM">
-                                <rect key="frame" x="250" y="75" width="113" height="17"/>
+                                <rect key="frame" x="250" y="104" width="113" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Default Release:" id="0xs-iS-XQV">
                                     <font key="font" metaFont="system"/>
@@ -132,7 +128,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="z9d-H9-0Ka">
-                                <rect key="frame" x="29" y="108" width="610" height="28"/>
+                                <rect key="frame" x="29" y="137" width="610" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="pVX-9j-FaK">
                                     <font key="font" metaFont="smallSystem"/>
@@ -142,7 +138,7 @@
                                 </textFieldCell>
                             </textField>
                             <comboBox verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X6V-hC-Rk4">
-                                <rect key="frame" x="369" y="31" width="99" height="26"/>
+                                <rect key="frame" x="369" y="60" width="99" height="26"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" completes="NO" numberOfVisibleItems="5" id="vTa-OT-xTv">
                                     <font key="font" metaFont="system"/>
@@ -150,11 +146,11 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </comboBoxCell>
                                 <connections>
-                                    <action selector="terminalAppSelectionWithSender:" target="WeR-od-gYs" id="igz-Jn-IGW"/>
+                                    <action selector="terminalAppSelection:" target="WeR-od-gYs" id="s1A-Le-Qg6"/>
                                 </connections>
                             </comboBox>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H9M-Jc-xX1">
-                                <rect key="frame" x="67" y="227" width="296" height="17"/>
+                                <rect key="frame" x="67" y="256" width="296" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Automatically start Erlang Installer on Startup:" id="PiM-LC-dT8">
                                     <font key="font" metaFont="system"/>
@@ -163,18 +159,18 @@
                                 </textFieldCell>
                             </textField>
                             <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xtd-K8-v4S">
-                                <rect key="frame" x="367" y="189" width="31" height="18"/>
+                                <rect key="frame" x="367" y="218" width="31" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="p7H-9h-u6v">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="checkNewReleasesClickWithSender:" target="WeR-od-gYs" id="oYq-KT-5nu"/>
+                                    <action selector="checkNewReleasesClick:" target="WeR-od-gYs" id="Gc5-LD-4Fr"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tyv-BW-rND">
-                                <rect key="frame" x="231" y="37" width="133" height="17"/>
+                                <rect key="frame" x="231" y="66" width="133" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Terminal Application:" id="Ptv-No-OtS">
                                     <font key="font" metaFont="system"/>
@@ -183,16 +179,19 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q0i-E2-cDS">
-                                <rect key="frame" x="369" y="153" width="268" height="22"/>
+                                <rect key="frame" x="369" y="182" width="268" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="Py3-wy-ut5">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
+                                <connections>
+                                    <outlet property="delegate" destination="WeR-od-gYs" id="mTv-Hm-I4c"/>
+                                </connections>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Jb-zc-Zqg">
-                                <rect key="frame" x="162" y="155" width="201" height="17"/>
+                                <rect key="frame" x="162" y="184" width="201" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Instalation Folder:" usesSingleLineMode="YES" id="omE-bP-Bme">
                                     <font key="font" metaFont="system"/>
@@ -223,17 +222,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="668" height="397"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUi-Pv-xAf">
-                                <rect key="frame" x="40" y="62" width="588" height="315"/>
+                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="44" horizontalPageScroll="10" verticalLineScroll="44" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CUi-Pv-xAf">
+                                <rect key="frame" x="40" y="5" width="588" height="386"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="s00-kS-Vb0">
-                                    <rect key="frame" x="1" y="1" width="586" height="313"/>
+                                    <rect key="frame" x="1" y="1" width="586" height="384"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="22" rowSizeStyle="automatic" viewBased="YES" id="JDb-oa-chu">
-                                            <rect key="frame" x="0.0" y="0.0" width="586" height="313"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" alternatingRowBackgroundColors="YES" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="22" viewBased="YES" id="JDb-oa-chu">
+                                            <rect key="frame" x="0.0" y="0.0" width="586" height="384"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <size key="intercellSpacing" width="3" height="20"/>
+                                            <size key="intercellSpacing" width="3" height="22"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
@@ -251,7 +250,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="YBp-yk-7Eh" customClass="ReleaseTableCell" customModule="ErlangInstaller" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="10" width="583" height="22"/>
+                                                            <rect key="frame" x="1" y="11" width="583" height="22"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fK8-nZ-VVI">
@@ -372,7 +371,7 @@ Gw
                 <customObject id="Dym-FO-PVQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <customObject id="Sr5-HZ-HBH" customClass="ReleasesTableViewDelegate" customModule="ErlangInstaller" customModuleProvider="target"/>
             </objects>
-            <point key="canvasLocation" x="1236" y="338"/>
+            <point key="canvasLocation" x="1236" y="337.5"/>
         </scene>
     </scenes>
     <resources>

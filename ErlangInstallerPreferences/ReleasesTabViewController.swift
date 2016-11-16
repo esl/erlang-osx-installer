@@ -9,12 +9,11 @@
 import Cocoa
 import CoreFoundation
 
-class ReleasesTabViewController: NSViewController
+class ReleasesTabViewController: NSViewController, refreshPreferences
 {
     @IBOutlet var releasesTableView: NSTableView!
 
-    
-    func loadPreferencesValues() {
+    func refresh() {
         self.releasesTableView.reloadData()
     }
 

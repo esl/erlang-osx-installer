@@ -10,7 +10,7 @@ import Cocoa
 import CoreFoundation
 import ScriptingBridge
 
-class MainTabViewController: NSViewController
+class MainTabViewController: NSViewController, NSTextFieldDelegate
 {
     
     @IBOutlet var openAtLogin: NSButton!
@@ -64,7 +64,8 @@ class MainTabViewController: NSViewController
         self.versionAndBuildNumber.stringValue = "Version " + version! + " Build " + build!
     }
 
-    @IBAction func openAtLoginClick(sender: AnyObject) {
+    @IBAction func openAtLogin(sender: AnyObject) {
+    
         // FIXME: sub project not necessary when this is fixed.
         //			if !SMLoginItemSetEnabled(("com.erlang-solutions.ErlangInstaller-Helper" as CFString), Bool(sender.state)) {
         //				print("Setting as login item was not successful")
@@ -75,6 +76,7 @@ class MainTabViewController: NSViewController
     }
     
     @IBAction func checkNewReleasesClick(sender: AnyObject) {
+    
         UserDefaults.checkForNewReleases = self.checkForNewReleases.state == 1
         self.scheduleCheckNewReleasesForAgent()
     }

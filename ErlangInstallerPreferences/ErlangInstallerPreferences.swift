@@ -11,22 +11,18 @@ import CoreFoundation
 import ScriptingBridge
 import ServiceManagement
 
-class ErlangInstallerPreferences: NSWindowController, NSTextFieldDelegate {
-
-    @IBOutlet var tabView: NSTabViewController!
-//    @IBOutlet var tabView: NSTabViewController!
+class ErlangInstallerPreferences: NSWindowController, refreshPreferences {
 
     private var queue: dispatch_queue_t?
     private var source: dispatch_source_t?
-	
-	override var windowNibName : String! {
-		return "ErlangInstallerPreferences"
-	}
-	
+		
+    
 	init() {
     	super.init(window: nil)
+
 		if let window = self.window, screen = window.screen {
 			
+            
 			let offsetFromLeftOfScreen: CGFloat = 200
 			let offsetFromTopOfScreen: CGFloat = 200
 			let screenRect = screen.visibleFrame
@@ -108,12 +104,26 @@ class ErlangInstallerPreferences: NSWindowController, NSTextFieldDelegate {
     func reloadReleases()
     {
         ReleaseManager.load() {
-          //  self.loadPreferencesValues()
+            self.refresh()
         }
     }
 
     func revealElementForKey(key: String) {
-        
-        //self.tabView.selectTabViewItemWithIdentifier(key)
+        if let tabBarController = self.window?.contentViewController as? NSTabViewController
+        {
+            tabBarController.tabView.selectTabViewItemWithIdentifier(key)
+        }
+    }
+	
+	func refresh() {
+        if let tabBarController = self.window?.contentViewController as? NSTabViewController
+        {
+            tabBarController.tabView.tabViewItems.forEach({ (tab: NSTabViewItem) in
+                if let refreshableView = tab.viewController as? refreshPreferences
+                {
+                    refreshableView.refresh()
+                }
+            })
+        }
     }
 }
