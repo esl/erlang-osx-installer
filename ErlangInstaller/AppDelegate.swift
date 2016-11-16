@@ -13,6 +13,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var mainMenu: MainMenu!
 	
+    var mainWindow: ErlangInstallerPreferences!
+    
     func applicationDidFinishLaunching(aNotification: NSNotification) {
 		
 		// Uncomment to delete userdefaults in OSX El Capitan
@@ -31,8 +33,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.mainMenu.addStatusItem()
             self.mainMenu.scheduleCheckNewReleases()
         }
+        
+        let theStoryboard :NSStoryboard? = NSStoryboard(name: "ErlangInstallerPreferences", bundle: nil)
+        self.mainWindow = theStoryboard?.instantiateInitialController() as? ErlangInstallerPreferences
     }
-	
+    
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }	

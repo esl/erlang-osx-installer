@@ -7,6 +7,8 @@
 //
 
 import PreferencePanes
+import Security
+import SecurityFoundation
 
 public protocol InstallationProgress {
     func start()
@@ -68,36 +70,62 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
     private func extract() {
         self.runInMain() { self.progress.extracting() }
 
-        let fileManager = NSFileManager.defaultManager()
-        try! fileManager.createDirectoryAtURL(self.releaseDir!, withIntermediateDirectories: true, attributes: nil)
-        self.extractTask = NSTask()
-        self.extractTask?.launchPath = "/usr/bin/tar"
-        self.extractTask?.arguments = ["zxf", self.destinationTarGz!.path!, "-C", self.releaseDir!.path!, "--strip", "1"]
-        self.extractTask?.terminationHandler =  { (_: NSTask) -> Void in
-            self.run() {
-                Utils.delete(self.destinationTarGz!)
-                self.install()
+        do
+        {
+            let fileManager = NSFileManager.defaultManager()
+            try fileManager.createDirectoryAtURL(self.releaseDir!, withIntermediateDirectories: true, attributes: nil)
+            self.extractTask = NSTask()
+            self.extractTask?.launchPath = "/usr/bin/tar"
+            self.extractTask?.arguments = ["zxf", self.destinationTarGz!.path!, "-C", self.releaseDir!.path!, "--strip", "1"]
+            self.extractTask?.terminationHandler =  { (_: NSTask) -> Void in
+                self.run() {
+                    Utils.delete(self.destinationTarGz!)
+                    self.install()
+                }
             }
+            self.extractTask?.launch()
         }
-        self.extractTask?.launch()
+        catch let error as NSError
+        {
+            Utils.alert(error.localizedDescription)
+            NSLog("Couldn't create directory: \(error.debugDescription)")
+            self.done()
+        }
     }
     
     private func install() {
         self.runInMain() { self.progress.installing() }
+        var authRef: AuthorizationRef = nil
+        let authFlags = AuthorizationFlags.ExtendRights
+        let osStatus = AuthorizationCreate(nil, nil, authFlags, &authRef)
         
-        self.installTask = NSTask()
-        self.installTask?.launchPath = self.releaseDir?.URLByAppendingPathComponent("Install").path
-        self.installTask?.arguments = ["-sasl", (self.releaseDir?.path)!]
-        self.installTask?.terminationHandler =  { (_: NSTask) -> Void in
-            
-            self.run() {
-                UserDefaults.defaultRelease = self.release.name
-                try! ReleaseManager.makeSymbolicLinks(self.release)
+        if(osStatus == errAuthorizationSuccess ) {
+        
+            self.installTask = NSTask()
+            self.installTask?.launchPath = self.releaseDir?.URLByAppendingPathComponent("Install")!.path
+            self.installTask?.arguments = ["-sasl", (self.releaseDir?.path)!]
+            self.installTask?.terminationHandler =  { (_: NSTask) -> Void in
+                
+                self.run() {
+                    do{
+                        UserDefaults.defaultRelease = self.release.name
+                    
+                        try ReleaseManager.makeSymbolicLinks(self.release)
+                    }
+                    catch let error as NSError
+                    {
+                        Utils.alert(error.localizedDescription)
+                        NSLog("Creating Symbolic links failed: \(error.debugDescription)")
+                        self.done()
 
-                self.done()
+                    }
+                    self.done()
+                }
             }
+            self.installTask?.launch()
         }
-        self.installTask?.launch()
+        
+        AuthorizationFree(authRef, AuthorizationFlags.DestroyRights)
     }
     
     private func done() {

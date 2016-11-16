@@ -32,16 +32,23 @@ class ReleaseUninstaller {
     func start() {
         let result = Utils.confirm("Do you want to uninstall Erlang release \(release.name)?")
 		if(result) {
-			progress.deleting()
-			Utils.delete(Utils.supportResourceUrl(release.name)!)
-			progress.finished()
-			if let lastRelease = ReleaseManager.installed.last as Release? {
-				UserDefaults.defaultRelease = lastRelease.name
-			}
-			else {
-				UserDefaults.defaultRelease = ""
-			}
-			self.delegate.refresh()
+            var authRef: AuthorizationRef = nil
+            let authFlags = AuthorizationFlags.ExtendRights
+            let osStatus = AuthorizationCreate(nil, nil, authFlags, &authRef)
+            
+            if(osStatus == errAuthorizationSuccess) {
+
+                progress.deleting()
+                Utils.delete(Utils.supportResourceUrl(release.name)!)
+                progress.finished()
+                if let lastRelease = ReleaseManager.installed.last as Release? {
+                    UserDefaults.defaultRelease = lastRelease.name
+                }
+                else {
+                    UserDefaults.defaultRelease = ""
+                }
+                self.delegate.refresh()
+            }
 		}
     }
 }

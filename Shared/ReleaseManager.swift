@@ -38,22 +38,29 @@ class ReleaseManager: NSObject {
         return Utils.fileExists(Utils.supportResourceUrl(name))
     }
     
-    static func checkNewReleases(successHandler: ([Release]) -> Void) throws {
-        manager.fetch() { (content: String) -> Void in
-            let latestReleases = manager.releasesFromString(content)
-            
-            let latestReleasesNames = Set(latestReleases.keys)
-            let diff = latestReleasesNames.subtract(manager._releases.keys)
-            
-            var newReleases: [Release] = []
-            for name in diff {
-                newReleases.append(latestReleases[name]!)
+    static func checkNewReleases(successHandler: ([Release]) -> Void) {
+         manager.fetch() { (content: String) -> Void in
+            do {
+                let latestReleases = try manager.releasesFromString(content)
+                
+                let latestReleasesNames = Set(latestReleases.keys)
+                let diff = latestReleasesNames.subtract(manager._releases.keys)
+                
+                var newReleases: [Release] = []
+                for name in diff {
+                    newReleases.append(latestReleases[name]!)
+                }
+
+                manager._releases = latestReleases
+                manager.save(content)
+
+                successHandler(newReleases)
             }
-
-            manager._releases = latestReleases
-            try! manager.save(content)
-
-            successHandler(newReleases)
+            catch let error as NSError
+            {
+                Utils.alert(error.localizedDescription)
+                NSLog("Loading File Error: \(error.debugDescription)")
+            }
         }
     }
 
@@ -66,15 +73,22 @@ class ReleaseManager: NSObject {
     }
 
     private func loadFromFile(onLoaded: () -> Void) {
-        let content = try! String(contentsOfURL: ReleaseManager.availableReleasesUrl!)
-        self._releases = releasesFromString(content)
-        onLoaded()
+        do{
+            let content = try String(contentsOfURL: ReleaseManager.availableReleasesUrl!)
+            self._releases = try releasesFromString(content)
+            onLoaded()
+        }
+        catch let error as NSError
+        {
+            Utils.alert(error.localizedDescription)
+            NSLog("Loading File Error: \(error.debugDescription)")
+        }
     }
 
-    private func releasesFromString(content: String) -> [String: Release] {
+    private func releasesFromString(content: String) throws -> [String: Release] {
         var releases = [String: Release]()
         let data = content.dataUsingEncoding(NSUTF8StringEncoding)
-        let json = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
         if let releasesJson = json as? [[String: AnyObject]]
         {
             for releaseJson in releasesJson {
@@ -89,7 +103,7 @@ class ReleaseManager: NSObject {
     
     private func fetchSave(successHandler: () -> Void) {
         self.fetch() { (content: String) -> Void in
-            try! self.save(content)
+            self.save(content)
             successHandler()
         }
     }
@@ -98,35 +112,59 @@ class ReleaseManager: NSObject {
     {
         let fileManager = NSFileManager.defaultManager()
         let filesToLink = ["erl","erlc","escript"]
-        
-        filesToLink.forEach
+        var directory: ObjCBool = ObjCBool(false)
+
+        try filesToLink.forEach
         {
             let destination = "/usr/local/bin/" + $0
-            if(fileManager.fileExistsAtPath(destination))
+            if(fileManager.fileExistsAtPath(destination, isDirectory: &directory ))
             {
-               try! fileManager.removeItemAtPath(destination);
+               try fileManager.removeItemAtPath(destination);
             }
             
-            try! fileManager.createSymbolicLinkAtPath(destination, withDestinationPath: release.binPath + "/" + $0)
+            try fileManager.createSymbolicLinkAtPath(destination, withDestinationPath: release.binPath + "/" + $0)
         }
     }
 
-    private func save(content: String) throws {
-        let fileManager = NSFileManager.defaultManager()
-        try! fileManager.createDirectoryAtPath(Utils.supportResourceUrl("")!.path!, withIntermediateDirectories: true, attributes: nil)
-        fileManager.createFileAtPath(ReleaseManager.availableReleasesUrl!.path!, contents: nil, attributes: nil)
-        
-        try content.writeToFile(ReleaseManager.availableReleasesUrl!.path!, atomically: true, encoding: NSUTF8StringEncoding)
+    private func save(content: String) {
+        do {
+            var authRef: AuthorizationRef = nil
+            let authFlags = AuthorizationFlags.ExtendRights
+            let osStatus = AuthorizationCreate(nil, nil, authFlags, &authRef)
+
+            if(osStatus == errAuthorizationSuccess) {
+                let fileManager = NSFileManager.defaultManager()
+                try fileManager.createDirectoryAtPath(Utils.supportResourceUrl("")!.path!, withIntermediateDirectories: true, attributes: nil)
+                fileManager.createFileAtPath(ReleaseManager.availableReleasesUrl!.path!, contents: nil, attributes: nil)
+                
+                try content.writeToFile(ReleaseManager.availableReleasesUrl!.path!, atomically: true, encoding: NSUTF8StringEncoding)
+            }
+        }
+        catch let error as NSError
+        {
+            Utils.alert(error.localizedDescription)
+            NSLog("Saving releases list failed: \(error.debugDescription)")
+        }
     }
     
     private func fetch(successHandler: (String) -> Void) {
         let stringHandler = {
-            let content = try! String(contentsOfURL: Constants.ReleasesListUrl!)
-            successHandler(content)
+            do {
+                let content = try String(contentsOfURL: Constants.ReleasesListUrl!)
+                successHandler(content)
+            }
+            catch let error as NSError
+            {
+                Utils.alert(error.localizedDescription)
+                NSLog("Loading File Error: \(error.debugDescription)")
+                return
+            }
         }
+        
         let errorHandler = { (error: NSError?) -> Void in
             Utils.alert(error!.localizedDescription)
         }
+        
         Utils.resourceAvailable(Constants.ReleasesListUrl, successHandler: stringHandler, errorHandler: errorHandler)
     }
 }

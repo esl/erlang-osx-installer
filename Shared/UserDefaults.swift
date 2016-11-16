@@ -20,6 +20,7 @@ class UserDefaults {
     static private let openAtLoginDefault = false
     static private let checkForNewReleasesDefault = true
     static private var defaultReleaseDefault: String? = nil
+    static private var defaultReleasePath:String? = NSHomeDirectory() + "/.erlangInstaller/"
 
     //-------------------
     // Accessors
@@ -65,4 +66,9 @@ class UserDefaults {
         set { set("defaultRelease", value: newValue) }
         get { return getString("defaultRelease") ?? defaultReleaseDefault}
     }
+        static var defaultPath: String? {
+        set { set("defaultPath", value: newValue)}
+        get { return getString("defaultPath") ?? defaultReleasePath}
+    }
+    
 }

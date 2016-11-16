@@ -19,7 +19,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
 	
 	private var statusItem : NSStatusItem?
     private var timer : NSTimer?
-	
+    
     @IBOutlet weak var erlangTerminalDefault: NSMenuItem!
     @IBOutlet weak var erlangTerminals: NSMenuItem!
 	
@@ -28,24 +28,22 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
     }
 	
     @IBAction func showPreferencesPane(sender: AnyObject) {
-			let preferencesWindow =  ErlangInstallerPreferences.sharedInstance
-				 preferencesWindow.showWindow(self)
-		
-		if let tabView = preferencesWindow.tabView {
-			tabView.selectTabViewItemWithIdentifier("erlang")
-		}
-		
+        self.showNewPreferencesPane(selectingTabWithIdentifier: "erlang")
 	}
 	
 	func showPreferencesPaneAndOpenReleasesTab(sender: AnyObject) {
-		let preferencesWindow =  ErlangInstallerPreferences.sharedInstance
-		preferencesWindow.showWindow(self)
-		
-		if let tabView = preferencesWindow.tabView {
-			tabView.selectTabViewItemWithIdentifier("releases")
-		}
+		self.showNewPreferencesPane(selectingTabWithIdentifier: "releases")
 	}
 	
+    func showNewPreferencesPane(selectingTabWithIdentifier identifier: String? = nil) {
+        
+        if let appDelegate = NSApp.delegate as? AppDelegate
+        {
+            appDelegate.mainWindow.showWindow(self)
+            appDelegate.mainWindow.revealElementForKey(identifier!)
+        }
+    }
+    
 	func showPopover(sender: AnyObject?) {
 		if let button = statusItem!.button {
 			popover.showRelativeToRect(button.bounds, ofView: button, preferredEdge: NSRectEdge.MinY)
@@ -66,7 +64,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
  
 	
     @IBAction func checkNewReleases(sender: AnyObject) {
-        try! ReleaseManager.checkNewReleases() { (newReleases: [Release]) -> Void in
+        ReleaseManager.checkNewReleases() { (newReleases: [Release]) -> Void in
             for release in newReleases {
                 Utils.notifyNewReleases(self, release: release)
             }
@@ -123,7 +121,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
     func loadReleases() {
         self.erlangTerminals.submenu?.removeAllItems()
         for release in ReleaseManager.available {
-            let item = NSMenuItem(title: release.name, action: "", keyEquivalent: "")
+            let item = NSMenuItem(title: release.name, action: Selector(""), keyEquivalent: "")
             self.erlangTerminals.submenu?.addItem(item)
             
             item.enabled = release.installed

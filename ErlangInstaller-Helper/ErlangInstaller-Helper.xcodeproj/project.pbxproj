@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D8B733C1DBE57AD001BB093 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8B733B1DBE57AD001BB093 /* Security.framework */; };
+		7D8B733E1DBE57B6001BB093 /* SecurityFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D8B733D1DBE57B6001BB093 /* SecurityFoundation.framework */; };
 		ACF9D1881D807ADF00B3AEB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF9D1871D807ADF00B3AEB8 /* AppDelegate.swift */; };
 		ACF9D18A1D807ADF00B3AEB8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACF9D1891D807ADF00B3AEB8 /* Assets.xcassets */; };
 		ACF9D18D1D807ADF00B3AEB8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACF9D18B1D807ADF00B3AEB8 /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7D8B733B1DBE57AD001BB093 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		7D8B733D1DBE57B6001BB093 /* SecurityFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityFoundation.framework; path = System/Library/Frameworks/SecurityFoundation.framework; sourceTree = SDKROOT; };
 		ACF9D1841D807ADF00B3AEB8 /* ErlangInstaller-Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ErlangInstaller-Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACF9D1871D807ADF00B3AEB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACF9D1891D807ADF00B3AEB8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -25,17 +29,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D8B733E1DBE57B6001BB093 /* SecurityFoundation.framework in Frameworks */,
+				7D8B733C1DBE57AD001BB093 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7D8B733A1DBE57AC001BB093 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7D8B733D1DBE57B6001BB093 /* SecurityFoundation.framework */,
+				7D8B733B1DBE57AD001BB093 /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ACF9D17B1D807ADF00B3AEB8 = {
 			isa = PBXGroup;
 			children = (
 				ACF9D1861D807ADF00B3AEB8 /* ErlangInstaller-Helper */,
 				ACF9D1851D807ADF00B3AEB8 /* Products */,
+				7D8B733A1DBE57AC001BB093 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -242,6 +258,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
@@ -258,6 +275,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};
