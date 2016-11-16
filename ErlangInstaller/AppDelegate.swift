@@ -33,15 +33,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func applicationWillBecomeActive(notification: NSNotification) {
-        Utils.log(notification.description)
-    }
-	
-    func applicationWillHide(notification: NSNotification)
-    {
-        Utils.log(notification.description)
-    }
-    
     func applicationWillTerminate(aNotification: NSNotification) {
         // Insert code here to tear down your application
     }	

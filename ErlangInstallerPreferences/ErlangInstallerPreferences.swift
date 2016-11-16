@@ -11,22 +11,11 @@ import CoreFoundation
 import ScriptingBridge
 import ServiceManagement
 
-class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
+class ErlangInstallerPreferences: NSWindowController, NSTextFieldDelegate {
 
-	private var erlangInstallerApp: ErlangInstallerApplication?
-	
-    @IBOutlet var _window: NSWindow!
-	
-    @IBOutlet weak var localMainView: NSView!
-	
-    @IBOutlet weak var tabView: NSTabView!
-    @IBOutlet weak var openAtLogin: NSButton!
-	@IBOutlet weak var checkForNewReleases: NSButton!
-    @IBOutlet weak var defaultRelease: NSComboBox!
-    @IBOutlet weak var terminalApplication: NSComboBox!
-    @IBOutlet weak var releasesTableView: NSTableView!
-	@IBOutlet weak var versionAndBuildNumber: NSTextField! // TODO Check align when adding the new description text.
-	
+    @IBOutlet var tabView: NSTabViewController!
+//    @IBOutlet var tabView: NSTabViewController!
+
     private var queue: dispatch_queue_t?
     private var source: dispatch_source_t?
 	
@@ -35,9 +24,8 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 	}
 	
 	init() {
-		super.init(window: nil)
-		NSBundle.mainBundle().loadNibNamed("ErlangInstallerPreferences", owner: self, topLevelObjects: nil)
-		if let window = self._window, screen = window.screen {
+    	super.init(window: nil)
+		if let window = self.window, screen = window.screen {
 			
 			let offsetFromLeftOfScreen: CGFloat = 200
 			let offsetFromTopOfScreen: CGFloat = 200
@@ -71,27 +59,21 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
 	
 	override func showWindow(sender: AnyObject?) {
 	super.showWindow(sender)
-		if let window = self._window {
+		if let window = self.window {
 		window.makeKeyAndOrderFront(window)
         window.orderFrontRegardless()
+        window.level = Int(CGWindowLevelForKey(.MaximumWindowLevelKey))
 		}
 	}
+    
     override func windowDidLoad() {
 		super.windowDidLoad()
 		
 		// FIXME: store & recall the last position self.windowFrameAutosaveName = "ErlangInstallerPreferencesPosition"
 
-        self.erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId)
         reloadReleases()
-       	self.loadVersionAndBuildNumber()
         self.checkForFileUpdate()
     }
-
-	func loadVersionAndBuildNumber() {
-		let version = NSBundle.mainBundle().infoDictionary!["CFBundleShortVersionString"] as? String
-		let build = NSBundle.mainBundle().objectForInfoDictionaryKey(kCFBundleVersionKey as String) as? String
-		self.versionAndBuildNumber.stringValue = "Version " + version! + " Build " + build!
-	}
 	
     func checkForFileUpdate()
     {
@@ -126,76 +108,12 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences{
     func reloadReleases()
     {
         ReleaseManager.load() {
-            self.loadPreferencesValues()
+          //  self.loadPreferencesValues()
         }
-    }
-
-    func loadPreferencesValues() {
-        // Load current preferences
-        self.openAtLogin.state = (UserDefaults.openAtLogin ? 1 : 0)
-        self.checkForNewReleases.state = (UserDefaults.checkForNewReleases ? 1 : 0)
-
-        // Check if the default release is currently installed
-        self.defaultRelease.removeAllItems()
-        self.defaultRelease.addItemsWithObjectValues(ReleaseManager.installed.map({release in return release.name}))
-        self.defaultRelease.stringValue = UserDefaults.defaultRelease ?? ""
-
-        self.terminalApplication.removeAllItems()
-        self.terminalApplication.addItemsWithObjectValues(TerminalApplications.terminals.keys.sort())
-        self.terminalApplication.stringValue = UserDefaults.terminalApp
-        
-        self.releasesTableView.reloadData()
-    }
-
-    func updateReleasesForAgent() {
-        self.erlangInstallerApp?.update!()
-    }
-
-    func scheduleCheckNewReleasesForAgent() {
-        self.erlangInstallerApp?.checkNewReleases!()
-    }
-
-	@IBAction func openAtLoginClick(sender: AnyObject) {
-		// FIXME: sub project not necessary when this is fixed.
-		//			if !SMLoginItemSetEnabled(("com.erlang-solutions.ErlangInstaller-Helper" as CFString), Bool(sender.state)) {
-		//				print("Setting as login item was not successful")
-		//			}
-        UserDefaults.openAtLogin = self.openAtLogin.state == 1
-        let url = NSWorkspace.sharedWorkspace().URLForApplicationWithBundleIdentifier(Constants.applicationId)
-        Utils.setLaunchAtLogin(url!, enabled: UserDefaults.openAtLogin)
-    }
-
-    @IBAction func checkNewReleasesClick(sender: AnyObject) {
-        UserDefaults.checkForNewReleases = self.checkForNewReleases.state == 1
-        self.scheduleCheckNewReleasesForAgent()
-    }
-	
-    @IBAction func defaultReleaseSelection(sender: AnyObject) {
-        do {
-            UserDefaults.defaultRelease = self.defaultRelease.selectedCell()!.title
-            
-            let selectedRelease = ReleaseManager.releases[UserDefaults.defaultRelease!]
-            try ReleaseManager.makeSymbolicLinks(selectedRelease!)
-            
-            self.updateReleasesForAgent()
-            self.releasesTableView.reloadData()
-        }
-        catch let error as NSError
-        {
-            Utils.alert(error.localizedDescription)
-            NSLog("Creating Symbolic links failed: \(error.debugDescription)")
-        }
-    }
-    
-    @IBAction func terminalAppSelection(sender: AnyObject) {
-        UserDefaults.terminalApp = self.terminalApplication.selectedCell()!.title
     }
 
     func revealElementForKey(key: String) {
-        self.tabView.selectTabViewItemWithIdentifier(key)
+        
+        //self.tabView.selectTabViewItemWithIdentifier(key)
     }
-	
-	func refresh() {
-		self.loadPreferencesValues()
-	}
 }

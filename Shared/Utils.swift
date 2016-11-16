@@ -11,9 +11,11 @@ import SystemConfiguration
 
 class Utils {
     static func alert(message: String) {
+        dispatch_async(dispatch_get_main_queue(),{
         let alert = NSAlert()
         alert.messageText = message
         alert.runModal()
+        })
     }
 
     static func confirm(message: String) -> Bool {
@@ -30,9 +32,9 @@ class Utils {
     }
 
     static func supportResourceUrl(name : String) -> NSURL? {
-        let fileManager = NSFileManager.defaultManager()
-        let appSupportUrl = fileManager.URLsForDirectory(.ApplicationDirectory, inDomains: .UserDomainMask).first
-        let urlname = "Erlang/" + name;
+        let appSupportUrl = NSURL.init(fileURLWithPath: UserDefaults.defaultPath!)
+
+        let urlname = name;
         let url = NSURL(string: urlname.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())! , relativeToURL:  appSupportUrl);
         
         return url;

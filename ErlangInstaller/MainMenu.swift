@@ -20,7 +20,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
 	private var statusItem : NSStatusItem?
     private var timer : NSTimer?
     
-    var preferencesWindow: ErlangInstallerPreferences?
+    let preferencesWindow = ErlangInstallerPreferences()
 	
     @IBOutlet weak var erlangTerminalDefault: NSMenuItem!
     @IBOutlet weak var erlangTerminals: NSMenuItem!
@@ -38,9 +38,8 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
 	}
 	
     func showNewPreferencesPane(selectingTabWithIdentifier identifier: String? = nil) {
-        self.preferencesWindow = ErlangInstallerPreferences()
-        self.preferencesWindow!.showWindow(self)
-        if let tabView = self.preferencesWindow!.tabView, let itemIdentifier = identifier {
+        self.preferencesWindow.showWindow(self)
+        if let tabView = self.preferencesWindow.tabView, let itemIdentifier = identifier {
             tabView.selectTabViewItemWithIdentifier(itemIdentifier)
         }
     }
