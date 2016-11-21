@@ -14,7 +14,10 @@ class ReleasesTabViewController: NSViewController, refreshPreferences
     @IBOutlet var releasesTableView: NSTableView!
 
     func refresh() {
-        self.releasesTableView.reloadData()
+        if let tableView = self.releasesTableView
+        {
+            tableView.reloadData()
+        }
     }
 
 }

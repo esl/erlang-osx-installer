@@ -8,8 +8,8 @@
         <scene sceneID="Uqg-NB-JUU">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="wZh-Qd-5DB" customClass="ErlangInstallerPreferences" customModule="ErlangInstaller" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" identifier="MainWindowController" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Ii9-sf-ywy">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                    <window key="window" identifier="MainWindowController" title="Erlang Installer" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="Ii9-sf-ywy">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="1574" y="313" width="668" height="397"/>
                         <rect key="screenRect" x="1280" y="0.0" width="1920" height="1057"/>
