@@ -19,7 +19,7 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress, UninstallationPro
     @IBOutlet weak var cancelButton: NSButton!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     
-    @IBOutlet weak var delegate: ReleasesTableViewDelegate!
+    weak var preferencesPane: ErlangInstallerPreferences!
 
     @IBAction func installClickAction(checkButton: NSButton) {
         self.installer = ReleaseInstaller.install(releaseNameLabel.stringValue, progress: self)
@@ -27,7 +27,7 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress, UninstallationPro
 
     @IBAction func uninstallClickAction(checkButton: NSButton) {
         let uninstaller = ReleaseUninstaller(releaseName: releaseNameLabel.stringValue, progress: self)
-		uninstaller.delegate = self.delegate.preferencesPane
+		uninstaller.delegate = self.preferencesPane
         uninstaller.start()
     }
 
