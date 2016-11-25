@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="wZh-Qd-5DB">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="wZh-Qd-5DB">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
     </dependencies>
@@ -27,7 +27,7 @@
         <scene sceneID="jcF-GU-bXv">
             <objects>
                 <customObject id="L9T-yE-Tyv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <tabViewController selectedTabViewItemIndex="0" id="0jU-3e-Orz" sceneMemberID="viewController">
+                <tabViewController selectedTabViewItemIndex="1" id="0jU-3e-Orz" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="General" identifier="erlang" id="lri-EH-1GL"/>
                         <tabViewItem label="Releases" identifier="releases" id="fQR-Bg-AIW"/>
@@ -346,10 +346,6 @@ Gw
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
-                                            <connections>
-                                                <outlet property="dataSource" destination="Sr5-HZ-HBH" id="Tpa-NX-FFg"/>
-                                                <outlet property="delegate" destination="Sr5-HZ-HBH" id="aHB-t3-CMo"/>
-                                            </connections>
                                         </tableView>
                                     </subviews>
                                 </clipView>

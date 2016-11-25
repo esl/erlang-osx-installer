@@ -22,7 +22,7 @@ class ReleaseUninstaller {
     let release: Release
     let progress: UninstallationProgress
 	
-	 var delegate: refreshPreferences!
+    var delegate: refreshPreferences!
 	
     init(releaseName: String, progress: UninstallationProgress) {
         self.release = ReleaseManager.releases[releaseName]!
@@ -46,7 +46,7 @@ class ReleaseUninstaller {
                 }
                 else {
                     UserDefaults.defaultRelease = ""
-                }
+                } 
                 self.delegate.refresh()
             }
 		}

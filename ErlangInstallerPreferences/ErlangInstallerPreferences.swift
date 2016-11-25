@@ -60,7 +60,16 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences {
         window.orderFrontRegardless()
         window.level = Int(CGWindowLevelForKey(.MaximumWindowLevelKey))
 		}
+        self.setReleasesWindowPreferencePane()
 	}
+    
+    private func setReleasesWindowPreferencePane () {
+        if let tabBarController = self.window?.contentViewController as? NSTabViewController
+        {
+            let releasesViewController = tabBarController.childViewControllers[1] as! ReleasesTabViewController
+            releasesViewController.preferencesPane = self
+        }
+    }
     
     override func windowDidLoad() {
 		super.windowDidLoad()
