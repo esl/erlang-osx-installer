@@ -10,8 +10,6 @@ import Cocoa
 
 class ReleasesTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSource {
     
-    @IBOutlet weak var preferencesPane: ErlangInstallerPreferences!
-    
     func numberOfRowsInTableView(tableView: NSTableView) -> Int {
         return ReleaseManager.available.count
     }
@@ -19,14 +17,21 @@ class ReleasesTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataS
     func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?,row rowIndex: Int) -> NSView? {
         let cellView : ReleaseTableCell = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! ReleaseTableCell
         let release = ReleaseManager.available[rowIndex]
-        cellView.releaseNameLabel.stringValue = release.name
+        
 		if UserDefaults.defaultRelease == release.name {
 			cellView.releaseNameLabel.font =  NSFont.boldSystemFontOfSize(NSFont.systemFontSize())
-		}
-		else {
+		}else {
 			cellView.releaseNameLabel.font = NSFont.systemFontOfSize(NSFont.systemFontSize())
 		}
+        
+        if let appDelegate = NSApp.delegate as? AppDelegate {
+            cellView.preferencesPane = appDelegate.mainWindow
+        }
+        
+        
+        cellView.releaseNameLabel.stringValue = release.name
         cellView.updateButtonsVisibility()
+        
         return cellView
     }
 }
