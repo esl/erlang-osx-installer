@@ -28,21 +28,31 @@ class MainTabViewController: NSViewController, NSTextFieldDelegate
         self.loadPreferencesValues()
     }
     
+    override func viewWillAppear() {
+        super.viewWillAppear()
+        self.showReleasesList()
+    }
+    
     func loadPreferencesValues() {
         // Load current preferences
         self.openAtLogin.state = (UserDefaults.openAtLogin ? 1 : 0)
         self.checkForNewReleases.state = (UserDefaults.checkForNewReleases ? 1 : 0)
         
-        // Check if the default release is currently installed
-        self.defaultRelease.removeAllItems()
-        self.defaultRelease.addItemsWithObjectValues(ReleaseManager.installed.map({release in return release.name}))
-        self.defaultRelease.stringValue = UserDefaults.defaultRelease ?? ""
+        self.showReleasesList()
         
         self.terminalApplication.removeAllItems()
         self.terminalApplication.addItemsWithObjectValues(TerminalApplications.terminals.keys.sort())
         self.terminalApplication.stringValue = UserDefaults.terminalApp
         
         self.instalationFolder.stringValue = UserDefaults.defaultPath!
+    }
+    
+    
+    private func showReleasesList() {
+        // Check if the default release is currently installed
+        self.defaultRelease.removeAllItems()
+        self.defaultRelease.addItemsWithObjectValues(ReleaseManager.installed.map({release in return release.name}))
+        self.defaultRelease.stringValue = UserDefaults.defaultRelease ?? ""
     }
     
     override func controlTextDidEndEditing(obj: NSNotification)
