@@ -43,8 +43,14 @@ class ReleaseUninstaller {
                 progress.finished()
                 if let lastRelease = ReleaseManager.installed.last as Release? {
                     UserDefaults.defaultRelease = lastRelease.name
-                }
-                else {
+                    do {
+                        try ReleaseManager.makeSymbolicLinks(lastRelease)
+                    }catch let error as NSError {
+                        Utils.alert(error.localizedDescription)
+                        NSLog("Creating Symbolic links failed: \(error.debugDescription)")
+                    }
+                    
+                }else {
                     UserDefaults.defaultRelease = ""
                 }
                 self.delegate.refresh()
