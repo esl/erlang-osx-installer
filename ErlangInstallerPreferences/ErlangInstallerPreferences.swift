@@ -84,7 +84,7 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.reloadReleases()
                 }
-					self.close() // FIXME revise close to a specific file
+
                 let reload = dispatch_time(DISPATCH_TIME_NOW, 1);
                 dispatch_after(reload, self.queue!, {
                     dispatch_source_cancel(self.source!)
