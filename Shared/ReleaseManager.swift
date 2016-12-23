@@ -117,7 +117,11 @@ class ReleaseManager: NSObject {
         {
             let destination = "/usr/local/bin/" + $0
             
-            try fileManager.removeItemAtPath(destination);
+            
+            do {
+                try fileManager.removeItemAtPath(destination);
+            }
+            
             
             try fileManager.createSymbolicLinkAtPath(destination, withDestinationPath: release.binPath + "/" + $0)
         }
