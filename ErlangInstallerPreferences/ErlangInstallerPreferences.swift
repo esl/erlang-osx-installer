@@ -111,7 +111,17 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences {
     func revealElementForKey(key: String) {
         if let tabBarController = self.window?.contentViewController as? NSTabViewController
         {
-            tabBarController.tabView.selectTabViewItemWithIdentifier(key)
+            let tabBarIdentifierIndex: Int
+            switch key {
+            case "erlang":
+                tabBarIdentifierIndex = 0
+            case "releases":
+                tabBarIdentifierIndex = 1
+            default:
+                NSLog("Unknown identifier: \(key)")
+                return
+            }
+            tabBarController.selectedTabViewItemIndex = tabBarIdentifierIndex
         }
     }
 	
