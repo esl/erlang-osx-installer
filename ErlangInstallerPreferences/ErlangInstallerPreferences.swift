@@ -58,7 +58,7 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences {
 		if let window = self.window {
 		window.makeKeyAndOrderFront(window)
         window.orderFrontRegardless()
-        window.level = Int(CGWindowLevelForKey(.MaximumWindowLevelKey))
+        NSApp.activateIgnoringOtherApps(true)
 		}
 	}
     
