@@ -29,6 +29,8 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
     var data: NSMutableData?
     var backgroundQueue = NSOperationQueue()
 
+    var delegate: refreshPreferences!
+    
     var destinationTarGz : NSURL? {
         get { return Utils.supportResourceUrl("release_\(self.release.name).tar.gz") }
     }
@@ -132,6 +134,7 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         self.runInMain() {
             
             self.progress.finished()
+            self.delegate.refresh()
         }
 
         self.urlConnection = nil

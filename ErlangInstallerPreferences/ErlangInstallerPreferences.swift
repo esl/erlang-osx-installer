@@ -126,6 +126,10 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences {
     }
 	
 	func refresh() {
+        if let appDelegate = NSApp.delegate as? AppDelegate
+        {
+            appDelegate.mainMenu.loadReleases()
+        }
         if let tabBarController = self.window?.contentViewController as? NSTabViewController
         {
             tabBarController.tabView.tabViewItems.forEach({ (tab: NSTabViewItem) in
