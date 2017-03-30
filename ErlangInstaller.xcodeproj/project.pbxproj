@@ -295,6 +295,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5EC3AFB91C31888000E0BF43 /* Build configuration list for PBXNativeTarget "ErlangInstaller" */;
 			buildPhases = (
+				AC49D0981E8D6346005EA75B /* Increment Build Number */,
 				5EC3AF901C31888000E0BF43 /* Sources */,
 				5EC3AF911C31888000E0BF43 /* Frameworks */,
 				5EC3AF921C31888000E0BF43 /* Resources */,
@@ -401,6 +402,20 @@
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "echo \"########################\"\necho \"# DMG Package creation #\"\necho \"########################\"\necho \"Will pack ${TARGET_NAME} into folder ${PROJECT_DIR}/BuildImage/\"";
+		};
+		AC49D0981E8D6346005EA75B /* Increment Build Number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Increment Build Number";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
