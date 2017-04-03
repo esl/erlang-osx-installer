@@ -42,19 +42,8 @@
 		ACA7825A1D7A17F200B3AEB8 /* ErlangInstallerPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2683471C357D5E0058BB1F /* ErlangInstallerPreferences.swift */; };
 		ACA7825B1D7A183800B3AEB8 /* ErlangInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E93D18B1C4940BB008DCC81 /* ErlangInstaller.swift */; };
 		ACA7825C1D7A3B0500B3AEB8 /* erlang-solutions.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E519F911C32E34F0024DEAB /* erlang-solutions.png */; };
-		ACF9D19B1D807E5C00B3AEB8 /* ErlangInstaller-Helper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = ACF9D1991D807AE000B3AEB8 /* ErlangInstaller-Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		ACF9D19F1D80888600B3AEB8 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACF9D19E1D80888600B3AEB8 /* ServiceManagement.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		ACF9D1981D807AE000B3AEB8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ACF9D1941D807ADF00B3AEB8 /* ErlangInstaller-Helper.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = ACF9D1841D807ADF00B3AEB8;
-			remoteInfo = "ErlangInstaller-Helper";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		5E8B2BAF1C7DFD41001E9C61 /* CopyFiles */ = {
@@ -63,7 +52,6 @@
 			dstPath = Contents/Library/LoginItems;
 			dstSubfolderSpec = 1;
 			files = (
-				ACF9D19B1D807E5C00B3AEB8 /* ErlangInstaller-Helper.app in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,7 +103,6 @@
 		AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverViewController.xib; sourceTree = "<group>"; };
 		AC710FF01E9294A5005EA75B /* EnsurePATH.command */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = EnsurePATH.command; path = ErlangInstaller/EnsurePATH.command; sourceTree = "<group>"; };
 		ACEBBD8E1D6CB6ED00B3AEB8 /* ErlangInstaller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ErlangInstaller.entitlements; sourceTree = "<group>"; };
-		ACF9D1941D807ADF00B3AEB8 /* ErlangInstaller-Helper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "ErlangInstaller-Helper.xcodeproj"; path = "ErlangInstaller-Helper/ErlangInstaller-Helper.xcodeproj"; sourceTree = "<group>"; };
 		ACF9D19E1D80888600B3AEB8 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -217,7 +204,6 @@
 				5EC3AF961C31888000E0BF43 /* ErlangInstaller */,
 				5EFD590C1C32BDEF004ECB9B /* ErlangInstallerPreferences */,
 				5EC3AF951C31888000E0BF43 /* Products */,
-				ACF9D1941D807ADF00B3AEB8 /* ErlangInstaller-Helper.xcodeproj */,
 				7D8B733F1DBE7B69001BB093 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -283,14 +269,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		ACF9D1951D807ADF00B3AEB8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				ACF9D1991D807AE000B3AEB8 /* ErlangInstaller-Helper.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -346,28 +324,12 @@
 			mainGroup = 5EC3AF8B1C31888000E0BF43;
 			productRefGroup = 5EC3AF951C31888000E0BF43 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = ACF9D1951D807ADF00B3AEB8 /* Products */;
-					ProjectRef = ACF9D1941D807ADF00B3AEB8 /* ErlangInstaller-Helper.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				5EC3AF931C31888000E0BF43 /* ErlangInstaller */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		ACF9D1991D807AE000B3AEB8 /* ErlangInstaller-Helper.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "ErlangInstaller-Helper.app";
-			remoteRef = ACF9D1981D807AE000B3AEB8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		5EC3AF921C31888000E0BF43 /* Resources */ = {
