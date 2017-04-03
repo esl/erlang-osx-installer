@@ -8,7 +8,7 @@
 
 import ScriptingBridge
 
-@objc public protocol SBApplicationProtocol: SBObjectProtocol {
+@objc public protocol SBApplicationProtocol: NSObjectProtocol {
     func activate()
     @objc optional var running: Bool { get }
     var delegate: SBApplicationDelegate! { get set }

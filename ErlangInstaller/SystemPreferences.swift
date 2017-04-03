@@ -1,10 +1,6 @@
 import AppKit
 import ScriptingBridge
 
-@objc public protocol SBObjectProtocol: NSObjectProtocol {
-    func get() -> AnyObject!
-}
-
 // MARK: SystemPreferencesSaveOptions
 @objc public enum SystemPreferencesSaveOptions : AEKeyword {
     case yes = 0x79657320 /* 'yes ' */
@@ -45,7 +41,7 @@ import ScriptingBridge
 extension SBApplication: SystemPreferencesApplication {}
 
 // MARK: SystemPreferencesDocument
-@objc public protocol SystemPreferencesDocument: SBObjectProtocol, SystemPreferencesGenericMethods {
+@objc public protocol SystemPreferencesDocument: NSObjectProtocol, SystemPreferencesGenericMethods {
     @objc optional var name: String { get } // Its name.
     @objc optional var modified: Bool { get } // Has it been modified since the last save?
     @objc optional var file: URL { get } // Its location on disk, if it has one.
@@ -53,7 +49,7 @@ extension SBApplication: SystemPreferencesApplication {}
 extension SBObject: SystemPreferencesDocument {}
 
 // MARK: SystemPreferencesWindow
-@objc public protocol SystemPreferencesWindow: SBObjectProtocol, SystemPreferencesGenericMethods {
+@objc public protocol SystemPreferencesWindow: NSObjectProtocol, SystemPreferencesGenericMethods {
     @objc optional var name: String { get } // The title of the window.
     @objc optional func id() -> Int // The unique identifier of the window.
     @objc optional var index: Int { get } // The index of the window, ordered front to back.
@@ -75,7 +71,7 @@ extension SBObject: SystemPreferencesDocument {}
 extension SBObject: SystemPreferencesWindow {}
 
 // MARK: SystemPreferencesPane
-@objc public protocol SystemPreferencesPane: SBObjectProtocol { // FIXME: SystemPreferencesGenericMethods 
+@objc public protocol SystemPreferencesPane: NSObjectProtocol { // FIXME: SystemPreferencesGenericMethods
     @objc optional func anchors() -> SBElementArray
     @objc optional func id() -> String // locale independent name of the preference pane; can refer to a pane using the expression: pane id "<name>"
     @objc optional var localizedName: String { get } // localized name of the preference pane
@@ -86,7 +82,7 @@ extension SBObject: SystemPreferencesWindow {}
 extension SBObject: SystemPreferencesPane {}
 
 // MARK: SystemPreferencesAnchor
-@objc public protocol SystemPreferencesAnchor: SBObjectProtocol, SystemPreferencesGenericMethods {
+@objc public protocol SystemPreferencesAnchor: NSObjectProtocol, SystemPreferencesGenericMethods {
     @objc optional var name: String { get } // name of the anchor within a preference pane
     @objc optional func reveal() -> AnyObject // Reveals an anchor within a preference pane or preference pane itself
 }

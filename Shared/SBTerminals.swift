@@ -21,7 +21,7 @@ import ScriptingBridge
 extension SBApplication: SBTerminalApplication {}
 
 // MARK: SBTerminalApplication
-@objc public protocol SBTerminalWindow: SBObjectProtocol {
+@objc public protocol SBTerminalWindow: NSObjectProtocol {
     @objc optional func tabs() -> SBElementArray
 
     @objc optional var name: String { get }
@@ -30,10 +30,11 @@ extension SBApplication: SBTerminalApplication {}
     @objc optional var bounds: NSRect { get set }
     @objc optional var selectedTab: SBTerminalTab { get set }
 }
-extension SBObject: SBTerminalWindow {}
+extension SBObject: SBTerminalWindow {
+}
 
 // MARK: SBTerminalApplication
-@objc public protocol SBTerminalTab: SBObjectProtocol {
+@objc public protocol SBTerminalTab: NSObjectProtocol {
 }
 extension SBObject: SBTerminalTab {}
 
@@ -41,7 +42,7 @@ extension SBObject: SBTerminalTab {}
  * iTerm
  **************************************************/
 
-@objc public protocol SBiTermGenericMethods: SBObjectProtocol {
+@objc public protocol SBiTermGenericMethods: NSObjectProtocol {
     @objc optional func execCommand(_ command: NSString)  // Executes a command in a session (attach a trailing space for commands without carriage return)
     @objc optional func launchSession(_ session: NSString?) -> SBiTermSession  // Launches a default or saved session
     @objc optional func writeContentsOfFile(_ contentsOfFile: String?, text: String)
