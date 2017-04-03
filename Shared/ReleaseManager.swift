@@ -130,9 +130,25 @@ class ReleaseManager: NSObject {
                 }
                 
                 try fileManager.createSymbolicLinkAtPath(destination, withDestinationPath: release.binPath )
+                
+                // Ensure PATH
+                guard let  scriptPath = NSBundle.mainBundle().pathForResource("EnsurePATH",ofType:"command") else {
+                    NSLog("Unable to locate EnsurePath.command")
+                    return
+                }
+                
+                let task = NSTask()
+                
+                task.launchPath = "/bin/sh"
+                task.arguments = [scriptPath]
+                
+                task.launch()
+                task.waitUntilExit()
+                
+            
         }
     }
-
+    
     private func save(content: String) {
         do {
             var authRef: AuthorizationRef = nil
