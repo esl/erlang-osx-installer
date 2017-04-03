@@ -10,13 +10,13 @@ import ScriptingBridge
 
 @objc public protocol SBApplicationProtocol: SBObjectProtocol {
     func activate()
-    optional var running: Bool { get }
+    @objc optional var running: Bool { get }
     var delegate: SBApplicationDelegate! { get set }
 }
 
 // MARK: SystemPreferencesApplication
 @objc public protocol ErlangInstallerApplication: SBApplicationProtocol {
-    optional func update()
-    optional func checkNewReleases()
+    @objc optional func update()
+    @objc optional func checkNewReleases()
 }
 extension SBApplication: ErlangInstallerApplication {}

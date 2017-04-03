@@ -10,28 +10,28 @@ import Cocoa
 import ScriptingBridge
 
 protocol PopoverDelegate: class {
-	func closePopoverFromMainMenu(sender: AnyObject?)
+	func closePopoverFromMainMenu(_ sender: AnyObject?)
 }
 
 class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
 
 	let popover = NSPopover()
 	
-	private var statusItem : NSStatusItem?
-    private var timer : NSTimer?
+	fileprivate var statusItem : NSStatusItem?
+    fileprivate var timer : Timer?
     
     @IBOutlet weak var erlangTerminalDefault: NSMenuItem!
     @IBOutlet weak var erlangTerminals: NSMenuItem!
 	
-    @IBAction func quitApplication(sender: AnyObject) {
+    @IBAction func quitApplication(_ sender: AnyObject) {
         NSApp.terminate(self)
     }
 	
-    @IBAction func showPreferencesPane(sender: AnyObject) {
+    @IBAction func showPreferencesPane(_ sender: AnyObject) {
         self.showNewPreferencesPane(selectingTabWithIdentifier: "erlang")
 	}
 	
-	func showPreferencesPaneAndOpenReleasesTab(sender: AnyObject) {
+	func showPreferencesPaneAndOpenReleasesTab(_ sender: AnyObject) {
 		self.showNewPreferencesPane(selectingTabWithIdentifier: "releases")
 	}
 	
@@ -44,26 +44,26 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
         }
     }
     
-	func showPopover(sender: AnyObject?) {
+	func showPopover(_ sender: AnyObject?) {
 		if let button = statusItem!.button {
-			popover.showRelativeToRect(button.bounds, ofView: button, preferredEdge: NSRectEdge.MinY)
+			popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
 			if let controller  = popover.contentViewController as? PopoverViewController {
 			controller.delegate = self
-				_ = NSTimer.scheduledTimerWithTimeInterval(8.0, target: self, selector: #selector(self.closePopover(_:)), userInfo: nil, repeats: false)
+				_ = Timer.scheduledTimer(timeInterval: 8.0, target: self, selector: #selector(self.closePopover(_:)), userInfo: nil, repeats: false)
 			}
   		}
 	}
 	
-	func closePopoverFromMainMenu(sender: AnyObject?) {
+	func closePopoverFromMainMenu(_ sender: AnyObject?) {
 		self.closePopover(sender)
 	}
 	
-	func closePopover(sender: AnyObject?) {
+	func closePopover(_ sender: AnyObject?) {
 		popover.performClose(sender)
 	}
  
 	
-    @IBAction func checkNewReleases(sender: AnyObject) {
+    @IBAction func checkNewReleases(_ sender: AnyObject) {
         ReleaseManager.checkNewReleases() { (newReleases: [Release]) -> Void in
             for release in newReleases {
                 Utils.notifyNewReleases(self, release: release)
@@ -72,7 +72,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
         }
     }
 	
-    @IBAction func openTerminalDefault(sender: AnyObject) {
+    @IBAction func openTerminalDefault(_ sender: AnyObject) {
         if(UserDefaults.defaultRelease != nil) {
             if let release = ReleaseManager.releases[UserDefaults.defaultRelease!]
             {
@@ -82,7 +82,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
         }
     }
     
-    @IBAction func downloadInstallRelease(sender: AnyObject) {
+    @IBAction func downloadInstallRelease(_ sender: AnyObject) {
         self.showPreferencesPaneAndOpenReleasesTab(sender)
 		
 		// FIXME: get releases from the list of available 
@@ -106,15 +106,15 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
 //	}
 	
     func listenNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainMenu.handleLoadReleases(_:)), name: "loadReleases", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MainMenu.handleScheduleCheckNewReleases(_:)), name: "loadReleases", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainMenu.handleLoadReleases(_:)), name: NSNotification.Name(rawValue: "loadReleases"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainMenu.handleScheduleCheckNewReleases(_:)), name: NSNotification.Name(rawValue: "loadReleases"), object: nil)
     }
 
-    func handleLoadReleases(notification: NSNotification) {
+    func handleLoadReleases(_ notification: Notification) {
         self.loadReleases()
     }
     
-    func handleScheduleCheckNewReleases(notification: NSNotification) {
+    func handleScheduleCheckNewReleases(_ notification: Notification) {
         self.scheduleCheckNewReleases()
     }
     
@@ -124,7 +124,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
             let item = NSMenuItem(title: release.name, action: Selector(""), keyEquivalent: "")
             self.erlangTerminals.submenu?.addItem(item)
             
-            item.enabled = release.installed
+            item.isEnabled = release.installed
             if(release.installed) {
                 item.action = #selector(MainMenu.openTerminal(_:))
                 item.target = self
@@ -136,45 +136,45 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
         let release = ReleaseManager.releases[defaultRelease]
     
         let enableTerminalMenuEntries = release?.installed ?? false
-        self.erlangTerminalDefault.enabled = enableTerminalMenuEntries
-		self.erlangTerminals.enabled = enableTerminalMenuEntries
+        self.erlangTerminalDefault.isEnabled = enableTerminalMenuEntries
+		self.erlangTerminals.isEnabled = enableTerminalMenuEntries
     }
     
-    func openTerminal(menuItem: NSMenuItem) {
+    func openTerminal(_ menuItem: NSMenuItem) {
         let release = ReleaseManager.releases[menuItem.title]!
         let erlangTerminal = TerminalApplications.terminals[UserDefaults.terminalApp]
         erlangTerminal?.open(release)
     }
     
     func addStatusItem() {
-        self.statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(NSVariableStatusItemLength)
+        self.statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
         self.statusItem?.image = NSImage(named: "menu-bar-icon.png")
         self.statusItem?.menu = self
 		if (UserDefaults.firstLaunch) {
 			popover.contentViewController = PopoverViewController(nibName: "PopoverViewController", bundle: nil)
-			_ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(self.showPopover(_:)), userInfo: nil, repeats: false)
+			_ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.showPopover(_:)), userInfo: nil, repeats: false)
 			UserDefaults.firstLaunch = false
 		}
     }
     
     func scheduleCheckNewReleases() {
         if(UserDefaults.checkForNewReleases) {
-            let now = NSDate()
-            let userCalendar = NSCalendar.currentCalendar()
+            let now = Date()
+            let userCalendar = Calendar.current
             
-            let dateUnits = NSCalendarUnit.Year.union(NSCalendarUnit.Month.union(NSCalendarUnit.Day))
-            let timeUnits = NSCalendarUnit.Hour.union(NSCalendarUnit.Minute.union(NSCalendarUnit.Second))
-            let components = userCalendar.components(dateUnits.union(timeUnits), fromDate: now)
+            let dateUnits = NSCalendar.Unit.year.union(NSCalendar.Unit.month.union(NSCalendar.Unit.day))
+            let timeUnits = NSCalendar.Unit.hour.union(NSCalendar.Unit.minute.union(NSCalendar.Unit.second))
+            var components = (userCalendar as NSCalendar).components(dateUnits.union(timeUnits), from: now)
             components.hour = 13
             components.minute = 0
             components.second = 0
             
             let interval: Double = 24 * 60 * 60 // 24 hours in seconds
-            let fireDate = userCalendar.dateFromComponents(components)!
+            let fireDate = userCalendar.date(from: components)!
             
-            self.timer = NSTimer(fireDate: fireDate, interval: interval, target: self, selector: #selector(MainMenu.checkNewReleases(_:)), userInfo: nil, repeats: true)
+            self.timer = Timer(fireAt: fireDate, interval: interval, target: self, selector: #selector(MainMenu.checkNewReleases(_:)), userInfo: nil, repeats: true)
             
-            NSRunLoop.currentRunLoop().addTimer(self.timer!, forMode: NSDefaultRunLoopMode)
+            RunLoop.current.add(self.timer!, forMode: RunLoopMode.defaultRunLoopMode)
         } else {
             self.timer?.invalidate()
         }
@@ -184,12 +184,12 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
      ** User Notification Delegate Callbacks
      *******************************************************************/
     
-    func userNotificationCenter(center: NSUserNotificationCenter, shouldPresentNotification notification: NSUserNotification) -> Bool {
+    func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
         return true
     }
     
-    func userNotificationCenter(center: NSUserNotificationCenter, didActivateNotification notification: NSUserNotification) {
-        if(notification.activationType == NSUserNotificationActivationType.ActionButtonClicked) {
+    func userNotificationCenter(_ center: NSUserNotificationCenter, didActivate notification: NSUserNotification) {
+        if(notification.activationType == NSUserNotification.ActivationType.actionButtonClicked) {
             self.downloadInstallRelease(self)
         }
     }

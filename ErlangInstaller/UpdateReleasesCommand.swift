@@ -9,15 +9,15 @@
 import Foundation
 
 class UpdateReleasesCommand: NSScriptCommand {
-    override func performDefaultImplementation() -> AnyObject? {
-        NSNotificationCenter.defaultCenter().postNotificationName("loadReleases", object: nil)
+    override func performDefaultImplementation() -> Any? {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "loadReleases"), object: nil)
         return nil
     }
 }
 
 class CheckNewReleasesCommand: NSScriptCommand {
-    override func performDefaultImplementation() -> AnyObject? {
-        NSNotificationCenter.defaultCenter().postNotificationName("scheduleCheckNewReleases", object: nil)
+    override func performDefaultImplementation() -> Any? {
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "scheduleCheckNewReleases"), object: nil)
         return nil
     }
 }

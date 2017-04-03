@@ -15,7 +15,7 @@ class PopoverViewController: NSViewController {
 	override func viewWillAppear() {
 		super.viewWillAppear()
 	}
-	@IBAction func closePopover(sender: AnyObject) {
+	@IBAction func closePopover(_ sender: AnyObject) {
 			self.delegate?.closePopoverFromMainMenu(sender)
 		}
 }

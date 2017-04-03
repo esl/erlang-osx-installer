@@ -11,7 +11,7 @@ import Foundation
 public protocol UninstallationProgress {
     func deleting()
     func finished()
-    func error(error: NSError)
+    func error(_ error: NSError)
 }
 
 public protocol refreshPreferences {
@@ -32,8 +32,8 @@ class ReleaseUninstaller {
     func start() {
         let result = Utils.confirm("Do you want to uninstall Erlang release \(release.name)?")
 		if(result) {
-            var authRef: AuthorizationRef = nil
-            let authFlags = AuthorizationFlags.ExtendRights
+            var authRef: AuthorizationRef? = nil
+            let authFlags = AuthorizationFlags.extendRights
             let osStatus = AuthorizationCreate(nil, nil, authFlags, &authRef)
             
             if(osStatus == errAuthorizationSuccess) {

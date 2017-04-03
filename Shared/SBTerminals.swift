@@ -10,25 +10,25 @@ import ScriptingBridge
 
 // MARK: SBTerminalApplication
 @objc public protocol SBTerminalApplication: SBApplicationProtocol {
-    optional func windows() -> SBElementArray
+    @objc optional func windows() -> SBElementArray
 
-    optional var name: String { get }
-    optional var version: String { get }
-    optional var frontmost: Bool { get }
+    @objc optional var name: String { get }
+    @objc optional var version: String { get }
+    @objc optional var frontmost: Bool { get }
 
-    optional func doScript(script: String, `in`: AnyObject?) -> SBTerminalTab
+    @objc optional func doScript(_ script: String, in: AnyObject?) -> SBTerminalTab
 }
 extension SBApplication: SBTerminalApplication {}
 
 // MARK: SBTerminalApplication
 @objc public protocol SBTerminalWindow: SBObjectProtocol {
-    optional func tabs() -> SBElementArray
+    @objc optional func tabs() -> SBElementArray
 
-    optional var name: String { get }
-    optional func id() -> Int
-    optional var index: String { get set }
-    optional var bounds: NSRect { get set }
-    optional var selectedTab: SBTerminalTab { get set }
+    @objc optional var name: String { get }
+    @objc optional func id() -> Int
+    @objc optional var index: String { get set }
+    @objc optional var bounds: NSRect { get set }
+    @objc optional var selectedTab: SBTerminalTab { get set }
 }
 extension SBObject: SBTerminalWindow {}
 
@@ -42,9 +42,9 @@ extension SBObject: SBTerminalTab {}
  **************************************************/
 
 @objc public protocol SBiTermGenericMethods: SBObjectProtocol {
-    optional func execCommand(command: NSString)  // Executes a command in a session (attach a trailing space for commands without carriage return)
-    optional func launchSession(session: NSString?) -> SBiTermSession  // Launches a default or saved session
-    optional func writeContentsOfFile(contentsOfFile: String?, text: String)
+    @objc optional func execCommand(_ command: NSString)  // Executes a command in a session (attach a trailing space for commands without carriage return)
+    @objc optional func launchSession(_ session: NSString?) -> SBiTermSession  // Launches a default or saved session
+    @objc optional func writeContentsOfFile(_ contentsOfFile: String?, text: String)
 }
 extension SBObject: SBiTermGenericMethods {}
 
@@ -55,34 +55,34 @@ extension SBObject: SBiTermItem {}
 
 // MARK: SBiTermITermApplication
 @objc public protocol SBiTermITermApplication: SBApplicationProtocol {
-    optional func windows() -> SBElementArray
-    optional func documents() -> SBElementArray
+    @objc optional func windows() -> SBElementArray
+    @objc optional func documents() -> SBElementArray
 
-    optional var name: String { get }
-    optional var version: String { get }
-    optional var frontmost: Bool { get }
-    optional var running: Bool { get }
+    @objc optional var name: String { get }
+    @objc optional var version: String { get }
+    @objc optional var frontmost: Bool { get }
+    @objc optional var running: Bool { get }
     
-    optional func terminals() -> SBElementArray
-    optional var currentTerminal: SBiTermTerminal { get }  // currently active terminal
-    optional var uriToken: String { get } // URI token
+    @objc optional func terminals() -> SBElementArray
+    @objc optional var currentTerminal: SBiTermTerminal { get }  // currently active terminal
+    @objc optional var uriToken: String { get } // URI token
 
-    optional func classForScriptingClass(className: String) -> AnyClass?
+    @objc optional func classForScriptingClass(_ className: String) -> AnyClass?
 }
 extension SBApplication: SBiTermITermApplication {}
 
 @objc public protocol SBiTermTerminal: SBiTermItem {
-    optional func sessions() -> SBElementArray
+    @objc optional func sessions() -> SBElementArray
 
-    optional var antiAlias: Bool { get }  // Anti alias for window
-    optional var currentSession: SBiTermSession { get }   // current session in the terminal
-    optional var numberOfColumns: Int { get }  // Number of columns
-    optional var numberOfRows: Int { get }  // Number of rows
+    @objc optional var antiAlias: Bool { get }  // Anti alias for window
+    @objc optional var currentSession: SBiTermSession { get }   // current session in the terminal
+    @objc optional var numberOfColumns: Int { get }  // Number of columns
+    @objc optional var numberOfRows: Int { get }  // Number of rows
 }
 extension SBObject: SBiTermTerminal {}
 
 @objc public protocol SBiTermSession: SBiTermItem {
-    optional var contents: String { get }
+    @objc optional var contents: String { get }
 }
 extension SBObject: SBiTermSession {}
 

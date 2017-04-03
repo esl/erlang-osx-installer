@@ -13,33 +13,33 @@ import CoreServices
 protocol ErlangTerminal {
     var applicationName: String { get }
     var applicationId: String { get }
-    func open(release: Release)
+    func open(_ release: Release)
 }
 
 extension ErlangTerminal {
     var installed: Bool {
         get {
-            let appURL = UnsafeMutablePointer<Unmanaged<CFError>?>()
-            let result = LSCopyApplicationURLsForBundleIdentifier(self.applicationId, appURL)
+            let appURL: UnsafeMutablePointer<Unmanaged<CFError>?> = nil
+            let result = LSCopyApplicationURLsForBundleIdentifier(self.applicationId as CFString, appURL)
             return result != nil
         }
     }
 
-    private var shell: String {
+    fileprivate var shell: String {
         get {
-            return NSProcessInfo.processInfo().environment["SHELL"] ?? "bash"
+            return ProcessInfo.processInfo.environment["SHELL"] ?? "bash"
         }
     }
     
-    private func shellCommands(release: Release) -> String {
-        let erl = release.binPath.stringByReplacingOccurrencesOfString(" ", withString: "\\ ")
+    fileprivate func shellCommands(_ release: Release) -> String {
+        let erl = release.binPath.replacingOccurrences(of: " ", with: "\\ ")
         let changePathCommand = Utils.setPathCommandForShell(self.shell, path: erl)
         return "\(changePathCommand); clear; erl"
     }
 }
 
 class TerminalApplications {
-    private static let terminalsInstance = TerminalApplications()
+    fileprivate static let terminalsInstance = TerminalApplications()
 
     static var terminals: [String: ErlangTerminal] {
         get {
@@ -47,7 +47,7 @@ class TerminalApplications {
         }
     }
     
-    private var terminalsDictionary = [String: ErlangTerminal]()
+    fileprivate var terminalsDictionary = [String: ErlangTerminal]()
 
     init() {
         let allTerminals: [ErlangTerminal] = [Terminal()]
@@ -68,7 +68,7 @@ class Terminal: ErlangTerminal {
         }
     }
 
-    func open(release: Release) {
+    func open(_ release: Release) {
         app.doScript!(self.shellCommands(release), in:nil)
 
         if !app.frontmost! {
@@ -86,17 +86,17 @@ class iTerm: AnyObject, ErlangTerminal {
         }
     }
 
-    func open(release: Release) {
+    func open(_ release: Release) {
         let sessionClass = app.classForScriptingClass!("session") as! SBiTermSession.Type
         let session = sessionClass.init()
 
         if app.terminals!().count == 0 {
             let terminalClass = app.classForScriptingClass!("terminal") as! SBiTermTerminal.Type
             let terminal = terminalClass.init()
-            app.terminals!().addObject(terminal)
-            terminal.sessions!().addObject(session)
+            app.terminals!().add(terminal)
+            terminal.sessions!().add(session)
         } else {
-            app.currentTerminal!.sessions!().addObject(session)
+            app.currentTerminal!.sessions!().add(session)
         }
         
         app.currentTerminal!.currentSession!.execCommand!(self.shell)

@@ -15,7 +15,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
     var mainWindow: ErlangInstallerPreferences!
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
 		
 		// Uncomment to delete userdefaults in OSX El Capitan
 		// let domainName: String = NSBundle.mainBundle().bundleIdentifier!
@@ -38,7 +38,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.mainWindow = theStoryboard?.instantiateInitialController() as? ErlangInstallerPreferences
     }
     
-    func applicationWillTerminate(aNotification: NSNotification) {
+    func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
     }	
 }
