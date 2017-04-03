@@ -111,22 +111,44 @@ class ReleaseManager: NSObject {
     static func makeSymbolicLinks(release: Release) throws
     {
         let fileManager = NSFileManager.defaultManager()
-        let filesToLink = ["erl","erlc","escript"]
-
+        let filesToLink = ["default"]
+        
         try filesToLink.forEach
-        {
-            let destination = "/usr/local/bin/" + $0
+            {
+                let destination = NSHomeDirectory() + "/.erlangInstaller/" + $0
+                
+                do {
+                    try fileManager.attributesOfItemAtPath(destination)
+                    do {
+                        try fileManager.removeItemAtPath(destination);
+                    }catch let errorDelete as NSError {
+                        print("\(errorDelete.localizedDescription)")
+                    }
+                    
+                } catch let errorExists as NSError {
+                    print("\(errorExists.localizedDescription)")
+                }
+                
+                try fileManager.createSymbolicLinkAtPath(destination, withDestinationPath: release.binPath )
+                
+                // Ensure PATH
+                guard let  scriptPath = NSBundle.mainBundle().pathForResource("EnsurePATH",ofType:"command") else {
+                    NSLog("Unable to locate EnsurePath.command")
+                    return
+                }
+                
+                let task = NSTask()
+                
+                task.launchPath = "/bin/sh"
+                task.arguments = [scriptPath]
+                
+                task.launch()
+                task.waitUntilExit()
+                
             
-            
-            do {
-                try fileManager.removeItemAtPath(destination);
-            }
-            
-            
-            try fileManager.createSymbolicLinkAtPath(destination, withDestinationPath: release.binPath + "/" + $0)
         }
     }
-
+    
     private func save(content: String) {
         do {
             var authRef: AuthorizationRef = nil

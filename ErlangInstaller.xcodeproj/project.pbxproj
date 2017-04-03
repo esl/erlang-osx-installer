@@ -36,6 +36,7 @@
 		AC3DB28A1D7DC3EF00B3AEB8 /* ErlangInstallerPreferences.searchTerms in Resources */ = {isa = PBXBuildFile; fileRef = 5E94CD601C48426800E7AB56 /* ErlangInstallerPreferences.searchTerms */; };
 		AC58CC3C1D429E3900B3AEB8 /* PopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */; };
 		AC58CC3D1D429E3900B3AEB8 /* PopoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */; };
+		AC710FF21E929500005EA75B /* EnsurePATH.command in Resources */ = {isa = PBXBuildFile; fileRef = AC710FF01E9294A5005EA75B /* EnsurePATH.command */; };
 		ACA782581D7A17CF00B3AEB8 /* ReleaseTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20ED901C3D7836007AFFE6 /* ReleaseTableCell.swift */; };
 		ACA782591D7A17DD00B3AEB8 /* ReleasesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E96369A1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift */; };
 		ACA7825A1D7A17F200B3AEB8 /* ErlangInstallerPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2683471C357D5E0058BB1F /* ErlangInstallerPreferences.swift */; };
@@ -112,6 +113,7 @@
 		7DDA51101DCD281C003D1DA9 /* ErlangInstallerPreferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ErlangInstallerPreferences.storyboard; sourceTree = SOURCE_ROOT; };
 		AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopoverViewController.swift; sourceTree = "<group>"; };
 		AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverViewController.xib; sourceTree = "<group>"; };
+		AC710FF01E9294A5005EA75B /* EnsurePATH.command */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = EnsurePATH.command; path = ErlangInstaller/EnsurePATH.command; sourceTree = "<group>"; };
 		ACEBBD8E1D6CB6ED00B3AEB8 /* ErlangInstaller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ErlangInstaller.entitlements; sourceTree = "<group>"; };
 		ACF9D1941D807ADF00B3AEB8 /* ErlangInstaller-Helper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "ErlangInstaller-Helper.xcodeproj"; path = "ErlangInstaller-Helper/ErlangInstaller-Helper.xcodeproj"; sourceTree = "<group>"; };
 		ACF9D19E1D80888600B3AEB8 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
@@ -153,6 +155,7 @@
 				5E32070D1C4EB88D006C2C87 /* SBTerminal.h */,
 				5E32070C1C4EB841006C2C87 /* SBiTerm.h */,
 				5E32070E1C4EB8E2006C2C87 /* SBTerminals.swift */,
+				AC710FF01E9294A5005EA75B /* EnsurePATH.command */,
 			);
 			name = External;
 			sourceTree = "<group>";
@@ -371,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC710FF21E929500005EA75B /* EnsurePATH.command in Resources */,
 				5EC3AF9C1C31888000E0BF43 /* Assets.xcassets in Resources */,
 				AC19CFAE1D6F2F8100B3AEB8 /* releases.json in Resources */,
 				5E93D1851C49318D008DCC81 /* ErlangInstaller.sdef in Resources */,
