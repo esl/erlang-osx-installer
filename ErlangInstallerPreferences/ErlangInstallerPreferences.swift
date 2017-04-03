@@ -95,7 +95,7 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences {
         }
         else
         {
-            Utils.log("Couldn't open \(ReleaseManager.availableReleasesUrl!.path!)")
+            Utils.log("Couldn't open \(ReleaseManager.availableReleasesUrl!.path)")
         }
         
     }

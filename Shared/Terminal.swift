@@ -27,7 +27,7 @@ extension ErlangTerminal {
 
     fileprivate var shell: String {
         get {
-            return ProcessInfo.processInfo.environment["SHELL"] ?? "bash"
+            return ProcessInfo().environment["SHELL"] ?? "bash"
         }
     }
     
@@ -99,7 +99,7 @@ class iTerm: AnyObject, ErlangTerminal {
             app.currentTerminal!.sessions!().add(session)
         }
         
-        app.currentTerminal!.currentSession!.execCommand!(self.shell)
+        app.currentTerminal!.currentSession!.execCommand!(self.shell as NSString)
         app.currentTerminal!.currentSession!.writeContentsOfFile!(nil, text: self.shellCommands(release))
         
         if !app.frontmost! {
