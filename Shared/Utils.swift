@@ -68,7 +68,7 @@ class Utils {
 
     static func execute(_ source: String) {
         let script = NSAppleScript(source: source)
-        let errorInfo: AutoreleasingUnsafeMutablePointer<NSDictionary?> = nil
+        let errorInfo: AutoreleasingUnsafeMutablePointer<NSDictionary?>? = nil
         let error = script?.executeAndReturnError(errorInfo)
         if(error != nil) {
             log("Error : " + error!.description)
@@ -152,7 +152,7 @@ class Utils {
                 for file in files {
                     let filePath = localBinDir + file
                     let attrs = try fileManager.attributesOfItem(atPath: filePath)
-                    if attrs[FileAttributeKey.type] as? String == FileAttributeType.typeSymbolicLink {
+                    if attrs[FileAttributeKey.type] as? String == FileAttributeType.typeSymbolicLink.rawValue {
                         let dest = try fileManager.destinationOfSymbolicLink(atPath: filePath)
                         if(dest.hasPrefix("../lib/erlang/")) {
                             delete(URL(fileURLWithPath: filePath))

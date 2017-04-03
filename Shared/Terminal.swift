@@ -19,7 +19,7 @@ protocol ErlangTerminal {
 extension ErlangTerminal {
     var installed: Bool {
         get {
-            let appURL: UnsafeMutablePointer<Unmanaged<CFError>?> = nil
+            let appURL: UnsafeMutablePointer<Unmanaged<CFError>?>? = nil
             let result = LSCopyApplicationURLsForBundleIdentifier(self.applicationId as CFString, appURL)
             return result != nil
         }
