@@ -86,7 +86,7 @@ class Utils {
 			request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
 			request.timeoutInterval = 10.0
 			
-			let completionHandler = { (response: URLResponse?, data: Data?, err: NSError?) -> Void in
+			_ = { (response: URLResponse?, data: Data?, err: NSError?) -> Void in
 				var status = false
 				if let httpResponse = response as? HTTPURLResponse {
 					if httpResponse.statusCode == 200 {
@@ -100,7 +100,12 @@ class Utils {
 				}
 			}
 			
-			NSURLConnection.sendAsynchronousRequest(request as URLRequest, queue: OperationQueue.main, completionHandler: completionHandler as! (URLResponse?, Data?, Error?) -> Void)
+            let session = URLSession()
+        
+            let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+                print("Response: \(response)")})
+            
+            task.resume()
 		}
 	}
 	
@@ -139,11 +144,11 @@ class Utils {
             if(osStatus == errAuthorizationSuccess) {
                 // Remove MacUpdaterSwift from the login items
                 let macUpdaterSwift = Constants.ErlangEslInstallationDir.appendingPathComponent("MacUpdaterSwift.app")
-                setLaunchAtLogin(macUpdaterSwift, enabled: false)
+               _ = setLaunchAtLogin(macUpdaterSwift, enabled: false)
 
                 // Remove EslErlangUpdater.app from the login items
                 let eslErlangUpdater = Constants.ErlangEslInstallationDir.appendingPathComponent("EslErlangUpdater.app")
-                setLaunchAtLogin(eslErlangUpdater, enabled: false)
+               _ = setLaunchAtLogin(eslErlangUpdater, enabled: false)
                 
                 // Delete all symlinks to Erlang executables in /usr/local/bin
                 let fileManager = FileManager.default
