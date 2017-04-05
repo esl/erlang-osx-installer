@@ -9,9 +9,9 @@
 import Cocoa
 
 class ConstantsLoader {
-    static func getBundle() -> NSBundle?
+    static func getBundle() -> Bundle?
     {
-        let bundle = NSBundle.mainBundle()
+        let bundle = Bundle.main
         
         if(bundle.bundleIdentifier == Constants.applicationId)
         {
@@ -19,7 +19,7 @@ class ConstantsLoader {
         }
         else
         {
-            let bundles = NSBundle.allBundles()
+            let bundles = Bundle.allBundles
             
 //            let filteredBundles = bundles.filter({ (bundle: NSBundle) -> Bool in
 //                return bundle.bundleIdentifier == Constants.ErlangInstallerPreferencesId
@@ -34,14 +34,14 @@ class ConstantsLoader {
         return nil
     }
     
-    static func getUrl(key: String) -> NSURL? {
+    static func getUrl(_ key: String) -> URL? {
         
         if let bundle = ConstantsLoader.getBundle()
         {
-            if let url = bundle.objectForInfoDictionaryKey(key) as? String
+            if let url = bundle.object(forInfoDictionaryKey: key) as? String
             {
                 Utils.log("Loading url for \(key): \(url)")
-                return NSURL(string: url)
+                return URL(string: url)
             }
         }
         
@@ -56,5 +56,5 @@ class Constants {
     static let applicationId = "com.erlang-solutions.ErlangInstaller"
     
     // Package installation
-    static let ErlangEslInstallationDir = NSURL(fileURLWithPath: "/usr/local/lib/erlang/")
+    static let ErlangEslInstallationDir = URL(fileURLWithPath: "/usr/local/lib/erlang/")
 }

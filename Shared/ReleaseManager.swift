@@ -11,40 +11,40 @@ import Foundation
 import Cocoa
 
 class ReleaseManager: NSObject {
-    private static let manager = ReleaseManager()
+    fileprivate static let manager = ReleaseManager()
 
     static var available : [Release] {
-        get { return ReleaseManager.manager._releases.values.sort({x, y in x.name < y.name})}
+        get { return ReleaseManager.manager._releases.values.sorted(by: {x, y in x.name < y.name})}
     }
     static var installed : [Release] {
-        get { return ReleaseManager.manager._releases.values.filter { $0.installed }.sort({x, y in x.name < y.name})}
+        get { return ReleaseManager.manager._releases.values.filter { $0.installed }.sorted(by: {x, y in x.name < y.name})}
     }
 
     static var releases : [String: Release] {
         get { return ReleaseManager.manager._releases }
     }
     
-    private var _releases = [String: Release]()
+    fileprivate var _releases = [String: Release]()
     
-    static var availableReleasesUrl: NSURL? {
+    static var availableReleasesUrl: URL? {
         get { return Utils.supportResourceUrl(Constants.ReleasesJSONFilename) }
     }
     
-    static func load(onLoaded: () -> Void) {
+    static func load(_ onLoaded: @escaping () -> Void) {
         ReleaseManager.manager.load(onLoaded)
     }
 
-    static func isInstalled(name : String) -> Bool {
+    static func isInstalled(_ name : String) -> Bool {
         return Utils.fileExists(Utils.supportResourceUrl(name))
     }
     
-    static func checkNewReleases(successHandler: ([Release]) -> Void) {
+    static func checkNewReleases(_ successHandler: @escaping ([Release]) -> Void) {
          manager.fetch() { (content: String) -> Void in
             do {
                 let latestReleases = try manager.releasesFromString(content)
                 
                 let latestReleasesNames = Set(latestReleases.keys)
-                let diff = latestReleasesNames.subtract(manager._releases.keys)
+                let diff = latestReleasesNames.subtracting(manager._releases.keys)
                 
                 var newReleases: [Release] = []
                 for name in diff {
@@ -64,7 +64,7 @@ class ReleaseManager: NSObject {
         }
     }
 
-    private func load(onLoaded: () -> Void) {
+    fileprivate func load(_ onLoaded: @escaping () -> Void) {
         if(!Utils.fileExists(ReleaseManager.availableReleasesUrl)) {
             self.fetchSave() { self.loadFromFile(onLoaded) }
         } else {
@@ -72,9 +72,9 @@ class ReleaseManager: NSObject {
         }
     }
 
-    private func loadFromFile(onLoaded: () -> Void) {
+    fileprivate func loadFromFile(_ onLoaded: () -> Void) {
         do{
-            let content = try String(contentsOfURL: ReleaseManager.availableReleasesUrl!)
+            let content = try String(contentsOf: ReleaseManager.availableReleasesUrl!)
             self._releases = try releasesFromString(content)
             onLoaded()
         }
@@ -85,10 +85,10 @@ class ReleaseManager: NSObject {
         }
     }
 
-    private func releasesFromString(content: String) throws -> [String: Release] {
+    fileprivate func releasesFromString(_ content: String) throws -> [String: Release] {
         var releases = [String: Release]()
-        let data = content.dataUsingEncoding(NSUTF8StringEncoding)
-        let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments)
+        let data = content.data(using: String.Encoding.utf8)
+        let json = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.allowFragments)
         if let releasesJson = json as? [[String: AnyObject]]
         {
             for releaseJson in releasesJson {
@@ -101,16 +101,16 @@ class ReleaseManager: NSObject {
         return releases
     }
     
-    private func fetchSave(successHandler: () -> Void) {
+    fileprivate func fetchSave(_ successHandler: @escaping () -> Void) {
         self.fetch() { (content: String) -> Void in
             self.save(content)
             successHandler()
         }
     }
     
-    static func makeSymbolicLinks(release: Release) throws
+    static func makeSymbolicLinks(_ release: Release) throws
     {
-        let fileManager = NSFileManager.defaultManager()
+        let fileManager = FileManager.default
         let filesToLink = ["default"]
         
         try filesToLink.forEach
@@ -118,9 +118,9 @@ class ReleaseManager: NSObject {
                 let destination = NSHomeDirectory() + "/.erlangInstaller/" + $0
                 
                 do {
-                    try fileManager.attributesOfItemAtPath(destination)
+                    try fileManager.attributesOfItem(atPath: destination)
                     do {
-                        try fileManager.removeItemAtPath(destination);
+                        try fileManager.removeItem(atPath: destination);
                     }catch let errorDelete as NSError {
                         print("\(errorDelete.localizedDescription)")
                     }
@@ -129,15 +129,15 @@ class ReleaseManager: NSObject {
                     print("\(errorExists.localizedDescription)")
                 }
                 
-                try fileManager.createSymbolicLinkAtPath(destination, withDestinationPath: release.binPath )
+                try fileManager.createSymbolicLink(atPath: destination, withDestinationPath: release.binPath )
                 
                 // Ensure PATH
-                guard let  scriptPath = NSBundle.mainBundle().pathForResource("EnsurePATH",ofType:"command") else {
+                guard let  scriptPath = Bundle.main.path(forResource: "EnsurePATH",ofType:"command") else {
                     NSLog("Unable to locate EnsurePath.command")
                     return
                 }
                 
-                let task = NSTask()
+                let task = Process()
                 
                 task.launchPath = "/bin/sh"
                 task.arguments = [scriptPath]
@@ -149,18 +149,18 @@ class ReleaseManager: NSObject {
         }
     }
     
-    private func save(content: String) {
+    fileprivate func save(_ content: String) {
         do {
-            var authRef: AuthorizationRef = nil
-            let authFlags = AuthorizationFlags.ExtendRights
+            var authRef: AuthorizationRef? = nil
+            let authFlags = AuthorizationFlags.extendRights
             let osStatus = AuthorizationCreate(nil, nil, authFlags, &authRef)
 
             if(osStatus == errAuthorizationSuccess) {
-                let fileManager = NSFileManager.defaultManager()
-                try fileManager.createDirectoryAtPath(Utils.supportResourceUrl("")!.path!, withIntermediateDirectories: true, attributes: nil)
-                fileManager.createFileAtPath(ReleaseManager.availableReleasesUrl!.path!, contents: nil, attributes: nil)
+                let fileManager = FileManager.default
+                try fileManager.createDirectory(atPath: Utils.supportResourceUrl("")!.path, withIntermediateDirectories: true, attributes: nil)
+                fileManager.createFile(atPath: ReleaseManager.availableReleasesUrl!.path, contents: nil, attributes: nil)
                 
-                try content.writeToFile(ReleaseManager.availableReleasesUrl!.path!, atomically: true, encoding: NSUTF8StringEncoding)
+                try content.write(toFile: ReleaseManager.availableReleasesUrl!.path, atomically: true, encoding: String.Encoding.utf8)
             }
         }
         catch let error as NSError
@@ -170,10 +170,10 @@ class ReleaseManager: NSObject {
         }
     }
     
-    private func fetch(successHandler: (String) -> Void) {
+    fileprivate func fetch(_ successHandler: @escaping (String) -> Void) {
         let stringHandler = {
             do {
-                let content = try String(contentsOfURL: Constants.ReleasesListUrl!)
+                let content = try String(contentsOf: Constants.ReleasesListUrl!)
                 successHandler(content)
             }
             catch let error as NSError

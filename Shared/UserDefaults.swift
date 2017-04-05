@@ -10,32 +10,32 @@ import Cocoa
 import CoreFoundation
 
 class UserDefaults {
-    static private let userDefaults = NSUserDefaults.standardUserDefaults()
+    static fileprivate let userDefaults = Foundation.UserDefaults.standard
 
     //-------------------
     // Default values
     //-------------------
     
-    static private let terminalAppDefault = "Terminal" //NSWorkspace.sharedWorkspace().URLForApplicationWithBundleIdentifier("com.apple.Terminal")!.path!
-    static private let openAtLoginDefault = false
-    static private let checkForNewReleasesDefault = true
-    static private var defaultReleaseDefault: String? = nil
-    static private var defaultReleasePath:String? = NSHomeDirectory() + "/.erlangInstaller/"
+    static fileprivate let terminalAppDefault = "Terminal" //NSWorkspace.sharedWorkspace().URLForApplicationWithBundleIdentifier("com.apple.Terminal")!.path!
+    static fileprivate let openAtLoginDefault = false
+    static fileprivate let checkForNewReleasesDefault = true
+    static fileprivate var defaultReleaseDefault: String? = nil
+    static fileprivate var defaultReleasePath:String? = NSHomeDirectory() + "/.erlangInstaller/"
 
     //-------------------
     // Accessors
     //-------------------
     
-    static private func set(key: String, value: AnyObject?) {
-        CFPreferencesSetAppValue(key, value, Constants.applicationId)
+    static fileprivate func set(_ key: String, value: AnyObject?) {
+        CFPreferencesSetAppValue(key as CFString, value, Constants.applicationId as CFString)
     }
     
-    static private func getString(key: String) -> String? {
-        return CFPreferencesCopyAppValue(key, Constants.applicationId) as! String?
+    static fileprivate func getString(_ key: String) -> String? {
+        return CFPreferencesCopyAppValue(key as CFString, Constants.applicationId as CFString) as! String?
     }
     
-    static private func getBool(key: String) -> Bool? {
-        return CFPreferencesCopyAppValue(key, Constants.applicationId) as! Bool?
+    static fileprivate func getBool(_ key: String) -> Bool? {
+        return CFPreferencesCopyAppValue(key as CFString, Constants.applicationId as CFString) as! Bool?
     }
     
     //-------------------
@@ -43,31 +43,31 @@ class UserDefaults {
     //-------------------
 
     static var firstLaunch: Bool {
-        set { set("firstLaunch", value: newValue) }
+        set { set("firstLaunch", value: newValue as AnyObject?) }
         get { return getBool("firstLaunch") ?? true}
     }
     
     static var terminalApp: String {
-        set { set("terminalApp", value: newValue) }
+        set { set("terminalApp", value: newValue as AnyObject?) }
         get { return getString("terminalApp") ?? terminalAppDefault}
     }
     
     static var openAtLogin: Bool {
-        set { set("openAtLogin", value: newValue) }
+        set { set("openAtLogin", value: newValue as AnyObject?) }
         get { return getBool("openAtLogin") ?? openAtLoginDefault}
     }
 
     static var checkForNewReleases: Bool {
-        set { set("checkForNewReleases", value: newValue) }
+        set { set("checkForNewReleases", value: newValue as AnyObject?) }
         get { return getBool("checkForNewReleases") ?? checkForNewReleasesDefault}
     }
 
     static var defaultRelease: String? {
-        set { set("defaultRelease", value: newValue) }
+        set { set("defaultRelease", value: newValue as AnyObject?) }
         get { return getString("defaultRelease") ?? defaultReleaseDefault}
     }
         static var defaultPath: String? {
-        set { set("defaultPath", value: newValue)}
+        set { set("defaultPath", value: newValue as AnyObject?)}
         get { return getString("defaultPath") ?? defaultReleasePath}
     }
     

@@ -10,18 +10,18 @@ import Cocoa
 
 class ReleasesTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSource {
     
-    func numberOfRowsInTableView(tableView: NSTableView) -> Int {
+    func numberOfRows(in tableView: NSTableView) -> Int {
         return ReleaseManager.available.count
     }
     
-    func tableView(tableView: NSTableView, viewForTableColumn tableColumn: NSTableColumn?,row rowIndex: Int) -> NSView? {
-        let cellView : ReleaseTableCell = tableView.makeViewWithIdentifier(tableColumn!.identifier, owner: self) as! ReleaseTableCell
+    func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?,row rowIndex: Int) -> NSView? {
+        let cellView : ReleaseTableCell = tableView.make(withIdentifier: tableColumn!.identifier, owner: self) as! ReleaseTableCell
         let release = ReleaseManager.available[rowIndex]
         
 		if UserDefaults.defaultRelease == release.name {
-			cellView.releaseNameLabel.font =  NSFont.boldSystemFontOfSize(NSFont.systemFontSize())
+			cellView.releaseNameLabel.font =  NSFont.boldSystemFont(ofSize: NSFont.systemFontSize())
 		}else {
-			cellView.releaseNameLabel.font = NSFont.systemFontOfSize(NSFont.systemFontSize())
+			cellView.releaseNameLabel.font = NSFont.systemFont(ofSize: NSFont.systemFontSize())
 		}
         
         if let appDelegate = NSApp.delegate as? AppDelegate {

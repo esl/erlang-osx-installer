@@ -12,33 +12,33 @@ import SecurityFoundation
 
 public protocol InstallationProgress {
     func start()
-    func downloading(maxValue: Double)
+    func downloading(_ maxValue: Double)
     func download(progress delta: Double)
     func extracting()
     func installing()
     func finished()
-    func error(error: NSError)
+    func error(_ error: NSError)
 }
 
 class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDelegate {
     let release : Release
     let progress: InstallationProgress
     var urlConnection: NSURLConnection?
-    var extractTask: NSTask?
-    var installTask: NSTask?
+    var extractTask: Process?
+    var installTask: Process?
     var data: NSMutableData?
-    var backgroundQueue = NSOperationQueue()
+    var backgroundQueue = OperationQueue()
 
     var delegate: refreshPreferences!
     
-    var destinationTarGz : NSURL? {
+    var destinationTarGz : URL? {
         get { return Utils.supportResourceUrl("release_\(self.release.name).tar.gz") }
     }
-    var releaseDir: NSURL? {
+    var releaseDir: URL? {
         get { return Utils.supportResourceUrl(self.release.name) }
     }
     
-    static func install(releaseName: String, progress: InstallationProgress) -> ReleaseInstaller {
+    static func install(_ releaseName: String, progress: InstallationProgress) -> ReleaseInstaller {
         let installer = ReleaseInstaller(releaseName: releaseName, progress: progress)
         installer.run() {
             installer.start()
@@ -46,14 +46,14 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         return installer
     }
     
-    private init(releaseName: String, progress: InstallationProgress) {
+    fileprivate init(releaseName: String, progress: InstallationProgress) {
         self.release = ReleaseManager.releases[releaseName]!
         self.progress = progress
     }
 
-    private func start() {
-        self.urlConnection = NSURLConnection(request: NSURLRequest(URL: tarballUrl(release)), delegate: self, startImmediately: false)
-        self.urlConnection?.setDelegateQueue(NSOperationQueue())
+    fileprivate func start() {
+        self.urlConnection = NSURLConnection(request: URLRequest(url: tarballUrl(release)), delegate: self, startImmediately: false)
+        self.urlConnection?.setDelegateQueue(OperationQueue())
         self.urlConnection?.start()
 
         runInMain() { self.progress.start() }
@@ -69,17 +69,17 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         }
     }
     
-    private func extract() {
+    fileprivate func extract() {
         self.runInMain() { self.progress.extracting() }
 
         do
         {
-            let fileManager = NSFileManager.defaultManager()
-            try fileManager.createDirectoryAtURL(self.releaseDir!, withIntermediateDirectories: true, attributes: nil)
-            self.extractTask = NSTask()
+            let fileManager = FileManager.default
+            try fileManager.createDirectory(at: self.releaseDir!, withIntermediateDirectories: true, attributes: nil)
+            self.extractTask = Process()
             self.extractTask?.launchPath = "/usr/bin/tar"
-            self.extractTask?.arguments = ["zxf", self.destinationTarGz!.path!, "-C", self.releaseDir!.path!, "--strip", "1"]
-            self.extractTask?.terminationHandler =  { (_: NSTask) -> Void in
+            self.extractTask?.arguments = ["zxf", self.destinationTarGz!.path, "-C", self.releaseDir!.path, "--strip", "1"]
+            self.extractTask?.terminationHandler =  { (_: Process) -> Void in
                 self.run() {
                     Utils.delete(self.destinationTarGz!)
                     self.install()
@@ -95,18 +95,18 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         }
     }
     
-    private func install() {
+    fileprivate func install() {
         self.runInMain() { self.progress.installing() }
-        var authRef: AuthorizationRef = nil
-        let authFlags = AuthorizationFlags.ExtendRights
+        var authRef: AuthorizationRef? = nil
+        let authFlags = AuthorizationFlags.extendRights
         let osStatus = AuthorizationCreate(nil, nil, authFlags, &authRef)
         
         if(osStatus == errAuthorizationSuccess ) {
         
-            self.installTask = NSTask()
-            self.installTask?.launchPath = self.releaseDir?.URLByAppendingPathComponent("Install")!.path
+            self.installTask = Process()
+            self.installTask?.launchPath = self.releaseDir?.appendingPathComponent("Install").path
             self.installTask?.arguments = ["-sasl", (self.releaseDir?.path)!]
-            self.installTask?.terminationHandler =  { (_: NSTask) -> Void in
+            self.installTask?.terminationHandler =  { (_: Process) -> Void in
                 
                 self.run() {
                     do{
@@ -127,10 +127,10 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
             self.installTask?.launch()
         }
         
-        AuthorizationFree(authRef, AuthorizationFlags.DestroyRights)
+        AuthorizationFree(authRef!, AuthorizationFlags.destroyRights)
     }
     
-    private func done() {
+    fileprivate func done() {
         self.runInMain() {
             
             self.progress.finished()
@@ -142,45 +142,45 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         self.data = nil
     }
     
-    private func tarballUrl(release: Release) -> NSURL {
-        return NSURL(string: release.path, relativeToURL: Constants.BaseTarballsUrl!)!
+    fileprivate func tarballUrl(_ release: Release) -> URL {
+        return URL(string: release.path, relativeTo: Constants.BaseTarballsUrl!)!
     }
     
-    private func runInMain(block: () -> Void) {
-        NSOperationQueue.mainQueue().addOperationWithBlock(block)
+    fileprivate func runInMain(_ block: @escaping () -> Void) {
+        OperationQueue.main.addOperation(block)
     }
     
-    private func run(block: () -> Void) {
-        self.backgroundQueue.addOperationWithBlock(block)
+    fileprivate func run(_ block: @escaping () -> Void) {
+        self.backgroundQueue.addOperation(block)
     }
 
     //------------------------------------------
     // NSURLDownloadDelegate protocol
     //------------------------------------------
     
-    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
+    func connection(_ connection: NSURLConnection, didReceive response: URLResponse) {
         self.runInMain() {
             self.progress.downloading(Double(response.expectedContentLength))
         }
         self.data = NSMutableData()
     }
 
-    func connection(connection: NSURLConnection, didReceiveData data: NSData) {
+    func connection(_ connection: NSURLConnection, didReceive data: Data) {
         self.runInMain() {
-            self.progress.download(progress: Double(data.length))
+            self.progress.download(progress: Double(data.count))
         }
-        self.data?.appendData(data)
+        self.data?.append(data)
     }
     
-    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
+    func connection(_ connection: NSURLConnection, didFailWithError error: Error) {
         self.runInMain() {
-            self.progress.error(error)
+            self.progress.error(error as NSError)
         }
     }
 
-    func connectionDidFinishLoading(connection: NSURLConnection) {
+    func connectionDidFinishLoading(_ connection: NSURLConnection) {
         self.runInMain() {
-            self.data?.writeToURL(self.destinationTarGz!, atomically: true)
+            self.data?.write(to: self.destinationTarGz!, atomically: true)
             self.run() {
                 self.extract()
             }
