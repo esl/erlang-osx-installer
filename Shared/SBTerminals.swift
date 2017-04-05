@@ -62,7 +62,6 @@ extension SBObject: SBiTermItem {}
     @objc optional var name: String { get }
     @objc optional var version: String { get }
     @objc optional var frontmost: Bool { get }
-   //  @objc optional var running: Bool { get }
     
     @objc optional func terminals() -> SBElementArray
     @objc optional var currentTerminal: SBiTermTerminal { get }  // currently active terminal
