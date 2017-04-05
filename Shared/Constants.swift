@@ -19,16 +19,7 @@ class ConstantsLoader {
         }
         else
         {
-            let bundles = Bundle.allBundles
-            
-//            let filteredBundles = bundles.filter({ (bundle: NSBundle) -> Bool in
-//                return bundle.bundleIdentifier == Constants.ErlangInstallerPreferencesId
-//            })
-			
-//            if(filteredBundles.count > 0)
-//            {
-//                return filteredBundles.first
-//            }
+            _ = Bundle.allBundles
         }
         
         return nil
