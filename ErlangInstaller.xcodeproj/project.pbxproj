@@ -42,6 +42,7 @@
 		ACA7825A1D7A17F200B3AEB8 /* ErlangInstallerPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2683471C357D5E0058BB1F /* ErlangInstallerPreferences.swift */; };
 		ACA7825B1D7A183800B3AEB8 /* ErlangInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E93D18B1C4940BB008DCC81 /* ErlangInstaller.swift */; };
 		ACA7825C1D7A3B0500B3AEB8 /* erlang-solutions.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E519F911C32E34F0024DEAB /* erlang-solutions.png */; };
+		ACF814C31E95629A005EA75B /* uninstall.tool in Resources */ = {isa = PBXBuildFile; fileRef = ACF814C21E95629A005EA75B /* uninstall.tool */; };
 		ACF9D19F1D80888600B3AEB8 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACF9D19E1D80888600B3AEB8 /* ServiceManagement.framework */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,7 @@
 		AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopoverViewController.xib; sourceTree = "<group>"; };
 		AC710FF01E9294A5005EA75B /* EnsurePATH.command */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = EnsurePATH.command; path = ErlangInstaller/EnsurePATH.command; sourceTree = "<group>"; };
 		ACEBBD8E1D6CB6ED00B3AEB8 /* ErlangInstaller.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ErlangInstaller.entitlements; sourceTree = "<group>"; };
+		ACF814C21E95629A005EA75B /* uninstall.tool */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = uninstall.tool; sourceTree = "<group>"; };
 		ACF9D19E1D80888600B3AEB8 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -143,6 +145,7 @@
 				5E32070C1C4EB841006C2C87 /* SBiTerm.h */,
 				5E32070E1C4EB8E2006C2C87 /* SBTerminals.swift */,
 				AC710FF01E9294A5005EA75B /* EnsurePATH.command */,
+				ACF814C21E95629A005EA75B /* uninstall.tool */,
 			);
 			name = External;
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACF814C31E95629A005EA75B /* uninstall.tool in Resources */,
 				AC710FF21E929500005EA75B /* EnsurePATH.command in Resources */,
 				5EC3AF9C1C31888000E0BF43 /* Assets.xcassets in Resources */,
 				AC19CFAE1D6F2F8100B3AEB8 /* releases.json in Resources */,
