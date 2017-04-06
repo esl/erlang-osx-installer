@@ -41,8 +41,8 @@ for  p in "com.erlang-solutions.Erlang" "com.erlang-solutions.MacUpdaterSwift"; 
         fi
     done
 
-#reverse oreder becouse if dir A has empty dir B then A cannot be removed and when we reverse
-#we get the dippest directory first so everything works
+#reverse order because when dir A has empty dir B then A cannot be removed, and by reversing
+#we get the deepest directory first so everything works.
 
     DIRS=`/usr/sbin/pkgutil --files ${p} 2>/dev/null --only-dirs | awk '{x = $0 "\n" x} END {printf "%s", x}'`
     for d in $DIRS; do

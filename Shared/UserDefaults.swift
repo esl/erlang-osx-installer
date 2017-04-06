@@ -71,4 +71,8 @@ class UserDefaults {
         get { return getString("defaultPath") ?? defaultReleasePath}
     }
     
+    static var dontBotherWithOldReleaseAlert: Bool {
+        set { set("dontBotherWithOldReleaseAlert", value: newValue as AnyObject?) }
+        get { return getBool("dontBotherWithOldReleaseAlert") ?? true}
+    }
 }

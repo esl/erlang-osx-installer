@@ -8,6 +8,7 @@
 
 import Cocoa
 import SystemConfiguration
+import Security
 
 class Utils {
     static func alert(_ message: String) {
@@ -31,6 +32,19 @@ class Utils {
         return alert.runModal() == NSAlertFirstButtonReturn
     }
 
+    static func inform(_ message: String, additionalInfo: String?) -> (Bool) {
+        let alert = NSAlert()
+        alert.messageText = message
+        alert.informativeText = (additionalInfo == nil ? "" : additionalInfo!)
+        alert.alertStyle = .informational
+        alert.showsSuppressionButton = true
+        alert.runModal()
+        guard let state = alert.suppressionButton?.state else {
+            return false
+        }
+        return Bool.init(NSNumber.init(value: state))
+    }
+    
     static func supportResourceUrl(_ name : String) -> URL? {
         let appSupportUrl = URL.init(fileURLWithPath: UserDefaults.defaultPath!)
 
@@ -126,55 +140,18 @@ class Utils {
     }
     
     static func maybeRemovePackageInstallation() {
-        do {
-            let eslOtpVersionUrl = URL(string: "esl_otp_version", relativeTo: Constants.ErlangEslInstallationDir as URL)
-
-            if !self.fileExists(eslOtpVersionUrl) {
-                return
-            }
-            
-            if !confirm("A deprecated ESL Erlang installation has been found. Do you want to uninstall it?") {
-                return
-            }
-            
-            var authRef: AuthorizationRef? = nil
-            let authFlags = AuthorizationFlags.extendRights
-            let osStatus = AuthorizationCreate(nil, nil, authFlags, &authRef)
-            
-            if(osStatus == errAuthorizationSuccess) {
-                // Remove MacUpdaterSwift from the login items
-                let macUpdaterSwift = Constants.ErlangEslInstallationDir.appendingPathComponent("MacUpdaterSwift.app")
-               _ = setLaunchAtLogin(macUpdaterSwift, enabled: false)
-
-                // Remove EslErlangUpdater.app from the login items
-                let eslErlangUpdater = Constants.ErlangEslInstallationDir.appendingPathComponent("EslErlangUpdater.app")
-               _ = setLaunchAtLogin(eslErlangUpdater, enabled: false)
-                
-                // Delete all symlinks to Erlang executables in /usr/local/bin
-                let fileManager = FileManager.default
-                let localBinDir = "/usr/local/bin/"
-                let files = try fileManager.contentsOfDirectory(atPath: localBinDir)
-                for file in files {
-                    let filePath = localBinDir + file
-                    let attrs = try fileManager.attributesOfItem(atPath: filePath)
-                    if attrs[FileAttributeKey.type] as? String == FileAttributeType.typeSymbolicLink.rawValue {
-                        let dest = try fileManager.destinationOfSymbolicLink(atPath: filePath)
-                        if(dest.hasPrefix("../lib/erlang/")) {
-                            delete(URL(fileURLWithPath: filePath))
-                        }
-                    }
-                }
-
-                // Delete ESL Erlang installation dir
-                // TODO: do this with admin privileges
-                delete(Constants.ErlangEslInstallationDir as URL)
-            }
+        guard UserDefaults.dontBotherWithOldReleaseAlert ==  false else { return }
+        
+        let eslOtpVersionUrl = URL(string: "esl_otp_version", relativeTo: Constants.ErlangEslInstallationDir as URL)
+        
+        if !self.fileExists(eslOtpVersionUrl) {
+            return
         }
-        catch let error as NSError
-        {
-            Utils.alert(error.localizedDescription)
-            NSLog("Error deleting files: \(error.debugDescription)")
-        }
+        
+        
+        let dontBother = self.inform("A deprecated ESL Erlang installation has been found.", additionalInfo: "Location: \(Constants.ErlangEslInstallationDir.path)")
+
+        UserDefaults.dontBotherWithOldReleaseAlert = dontBother
     }
 
     static func setPathCommandForShell(_ shell: String, path: String) -> String {
