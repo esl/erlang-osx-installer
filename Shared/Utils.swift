@@ -100,7 +100,7 @@ class Utils {
 				}
 			}
 			
-            let session = URLSession()
+            let session = URLSession.shared
         
             let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
                 print("Response: \(response)")})
