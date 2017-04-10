@@ -21,12 +21,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		// let domainName: String = NSBundle.mainBundle().bundleIdentifier!
 		// NSUserDefaults.standardUserDefaults().removePersistentDomainForName(domainName)
 		// exit(0)
-		
-        if(UserDefaults.firstLaunch) {
-            Utils.maybeRemovePackageInstallation()
-            //UserDefaults.firstLaunch = false // FIXME there are 2 firstLaunch operations
-        }
 
+        Utils.maybeRemovePackageInstallation()
         ReleaseManager.load() {
             self.mainMenu.listenNotifications()
             self.mainMenu.loadReleases()
