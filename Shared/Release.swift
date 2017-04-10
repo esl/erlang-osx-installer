@@ -18,7 +18,9 @@ class Release: AnyObject {
     var binPath : String {
         get { return Utils.supportResourceUrl("\(self.name)/bin")!.path }
     }
-    
+    var releasePath : String {
+        get { return Utils.supportResourceUrl("\(self.name)")!.path }
+    }
     init(name: String, path: String){
         self.name = name
         self.path = path
