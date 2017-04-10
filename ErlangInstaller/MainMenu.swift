@@ -121,7 +121,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
     func loadReleases() {
         self.erlangTerminals.submenu?.removeAllItems()
         for release in ReleaseManager.available {
-            let item = NSMenuItem(title: release.name, action: Selector(""), keyEquivalent: "")
+            let item = NSMenuItem(title: release.name, action: nil, keyEquivalent: "")
             self.erlangTerminals.submenu?.addItem(item)
             
             item.isEnabled = release.installed

@@ -82,7 +82,7 @@ class MainTabViewController: NSViewController, NSTextFieldDelegate
         //			}
         UserDefaults.openAtLogin = self.openAtLogin.state == 1
         let url = NSWorkspace.shared().urlForApplication(withBundleIdentifier: Constants.applicationId)
-        Utils.setLaunchAtLogin(url!, enabled: UserDefaults.openAtLogin)
+        _ = Utils.setLaunchAtLogin(url!, enabled: UserDefaults.openAtLogin)
     }
     
     @IBAction func checkNewReleasesClick(_ sender: AnyObject) {

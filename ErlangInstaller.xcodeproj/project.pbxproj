@@ -276,12 +276,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5EC3AFB91C31888000E0BF43 /* Build configuration list for PBXNativeTarget "ErlangInstaller" */;
 			buildPhases = (
-				AC49D0981E8D6346005EA75B /* Increment Build Number */,
 				5EC3AF901C31888000E0BF43 /* Sources */,
 				5EC3AF911C31888000E0BF43 /* Frameworks */,
 				5EC3AF921C31888000E0BF43 /* Resources */,
 				5E8B2BAF1C7DFD41001E9C61 /* CopyFiles */,
 				AC24792C1D1C6F3800B3AEB8 /* Run Script Tell User about DMG Package */,
+				AC49D0981E8D6346005EA75B /* Increment Build Number */,
 			);
 			buildRules = (
 			);
