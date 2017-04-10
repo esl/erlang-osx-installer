@@ -129,7 +129,7 @@ class ReleaseManager: NSObject {
                     print("\(errorExists.localizedDescription)")
                 }
                 
-                try fileManager.createSymbolicLink(atPath: destination, withDestinationPath: release.binPath )
+                try fileManager.createSymbolicLink(atPath: destination, withDestinationPath: release.releasePath )
                 
                 // Ensure PATH
                 guard let  scriptPath = Bundle.main.path(forResource: "EnsurePATH",ofType:"command") else {

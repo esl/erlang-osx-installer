@@ -7,7 +7,7 @@
 #  Copyright © 2017 Erlang Solutions. All rights reserved.
 
 cd ~
-ERLANG_DEFAULT_PATH="~/.erlangInstaller/default"
+ERLANG_DEFAULT_PATH="~/.erlangInstaller/default/bin"
 if [ -f .bash_profile ]; then CONFIG_FILE=".bash_profile";
 else
 CONFIG_FILE=".profile";
