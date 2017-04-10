@@ -73,6 +73,6 @@ class UserDefaults {
     
     static var dontBotherWithOldReleaseAlert: Bool {
         set { set("dontBotherWithOldReleaseAlert", value: newValue as AnyObject?) }
-        get { return getBool("dontBotherWithOldReleaseAlert") ?? true}
+        get { return getBool("dontBotherWithOldReleaseAlert") ?? false}
     }
 }
