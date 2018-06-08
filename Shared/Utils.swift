@@ -49,7 +49,7 @@ class Utils {
         let appSupportUrl = URL.init(fileURLWithPath: UserDefaults.defaultPath!)
 
         let urlname = name;
-        let url = URL(string: urlname.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)! , relativeTo:  appSupportUrl);
+        let url = !urlname.isEmpty ? URL(string: urlname.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)! , relativeTo:  appSupportUrl) : appSupportUrl
         
         return url;
     }
