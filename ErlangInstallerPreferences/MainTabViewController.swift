@@ -23,6 +23,7 @@ class MainTabViewController: NSViewController, NSTextFieldDelegate
     fileprivate var erlangInstallerApp: ErlangInstallerApplication?
 
     override func viewDidLoad() {
+        preferredContentSize = view.frame.size
         self.erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId)
        	self.loadVersionAndBuildNumber()
         self.loadPreferencesValues()
