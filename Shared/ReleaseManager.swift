@@ -158,8 +158,6 @@ class ReleaseManager: NSObject {
             if(osStatus == errAuthorizationSuccess) {
                 let fileManager = FileManager.default
                 try fileManager.createDirectory(atPath: Utils.supportResourceUrl("")!.path, withIntermediateDirectories: true, attributes: nil)
-                fileManager.createFile(atPath: ReleaseManager.availableReleasesUrl!.path, contents: nil, attributes: nil)
-                
                 try content.write(toFile: ReleaseManager.availableReleasesUrl!.path, atomically: true, encoding: String.Encoding.utf8)
             }
         }
