@@ -49,7 +49,7 @@ class Utils {
         let appSupportUrl = URL.init(fileURLWithPath: UserDefaults.defaultPath!)
 
         let urlname = name;
-        let url = URL(string: urlname.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)! , relativeTo:  appSupportUrl);
+        let url = !urlname.isEmpty ? URL(string: urlname.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)! , relativeTo:  appSupportUrl) : appSupportUrl
         
         return url;
     }
@@ -100,7 +100,7 @@ class Utils {
 			request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
 			request.timeoutInterval = 10.0
 			
-			_ = { (response: URLResponse?, data: Data?, err: NSError?) -> Void in
+			let completionHandler = { (data: Data?, response: URLResponse?, err: Error?) -> Void in
 				var status = false
 				if let httpResponse = response as? HTTPURLResponse {
 					if httpResponse.statusCode == 200 {
@@ -110,14 +110,13 @@ class Utils {
 				if(status) {
 					successHandler()
 				} else {
-					errorHandler(err)
+					errorHandler(err as NSError?)
 				}
 			}
 			
             let session = URLSession.shared
         
-            let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
-                print("Response: \(response)")})
+            let task = session.dataTask(with: request as URLRequest, completionHandler: completionHandler)
             
             task.resume()
 		}
