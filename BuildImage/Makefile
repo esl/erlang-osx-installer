@@ -2,7 +2,7 @@ SELF_DIR := $(dir $(lastword $(MAKEFILE_LIST)))
 
 # Set application-specific parameters
 NAME ?= ErlangInstaller
-VERSION ?= 0.1
+VERSION ?= 1.0.2
 
 SOURCE_DIR ?= src
 SOURCE_FILES ?= ErlangInstaller.app
