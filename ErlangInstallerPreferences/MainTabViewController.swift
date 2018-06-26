@@ -98,8 +98,10 @@ class MainTabViewController: NSViewController, NSTextFieldDelegate
             {
                 UserDefaults.defaultRelease = defaultRelease.title
                 
-                let selectedRelease = ReleaseManager.releases[UserDefaults.defaultRelease!]
-                try ReleaseManager.makeSymbolicLinks(selectedRelease!)
+                if let selectedRelease = ReleaseManager.releases[UserDefaults.defaultRelease!]
+                {
+                  try ReleaseManager.makeSymbolicLinks(selectedRelease)
+                }
                 
                 self.updateReleasesForAgent()
                // self.releasesTableView.reloadData()
