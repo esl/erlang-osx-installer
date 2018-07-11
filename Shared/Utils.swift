@@ -29,7 +29,7 @@ class Utils {
         alert.informativeText = (additionalInfo == nil ? "" : additionalInfo!)
         alert.addButton(withTitle: "Yes")
         alert.addButton(withTitle: "No")
-        return alert.runModal() == NSAlertFirstButtonReturn
+        return alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn
     }
 
     static func inform(_ message: String, additionalInfo: String?) -> (Bool) {
@@ -42,7 +42,7 @@ class Utils {
         guard let state = alert.suppressionButton?.state else {
             return false
         }
-        return Bool.init(NSNumber.init(value: state))
+        return Bool.init(NSNumber.init(value: Int8(state.rawValue)))
     }
     
     static func supportResourceUrl(_ name : String) -> URL? {
@@ -77,7 +77,7 @@ class Utils {
     }
 
     static func iconForApp(_ path: String) -> NSImage {
-        return NSWorkspace.shared().icon(forFile: path)
+        return NSWorkspace.shared.icon(forFile: path)
     }
 
     static func execute(_ source: String) {

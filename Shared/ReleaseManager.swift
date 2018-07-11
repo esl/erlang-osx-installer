@@ -17,7 +17,7 @@ class ReleaseManager: NSObject {
         get { return ReleaseManager.manager._releases.values.sorted(by: {x, y in x.name < y.name})}
     }
     static var installed : [Release] {
-        get { return ReleaseManager.manager._releases.values.filter { $0.installed }.sorted(by: {x, y in x.name < y.name})}
+        get { return ReleaseManager.manager._releases.values.filter({ $0.installed }).sorted(by: {x, y in x.name < y.name})}
     }
 
     static var releases : [String: Release] {

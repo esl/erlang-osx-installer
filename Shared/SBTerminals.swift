@@ -67,7 +67,7 @@ extension SBObject: SBiTermItem {}
     @objc optional var currentTerminal: SBiTermTerminal { get }  // currently active terminal
     @objc optional var uriToken: String { get } // URI token
 
-    @objc optional func classForScriptingClass(_ className: String) -> AnyClass?
+    @objc optional func classForScriptingClass(_ className: String) -> Any?
 }
 extension SBApplication: SBiTermITermApplication {}
 

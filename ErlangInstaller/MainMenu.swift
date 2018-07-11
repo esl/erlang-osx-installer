@@ -44,7 +44,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
         }
     }
     
-	func showPopover(_ sender: AnyObject?) {
+	@objc func showPopover(_ sender: AnyObject?) {
 		if let button = statusItem!.button {
 			popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
 			if let controller  = popover.contentViewController as? PopoverViewController {
@@ -58,7 +58,7 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
 		self.closePopover(sender)
 	}
 	
-	func closePopover(_ sender: AnyObject?) {
+	@objc func closePopover(_ sender: AnyObject?) {
 		popover.performClose(sender)
 	}
  
@@ -110,11 +110,11 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(MainMenu.handleScheduleCheckNewReleases(_:)), name: NSNotification.Name(rawValue: "loadReleases"), object: nil)
     }
 
-    func handleLoadReleases(_ notification: Notification) {
+    @objc func handleLoadReleases(_ notification: Notification) {
         self.loadReleases()
     }
     
-    func handleScheduleCheckNewReleases(_ notification: Notification) {
+    @objc func handleScheduleCheckNewReleases(_ notification: Notification) {
         self.scheduleCheckNewReleases()
     }
     
@@ -140,18 +140,18 @@ class MainMenu: NSMenu, NSUserNotificationCenterDelegate, PopoverDelegate {
 		self.erlangTerminals.isEnabled = enableTerminalMenuEntries
     }
     
-    func openTerminal(_ menuItem: NSMenuItem) {
+    @objc func openTerminal(_ menuItem: NSMenuItem) {
         let release = ReleaseManager.releases[menuItem.title]!
         let erlangTerminal = TerminalApplications.terminals[UserDefaults.terminalApp]
         erlangTerminal?.open(release)
     }
     
     func addStatusItem() {
-        self.statusItem = NSStatusBar.system().statusItem(withLength: NSVariableStatusItemLength)
-        self.statusItem?.image = NSImage(named: "menu-bar-icon.png")
+        self.statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        self.statusItem?.image = NSImage(named: NSImage.Name(rawValue: "menu-bar-icon.png"))
         self.statusItem?.menu = self
 		if (UserDefaults.firstLaunch) {
-			popover.contentViewController = PopoverViewController(nibName: "PopoverViewController", bundle: nil)
+			popover.contentViewController = PopoverViewController(nibName: NSNib.Name(rawValue: "PopoverViewController"), bundle: nil)
 			_ = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.showPopover(_:)), userInfo: nil, repeats: false)
 			UserDefaults.firstLaunch = false
 		}

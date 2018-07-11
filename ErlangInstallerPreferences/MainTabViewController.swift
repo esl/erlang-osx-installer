@@ -36,8 +36,8 @@ class MainTabViewController: NSViewController, NSTextFieldDelegate
     
     func loadPreferencesValues() {
         // Load current preferences
-        self.openAtLogin.state = (UserDefaults.openAtLogin ? 1 : 0)
-        self.checkForNewReleases.state = (UserDefaults.checkForNewReleases ? 1 : 0)
+        self.openAtLogin.state = (NSControl.StateValue(rawValue: UserDefaults.openAtLogin ? 1 : 0))
+        self.checkForNewReleases.state = (NSControl.StateValue(rawValue: UserDefaults.checkForNewReleases ? 1 : 0))
         
         self.showReleasesList()
         
@@ -81,14 +81,14 @@ class MainTabViewController: NSViewController, NSTextFieldDelegate
         //			if !SMLoginItemSetEnabled(("com.erlang-solutions.ErlangInstaller-Helper" as CFString), Bool(sender.state)) {
         //				print("Setting as login item was not successful")
         //			}
-        UserDefaults.openAtLogin = self.openAtLogin.state == 1
-        let url = NSWorkspace.shared().urlForApplication(withBundleIdentifier: Constants.applicationId)
+        UserDefaults.openAtLogin = self.openAtLogin.state.rawValue == 1
+        let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: Constants.applicationId)
         _ = Utils.setLaunchAtLogin(url!, enabled: UserDefaults.openAtLogin)
     }
     
     @IBAction func checkNewReleasesClick(_ sender: AnyObject) {
     
-        UserDefaults.checkForNewReleases = self.checkForNewReleases.state == 1
+        UserDefaults.checkForNewReleases = self.checkForNewReleases.state.rawValue == 1
         self.scheduleCheckNewReleasesForAgent()
     }
     
