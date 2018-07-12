@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30B4D6FE20F7A3D300F88F39 /* ErlangSolutions in Resources */ = {isa = PBXBuildFile; fileRef = 30B4D6FD20F7A3D300F88F39 /* ErlangSolutions */; };
 		5E20ED931C3D7F0B007AFFE6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20ED921C3D7F0B007AFFE6 /* Utils.swift */; };
 		5E32070F1C4EB8E2006C2C87 /* SBTerminals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E32070E1C4EB8E2006C2C87 /* SBTerminals.swift */; };
 		5E41CAC71C80D44F00C41A7D /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E41CAC61C80D44F00C41A7D /* MainMenu.swift */; };
@@ -58,6 +59,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		30B4D6FD20F7A3D300F88F39 /* ErlangSolutions */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ErlangSolutions; path = ../ErlangSolutions; sourceTree = "<group>"; };
 		5E20ED901C3D7836007AFFE6 /* ReleaseTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReleaseTableCell.swift; sourceTree = "<group>"; };
 		5E20ED921C3D7F0B007AFFE6 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Shared/Utils.swift; sourceTree = "<group>"; };
 		5E2683471C357D5E0058BB1F /* ErlangInstallerPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErlangInstallerPreferences.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		5EC3AF8B1C31888000E0BF43 = {
 			isa = PBXGroup;
 			children = (
+				30B4D6FD20F7A3D300F88F39 /* ErlangSolutions */,
 				5E7D319B1C7E34FC00B90D43 /* BuildImage */,
 				5E7D318A1C7E026400B90D43 /* TestWebServers */,
 				5E20ED981C3D8574007AFFE6 /* Shared */,
@@ -342,6 +345,7 @@
 				5E93D1851C49318D008DCC81 /* ErlangInstaller.sdef in Resources */,
 				ACA7825C1D7A3B0500B3AEB8 /* erlang-solutions.png in Resources */,
 				5E7D31901C7E029100B90D43 /* server.js in Resources */,
+				30B4D6FE20F7A3D300F88F39 /* ErlangSolutions in Resources */,
 				5E7D31951C7E094300B90D43 /* start-server.sh in Resources */,
 				5EC3AFC91C31CDA700E0BF43 /* menu-bar-icon.png in Resources */,
 				AC3DB28A1D7DC3EF00B3AEB8 /* ErlangInstallerPreferences.searchTerms in Resources */,
