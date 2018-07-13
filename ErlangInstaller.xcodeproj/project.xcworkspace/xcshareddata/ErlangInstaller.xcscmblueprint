@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "A8641AB16BE2D99EE99EA585E3F7027306656572",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "A8641AB16BE2D99EE99EA585E3F7027306656572" : 9223372036854775807,
+    "2172FC3621F77A97D7247F9810EA23837D400296" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9C497CE5-653A-4FF3-BB49-76980082807D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "A8641AB16BE2D99EE99EA585E3F7027306656572" : "erlang-osx-installer\/",
+    "2172FC3621F77A97D7247F9810EA23837D400296" : "ErlangSolutions\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "ErlangInstaller",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "ErlangInstaller.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nacicatus\/ErlangSolutions.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2172FC3621F77A97D7247F9810EA23837D400296"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nacicatus\/erlang-osx-installer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A8641AB16BE2D99EE99EA585E3F7027306656572"
+    }
+  ]
+}

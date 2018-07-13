@@ -36,8 +36,8 @@ class MainTabViewController: NSViewController, NSTextFieldDelegate
     
     func loadPreferencesValues() {
         // Load current preferences
-        self.openAtLogin.state = (NSControl.StateValue(rawValue: UserDefaults.openAtLogin ? 1 : 0))
-        self.checkForNewReleases.state = (NSControl.stateValue(rawValue: UserDefaults.checkForNewReleases ? 1 : 0))
+        self.openAtLogin.state = UserDefaults.openAtLogin ? 1 : 0
+        self.checkForNewReleases.state = UserDefaults.checkForNewReleases ? 1 : 0
         self.showReleasesList()
         
         self.terminalApplication.removeAllItems()
@@ -87,7 +87,7 @@ class MainTabViewController: NSViewController, NSTextFieldDelegate
     
     @IBAction func checkNewReleasesClick(_ sender: AnyObject) {
     
-        UserDefaults.checkForNewReleases = self.checkForNewReleases.stateValue == 1
+        UserDefaults.checkForNewReleases = self.checkForNewReleases.state == 1
         self.scheduleCheckNewReleasesForAgent()
     }
     
