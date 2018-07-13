@@ -34,7 +34,7 @@ typedef enum SBSystemPreferencesPrintingErrorHandling SBSystemPreferencesPrintin
  * Standard Suite
  */
 
-// The application's top-level scripting object.
+// The application's top-level scripting object.class
 @interface SBSystemPreferencesApplication : SBApplication
 
 - (SBElementArray<SBSystemPreferencesDocument *> *) documents;

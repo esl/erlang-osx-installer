@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30B4D6FE20F7A3D300F88F39 /* ErlangSolutions in Resources */ = {isa = PBXBuildFile; fileRef = 30B4D6FD20F7A3D300F88F39 /* ErlangSolutions */; };
 		5E20ED931C3D7F0B007AFFE6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E20ED921C3D7F0B007AFFE6 /* Utils.swift */; };
 		5E32070F1C4EB8E2006C2C87 /* SBTerminals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E32070E1C4EB8E2006C2C87 /* SBTerminals.swift */; };
 		5E41CAC71C80D44F00C41A7D /* MainMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E41CAC61C80D44F00C41A7D /* MainMenu.swift */; };
@@ -57,7 +56,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		30B4D6FD20F7A3D300F88F39 /* ErlangSolutions */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ErlangSolutions; path = ../ErlangSolutions; sourceTree = "<group>"; };
 		5E20ED901C3D7836007AFFE6 /* ReleaseTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReleaseTableCell.swift; sourceTree = "<group>"; };
 		5E20ED921C3D7F0B007AFFE6 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Utils.swift; path = Shared/Utils.swift; sourceTree = "<group>"; };
 		5E2683471C357D5E0058BB1F /* ErlangInstallerPreferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErlangInstallerPreferences.swift; sourceTree = "<group>"; };
@@ -118,15 +116,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		306710CB20F893A800074D39 /* REJECT */ = {
-			isa = PBXGroup;
-			children = (
-				AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */,
-				AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */,
-			);
-			name = REJECT;
-			sourceTree = "<group>";
-		};
 		5E20ED981C3D8574007AFFE6 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -195,7 +184,6 @@
 		5EC3AF8B1C31888000E0BF43 = {
 			isa = PBXGroup;
 			children = (
-				30B4D6FD20F7A3D300F88F39 /* ErlangSolutions */,
 				5E7D319B1C7E34FC00B90D43 /* BuildImage */,
 				5E7D318A1C7E026400B90D43 /* TestWebServers */,
 				5E20ED981C3D8574007AFFE6 /* Shared */,
@@ -218,16 +206,17 @@
 			isa = PBXGroup;
 			children = (
 				5EDC5AFE1C342C7B0014343A /* External */,
-				ACEBBD8E1D6CB6ED00B3AEB8 /* ErlangInstaller.entitlements */,
 				5EC3AF971C31888000E0BF43 /* AppDelegate.swift */,
-				306710CB20F893A800074D39 /* REJECT */,
-				5E93D1861C493DCC008DCC81 /* UpdateReleasesCommand.swift */,
+				5EBDDD601C33215F0024C22C /* MainMenu.xib */,
 				5E41CAC61C80D44F00C41A7D /* MainMenu.swift */,
+				AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */,
+				AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */,
+				5E93D1861C493DCC008DCC81 /* UpdateReleasesCommand.swift */,
 				5E93D1891C49404C008DCC81 /* ErlangInstaller.h */,
 				5EC3AF9B1C31888000E0BF43 /* Assets.xcassets */,
-				5EBDDD601C33215F0024C22C /* MainMenu.xib */,
 				5EC3AFA01C31888000E0BF43 /* Info.plist */,
 				5E93D1841C49318D008DCC81 /* ErlangInstaller.sdef */,
+				ACEBBD8E1D6CB6ED00B3AEB8 /* ErlangInstaller.entitlements */,
 			);
 			path = ErlangInstaller;
 			sourceTree = "<group>";
@@ -301,7 +290,7 @@
 					5EC3AF931C31888000E0BF43 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = XSB6YPP53Z;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -338,7 +327,6 @@
 				AC19CFAE1D6F2F8100B3AEB8 /* releases.json in Resources */,
 				5E93D1851C49318D008DCC81 /* ErlangInstaller.sdef in Resources */,
 				5E7D31901C7E029100B90D43 /* server.js in Resources */,
-				30B4D6FE20F7A3D300F88F39 /* ErlangSolutions in Resources */,
 				5E7D31951C7E094300B90D43 /* start-server.sh in Resources */,
 				AC3DB28A1D7DC3EF00B3AEB8 /* ErlangInstallerPreferences.searchTerms in Resources */,
 				AC58CC3D1D429E3900B3AEB8 /* PopoverViewController.xib in Resources */,
@@ -444,7 +432,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
@@ -494,7 +482,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
 				SDKROOT = macosx;
@@ -518,12 +506,13 @@
 				);
 				INFOPLIST_FILE = ErlangInstaller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstaller";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				UPDATES_URL = "http://localhost:9090/updates";
 			};
 			name = Debug;
@@ -543,12 +532,13 @@
 				);
 				INFOPLIST_FILE = ErlangInstaller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstaller";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				UPDATES_URL = "";
 			};
 			name = Release;
