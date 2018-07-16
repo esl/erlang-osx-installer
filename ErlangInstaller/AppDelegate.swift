@@ -31,7 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.mainMenu.scheduleCheckNewReleases()
         }
 
-        let theStoryboard :NSStoryboard? = NSStoryboard(name: NSStoryboard.Name(rawValue: "ErlangInstallerPreferences"), bundle: nil)
+        let theStoryboard :NSStoryboard? = NSStoryboard(name: "ErlangInstallerPreferences", bundle: nil)
         self.mainWindow = theStoryboard?.instantiateInitialController() as? ErlangInstallerPreferences
     }
 
