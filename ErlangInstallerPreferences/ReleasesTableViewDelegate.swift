@@ -19,7 +19,7 @@ class ReleasesTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataS
         let release = ReleaseManager.available[rowIndex]
         
 		if UserDefaults.defaultRelease == release.name {
-			cellView.releaseNameLabel.font =  NSFont.boldSystemFont(ofSize: NSFont.systemFontSize())
+            cellView.releaseNameLabel.font = NSFont.boldSystemFont(ofSize: NSFont.systemFontSize())
 		}else {
 			cellView.releaseNameLabel.font = NSFont.systemFont(ofSize: NSFont.systemFontSize())
 		}

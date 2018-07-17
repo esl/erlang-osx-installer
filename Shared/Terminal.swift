@@ -64,7 +64,7 @@ class Terminal: ErlangTerminal {
     var applicationId: String { get { return "com.apple.Terminal" } }
     var app: SBTerminalApplication {
         get {
-            return SBApplication(bundleIdentifier: self.applicationId) as! SBTerminalApplication
+            return SBApplication(bundleIdentifier: self.applicationId) as SBTerminalApplication!
         }
     }
 
@@ -77,12 +77,12 @@ class Terminal: ErlangTerminal {
     }
 }
 
-class iTerm: AnyObject, ErlangTerminal {
+class iTerm: ErlangTerminal {
     var applicationName: String { get { return "iTerm2" } }
     var applicationId: String { get { return "com.googlecode.iterm2" } }
     var app: SBiTermITermApplication {
         get {
-            return SBApplication(bundleIdentifier: self.applicationId) as! SBiTermITermApplication
+            return SBApplication(bundleIdentifier: self.applicationId) as SBiTermITermApplication!
         }
     }
 

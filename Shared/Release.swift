@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Release: AnyObject {
+class Release {
     var name: String
     var path: String
 

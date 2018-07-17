@@ -22,7 +22,6 @@
 		5EBF05871C3C281A00A1701A /* ReleaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBF05861C3C281A00A1701A /* ReleaseManager.swift */; };
 		5EC3AF981C31888000E0BF43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC3AF971C31888000E0BF43 /* AppDelegate.swift */; };
 		5EC3AF9C1C31888000E0BF43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3AF9B1C31888000E0BF43 /* Assets.xcassets */; };
-		5EC3AFC91C31CDA700E0BF43 /* menu-bar-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC3AFC81C31CDA700E0BF43 /* menu-bar-icon.png */; };
 		5EC529911C45565B0000A72D /* Terminal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC529901C45565B0000A72D /* Terminal.swift */; };
 		5ECEF6321C3ADD08004ABE02 /* Release.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECEF6311C3ADD08004ABE02 /* Release.swift */; };
 		5EDC5B011C342CDF0014343A /* SystemPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EDC5B001C342CDF0014343A /* SystemPreferences.swift */; };
@@ -41,7 +40,6 @@
 		ACA782591D7A17DD00B3AEB8 /* ReleasesTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E96369A1C3D5D70006AE66B /* ReleasesTableViewDelegate.swift */; };
 		ACA7825A1D7A17F200B3AEB8 /* ErlangInstallerPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2683471C357D5E0058BB1F /* ErlangInstallerPreferences.swift */; };
 		ACA7825B1D7A183800B3AEB8 /* ErlangInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E93D18B1C4940BB008DCC81 /* ErlangInstaller.swift */; };
-		ACA7825C1D7A3B0500B3AEB8 /* erlang-solutions.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E519F911C32E34F0024DEAB /* erlang-solutions.png */; };
 		ACF9D19F1D80888600B3AEB8 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACF9D19E1D80888600B3AEB8 /* ServiceManagement.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,7 +65,6 @@
 		5E41CAC61C80D44F00C41A7D /* MainMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenu.swift; sourceTree = "<group>"; };
 		5E4F42011C3EEFDF00597AFD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = Shared/Constants.swift; sourceTree = "<group>"; };
 		5E4F42041C3F06F500597AFD /* ReleaseUninstaller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReleaseUninstaller.swift; path = Shared/ReleaseUninstaller.swift; sourceTree = "<group>"; };
-		5E519F911C32E34F0024DEAB /* erlang-solutions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "erlang-solutions.png"; path = "Resources/erlang-solutions.png"; sourceTree = "<group>"; };
 		5E7D318C1C7E026400B90D43 /* releases.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = releases.json; sourceTree = "<group>"; };
 		5E7D318F1C7E029100B90D43 /* server.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = server.js; sourceTree = "<group>"; };
 		5E7D31911C7E02E900B90D43 /* updates.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = updates.xml; sourceTree = "<group>"; };
@@ -86,7 +83,6 @@
 		5EC3AF971C31888000E0BF43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EC3AF9B1C31888000E0BF43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5EC3AFA01C31888000E0BF43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5EC3AFC81C31CDA700E0BF43 /* menu-bar-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "menu-bar-icon.png"; path = "Resources/menu-bar-icon.png"; sourceTree = "<group>"; };
 		5EC529901C45565B0000A72D /* Terminal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Terminal.swift; path = ../Shared/Terminal.swift; sourceTree = "<group>"; };
 		5ECEF6311C3ADD08004ABE02 /* Release.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Release.swift; path = ../Shared/Release.swift; sourceTree = "<group>"; };
 		5EDC5AFF1C342C8D0014343A /* SBSystemPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBSystemPreferences.h; sourceTree = "<group>"; };
@@ -147,15 +143,6 @@
 			name = External;
 			sourceTree = "<group>";
 		};
-		5E519F901C32E2D90024DEAB /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				5EC3AFC81C31CDA700E0BF43 /* menu-bar-icon.png */,
-				5E519F911C32E34F0024DEAB /* erlang-solutions.png */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		5E7D318A1C7E026400B90D43 /* TestWebServers */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,7 +187,6 @@
 				5E7D319B1C7E34FC00B90D43 /* BuildImage */,
 				5E7D318A1C7E026400B90D43 /* TestWebServers */,
 				5E20ED981C3D8574007AFFE6 /* Shared */,
-				5E519F901C32E2D90024DEAB /* Resources */,
 				5EC3AF961C31888000E0BF43 /* ErlangInstaller */,
 				5EFD590C1C32BDEF004ECB9B /* ErlangInstallerPreferences */,
 				5EC3AF951C31888000E0BF43 /* Products */,
@@ -220,17 +206,17 @@
 			isa = PBXGroup;
 			children = (
 				5EDC5AFE1C342C7B0014343A /* External */,
-				ACEBBD8E1D6CB6ED00B3AEB8 /* ErlangInstaller.entitlements */,
 				5EC3AF971C31888000E0BF43 /* AppDelegate.swift */,
-				AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */,
-				AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */,
-				5E93D1861C493DCC008DCC81 /* UpdateReleasesCommand.swift */,
+				5EBDDD601C33215F0024C22C /* MainMenu.xib */,
 				5E41CAC61C80D44F00C41A7D /* MainMenu.swift */,
+				AC58CC3B1D429E3900B3AEB8 /* PopoverViewController.xib */,
+				AC58CC3A1D429E3900B3AEB8 /* PopoverViewController.swift */,
+				5E93D1861C493DCC008DCC81 /* UpdateReleasesCommand.swift */,
 				5E93D1891C49404C008DCC81 /* ErlangInstaller.h */,
 				5EC3AF9B1C31888000E0BF43 /* Assets.xcassets */,
-				5EBDDD601C33215F0024C22C /* MainMenu.xib */,
 				5EC3AFA01C31888000E0BF43 /* Info.plist */,
 				5E93D1841C49318D008DCC81 /* ErlangInstaller.sdef */,
+				ACEBBD8E1D6CB6ED00B3AEB8 /* ErlangInstaller.entitlements */,
 			);
 			path = ErlangInstaller;
 			sourceTree = "<group>";
@@ -298,12 +284,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Erlang Solutions";
 				TargetAttributes = {
 					5EC3AF931C31888000E0BF43 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = ZRK75NDG7H;
+						DevelopmentTeam = XSB6YPP53Z;
 						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -340,10 +326,8 @@
 				5EC3AF9C1C31888000E0BF43 /* Assets.xcassets in Resources */,
 				AC19CFAE1D6F2F8100B3AEB8 /* releases.json in Resources */,
 				5E93D1851C49318D008DCC81 /* ErlangInstaller.sdef in Resources */,
-				ACA7825C1D7A3B0500B3AEB8 /* erlang-solutions.png in Resources */,
 				5E7D31901C7E029100B90D43 /* server.js in Resources */,
 				5E7D31951C7E094300B90D43 /* start-server.sh in Resources */,
-				5EC3AFC91C31CDA700E0BF43 /* menu-bar-icon.png in Resources */,
 				AC3DB28A1D7DC3EF00B3AEB8 /* ErlangInstallerPreferences.searchTerms in Resources */,
 				AC58CC3D1D429E3900B3AEB8 /* PopoverViewController.xib in Resources */,
 				5E7D31921C7E02E900B90D43 /* updates.xml in Resources */,
@@ -412,14 +396,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -442,7 +432,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
@@ -462,14 +452,20 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -486,7 +482,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
 				SDKROOT = macosx;
@@ -503,16 +499,19 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = XSB6YPP53Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = ErlangInstaller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstaller";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 3.0;
 				UPDATES_URL = "http://localhost:9090/updates";
 			};
@@ -526,16 +525,19 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = XSB6YPP53Z;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = ErlangInstaller/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erlang-solutions.ErlangInstaller";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				RELEASES_URL = "http://packages.erlang-solutions.com/site/erlang/osxupdater/general/compiled/packs.json";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 3.0;
 				UPDATES_URL = "";
 			};

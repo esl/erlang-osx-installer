@@ -68,6 +68,9 @@ extension SBObject: SBiTermItem {}
     @objc optional var uriToken: String { get } // URI token
 
     @objc optional func classForScriptingClass(_ className: String) -> AnyClass?
+    
+    
+
 }
 extension SBApplication: SBiTermITermApplication {}
 

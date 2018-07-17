@@ -36,9 +36,8 @@ class MainTabViewController: NSViewController, NSTextFieldDelegate
     
     func loadPreferencesValues() {
         // Load current preferences
-        self.openAtLogin.state = (UserDefaults.openAtLogin ? 1 : 0)
-        self.checkForNewReleases.state = (UserDefaults.checkForNewReleases ? 1 : 0)
-        
+        self.openAtLogin.state = UserDefaults.openAtLogin ? 1 : 0
+        self.checkForNewReleases.state = UserDefaults.checkForNewReleases ? 1 : 0
         self.showReleasesList()
         
         self.terminalApplication.removeAllItems()

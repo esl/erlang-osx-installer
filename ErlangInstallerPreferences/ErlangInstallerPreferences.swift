@@ -76,7 +76,7 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences {
         let file = open((ReleaseManager.availableReleasesUrl?.path)!, O_EVTONLY)
         if(file > 0)
         {
-            self.queue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high)
+            self.queue = DispatchQueue.global(qos: .default)
             let eventMask: DispatchSource.FileSystemEvent = [.write, .extend, .delete]
             self.source = DispatchSource.makeFileSystemObjectSource(fileDescriptor: file, eventMask: eventMask, queue: queue) /*Migrator FIXME: Use DispatchSourceFileSystemObject to avoid the cast*/ as? DispatchSource
             
