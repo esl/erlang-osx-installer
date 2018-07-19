@@ -42,7 +42,7 @@ class Utils {
         guard let state = alert.suppressionButton?.state else {
             return false
         }
-        return Bool.init(NSNumber.init(value: Int8(state.rawValue)))
+        return Bool.init(truncating: NSNumber.init(value: Int8(state.rawValue)))
     }
     
     static func supportResourceUrl(_ name : String) -> URL? {

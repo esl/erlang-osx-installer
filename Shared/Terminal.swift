@@ -24,7 +24,7 @@ extension ErlangTerminal {
             return result != nil
         }
     }
-
+    
     fileprivate var shell: String {
         get {
             return ProcessInfo().environment["SHELL"] ?? "bash"
@@ -40,7 +40,7 @@ extension ErlangTerminal {
 
 class TerminalApplications {
     fileprivate static let terminalsInstance = TerminalApplications()
-
+    
     static var terminals: [String: ErlangTerminal] {
         get {
             return terminalsInstance.terminalsDictionary
@@ -48,7 +48,7 @@ class TerminalApplications {
     }
     
     fileprivate var terminalsDictionary = [String: ErlangTerminal]()
-
+    
     init() {
         let allTerminals: [ErlangTerminal] = [Terminal()]
         for terminal in allTerminals {
@@ -64,13 +64,13 @@ class Terminal: ErlangTerminal {
     var applicationId: String { get { return "com.apple.Terminal" } }
     var app: SBTerminalApplication {
         get {
-            return SBApplication(bundleIdentifier: self.applicationId) as SBTerminalApplication!
+            return (SBApplication(bundleIdentifier: self.applicationId) as SBTerminalApplication?)!
         }
     }
-
+    
     func open(_ release: Release) {
         _ = app.doScript!(self.shellCommands(release), in:nil)
-
+        
         if !app.frontmost! {
             app.activate()
         }
@@ -82,16 +82,16 @@ class iTerm: ErlangTerminal {
     var applicationId: String { get { return "com.googlecode.iterm2" } }
     var app: SBiTermITermApplication {
         get {
-            return SBApplication(bundleIdentifier: self.applicationId) as SBiTermITermApplication!
+            return (SBApplication(bundleIdentifier: self.applicationId) as SBiTermITermApplication?)!
         }
     }
-
+    
     func open(_ release: Release) {
-        let sessionClass = app.classForScriptingClass!("session") as! SBiTermSession.Type
+        let sessionClass = app.class!(forScriptingClass: "session") as! SBiTermSession.Type
         let session = sessionClass.init()
-
+        
         if app.terminals!().count == 0 {
-            let terminalClass = app.classForScriptingClass!("terminal") as! SBiTermTerminal.Type
+            let terminalClass = app.class!(forScriptingClass: "terminal") as! SBiTermTerminal.Type
             let terminal = terminalClass.init()
             app.terminals!().add(terminal)
             terminal.sessions!().add(session)
