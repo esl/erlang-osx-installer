@@ -9,15 +9,15 @@
 @class SBiTermItem, SBiTermITermApplication, SBiTermColor, SBiTermDocument, SBiTermWindow, SBiTermAttributeRun, SBiTermCharacter, SBiTermParagraph, SBiTermText, SBiTermAttachment, SBiTermWord, SBiTermSession, SBiTermTerminal, SBiTermPrintSettings;
 
 enum SBiTermSavo {
-	SBiTermSavoAsk = 'ask ' /* Ask the user whether or not to save the file. */,
-	SBiTermSavoNo = 'no  ' /* Do not save the file. */,
-	SBiTermSavoYes = 'yes ' /* Save the file. */
+    SBiTermSavoAsk = 'ask ' /* Ask the user whether or not to save the file. */,
+    SBiTermSavoNo = 'no  ' /* Do not save the file. */,
+    SBiTermSavoYes = 'yes ' /* Save the file. */
 };
 typedef enum SBiTermSavo SBiTermSavo;
 
 enum SBiTermEnum {
-	SBiTermEnumStandard = 'lwst' /* Standard PostScript error handling */,
-	SBiTermEnumDetailed = 'lwdt' /* print a detailed report of PostScript errors */
+    SBiTermEnumStandard = 'lwst' /* Standard PostScript error handling */,
+    SBiTermEnumDetailed = 'lwdt' /* print a detailed report of PostScript errors */
 };
 typedef enum SBiTermEnum SBiTermEnum;
 

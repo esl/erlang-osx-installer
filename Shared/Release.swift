@@ -11,7 +11,7 @@ import Foundation
 class Release {
     var name: String
     var path: String
-
+    
     var installed: Bool {
         get { return ReleaseManager.isInstalled(self.name) }
     }

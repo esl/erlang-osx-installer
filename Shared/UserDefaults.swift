@@ -11,7 +11,7 @@ import CoreFoundation
 
 class UserDefaults {
     static fileprivate let userDefaults = Foundation.UserDefaults.standard
-
+    
     //-------------------
     // Default values
     //-------------------
@@ -21,7 +21,7 @@ class UserDefaults {
     static fileprivate let checkForNewReleasesDefault = true
     static fileprivate var defaultReleaseDefault: String? = nil
     static fileprivate var defaultReleasePath:String? = NSHomeDirectory() + "/.erlangInstaller/"
-
+    
     //-------------------
     // Accessors
     //-------------------
@@ -41,7 +41,7 @@ class UserDefaults {
     //-------------------
     // Values
     //-------------------
-
+    
     static var firstLaunch: Bool {
         set { set("firstLaunch", value: newValue as AnyObject?) }
         get { return getBool("firstLaunch") ?? true}
@@ -56,17 +56,17 @@ class UserDefaults {
         set { set("openAtLogin", value: newValue as AnyObject?) }
         get { return getBool("openAtLogin") ?? openAtLoginDefault}
     }
-
+    
     static var checkForNewReleases: Bool {
         set { set("checkForNewReleases", value: newValue as AnyObject?) }
         get { return getBool("checkForNewReleases") ?? checkForNewReleasesDefault}
     }
-
+    
     static var defaultRelease: String? {
         set { set("defaultRelease", value: newValue as AnyObject?) }
         get { return getString("defaultRelease") ?? defaultReleaseDefault}
     }
-        static var defaultPath: String? {
+    static var defaultPath: String? {
         set { set("defaultPath", value: newValue as AnyObject?)}
         get { return getString("defaultPath") ?? defaultReleasePath}
     }

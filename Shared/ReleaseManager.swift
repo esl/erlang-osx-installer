@@ -12,14 +12,14 @@ import Cocoa
 
 class ReleaseManager: NSObject {
     fileprivate static let manager = ReleaseManager()
-
+    
     static var available : [Release] {
         get { return ReleaseManager.manager._releases.values.sorted(by: {x, y in x.name < y.name})}
     }
     static var installed : [Release] {
         get { return ReleaseManager.manager._releases.values.filter({ $0.installed }).sorted(by: {x, y in x.name < y.name})}
     }
-
+    
     static var releases : [String: Release] {
         get { return ReleaseManager.manager._releases }
     }
@@ -33,13 +33,13 @@ class ReleaseManager: NSObject {
     static func load(_ onLoaded: @escaping () -> Void) {
         ReleaseManager.manager.load(onLoaded)
     }
-
+    
     static func isInstalled(_ name : String) -> Bool {
         return Utils.fileExists(Utils.supportResourceUrl(name))
     }
     
     static func checkNewReleases(_ successHandler: @escaping ([Release]) -> Void) {
-         manager.fetch() { (content: String) -> Void in
+        manager.fetch() { (content: String) -> Void in
             do {
                 let latestReleases = try manager.releasesFromString(content)
                 
@@ -50,10 +50,10 @@ class ReleaseManager: NSObject {
                 for name in diff {
                     newReleases.append(latestReleases[name]!)
                 }
-
+                
                 manager._releases = latestReleases
                 manager.save(content)
-
+                
                 successHandler(newReleases)
             }
             catch let error as NSError
@@ -63,7 +63,7 @@ class ReleaseManager: NSObject {
             }
         }
     }
-
+    
     fileprivate func load(_ onLoaded: @escaping () -> Void) {
         if(!Utils.fileExists(ReleaseManager.availableReleasesUrl)) {
             self.fetchSave() { self.loadFromFile(onLoaded) }
@@ -71,7 +71,7 @@ class ReleaseManager: NSObject {
             self.loadFromFile(onLoaded)
         }
     }
-
+    
     fileprivate func loadFromFile(_ onLoaded: () -> Void) {
         do{
             let content = try String(contentsOf: ReleaseManager.availableReleasesUrl!)
@@ -84,7 +84,7 @@ class ReleaseManager: NSObject {
             NSLog("Loading File Error: \(error.debugDescription)")
         }
     }
-
+    
     fileprivate func releasesFromString(_ content: String) throws -> [String: Release] {
         var releases = [String: Release]()
         let data = content.data(using: String.Encoding.utf8)
@@ -97,7 +97,7 @@ class ReleaseManager: NSObject {
                 releases[name] =  Release(name: name, path: path)
             }
         }
-
+        
         return releases
     }
     
@@ -114,37 +114,37 @@ class ReleaseManager: NSObject {
         let filesToLink = ["default"]
         
         try filesToLink.forEach
-            {
-                let destination = NSHomeDirectory() + "/.erlangInstaller/" + $0
-                
+        {
+            let destination = NSHomeDirectory() + "/.erlangInstaller/" + $0
+            
+            do {
+                try fileManager.attributesOfItem(atPath: destination)
                 do {
-                    try fileManager.attributesOfItem(atPath: destination)
-                    do {
-                        try fileManager.removeItem(atPath: destination);
-                    }catch let errorDelete as NSError {
-                        print("\(errorDelete.localizedDescription)")
-                    }
-                    
-                } catch let errorExists as NSError {
-                    print("\(errorExists.localizedDescription)")
+                    try fileManager.removeItem(atPath: destination);
+                }catch let errorDelete as NSError {
+                    print("\(errorDelete.localizedDescription)")
                 }
                 
-                try fileManager.createSymbolicLink(atPath: destination, withDestinationPath: release.releasePath )
-                
-                // Ensure PATH
-                guard let  scriptPath = Bundle.main.path(forResource: "EnsurePATH",ofType:"command") else {
-                    NSLog("Unable to locate EnsurePath.command")
-                    return
-                }
-                
-                let task = Process()
-                
-                task.launchPath = "/bin/sh"
-                task.arguments = [scriptPath]
-                
-                task.launch()
-                task.waitUntilExit()
-                
+            } catch let errorExists as NSError {
+                print("\(errorExists.localizedDescription)")
+            }
+            
+            try fileManager.createSymbolicLink(atPath: destination, withDestinationPath: release.releasePath )
+            
+            // Ensure PATH
+            guard let  scriptPath = Bundle.main.path(forResource: "EnsurePATH",ofType:"command") else {
+                NSLog("Unable to locate EnsurePath.command")
+                return
+            }
+            
+            let task = Process()
+            
+            task.launchPath = "/bin/sh"
+            task.arguments = [scriptPath]
+            
+            task.launch()
+            task.waitUntilExit()
+            
             
         }
     }
@@ -154,7 +154,7 @@ class ReleaseManager: NSObject {
             var authRef: AuthorizationRef? = nil
             let authFlags = AuthorizationFlags.extendRights
             let osStatus = AuthorizationCreate(nil, nil, authFlags, &authRef)
-
+            
             if(osStatus == errAuthorizationSuccess) {
                 let fileManager = FileManager.default
                 try fileManager.createDirectory(atPath: Utils.supportResourceUrl("")!.path, withIntermediateDirectories: true, attributes: nil)

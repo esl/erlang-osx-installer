@@ -9,13 +9,13 @@
 import Cocoa
 
 class PopoverViewController: NSViewController {
-	
-	weak var delegate : PopoverDelegate?
-	
-	override func viewWillAppear() {
-		super.viewWillAppear()
-	}
-	@IBAction func closePopover(_ sender: AnyObject) {
-			self.delegate?.closePopoverFromMainMenu(sender)
-		}
+    
+    weak var delegate : PopoverDelegate?
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+    }
+    @IBAction func closePopover(_ sender: AnyObject) {
+        self.delegate?.closePopoverFromMainMenu(sender)
+    }
 }

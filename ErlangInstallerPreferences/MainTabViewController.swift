@@ -21,11 +21,11 @@ class MainTabViewController: NSViewController, NSTextFieldDelegate
     @IBOutlet var versionAndBuildNumber: NSTextField! // TODO Check align when adding the new description text.
     
     fileprivate var erlangInstallerApp: ErlangInstallerApplication?
-
+    
     override func viewDidLoad() {
         preferredContentSize = view.frame.size
         self.erlangInstallerApp = SBApplication(bundleIdentifier: Constants.applicationId)
-       	self.loadVersionAndBuildNumber()
+        self.loadVersionAndBuildNumber()
         self.loadPreferencesValues()
     }
     
@@ -68,15 +68,15 @@ class MainTabViewController: NSViewController, NSTextFieldDelegate
     func scheduleCheckNewReleasesForAgent() {
         self.erlangInstallerApp?.checkNewReleases!()
     }
-
+    
     func loadVersionAndBuildNumber() {
         let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
         let build = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
         self.versionAndBuildNumber.stringValue = "Version " + version! + " Build " + build!
     }
-
-    @IBAction func openAtLogin(_ sender: AnyObject) {
     
+    @IBAction func openAtLogin(_ sender: AnyObject) {
+        
         // FIXME: sub project not necessary when this is fixed.
         //			if !SMLoginItemSetEnabled(("com.erlang-solutions.ErlangInstaller-Helper" as CFString), Bool(sender.state)) {
         //				print("Setting as login item was not successful")
@@ -87,7 +87,7 @@ class MainTabViewController: NSViewController, NSTextFieldDelegate
     }
     
     @IBAction func checkNewReleasesClick(_ sender: AnyObject) {
-    
+        
         UserDefaults.checkForNewReleases = self.checkForNewReleases.state.rawValue == 1
         self.scheduleCheckNewReleasesForAgent()
     }
@@ -100,11 +100,11 @@ class MainTabViewController: NSViewController, NSTextFieldDelegate
                 
                 if let selectedRelease = ReleaseManager.releases[UserDefaults.defaultRelease!]
                 {
-                  try ReleaseManager.makeSymbolicLinks(selectedRelease)
+                    try ReleaseManager.makeSymbolicLinks(selectedRelease)
                 }
                 
                 self.updateReleasesForAgent()
-               // self.releasesTableView.reloadData()
+                // self.releasesTableView.reloadData()
             }
         }
         catch let error as NSError
@@ -118,5 +118,5 @@ class MainTabViewController: NSViewController, NSTextFieldDelegate
         UserDefaults.terminalApp = self.terminalApplication.selectedCell()!.title
     }
     
-
+    
 }

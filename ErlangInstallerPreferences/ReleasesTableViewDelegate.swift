@@ -18,11 +18,11 @@ class ReleasesTableViewDelegate: NSObject, NSTableViewDelegate, NSTableViewDataS
         let cellView : ReleaseTableCell = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: self) as! ReleaseTableCell
         let release = ReleaseManager.available[rowIndex]
         
-		if UserDefaults.defaultRelease == release.name {
-			cellView.releaseNameLabel.font =  NSFont.boldSystemFont(ofSize: NSFont.systemFontSize)
-		}else {
-			cellView.releaseNameLabel.font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
-		}
+        if UserDefaults.defaultRelease == release.name {
+            cellView.releaseNameLabel.font =  NSFont.boldSystemFont(ofSize: NSFont.systemFontSize)
+        }else {
+            cellView.releaseNameLabel.font = NSFont.systemFont(ofSize: NSFont.systemFontSize)
+        }
         
         if let appDelegate = NSApp.delegate as? AppDelegate {
             cellView.preferencesPane = appDelegate.mainWindow

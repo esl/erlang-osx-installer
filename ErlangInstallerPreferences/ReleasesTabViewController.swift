@@ -12,7 +12,7 @@ import CoreFoundation
 class ReleasesTabViewController: NSViewController, refreshPreferences
 {
     @IBOutlet var releasesTableView: NSTableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         preferredContentSize = view.frame.size
@@ -24,5 +24,5 @@ class ReleasesTabViewController: NSViewController, refreshPreferences
             tableView.reloadData()
         }
     }
-
+    
 }

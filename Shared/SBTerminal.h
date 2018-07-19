@@ -9,15 +9,15 @@
 @class SBTerminalApplication, SBTerminalWindow, SBTerminalSettingsSet, SBTerminalTab;
 
 enum SBTerminalSaveOptions {
-	SBTerminalSaveOptionsYes = 'yes ' /* Save the file. */,
-	SBTerminalSaveOptionsNo = 'no  ' /* Do not save the file. */,
-	SBTerminalSaveOptionsAsk = 'ask ' /* Ask the user whether or not to save the file. */
+    SBTerminalSaveOptionsYes = 'yes ' /* Save the file. */,
+    SBTerminalSaveOptionsNo = 'no  ' /* Do not save the file. */,
+    SBTerminalSaveOptionsAsk = 'ask ' /* Ask the user whether or not to save the file. */
 };
 typedef enum SBTerminalSaveOptions SBTerminalSaveOptions;
 
 enum SBTerminalPrintingErrorHandling {
-	SBTerminalPrintingErrorHandlingStandard = 'lwst' /* Standard PostScript error handling */,
-	SBTerminalPrintingErrorHandlingDetailed = 'lwdt' /* print a detailed report of PostScript errors */
+    SBTerminalPrintingErrorHandlingStandard = 'lwst' /* Standard PostScript error handling */,
+    SBTerminalPrintingErrorHandlingDetailed = 'lwdt' /* print a detailed report of PostScript errors */
 };
 typedef enum SBTerminalPrintingErrorHandling SBTerminalPrintingErrorHandling;
 
