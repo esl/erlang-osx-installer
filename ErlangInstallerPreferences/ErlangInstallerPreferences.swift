@@ -12,71 +12,71 @@ import ScriptingBridge
 import ServiceManagement
 
 class ErlangInstallerPreferences: NSWindowController, refreshPreferences {
-
+    
     fileprivate var queue: DispatchQueue?
     fileprivate var source: DispatchSource?
-		
     
-	init() {
-    	super.init(window: nil)
-
-		if let window = self.window, let screen = window.screen {
-			
+    
+    init() {
+        super.init(window: nil)
+        
+        if let window = self.window, let screen = window.screen {
             
-			let offsetFromLeftOfScreen: CGFloat = 200
-			let offsetFromTopOfScreen: CGFloat = 200
-			let screenRect = screen.visibleFrame
-			let newOriginY = screenRect.origin.y + screenRect.height - window.frame.height
-				- offsetFromTopOfScreen
-			window.setFrameOrigin(NSPoint(x: offsetFromLeftOfScreen, y: newOriginY))
-			window.makeKeyAndOrderFront(window)
-			window.isReleasedWhenClosed = false
-		}
-	}
-	
-	override init(window: NSWindow!)
-	{
-		super.init(window: window)
-		if let window = self.window, let screen = window.screen {
-			
-			let offsetFromLeftOfScreen: CGFloat = 200
-			let offsetFromTopOfScreen: CGFloat = 200
-			let screenRect = screen.visibleFrame
-			let newOriginY = screenRect.origin.y + screenRect.height - window.frame.height
-				- offsetFromTopOfScreen
-			window.setFrameOrigin(NSPoint(x: offsetFromLeftOfScreen, y: newOriginY))
-			window.isReleasedWhenClosed = false
-		}
-	}
-
-	required init?(coder: NSCoder) {
-		super.init(coder: coder)
-	}
-	
-	override func showWindow(_ sender: Any?) {
-	super.showWindow(sender)
-		if let window = self.window {
-		window.makeKeyAndOrderFront(window)
-        window.orderFrontRegardless()
-        NSApp.activate(ignoringOtherApps: true)
-		}
-	}
+            
+            let offsetFromLeftOfScreen: CGFloat = 200
+            let offsetFromTopOfScreen: CGFloat = 200
+            let screenRect = screen.visibleFrame
+            let newOriginY = screenRect.origin.y + screenRect.height - window.frame.height
+                - offsetFromTopOfScreen
+            window.setFrameOrigin(NSPoint(x: offsetFromLeftOfScreen, y: newOriginY))
+            window.makeKeyAndOrderFront(window)
+            window.isReleasedWhenClosed = false
+        }
+    }
+    
+    override init(window: NSWindow!)
+    {
+        super.init(window: window)
+        if let window = self.window, let screen = window.screen {
+            
+            let offsetFromLeftOfScreen: CGFloat = 200
+            let offsetFromTopOfScreen: CGFloat = 200
+            let screenRect = screen.visibleFrame
+            let newOriginY = screenRect.origin.y + screenRect.height - window.frame.height
+                - offsetFromTopOfScreen
+            window.setFrameOrigin(NSPoint(x: offsetFromLeftOfScreen, y: newOriginY))
+            window.isReleasedWhenClosed = false
+        }
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    override func showWindow(_ sender: Any?) {
+        super.showWindow(sender)
+        if let window = self.window {
+            window.makeKeyAndOrderFront(window)
+            window.orderFrontRegardless()
+            NSApp.activate(ignoringOtherApps: true)
+        }
+    }
     
     override func windowDidLoad() {
-		super.windowDidLoad()
-		
-		// FIXME: store & recall the last position self.windowFrameAutosaveName = "ErlangInstallerPreferencesPosition"
-
+        super.windowDidLoad()
+        
+        // FIXME: store & recall the last position self.windowFrameAutosaveName = "ErlangInstallerPreferencesPosition"
+        
         reloadReleases()
         self.checkForFileUpdate()
     }
-	
+    
     func checkForFileUpdate()
     {
         let file = open((ReleaseManager.availableReleasesUrl?.path)!, O_EVTONLY)
         if(file > 0)
         {
-            self.queue = DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high)
+            self.queue = DispatchQueue.global(qos: .default)
             let eventMask: DispatchSource.FileSystemEvent = [.write, .extend, .delete]
             self.source = DispatchSource.makeFileSystemObjectSource(fileDescriptor: file, eventMask: eventMask, queue: queue) /*Migrator FIXME: Use DispatchSourceFileSystemObject to avoid the cast*/ as? DispatchSource
             
@@ -84,7 +84,7 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences {
                 DispatchQueue.main.async {
                     self.reloadReleases()
                 }
-
+                
                 let reload = DispatchTime.now() + Double(1) / Double(NSEC_PER_SEC);
                 self.queue!.asyncAfter(deadline: reload, execute: {
                     self.source!.cancel()
@@ -107,7 +107,7 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences {
             self.refresh()
         }
     }
-
+    
     func revealElementForKey(_ key: String) {
         if let tabBarController = self.window?.contentViewController as? NSTabViewController
         {
@@ -124,8 +124,8 @@ class ErlangInstallerPreferences: NSWindowController, refreshPreferences {
             tabBarController.selectedTabViewItemIndex = tabBarIdentifierIndex
         }
     }
-	
-	func refresh() {
+    
+    func refresh() {
         if let appDelegate = NSApp.delegate as? AppDelegate
         {
             appDelegate.mainMenu.loadReleases()

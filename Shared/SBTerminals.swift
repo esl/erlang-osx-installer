@@ -11,11 +11,11 @@ import ScriptingBridge
 // MARK: SBTerminalApplication
 @objc public protocol SBTerminalApplication: SBApplicationProtocol {
     @objc optional func windows() -> SBElementArray
-
+    
     @objc optional var name: String { get }
     @objc optional var version: String { get }
     @objc optional var frontmost: Bool { get }
-
+    
     @objc optional func doScript(_ script: String, in: AnyObject?) -> SBTerminalTab
 }
 extension SBApplication: SBTerminalApplication {}
@@ -23,7 +23,7 @@ extension SBApplication: SBTerminalApplication {}
 // MARK: SBTerminalApplication
 @objc public protocol SBTerminalWindow: NSObjectProtocol {
     @objc optional func tabs() -> SBElementArray
-
+    
     @objc optional var name: String { get }
     @objc optional func id() -> Int
     @objc optional var index: String { get set }
@@ -58,7 +58,7 @@ extension SBObject: SBiTermItem {}
 @objc public protocol SBiTermITermApplication: SBApplicationProtocol {
     @objc optional func windows() -> SBElementArray
     @objc optional func documents() -> SBElementArray
-
+    
     @objc optional var name: String { get }
     @objc optional var version: String { get }
     @objc optional var frontmost: Bool { get }
@@ -66,14 +66,15 @@ extension SBObject: SBiTermItem {}
     @objc optional func terminals() -> SBElementArray
     @objc optional var currentTerminal: SBiTermTerminal { get }  // currently active terminal
     @objc optional var uriToken: String { get } // URI token
-
-    @objc optional func classForScriptingClass(_ className: String) -> AnyClass?
+    
+    @objc optional func `class`(forScriptingClass className: String) -> Swift.AnyClass?
+    
 }
 extension SBApplication: SBiTermITermApplication {}
 
 @objc public protocol SBiTermTerminal: SBiTermItem {
     @objc optional func sessions() -> SBElementArray
-
+    
     @objc optional var antiAlias: Bool { get }  // Anti alias for window
     @objc optional var currentSession: SBiTermSession { get }   // current session in the terminal
     @objc optional var numberOfColumns: Int { get }  // Number of columns

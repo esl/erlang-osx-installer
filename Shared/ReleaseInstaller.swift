@@ -28,7 +28,7 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
     var installTask: Process?
     var data: NSMutableData?
     var backgroundQueue = OperationQueue()
-
+    
     var delegate: refreshPreferences!
     
     var destinationTarGz : URL? {
@@ -50,15 +50,15 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         self.release = ReleaseManager.releases[releaseName]!
         self.progress = progress
     }
-
+    
     fileprivate func start() {
         self.urlConnection = NSURLConnection(request: URLRequest(url: tarballUrl(release)), delegate: self, startImmediately: false)
         self.urlConnection?.setDelegateQueue(OperationQueue())
         self.urlConnection?.start()
-
+        
         runInMain() { self.progress.start() }
     }
-
+    
     func cancel() {
         self.run() {
             self.urlConnection?.cancel()
@@ -71,7 +71,7 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
     
     fileprivate func extract() {
         self.runInMain() { self.progress.extracting() }
-
+        
         do
         {
             let fileManager = FileManager.default
@@ -102,7 +102,7 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         let osStatus = AuthorizationCreate(nil, nil, authFlags, &authRef)
         
         if(osStatus == errAuthorizationSuccess ) {
-        
+            
             self.installTask = Process()
             self.installTask?.launchPath = self.releaseDir?.appendingPathComponent("Install").path
             self.installTask?.arguments = ["-sasl", (self.releaseDir?.path)!]
@@ -111,7 +111,7 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
                 self.run() {
                     do{
                         UserDefaults.defaultRelease = self.release.name
-                    
+                        
                         try ReleaseManager.makeSymbolicLinks(self.release)
                     }
                     catch let error as NSError
@@ -119,7 +119,7 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
                         Utils.alert(error.localizedDescription)
                         NSLog("Creating Symbolic links failed: \(error.debugDescription)")
                         self.done()
-
+                        
                     }
                     self.done()
                 }
@@ -136,7 +136,7 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
             self.progress.finished()
             self.delegate.refresh()
         }
-
+        
         self.urlConnection = nil
         self.extractTask = nil
         self.data = nil
@@ -153,7 +153,7 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
     fileprivate func run(_ block: @escaping () -> Void) {
         self.backgroundQueue.addOperation(block)
     }
-
+    
     //------------------------------------------
     // NSURLDownloadDelegate protocol
     //------------------------------------------
@@ -164,7 +164,7 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
         }
         self.data = NSMutableData()
     }
-
+    
     func connection(_ connection: NSURLConnection, didReceive data: Data) {
         self.runInMain() {
             self.progress.download(progress: Double(data.count))
@@ -177,7 +177,7 @@ class ReleaseInstaller: NSObject, NSURLConnectionDelegate, NSURLConnectionDataDe
             self.progress.error(error as NSError)
         }
     }
-
+    
     func connectionDidFinishLoading(_ connection: NSURLConnection) {
         self.runInMain() {
             self.data?.write(to: self.destinationTarGz!, atomically: true)

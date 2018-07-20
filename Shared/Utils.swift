@@ -13,25 +13,25 @@ import Security
 class Utils {
     static func alert(_ message: String) {
         DispatchQueue.main.async(execute: {
-        let alert = NSAlert()
-        alert.messageText = message
-        alert.runModal()
+            let alert = NSAlert()
+            alert.messageText = message
+            alert.runModal()
         })
     }
-
+    
     static func confirm(_ message: String) -> Bool {
         return confirm(message, additionalInfo: nil)
     }
-
+    
     static func confirm(_ message: String, additionalInfo: String?) -> Bool {
         let alert = NSAlert()
         alert.messageText = message
         alert.informativeText = (additionalInfo == nil ? "" : additionalInfo!)
         alert.addButton(withTitle: "Yes")
         alert.addButton(withTitle: "No")
-        return alert.runModal() == NSAlertFirstButtonReturn
+        return alert.runModal() == NSApplication.ModalResponse.alertFirstButtonReturn
     }
-
+    
     static func inform(_ message: String, additionalInfo: String?) -> (Bool) {
         let alert = NSAlert()
         alert.messageText = message
@@ -42,12 +42,12 @@ class Utils {
         guard let state = alert.suppressionButton?.state else {
             return false
         }
-        return Bool.init(NSNumber.init(value: state))
+        return Bool.init(truncating: NSNumber.init(value: Int8(state.rawValue)))
     }
     
     static func supportResourceUrl(_ name : String) -> URL? {
         let appSupportUrl = URL.init(fileURLWithPath: UserDefaults.defaultPath!)
-
+        
         let urlname = name;
         let url = !urlname.isEmpty ? URL(string: urlname.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)! , relativeTo:  appSupportUrl) : appSupportUrl
         
@@ -59,11 +59,11 @@ class Utils {
         let appSupportUrl = fileManager.urls(for: .preferencePanesDirectory, in: .userDomainMask).first
         return URL(string: name.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!, relativeTo:  appSupportUrl)
     }
-
+    
     static func fileExists(_ url : URL?) -> Bool {
         return FileManager.default.fileExists(atPath: url!.path)
     }
-
+    
     static func delete(_ url: URL) {
         if(fileExists(url)) {
             let fileManager = FileManager.default
@@ -75,11 +75,11 @@ class Utils {
             }
         }
     }
-
+    
     static func iconForApp(_ path: String) -> NSImage {
-        return NSWorkspace.shared().icon(forFile: path)
+        return NSWorkspace.shared.icon(forFile: path)
     }
-
+    
     static func execute(_ source: String) {
         let script = NSAppleScript(source: source)
         let errorInfo: AutoreleasingUnsafeMutablePointer<NSDictionary?>? = nil
@@ -88,40 +88,40 @@ class Utils {
             log("Error : " + error!.description)
         }
     }
-
+    
     static func log(_ message: String) {
         NSLog("%@", message)
     }
-	
-	static func resourceAvailable(_ url: URL?, successHandler: @escaping () -> Void, errorHandler: @escaping (_ error: NSError?) -> Void) {
-		if let url = url {
-			let request = NSMutableURLRequest(url: url)
-			request.httpMethod = "HEAD"
-			request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
-			request.timeoutInterval = 10.0
-			
-			let completionHandler = { (data: Data?, response: URLResponse?, err: Error?) -> Void in
-				var status = false
-				if let httpResponse = response as? HTTPURLResponse {
-					if httpResponse.statusCode == 200 {
-						status = true
-					}
-				}
-				if(status) {
-					successHandler()
-				} else {
-					errorHandler(err as NSError?)
-				}
-			}
-			
+    
+    static func resourceAvailable(_ url: URL?, successHandler: @escaping () -> Void, errorHandler: @escaping (_ error: NSError?) -> Void) {
+        if let url = url {
+            let request = NSMutableURLRequest(url: url)
+            request.httpMethod = "HEAD"
+            request.cachePolicy = NSURLRequest.CachePolicy.reloadIgnoringLocalAndRemoteCacheData
+            request.timeoutInterval = 10.0
+            
+            let completionHandler = { (data: Data?, response: URLResponse?, err: Error?) -> Void in
+                var status = false
+                if let httpResponse = response as? HTTPURLResponse {
+                    if httpResponse.statusCode == 200 {
+                        status = true
+                    }
+                }
+                if(status) {
+                    successHandler()
+                } else {
+                    errorHandler(err as NSError?)
+                }
+            }
+            
             let session = URLSession.shared
-        
+            
             let task = session.dataTask(with: request as URLRequest, completionHandler: completionHandler)
             
             task.resume()
-		}
-	}
-	
+        }
+    }
+    
     static func notifyNewReleases(_ delegate: NSUserNotificationCenterDelegate, release: Release) {
         let notification = NSUserNotification()
         notification.title = "There's a new Erlang release!"
@@ -149,10 +149,10 @@ class Utils {
         
         
         let dontBother = self.inform("A deprecated ESL Erlang installation has been found.", additionalInfo: "Location: \(Constants.ErlangEslInstallationDir.path)")
-
+        
         UserDefaults.dontBotherWithOldReleaseAlert = dontBother
     }
-
+    
     static func setPathCommandForShell(_ shell: String, path: String) -> String {
         let shellName = URL(fileURLWithPath: shell).lastPathComponent
         var command: String?

@@ -12,16 +12,16 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var mainMenu: MainMenu!
-	
+    
     var mainWindow: ErlangInstallerPreferences!
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-		
-		// Uncomment to delete userdefaults in OSX El Capitan
-		// let domainName: String = NSBundle.mainBundle().bundleIdentifier!
-		// NSUserDefaults.standardUserDefaults().removePersistentDomainForName(domainName)
-		// exit(0)
-
+        
+        // Uncomment to delete userdefaults in OSX El Capitan
+        // let domainName: String = NSBundle.mainBundle().bundleIdentifier!
+        // NSUserDefaults.standardUserDefaults().removePersistentDomainForName(domainName)
+        // exit(0)
+        
         Utils.maybeRemovePackageInstallation()
         ReleaseManager.load() {
             self.mainMenu.listenNotifications()
@@ -30,7 +30,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.mainMenu.scheduleCheckNewReleases()
         }
         
-        let theStoryboard :NSStoryboard? = NSStoryboard(name: "ErlangInstallerPreferences", bundle: nil)
+        let theStoryboard :NSStoryboard? = NSStoryboard(name: NSStoryboard.Name(rawValue: "ErlangInstallerPreferences"), bundle: nil)
         self.mainWindow = theStoryboard?.instantiateInitialController() as? ErlangInstallerPreferences
     }
     

@@ -9,7 +9,7 @@
 import Cocoa
 
 class ReleaseTableCell: NSTableCellView, InstallationProgress, UninstallationProgress {
-
+    
     fileprivate var installer : ReleaseInstaller? = nil
     
     @IBOutlet weak var releaseNameLabel: NSTextField!
@@ -20,18 +20,18 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress, UninstallationPro
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     
     weak var preferencesPane: ErlangInstallerPreferences!
-
+    
     @IBAction func installClickAction(_ checkButton: NSButton) {
         self.installer = ReleaseInstaller.install(releaseNameLabel.stringValue, progress: self)
         self.installer?.delegate = self.preferencesPane
-   }
-
+    }
+    
     @IBAction func uninstallClickAction(_ checkButton: NSButton) {
         let uninstaller = ReleaseUninstaller(releaseName: releaseNameLabel.stringValue, progress: self)
-		uninstaller.delegate = self.preferencesPane
+        uninstaller.delegate = self.preferencesPane
         uninstaller.start()
     }
-
+    
     @IBAction func cancelClickAction(_ checkButton: NSButton) {
         self.installer!.cancel()
     }
@@ -56,10 +56,10 @@ class ReleaseTableCell: NSTableCellView, InstallationProgress, UninstallationPro
     func start() {
         self.informationLabel.stringValue = "Installing..."
         cancelButton.isHidden = false
-
+        
         progressIndicator.doubleValue = 0
         progressIndicator.isHidden = false
-
+        
         informationLabel.isHidden = false
         installButton.isHidden = true
     }

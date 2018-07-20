@@ -14,7 +14,7 @@
                     <key>title</key>
                     <string>General Erlang Installer Options</string>
                 </dict>
-			</array>
+            </array>
         </dict>
         <key>releases</key>
         <dict>

@@ -15,15 +15,15 @@ public protocol UninstallationProgress {
 }
 
 public protocol refreshPreferences {
-	func refresh()
+    func refresh()
 }
 
 class ReleaseUninstaller {
     let release: Release
     let progress: UninstallationProgress
-	
-	 var delegate: refreshPreferences!
-	
+    
+    var delegate: refreshPreferences!
+    
     init(releaseName: String, progress: UninstallationProgress) {
         self.release = ReleaseManager.releases[releaseName]!
         self.progress = progress
@@ -31,13 +31,13 @@ class ReleaseUninstaller {
     
     func start() {
         let result = Utils.confirm("Do you want to uninstall Erlang release \(release.name)?")
-		if(result) {
+        if(result) {
             var authRef: AuthorizationRef? = nil
             let authFlags = AuthorizationFlags.extendRights
             let osStatus = AuthorizationCreate(nil, nil, authFlags, &authRef)
             
             if(osStatus == errAuthorizationSuccess) {
-
+                
                 progress.deleting()
                 Utils.delete(Utils.supportResourceUrl(release.name)!)
                 progress.finished()
@@ -55,6 +55,6 @@ class ReleaseUninstaller {
                 }
                 self.delegate.refresh()
             }
-		}
+        }
     }
 }
